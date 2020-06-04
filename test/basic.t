@@ -1,18 +1,18 @@
   $ [ "$0" != "/bin/bash" ] || shopt -s expand_aliases
   $ [ -n "$PYTHON" ] || PYTHON="`which python`"
-  $ alias ogr2pbf="$PYTHON $TESTDIR/../ogr2pbf.py"
+  $ alias ogr2pbf="$PYTHON $TESTDIR/../ogr2pbf/ogr2pbf.py"
 
 usage:
   $ ogr2pbf -h
   running with lxml.etree
-  usage: ogr2pbf [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
-                 [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
-                 [--significant-digits SIGNIFICANTDIGITS]
-                 [--rounding-digits ROUNDINGDIGITS]
-                 [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                 [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
-                 [--never-download] [--never-upload] [--locked]
-                 DATASOURCE
+  usage: ogr2pbf.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
+                    [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
+                    [--significant-digits SIGNIFICANTDIGITS]
+                    [--rounding-digits ROUNDINGDIGITS]
+                    [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+                    [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
+                    [--never-download] [--never-upload] [--locked]
+                    DATASOURCE
   
   positional arguments:
     DATASOURCE            DATASOURCE can be a file path or a org PostgreSQL

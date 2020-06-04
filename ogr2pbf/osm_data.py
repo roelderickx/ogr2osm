@@ -4,7 +4,7 @@ import logging
 from osgeo import ogr
 from osgeo import osr
 
-from ogr2pbf.osm_geometries import OsmId, OsmGeometry, OsmPoint, OsmWay, OsmRelation
+from .osm_geometries import OsmPoint, OsmWay, OsmRelation
 
 class OsmData:
     def __init__(self, translation, significant_digits=9, rounding_digits=7, max_points_in_way=1800):

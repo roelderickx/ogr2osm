@@ -6,16 +6,17 @@ from osgeo import ogr
 from osgeo import osr
 
 class OgrDatasource:
-    def __init__(self, translation, source_proj4 = None, source_epsg = None):
+    def __init__(self, translation, source_proj4=None, source_epsg=None, gisorder=False):
         self.datasource = None
         self.is_database_source = False
         self.query = None
         self.translation = translation
         self.source_proj4 = source_proj4
         self.source_epsg = source_epsg
+        self.gisorder = gisorder
     
     
-    def open_datasource(self, ogrpath, prefer_mem_copy = True):
+    def open_datasource(self, ogrpath, prefer_mem_copy=True):
         full_ogrpath = None
         
         # database source ?
@@ -85,9 +86,13 @@ class OgrDatasource:
         spatial_ref = None
         if self.source_proj4:
             spatial_ref = osr.SpatialReference()
+            if self.gisorder:
+                spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
             spatial_ref.ImportFromProj4(self.source_proj4)
         elif self.source_epsg:
             spatial_ref = osr.SpatialReference()
+            if self.gisorder:
+                spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
             spatial_ref.ImportFromEPSG(self.source_epsg)
         elif layer_spatial_ref:
             spatial_ref = layer_spatial_ref
@@ -104,10 +109,7 @@ class OgrDatasource:
         if spatial_ref:
             # Destionation projection will *always* be EPSG:4326, WGS84 lat-lon
             dest_spatial_ref = osr.SpatialReference()
-            try:
-                dest_spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
-            except AttributeError:
-                pass
+            dest_spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
             dest_spatial_ref.ImportFromEPSG(4326)
             coord_trans = osr.CoordinateTransformation(spatial_ref, dest_spatial_ref)
             reproject = lambda geometry: geometry.Transform(coord_trans)
