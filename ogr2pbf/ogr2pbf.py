@@ -45,14 +45,14 @@ ogr2osm is based very heavily on code released under the following terms:
 import sys, os, argparse, logging, inspect
 from datetime import datetime
 
-from translation_base_class import TranslationBase
-from ogr_datasource import OgrDatasource
-from osm_geometries import OsmId, OsmGeometry, OsmPoint, OsmWay, OsmRelation
-from osm_data import OsmData
+from ogr2pbf.translation_base_class import TranslationBase
+from ogr2pbf.ogr_datasource import OgrDatasource
+from ogr2pbf.osm_geometries import OsmId, OsmGeometry, OsmPoint, OsmWay, OsmRelation
+from ogr2pbf.osm_data import OsmData
 
 import zlib
-import fileformat_pb2 as fileprotobuf
-import osmformat_pb2 as osmprotobuf
+import ogr2pbf.fileformat_pb2 as fileprotobuf
+import ogr2pbf.osmformat_pb2 as osmprotobuf
 
 logging.basicConfig(format="%(message)s", level = logging.DEBUG)
 
