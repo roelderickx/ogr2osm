@@ -45,7 +45,7 @@ ogr2osm is based very heavily on code released under the following terms:
 import sys, os, argparse, logging, inspect
 
 from .translation_base_class import TranslationBase
-from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
+from .osm_geometries import OsmId
 from .ogr_datasource import OgrDatasource
 from .osm_data import OsmData
 from .osm_datawriter import OsmDataWriter
@@ -212,7 +212,7 @@ def load_translation_object(translation_module):
     return translation_object
 
 
-def main():
+def main(no_zlib=False):
     params = parse_commandline()
 
     translation_object = load_translation_object(params.translationmodule)
@@ -237,7 +237,7 @@ def main():
                                    params.neverDownload, params.locked, params.addVersion, \
                                    params.addTimestamp)
     else:
-        datawriter = PbfDataWriter(params.outputFile)
+        datawriter = PbfDataWriter(params.outputFile, no_zlib)
     osmdata.output(datawriter)
 
     if params.saveid:

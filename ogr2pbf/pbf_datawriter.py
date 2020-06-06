@@ -130,8 +130,9 @@ class PbfPrimitiveBlock:
 
 # https://wiki.openstreetmap.org/wiki/PBF_Format
 class PbfDataWriter:
-    def __init__(self, filename):
+    def __init__(self, filename, pbf_no_zlib=False):
        self.filename = filename
+       self.pbf_no_zlib = pbf_no_zlib
     
     
     def __write_block(self, f, block, block_type="OSMData"):
@@ -139,7 +140,10 @@ class PbfDataWriter:
         
         blob = fileprotobuf.Blob()
         blob.raw_size = len(block)
-        blob.zlib_data = zlib.compress(block)
+        if self.pbf_no_zlib:
+            blob.raw = block
+        else:
+            blob.zlib_data = zlib.compress(block)
 
         blobheader = fileprotobuf.BlobHeader()
         blobheader.type = block_type
