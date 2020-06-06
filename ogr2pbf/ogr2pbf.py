@@ -42,239 +42,16 @@ ogr2osm is based very heavily on code released under the following terms:
 ###############################################################################
 '''
 
-import sys, os, argparse, logging, inspect, zlib
-from datetime import datetime
+import sys, os, argparse, logging, inspect
 
 from .translation_base_class import TranslationBase
 from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
 from .ogr_datasource import OgrDatasource
 from .osm_data import OsmData
-
-import ogr2pbf.fileformat_pb2 as fileprotobuf
-import ogr2pbf.osmformat_pb2 as osmprotobuf
+from .osm_datawriter import OsmDataWriter
+from .pbf_datawriter import PbfDataWriter
 
 logging.basicConfig(format="%(message)s", level = logging.DEBUG)
-
-
-class OsmDataWriter:
-    def __init__(self, filename, never_upload=False, no_upload_false=False, never_download=False, \
-                 locked=False, add_version=False, add_timestamp=False):
-        self.filename = filename
-        self.never_upload = never_upload
-        self.no_upload_false = no_upload_false
-        self.never_download = never_download
-        self.locked = locked
-        self.add_version = add_version
-        self.add_timestamp = add_timestamp
-        #self.gzip_compression_level = gzip_compression_level
-    
-    
-    def write(self, geometries):
-        logging.debug("Outputting OSM")
-
-        #openfile = lambda: None
-        #if 0 < self.gzip_compression_level < 10:
-        #    import gzip
-        #    openfile = lambda: gzip.open(self.filename, "wb", self.gzip_compression_level)
-        #else:
-        #    openfile = lambda: open(self.filename, "w")
-        
-        # Open up the output file with the system default buffering
-        #with openfile() as f:
-        with open(self.filename, 'w', buffering = -1) as f:
-            f.write('<?xml version="1.0"?>\n')
-            f.write('<osm version="0.6" generator="ogr2pbf"')
-            if self.never_upload:
-                f.write(' upload="never"')
-            elif not self.no_upload_false:
-                f.write(' upload="false"')
-            if self.never_download:
-                f.write(' download="never"')
-            if self.locked:
-                f.write(' locked="true"')
-            f.write('>\n')
-
-            # Build up a dict for optional settings
-            attributes = {}
-            if self.add_version:
-                attributes.update({'version':'1'})
-            if self.add_timestamp:
-                attributes.update({'timestamp':datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')})
-
-            for osmgeometry in sorted(geometries, key = lambda geom: geom.get_xml_order()):
-                f.write(osmgeometry.to_xml(attributes))
-                f.write('\n')
-
-            f.write('</osm>')
-    
-    
-    def flush(self):
-        pass
-
-
-
-class PbfPrimitiveBlock:
-    def __init__(self):
-        self.stringtable = {}
-        self.__add_string("")
-        
-        self.node_primitive_group = osmprotobuf.PrimitiveGroup()
-        self.ways_primitive_group = osmprotobuf.PrimitiveGroup()
-        self.relations_primitive_group = osmprotobuf.PrimitiveGroup()
-        
-        self.granularity = 100
-        self.lat_offset = 0
-        self.lon_offset = 0
-        self.date_granularity = 1000
-        
-        self.__last_id = 0
-        self.__last_lat = 0
-        self.__last_lon = 0
-    
-    
-    def __add_string(self, s):
-        if not s in self.stringtable:
-            index = len(self.stringtable)
-            self.stringtable[s] = index
-            return index
-        else:
-            return self.stringtable[s]
-    
-    
-    def __lat_to_pbf(self, lat):
-        return int((lat * 1e9 - self.lat_offset) / self.granularity)
-    
-    
-    def __lon_to_pbf(self, lon):
-        return int((lon * 1e9 - self.lon_offset) / self.granularity)
-    
-    
-    def __add_node(self, osmpoint):
-        pbflat = self.__lat_to_pbf(osmpoint.y)
-        pbflon = self.__lon_to_pbf(osmpoint.x)
-
-        self.node_primitive_group.dense.id.append(osmpoint.id - self.__last_id)
-        self.node_primitive_group.dense.lat.append(pbflat - self.__last_lat)
-        self.node_primitive_group.dense.lon.append(pbflon - self.__last_lon)
-        
-        self.__last_id = osmpoint.id
-        self.__last_lat = pbflat
-        self.__last_lon = pbflon
-        
-        for (key, value) in osmpoint.tags.items():
-            self.node_primitive_group.dense.keys_vals.append(self.__add_string(key))
-            self.node_primitive_group.dense.keys_vals.append(self.__add_string(value))
-        self.node_primitive_group.dense.keys_vals.append(0)
-    
-    
-    def __add_way(self, osmway):
-        way = osmprotobuf.Way()
-        way.id = osmway.id
-        
-        for (key, value) in osmway.tags.items():
-            way.keys.append(self.__add_string(key))
-            way.vals.append(self.__add_string(value))
-        
-        prev_node_id = 0
-        for node in osmway.points:
-            way.refs.append(node.id - prev_node_id)
-            prev_node_id = node.id
-        
-        self.ways_primitive_group.ways.append(way)
-    
-    
-    def __add_relation(self, osmrelation):
-        relation = osmprotobuf.Relation()
-        relation.id = osmrelation.id
-        
-        for (key, value) in osmrelation.tags.items():
-            relation.keys.append(self.__add_string(key))
-            relation.vals.append(self.__add_string(value))
-        
-        prev_member_id = 0
-        for member in osmrelation.members:
-            relation.memids.append(member.id - prev_member_id)
-            prev_member_id = member.id
-            
-            relation_type = osmprotobuf.MemberType.NODE
-            if type(member) == OsmWay:
-                relation_type = osmprotobuf.MemberType.WAY
-            elif type(member) == OsmRelation:
-                relation_type = osmprotobuf.MemberType.RELATION
-            relation.types.append(relation_type)
-        
-        self.relations_primitive_group.relations.append(relation)
-    
-    
-    def add_geometry(self, geometry):
-        if type(geometry) == OsmPoint:
-            self.__add_node(geometry)
-        elif type(geometry) == OsmWay:
-            self.__add_way(geometry)
-        elif type(geometry) == OsmRelation:
-            self.__add_relation(geometry)
-
-
-    def get_primitive_block(self):
-        primitive_block = osmprotobuf.PrimitiveBlock()
-        for (string, index) in sorted(self.stringtable.items(), key=lambda kv: kv[1]):
-            primitive_block.stringtable.s.append(string.encode('utf-8'))
-        
-        primitive_block.primitivegroup.append(self.node_primitive_group)
-        primitive_block.primitivegroup.append(self.ways_primitive_group)
-        primitive_block.primitivegroup.append(self.relations_primitive_group)
-        
-        primitive_block.granularity = self.granularity
-        primitive_block.lat_offset = self.lat_offset
-        primitive_block.lon_offset = self.lon_offset
-        primitive_block.date_granularity = self.date_granularity
-        
-        return primitive_block
-
-
-
-# https://wiki.openstreetmap.org/wiki/PBF_Format
-class PbfDataWriter:
-    def __init__(self, filename):
-       self.filename = filename
-    
-    
-    def __write_block(self, f, block, block_type="OSMData"):
-        blob = fileprotobuf.Blob()
-        blob.raw_size = len(block)
-        blob.zlib_data = zlib.compress(block)
-        
-        blobheader = fileprotobuf.BlobHeader()
-        blobheader.type = block_type
-        blobheader.datasize = blob.ByteSize()
-        
-        blobheaderlen = blobheader.ByteSize().to_bytes(4, byteorder='big')
-        f.write(blobheaderlen)
-        f.write(blobheader.SerializeToString())
-        f.write(blob.SerializeToString())
-    
-    
-    def write(self, geometries):
-        logging.debug("Outputting PBF")
-
-        with open(self.filename, "wb") as f:
-            headerblock = osmprotobuf.HeaderBlock()
-            headerblock.required_features.append("OsmSchema-V0.6")
-            headerblock.required_features.append("DenseNodes")
-            headerblock.writingprogram = "ogr2pbf"
-            self.__write_block(f, headerblock.SerializeToString(), "OSMHeader")
-
-            pbf_primitive_block = PbfPrimitiveBlock()
-            for osmgeometry in sorted(geometries, key = lambda geom: geom.get_xml_order()):
-                pbf_primitive_block.add_geometry(osmgeometry)
-            
-            self.__write_block(f, pbf_primitive_block.get_primitive_block().SerializeToString())
-
-
-    def flush(self):
-        pass
-
-
 
 def parse_commandline():
     parser = argparse.ArgumentParser()
@@ -330,6 +107,8 @@ def parse_commandline():
                         help="Set destination .osm file name and location.")
     parser.add_argument("-f", "--force", dest="forceOverwrite", action="store_true",
                         help="Force overwrite of output file.")
+    parser.add_argument("--osm", dest="osm", action="store_true",
+                        help="Write the output as an OSM file in stead of a PBF file")
     parser.add_argument("--no-upload-false", dest="noUploadFalse", action="store_true",
                         help="Omit upload=false from the completed file to suppress " +
                              "JOSM warnings when uploading.")
@@ -367,7 +146,10 @@ def parse_commandline():
     else:
         if not params.outputFile:
             (base, ext) = os.path.splitext(os.path.basename(params.source))
-            params.outputFile = os.path.join(os.getcwd(), base + ".osm.pbf")
+            output_ext = ".osm.pbf"
+            if params.osm:
+                output_ext = ".osm"
+            params.outputFile = os.path.join(os.getcwd(), base + output_ext)
         if params.sqlQuery:
             logging.warning("WARNING: You specified a query with --sql " +
                             "but you are not using a database source")
@@ -449,10 +231,13 @@ def main():
     datasource.set_query(params.sqlQuery)
     osmdata.process(datasource)
     #create datawriter and write OSM data
-    #datawriter = OsmDataWriter(params.outputFile, params.neverUpload, params.noUploadFalse, \
-    #                           params.neverDownload, params.locked, params.addVersion, \
-    #                           params.addTimestamp)
-    datawriter = PbfDataWriter(params.outputFile)
+    datawriter = None
+    if params.osm:
+        datawriter = OsmDataWriter(params.outputFile, params.neverUpload, params.noUploadFalse, \
+                                   params.neverDownload, params.locked, params.addVersion, \
+                                   params.addTimestamp)
+    else:
+        datawriter = PbfDataWriter(params.outputFile)
     osmdata.output(datawriter)
 
     if params.saveid:

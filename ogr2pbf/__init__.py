@@ -1,4 +1,6 @@
 from .translation_base_class import TranslationBase
 from .ogr_datasource import OgrDatasource
 from .osm_data import OsmData
-from .ogr2pbf import OsmDataWriter, PbfDataWriter
+from .osm_datawriter import OsmDataWriter
+from .pbf_datawriter import PbfDataWriter
+
