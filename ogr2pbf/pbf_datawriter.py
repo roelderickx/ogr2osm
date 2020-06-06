@@ -2,6 +2,8 @@
 
 import logging, sys, os, zlib
 
+from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
+
 import ogr2pbf.fileformat_pb2 as fileprotobuf
 import ogr2pbf.osmformat_pb2 as osmprotobuf
 
@@ -137,8 +139,7 @@ class PbfDataWriter:
         
         blob = fileprotobuf.Blob()
         blob.raw_size = len(block)
-        print('before compression, type = %s' % type(block))
-        blob.zlib_data = zlib.compress(block) # crash?
+        blob.zlib_data = zlib.compress(block)
 
         blobheader = fileprotobuf.BlobHeader()
         blobheader.type = block_type
