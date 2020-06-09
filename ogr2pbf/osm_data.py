@@ -14,7 +14,9 @@ class OsmData:
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
         
-        self.__geometries = []
+        self.__nodes = []
+        self.__ways = []
+        self.__relations = []
         self.__linestring_points = {}
         self.__long_ways_from_polygons = set()
 
@@ -46,13 +48,13 @@ class OsmData:
     def __parse_point(self, ogrgeometry):
         x = self.__trunc_significant(ogrgeometry.GetX())
         y = self.__trunc_significant(ogrgeometry.GetY())
-        geometry = OsmPoint(x, y)
-        self.__geometries.append(geometry)
-        return geometry
+        node = OsmPoint(x, y)
+        self.__nodes.append(node)
+        return node
 
 
     def __parse_linestring(self, ogrgeometry):
-        geometry = OsmWay()
+        way = OsmWay()
         # LineString.GetPoint() returns a tuple, so we can't call parsePoint on it
         # and instead have to create the point ourself
         for i in range(ogrgeometry.GetPointCount()):
@@ -63,12 +65,12 @@ class OsmData:
                 mypoint = self.__linestring_points[(rx, ry)]
             else:
                 mypoint = OsmPoint(self.__trunc_significant(x), self.__trunc_significant(y))
-                self.__geometries.append(mypoint)
+                self.__nodes.append(mypoint)
                 self.__linestring_points[(rx, ry)] = mypoint
-            geometry.points.append(mypoint)
-            mypoint.addparent(geometry)
-        self.__geometries.append(geometry)
-        return geometry
+            way.points.append(mypoint)
+            mypoint.addparent(way)
+        self.__ways.append(way)
+        return way
 
 
     def __parse_polygon(self, ogrgeometry):
@@ -82,20 +84,20 @@ class OsmData:
                 self.__long_ways_from_polygons.add(result)
             return result
         else:
-            geometry = OsmRelation()
+            relation = OsmRelation()
             try:
                 exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0))
-                exterior.addparent(geometry)
+                exterior.addparent(relation)
             except:
                 logging.warning("Polygon with no exterior ring?")
                 return None
-            geometry.members.append((exterior, "outer"))
+            relation.members.append((exterior, "outer"))
             for i in range(1, ogrgeometry.GetGeometryCount()):
                 interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i))
-                interior.addparent(geometry)
-                geometry.members.append((interior, "inner"))
-            self.__geometries.append(geometry)
-            return geometry
+                interior.addparent(relation)
+                relation.members.append((interior, "inner"))
+            self.__relations.append(relation)
+            return relation
 
 
     def __parse_collection(self, ogrgeometry):
@@ -104,19 +106,19 @@ class OsmData:
         geometry_type = ogrgeometry.GetGeometryType()
         if geometry_type in [ ogr.wkbMultiPolygon, ogr.wkbMultiPolygon25D ]:
             if ogrgeometry.GetGeometryCount() > 1:
-                geometry = OsmRelation()
+                relation = OsmRelation()
                 for polygon in range(ogrgeometry.GetGeometryCount()):
                     ext_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(0)
                     exterior = self.__parse_linestring(ext_geom)
-                    exterior.addparent(geometry)
-                    geometry.members.append((exterior, "outer"))
+                    exterior.addparent(relation)
+                    relation.members.append((exterior, "outer"))
                     for i in range(1, ogrgeometry.GetGeometryRef(polygon).GetGeometryCount()):
                         int_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(i)
                         interior = self.__parse_linestring(int_geom)
-                        interior.addparent(geometry)
-                        geometry.members.append((interior, "inner"))
-                self.__geometries.append(geometry)
-                return [ geometry ]
+                        interior.addparent(relation)
+                        relation.members.append((interior, "inner"))
+                self.__relations.append(relation)
+                return [ relation ]
             else:
                return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0)) ]
         elif geometry_type in [ ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ]:
@@ -125,13 +127,13 @@ class OsmData:
                 geometries.append(self.__parse_linestring(ogrgeometry.GetGeometryRef(linestring)))
             return geometries
         else:
-            geometry = OsmRelation()
+            relation = OsmRelation()
             for i in range(ogrgeometry.GetGeometryCount()):
                 member = self.__parse_geometry(ogrgeometry.GetGeometryRef(i))
-                member.addparent(geometry)
-                geometry.members.append((member, "member"))
-            self.__geometries.append(geometry)
-            return [ geometry ]
+                member.addparent(relation)
+                relation.members.append((member, "member"))
+            self.__relations.append(relation)
+            return [ relation ]
     
     
     def __parse_geometry(self, ogrgeometry):
@@ -183,12 +185,11 @@ class OsmData:
 
     def merge_points(self):
         logging.debug("Merging points")
-        points = [ geom for geom in self.__geometries if type(geom) == OsmPoint ]
 
         # Make list of Points at each location
         logging.debug("Making list")
         pointcoords = {}
-        for i in points:
+        for i in self.__nodes:
             rx = self.__round_number(i.x)
             ry = self.__round_number(i.y)
             if (rx, ry) in pointcoords:
@@ -204,16 +205,15 @@ class OsmData:
                     for parent in set(point.get_parents()):
                         parent.replacejwithi(pointsatloc[0], point)
                     if len(point.get_parents()) == 0:
-                        self.__geometries.remove(point)
+                        self.__nodes.remove(point)
 
 
     def merge_way_points(self):
         logging.debug("Merging duplicate points in ways")
-        ways = [ geom for geom in self.__geometries if type(geom) == OsmWay ]
 
         # Remove duplicate points from ways,
         # a duplicate has the same id as its predecessor
-        for way in ways:
+        for way in self.__ways:
             previous_id = None
             merged_points = []
 
@@ -254,7 +254,7 @@ class OsmData:
 
     def __merge_into_new_relation(self, way_parts):
         new_relation = OsmRelation()
-        self.__geometries.append(new_relation)
+        self.__relations.append(new_relation)
         new_relation.members = [ (way, "outer") for way in way_parts ]
         for way in way_parts:
             way.addparent(new_relation)
@@ -273,9 +273,8 @@ class OsmData:
             return
         
         logging.debug("Splitting long ways")
-        ways = [ geom for geom in self.__geometries if type(geom) == OsmWay ]
 
-        for way in ways:
+        for way in self.__ways:
             is_way_in_relation = len([ p for p in way.get_parents() if type(p) == OsmRelation ]) > 0
             if len(way.points) > self.max_points_in_way:
                 way_parts = self.__split_way(way, is_way_in_relation)
@@ -306,7 +305,7 @@ class OsmData:
     def output(self, datawriter):
         logging.debug("Outputting OSM data")
         
-        self.translation.process_output(self.__geometries)
-        datawriter.write(self.__geometries)
+        self.translation.process_output(self.__nodes, self.__ways, self.__relations)
+        datawriter.write(self.__nodes, self.__ways, self.__relations)
         datawriter.flush()
 

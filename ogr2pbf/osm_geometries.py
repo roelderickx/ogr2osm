@@ -57,10 +57,6 @@ class OsmGeometry:
     
     def replacejwithi(self, i, j):
         pass
-
-
-    def get_xml_order(self):
-        return 0
     
     
     def to_xml(self, attributes = {}):
@@ -85,10 +81,6 @@ class OsmPoint(OsmGeometry):
     
     def get_all_geometries(self):
         return [ self ]
-
-
-    def get_xml_order(self):
-        return 1
 
 
     def to_xml(self, attributes):
@@ -124,10 +116,6 @@ class OsmWay(OsmGeometry):
         i.addparent(self)
 
 
-    def get_xml_order(self):
-        return 2
-
-
     def to_xml(self, attributes):
         xmlattrs = { 'visible':'true', 'id':str(self.id) }
         xmlattrs.update(attributes)
@@ -159,10 +147,6 @@ class OsmRelation(OsmGeometry):
         self.members = [ (i, x[1]) if x[0] == j else x for x in self.members ]
         j.removeparent(self)
         i.addparent(self)
-
-
-    def get_xml_order(self):
-        return 3
 
 
     def to_xml(self, attributes):

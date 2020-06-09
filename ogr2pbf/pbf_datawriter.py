@@ -155,7 +155,7 @@ class PbfDataWriter:
         f.write(blob.SerializeToString())
     
     
-    def write(self, geometries):
+    def write(self, nodes, ways, relations):
         logging.debug("Outputting PBF")
 
         with open(self.filename, "wb") as f:
@@ -166,8 +166,12 @@ class PbfDataWriter:
             self.__write_block(f, headerblock.SerializeToString(), "OSMHeader")
 
             pbf_primitive_block = PbfPrimitiveBlock()
-            for osmgeometry in sorted(geometries, key = lambda geom: geom.get_xml_order()):
-                pbf_primitive_block.add_geometry(osmgeometry)
+            for osmnode in nodes:
+                pbf_primitive_block.add_geometry(osmnode)
+            for osmway in ways:
+                pbf_primitive_block.add_geometry(osmway)
+            for osmrelation in relations:
+                pbf_primitive_block.add_geometry(osmrelation)
             
             self.__write_block(f, pbf_primitive_block.get_primitive_block().SerializeToString())
 

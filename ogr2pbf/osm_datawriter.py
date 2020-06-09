@@ -16,7 +16,7 @@ class OsmDataWriter:
         #self.gzip_compression_level = gzip_compression_level
     
     
-    def write(self, geometries):
+    def write(self, nodes, ways, relations):
         logging.debug("Outputting OSM")
 
         #openfile = lambda: None
@@ -48,8 +48,16 @@ class OsmDataWriter:
             if self.add_timestamp:
                 attributes.update({'timestamp':datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')})
 
-            for osmgeometry in sorted(geometries, key = lambda geom: geom.get_xml_order()):
-                f.write(osmgeometry.to_xml(attributes))
+            for osmnode in nodes:
+                f.write(osmnode.to_xml(attributes))
+                f.write('\n')
+
+            for osmway in ways:
+                f.write(osmway.to_xml(attributes))
+                f.write('\n')
+
+            for osmrelation in relations:
+                f.write(osmrelation.to_xml(attributes))
                 f.write('\n')
 
             f.write('</osm>')
