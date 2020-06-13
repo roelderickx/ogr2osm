@@ -150,6 +150,18 @@ def parse_commandline():
             if params.osm:
                 output_ext = ".osm"
             params.outputFile = os.path.join(os.getcwd(), base + output_ext)
+        else:
+            (base, ext) = os.path.splitext(os.path.basename(params.outputFile))
+            if params.osm and ext.lower() == '.pbf':
+                logging.warning("WARNING: You specified OSM output with --osm " +
+                                "but the outputfile has extension .pbf, " +
+                                "ignoring --osm parameter")
+                params.osm = False
+            elif not params.osm and ext.lower() == '.osm':
+                logging.warning("WARNING: You didn't specify OSM output with --osm " +
+                                "but the outputfile has extension .osm, " +
+                                "automatically setting --osm parameter")
+                params.osm = True
         if params.sqlQuery:
             logging.warning("WARNING: You specified a query with --sql " +
                             "but you are not using a database source")

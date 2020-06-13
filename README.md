@@ -91,5 +91,4 @@ Just like ogr2osm, ogr2pbf supports custom translations for your data. Documenta
 ## TODO
 
 This application is still in beta stage. It needs profound testing of the PBF output, as well as some tweaks to limit the amount of nodes or ways in one block. The API has to be completed, especially with regard to the datawriter.
-The datawriter should be automatically chosen based on the file extension, or if no output parameter is present it should automatically be pbf.
 
