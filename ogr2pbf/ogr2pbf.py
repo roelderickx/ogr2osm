@@ -79,6 +79,8 @@ def parse_commandline():
     parser.add_argument("-p", "--proj4", dest="sourcePROJ4", type=str, metavar="PROJ4_STRING",
                         help="PROJ.4 string. If specified, overrides projection " +
                              "from source metadata if it exists.")
+    parser.add_argument("--gis-order", dest="gisorder", action="store_true",
+                        help="Consider the source coordinates to be in traditional GIS order")
     # precision options
     parser.add_argument("--significant-digits", dest="significantDigits", type=int,
                         help="Number of decimal places for coordinates to output " +
@@ -238,7 +240,8 @@ def main(no_zlib=False):
     osmdata = OsmData(translation_object, params.significantDigits, params.roundingDigits, \
                       params.maxNodesPerWay)
     # create datasource and process data
-    datasource = OgrDatasource(translation_object, params.sourcePROJ4, params.sourceEPSG)
+    datasource = OgrDatasource(translation_object, \
+                               params.sourcePROJ4, params.sourceEPSG, params.gisorder)
     datasource.open_datasource(params.source, not params.noMemoryCopy)
     datasource.set_query(params.sqlQuery)
     osmdata.process(datasource)
