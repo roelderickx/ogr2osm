@@ -18,6 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='OSMPBF',
   syntax='proto2',
   serialized_options=b'\n\rcrosby.binaryH\003',
+  create_key=_descriptor._internal_create_key,
   serialized_pb=b'\n\x10\x66ileformat.proto\x12\x06OSMPBF\"l\n\x04\x42lob\x12\x0b\n\x03raw\x18\x01 \x01(\x0c\x12\x10\n\x08raw_size\x18\x02 \x01(\x05\x12\x11\n\tzlib_data\x18\x03 \x01(\x0c\x12\x11\n\tlzma_data\x18\x04 \x01(\x0c\x12\x1f\n\x13OBSOLETE_bzip2_data\x18\x05 \x01(\x0c\x42\x02\x18\x01\"?\n\nBlobHeader\x12\x0c\n\x04type\x18\x01 \x02(\t\x12\x11\n\tindexdata\x18\x02 \x01(\x0c\x12\x10\n\x08\x64\x61tasize\x18\x03 \x02(\x05\x42\x11\n\rcrosby.binaryH\x03'
 )
 
@@ -30,6 +31,7 @@ _BLOB = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='raw', full_name='OSMPBF.Blob.raw', index=0,
@@ -37,35 +39,35 @@ _BLOB = _descriptor.Descriptor(
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='raw_size', full_name='OSMPBF.Blob.raw_size', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='zlib_data', full_name='OSMPBF.Blob.zlib_data', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='lzma_data', full_name='OSMPBF.Blob.lzma_data', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='OBSOLETE_bzip2_data', full_name='OSMPBF.Blob.OBSOLETE_bzip2_data', index=4,
       number=5, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=b'\030\001', file=DESCRIPTOR),
+      serialized_options=b'\030\001', file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -89,6 +91,7 @@ _BLOBHEADER = _descriptor.Descriptor(
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
+  create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
       name='type', full_name='OSMPBF.BlobHeader.type', index=0,
@@ -96,21 +99,21 @@ _BLOBHEADER = _descriptor.Descriptor(
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='indexdata', full_name='OSMPBF.BlobHeader.indexdata', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='datasize', full_name='OSMPBF.BlobHeader.datasize', index=2,
       number=3, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
