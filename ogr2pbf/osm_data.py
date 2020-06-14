@@ -6,19 +6,6 @@ from osgeo import osr
 
 from .osm_geometries import OsmPoint, OsmWay, OsmRelation
 
-class DataWriterContextManager:
-    def __init__(self, datawriter):
-        self.datawriter = datawriter
-    
-    def __enter__(self):
-        self.datawriter.open()
-        return self.datawriter
-    
-    def __exit__(self, exception_type, value, traceback):
-        self.datawriter.close()
-
-
-
 class OsmData:
     def __init__(self, translation, significant_digits=9, rounding_digits=7, max_points_in_way=1800):
         # options
@@ -315,10 +302,22 @@ class OsmData:
         self.split_long_ways()
 
 
+    class DataWriterContextManager:
+        def __init__(self, datawriter):
+            self.datawriter = datawriter
+        
+        def __enter__(self):
+            self.datawriter.open()
+            return self.datawriter
+        
+        def __exit__(self, exception_type, value, traceback):
+            self.datawriter.close()
+
+
     def output(self, datawriter):
         self.translation.process_output(self.__nodes, self.__ways, self.__relations)
         
-        with DataWriterContextManager(datawriter) as dw:
+        with self.DataWriterContextManager(datawriter) as dw:
             dw.write_header()
             dw.write_nodes(self.__nodes)
             dw.write_ways(self.__ways)
