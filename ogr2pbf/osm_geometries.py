@@ -43,10 +43,6 @@ class OsmGeometry:
         return OsmId.element_id_counter
     
     
-    def get_all_geometries(self):
-        return None
-    
-    
     def get_parents(self):
         return self.__parents
     
@@ -79,10 +75,6 @@ class OsmPoint(OsmGeometry):
         self.y = y
     
     
-    def get_all_geometries(self):
-        return [ self ]
-
-
     def to_xml(self, attributes):
         xmlattrs = { 'visible':'true', \
                      'id':str(self.id), \
@@ -106,10 +98,6 @@ class OsmWay(OsmGeometry):
         self.points = []
 
 
-    def get_all_geometries(self):
-        return [ self ] + self.points
-    
-    
     def replacejwithi(self, i, j):
         self.points = [ i if x == j else x for x in self.points ]
         j.removeparent(self)
@@ -139,10 +127,6 @@ class OsmRelation(OsmGeometry):
         self.members = []
 
 
-    def get_all_geometries(self):
-        return [ self ] + [ m.get_all_geometries() for m in self.members ]
-    
-    
     def replacejwithi(self, i, j):
         self.members = [ (i, x[1]) if x[0] == j else x for x in self.members ]
         j.removeparent(self)
