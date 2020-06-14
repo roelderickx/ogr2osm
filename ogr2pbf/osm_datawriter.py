@@ -3,7 +3,9 @@
 import logging
 from datetime import datetime
 
-class OsmDataWriter:
+from .datawriter_base_class import DataWriterBase
+
+class OsmDataWriter(DataWriterBase):
     def __init__(self, filename, never_upload=False, no_upload_false=False, never_download=False, \
                  locked=False, add_version=False, add_timestamp=False):
         self.filename = filename
@@ -11,58 +13,70 @@ class OsmDataWriter:
         self.no_upload_false = no_upload_false
         self.never_download = never_download
         self.locked = locked
-        self.add_version = add_version
-        self.add_timestamp = add_timestamp
         #self.gzip_compression_level = gzip_compression_level
-    
-    
-    def write(self, nodes, ways, relations):
-        logging.debug("Outputting OSM")
+        self.f = None
 
-        #openfile = lambda: None
+        # Build up a dict for optional settings
+        self.attributes = {}
+        if add_version:
+            self.attributes.update({'version':'1'})
+        if add_timestamp:
+            self.attributes.update({'timestamp':datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')})
+    
+    
+    def open(self):
         #if 0 < self.gzip_compression_level < 10:
         #    import gzip
-        #    openfile = lambda: gzip.open(self.filename, "wb", self.gzip_compression_level)
+        #    self.f = gzip.open(self.filename, "wb", self.gzip_compression_level)
         #else:
-        #    openfile = lambda: open(self.filename, "w")
+        #    self.f = open(self.filename, "w", buffering = -1)
+        self.f = open(self.filename, 'w', buffering = -1)
+
+
+    def write_header(self):
+        logging.debug("Writing file header")
         
-        # Open up the output file with the system default buffering
-        #with openfile() as f:
-        with open(self.filename, 'w', buffering = -1) as f:
-            f.write('<?xml version="1.0"?>\n')
-            f.write('<osm version="0.6" generator="ogr2pbf"')
-            if self.never_upload:
-                f.write(' upload="never"')
-            elif not self.no_upload_false:
-                f.write(' upload="false"')
-            if self.never_download:
-                f.write(' download="never"')
-            if self.locked:
-                f.write(' locked="true"')
-            f.write('>\n')
-
-            # Build up a dict for optional settings
-            attributes = {}
-            if self.add_version:
-                attributes.update({'version':'1'})
-            if self.add_timestamp:
-                attributes.update({'timestamp':datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')})
-
-            for osmnode in nodes:
-                f.write(osmnode.to_xml(attributes))
-                f.write('\n')
-
-            for osmway in ways:
-                f.write(osmway.to_xml(attributes))
-                f.write('\n')
-
-            for osmrelation in relations:
-                f.write(osmrelation.to_xml(attributes))
-                f.write('\n')
-
-            f.write('</osm>')
+        self.f.write('<?xml version="1.0"?>\n')
+        self.f.write('<osm version="0.6" generator="ogr2pbf"')
+        if self.never_upload:
+            self.f.write(' upload="never"')
+        elif not self.no_upload_false:
+            self.f.write(' upload="false"')
+        if self.never_download:
+            self.f.write(' download="never"')
+        if self.locked:
+            self.f.write(' locked="true"')
+        self.f.write('>\n')
     
     
-    def flush(self):
-        pass
+    def __write_geometries(self, geoms):
+        for osm_geom in geoms:
+            self.f.write(osm_geom.to_xml(self.attributes))
+            self.f.write('\n')
+
+    
+    def write_nodes(self, nodes):
+        logging.debug("Writing nodes")
+        self.__write_geometries(nodes)
+    
+    
+    def write_ways(self, ways):
+        logging.debug("Writing ways")
+        self.__write_geometries(ways)
+    
+    
+    def write_relations(self, relations):
+        logging.debug("Writing relations")
+        self.__write_geometries(relations)
+    
+    
+    def write_footer(self):
+        logging.debug("Writing file footer")
+        self.f.write('</osm>')
+    
+    
+    def close(self):
+        if self.f:
+            self.f.close()
+            self.f = None
 

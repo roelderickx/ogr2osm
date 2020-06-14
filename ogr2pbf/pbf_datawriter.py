@@ -3,9 +3,12 @@
 import logging, sys, os, zlib
 
 from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
+from .datawriter_base_class import DataWriterBase
 
 import ogr2pbf.fileformat_pb2 as fileprotobuf
 import ogr2pbf.osmformat_pb2 as osmprotobuf
+
+# https://wiki.openstreetmap.org/wiki/PBF_Format
 
 class PbfPrimitiveBlock:
     def __init__(self):
@@ -43,7 +46,7 @@ class PbfPrimitiveBlock:
         return int((lon * 1e9 - self.lon_offset) / self.granularity)
     
     
-    def __add_node(self, osmpoint):
+    def add_node(self, osmpoint):
         pbflat = self.__lat_to_pbf(osmpoint.y)
         pbflon = self.__lon_to_pbf(osmpoint.x)
 
@@ -61,7 +64,7 @@ class PbfPrimitiveBlock:
         self.node_primitive_group.dense.keys_vals.append(0)
     
     
-    def __add_way(self, osmway):
+    def add_way(self, osmway):
         way = osmprotobuf.Way()
         way.id = osmway.id
         
@@ -77,7 +80,7 @@ class PbfPrimitiveBlock:
         self.ways_primitive_group.ways.append(way)
     
     
-    def __add_relation(self, osmrelation):
+    def add_relation(self, osmrelation):
         relation = osmprotobuf.Relation()
         relation.id = osmrelation.id
         
@@ -98,15 +101,6 @@ class PbfPrimitiveBlock:
             relation.types.append(relation_type)
         
         self.relations_primitive_group.relations.append(relation)
-    
-    
-    def add_geometry(self, geometry):
-        if type(geometry) == OsmPoint:
-            self.__add_node(geometry)
-        elif type(geometry) == OsmWay:
-            self.__add_way(geometry)
-        elif type(geometry) == OsmRelation:
-            self.__add_relation(geometry)
 
 
     def get_primitive_block(self):
@@ -128,14 +122,17 @@ class PbfPrimitiveBlock:
 
 
 
-# https://wiki.openstreetmap.org/wiki/PBF_Format
-class PbfDataWriter:
+class PbfDataWriter(DataWriterBase):
     def __init__(self, filename, pbf_no_zlib=False):
        self.filename = filename
        self.pbf_no_zlib = pbf_no_zlib
     
     
-    def __write_block(self, f, block, block_type="OSMData"):
+    def open(self):
+        self.f = open(self.filename, 'wb', buffering = -1)
+    
+    
+    def __write_block(self, block, block_type="OSMData"):
         logging.debug("Writing blob, type = %s" % block_type)
         
         blob = fileprotobuf.Blob()
@@ -150,32 +147,47 @@ class PbfDataWriter:
         blobheader.datasize = blob.ByteSize()
         
         blobheaderlen = blobheader.ByteSize().to_bytes(4, byteorder='big')
-        f.write(blobheaderlen)
-        f.write(blobheader.SerializeToString())
-        f.write(blob.SerializeToString())
+        self.f.write(blobheaderlen)
+        self.f.write(blobheader.SerializeToString())
+        self.f.write(blob.SerializeToString())
+
+
+    def write_header(self):
+        logging.debug("Writing file header")
+        
+        headerblock = osmprotobuf.HeaderBlock()
+        headerblock.required_features.append("OsmSchema-V0.6")
+        headerblock.required_features.append("DenseNodes")
+        headerblock.writingprogram = "ogr2pbf"
+        self.__write_block(headerblock.SerializeToString(), "OSMHeader")
+
+    
+    def write_nodes(self, nodes):
+        logging.debug("Writing nodes")
+        pbf_primitive_block = PbfPrimitiveBlock()
+        for node in nodes:
+            pbf_primitive_block.add_node(node)
+        self.__write_block(pbf_primitive_block.get_primitive_block().SerializeToString())
     
     
-    def write(self, nodes, ways, relations):
-        logging.debug("Outputting PBF")
-
-        with open(self.filename, "wb") as f:
-            headerblock = osmprotobuf.HeaderBlock()
-            headerblock.required_features.append("OsmSchema-V0.6")
-            headerblock.required_features.append("DenseNodes")
-            headerblock.writingprogram = "ogr2pbf"
-            self.__write_block(f, headerblock.SerializeToString(), "OSMHeader")
-
-            pbf_primitive_block = PbfPrimitiveBlock()
-            for osmnode in nodes:
-                pbf_primitive_block.add_geometry(osmnode)
-            for osmway in ways:
-                pbf_primitive_block.add_geometry(osmway)
-            for osmrelation in relations:
-                pbf_primitive_block.add_geometry(osmrelation)
-            
-            self.__write_block(f, pbf_primitive_block.get_primitive_block().SerializeToString())
-
-
-    def flush(self):
-        pass
+    def write_ways(self, ways):
+        logging.debug("Writing ways")
+        pbf_primitive_block = PbfPrimitiveBlock()
+        for way in ways:
+            pbf_primitive_block.add_way(way)
+        self.__write_block(pbf_primitive_block.get_primitive_block().SerializeToString())
+    
+    
+    def write_relations(self, relations):
+        logging.debug("Writing relations")
+        pbf_primitive_block = PbfPrimitiveBlock()
+        for relation in relations:
+            pbf_primitive_block.add_relation(relation)
+        self.__write_block(pbf_primitive_block.get_primitive_block().SerializeToString())
+    
+    
+    def close(self):
+        if self.f:
+            self.f.close()
+            self.f = None
 
