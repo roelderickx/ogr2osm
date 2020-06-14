@@ -132,15 +132,15 @@ class PbfDataWriter(DataWriterBase):
         self.f = open(self.filename, 'wb', buffering = -1)
     
     
-    def __write_block(self, block, block_type="OSMData"):
+    def __write_blob(self, data, block_type="OSMData"):
         logging.debug("Writing blob, type = %s" % block_type)
         
         blob = fileprotobuf.Blob()
-        blob.raw_size = len(block)
+        blob.raw_size = len(data)
         if self.pbf_no_zlib:
-            blob.raw = block
+            blob.raw = data
         else:
-            blob.zlib_data = zlib.compress(block)
+            blob.zlib_data = zlib.compress(data)
 
         blobheader = fileprotobuf.BlobHeader()
         blobheader.type = block_type
@@ -158,8 +158,8 @@ class PbfDataWriter(DataWriterBase):
         headerblock = osmprotobuf.HeaderBlock()
         headerblock.required_features.append("OsmSchema-V0.6")
         headerblock.required_features.append("DenseNodes")
-        headerblock.writingprogram = "ogr2pbf"
-        self.__write_block(headerblock.SerializeToString(), "OSMHeader")
+        headerblock.writingprogram = "ogr2pbf %s" % self.get_version()
+        self.__write_blob(headerblock.SerializeToString(), "OSMHeader")
 
     
     def write_nodes(self, nodes):
@@ -167,7 +167,7 @@ class PbfDataWriter(DataWriterBase):
         pbf_primitive_block = PbfPrimitiveBlock()
         for node in nodes:
             pbf_primitive_block.add_node(node)
-        self.__write_block(pbf_primitive_block.get_primitive_block().SerializeToString())
+        self.__write_blob(pbf_primitive_block.get_primitive_block().SerializeToString())
     
     
     def write_ways(self, ways):
@@ -175,7 +175,7 @@ class PbfDataWriter(DataWriterBase):
         pbf_primitive_block = PbfPrimitiveBlock()
         for way in ways:
             pbf_primitive_block.add_way(way)
-        self.__write_block(pbf_primitive_block.get_primitive_block().SerializeToString())
+        self.__write_blob(pbf_primitive_block.get_primitive_block().SerializeToString())
     
     
     def write_relations(self, relations):
@@ -183,7 +183,7 @@ class PbfDataWriter(DataWriterBase):
         pbf_primitive_block = PbfPrimitiveBlock()
         for relation in relations:
             pbf_primitive_block.add_relation(relation)
-        self.__write_block(pbf_primitive_block.get_primitive_block().SerializeToString())
+        self.__write_blob(pbf_primitive_block.get_primitive_block().SerializeToString())
     
     
     def close(self):

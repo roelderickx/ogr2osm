@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from .version import __version__
+
 '''
 ogr2pbf will do the following, given an instance dw of class DataWriterBase:
 
@@ -17,6 +19,10 @@ ogr2pbf will do the following, given an instance dw of class DataWriterBase:
 class DataWriterBase:
     def __init__(self):
         pass
+    
+    
+    def get_version(self):
+        return __version__
     
     
     def open(self):

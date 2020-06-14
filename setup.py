@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+exec(open("ogr2pbf/version.py").read())
+
 import setuptools
 
 with open('README.md', 'r', encoding='utf-8') as fh:
@@ -8,9 +10,9 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setuptools.setup(
     name="ogr2pbf",
-    version="0.0.1",
-    license='MIT License',
-    author="Roel Derickx",
+    version=__version__,
+    license=__license__,
+    author=__author__,
     author_email="ogr2pbf.pypi@derickx.be",
     description="A tool for converting ogr-readable files like shapefiles into .osm or .pbf data",
     long_description=README,
