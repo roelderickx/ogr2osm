@@ -17,7 +17,7 @@ Anyone planning an import into OpenStreetMap should read and review the import g
 
 ## Usage
 
-Ogr2pbf can be used as a standalone application, but you can use its classes in your own python project.
+Ogr2pbf can be used as a standalone application, but you can also use its classes in your own python project.
 
 ### Standalone
 
@@ -52,6 +52,8 @@ optional arguments:
   -p PROJ4_STRING, --proj4 PROJ4_STRING
                         PROJ.4 string. If specified, overrides projection from
                         source metadata if it exists.
+  --gis-order           Consider the source coordinates to be in traditional
+                        GIS order
   --significant-digits SIGNIFICANTDIGITS
                         Number of decimal places for coordinates to output
                         (default: 9)
@@ -82,13 +84,97 @@ optional arguments:
 
 ### As a library
 
-Currently the API is still under development and may be subject to changes without prior warning.
+Example code:
+```python
+import ogr2pbf
+
+# 1. Required parameters for this example:
+
+# - datasource_parameter is a variable holding the input filename, or a
+#   database connection such as "PG:dbname=pdx_bldgs user=emma host=localhost"
+datasource_parameter = ...
+
+# - in case your datasource is a database, you will need a query
+query = ...
+
+# - the output file to write
+output_file = ...
+
+# 2. Create the translation object. If no translation is required you
+#    can use the base class from ogr2pbf, otherwise you need to instantiate
+#    a subclass of ogr2pbf.TranslationBase
+translation_object = ogr2pbf.TranslationBase()
+
+# 3. Create the ogr datasource. You can specify a source projection but
+#    EPSG:4326 will be assumed if none is given and if the projection of the
+#    datasource does is unknown.
+datasource = ogr2pbf.OgrDatasource(translation_object)
+datasource.open_datasource(datasource_parameter)
+
+# 4. If the datasource is a database then you must set the query to use.
+#    Setting the query for any other datasource is useless but not an error.
+datasource.set_query(query)
+
+# 5. Instantiate the ogr to osm converter class ogr2pbf.OsmData and start the
+#    conversion process
+osmdata = ogr2pbf.OsmData(translation_object)
+osmdata.process(datasource)
+
+# 6. Instantiate either ogr2pbf.OsmDataWriter or ogr2pbf.PbfDataWriter and
+#    invoke output() to write the output file. If required you can write a
+#    custom datawriter class by subclassing ogr2pbf.DataWriterBase.
+datawriter = ogr2pbf.OsmDataWriter(output_file)
+osmdata.output(datawriter)
+```
+
+Refer to [contour-osm](https://github.com/roelderickx/contour-osm) for a complete example with a custom translation class and coordinate reprojection.
 
 ## Translations
 
-Just like ogr2osm, ogr2pbf supports custom translations for your data. Documentation will follow here as soon as the API is complete.
+Just like ogr2osm, ogr2pbf supports custom translations for your data. To do this you need to subclass ogr2pbf.TranslationBase and override the methods in which you want to run custom code.
+
+```python
+class TranslationBase:
+    # Override this method if you want to modify the given layer,
+    # or return None if you want to suppress the layer
+    def filter_layer(self, layer):
+        return layer
+    
+    # Override this method if you want to modify the given feature,
+    # or return None if you want to suppress the feature
+    # note 1: fieldNames parameter has been removed from the original ogr2osm,
+    # but can be recovered from the ogrfeature parameter:
+    # ---
+    # feature_def = ogrfeature.GetDefnRef()
+    # field_names = []
+    # for i in range(feature_def.GetFieldCount()):
+    #     field_names.append(feature_def.GetFieldDefn(i).GetNameRef())
+    # ---
+    # note 2: reproject is a function to convert the feature to 4326 projection
+    # with coordnates in traditional gis order. However, do not return the
+    # reprojected feature since it will be done again in ogr2pbf.
+    def filter_feature(self, ogrfeature, reproject):
+        return ogrfeature
+    
+    # Override this method if you want to modify or add tags to the xml output
+    def filter_tags(self, tags):
+        return tags
+    
+    # This method is called after the creation of an OsmGeometry object. The
+    # ogr feature and ogr geometry used to create the object are passed as
+    # well. Note that any return values will be discarded by ogr2pbf.
+    def process_feature_post(self, osmgeometry, ogrfeature, ogrgeometry):
+        pass
+    
+    # Override this method if you want to modify the list of nodes, ways or
+    # relations, or take any additional actions right before writing the
+    # objects to the OSM file. Note that any return values will be discarded
+    # by ogr2pbf.
+    def process_output(self, osmnodes, osmways, osmrelations):
+        pass
+```
 
 ## TODO
 
-This application is still in beta stage. It needs profound testing of the PBF output, as well as some tweaks to limit the amount of nodes or ways in one block. The API has to be completed, especially with regard to the datawriter.
+This application is still in beta stage. OSM output works and has been proven to match the output of ogr2osm, however profound testing of the PBF output is needed, as well as some tweaks to limit the amount of nodes or ways in one block.
 
