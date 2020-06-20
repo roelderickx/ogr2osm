@@ -4,16 +4,16 @@
 ''' ogr2pbf
 
 This program takes any vector data understandable by OGR and outputs an OSM or
-PDF file with that data.
+PBF file with that data.
 
 By default tags will be naively copied from the input data. Hooks are provided
 so that, with a little python programming, you can translate the tags however
 you like. More hooks are provided so you can filter or even modify the features
 themselves.
 
-To use the hooks, create a file in the translations/ directory called myfile.py
-and run ogr2osm.py -t myfile. This file should define a function with the name
-of each hook you want to use. For an example, see the uvmtrans.py file.
+To use the hooks, create a file called myfile.py and run ogr2pbf.py -t myfile.
+This file should define a class derived from TranslationBase where the hooks
+you want to use are overridden.
 
 The program will use projection metadata from the source, if it has any. If
 there is no projection information, or if you want to override it, you can use
@@ -226,7 +226,7 @@ def load_translation_object(translation_module):
     return translation_object
 
 
-def main(no_zlib=False):
+def main():
     params = parse_commandline()
 
     translation_object = load_translation_object(params.translationmodule)
@@ -252,7 +252,7 @@ def main(no_zlib=False):
                                    params.neverDownload, params.locked, params.addVersion, \
                                    params.addTimestamp)
     else:
-        datawriter = PbfDataWriter(params.outputFile, no_zlib)
+        datawriter = PbfDataWriter(params.outputFile)
     osmdata.output(datawriter)
 
     if params.saveid:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging, sys, os, zlib
+import logging, sys, zlib
 
 from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
 from .datawriter_base_class import DataWriterBase
@@ -121,9 +121,8 @@ class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
 
 
 class PbfDataWriter(DataWriterBase):
-    def __init__(self, filename, pbf_no_zlib=False):
+    def __init__(self, filename):
        self.filename = filename
-       self.pbf_no_zlib = pbf_no_zlib
     
     
     def open(self):
@@ -135,10 +134,7 @@ class PbfDataWriter(DataWriterBase):
         
         blob = fileprotobuf.Blob()
         blob.raw_size = len(data)
-        if self.pbf_no_zlib:
-            blob.raw = data
-        else:
-            blob.zlib_data = zlib.compress(data)
+        blob.zlib_data = zlib.compress(data)
 
         blobheader = fileprotobuf.BlobHeader()
         blobheader.type = block_type
