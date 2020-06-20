@@ -151,7 +151,7 @@ class TranslationBase:
     #     field_names.append(feature_def.GetFieldDefn(i).GetNameRef())
     # ---
     # note 2: reproject is a function to convert the feature to 4326 projection
-    # with coordnates in traditional gis order. However, do not return the
+    # with coordinates in traditional gis order. However, do not return the
     # reprojected feature since it will be done again in ogr2pbf.
     def filter_feature(self, ogrfeature, reproject):
         return ogrfeature
@@ -176,5 +176,5 @@ class TranslationBase:
 
 ## TODO
 
-This application is still in beta stage. OSM output works and has been proven to match the output of ogr2osm, however profound testing of the PBF output is needed, as well as some tweaks to limit the amount of nodes or ways in one block.
+This application is still in beta stage. OSM output works and has been proven to match the output of ogr2osm. Profound testing of the PBF output is needed, as well as some tweaks to limit the amount of nodes or ways in one block.
 
