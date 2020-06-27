@@ -107,7 +107,7 @@ translation_object = ogr2pbf.TranslationBase()
 
 # 3. Create the ogr datasource. You can specify a source projection but
 #    EPSG:4326 will be assumed if none is given and if the projection of the
-#    datasource does is unknown.
+#    datasource is unknown.
 datasource = ogr2pbf.OgrDatasource(translation_object)
 datasource.open_datasource(datasource_parameter)
 
