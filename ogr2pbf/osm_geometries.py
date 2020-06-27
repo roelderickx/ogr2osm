@@ -55,7 +55,7 @@ class OsmGeometry:
         pass
     
     
-    def to_xml(self, attributes = {}):
+    def to_xml(self, attributes = { }):
         pass
     
     
@@ -111,10 +111,10 @@ class OsmWay(OsmGeometry):
         xmlobject = etree.Element('way', xmlattrs)
 
         for node in self.points:
-            nd = etree.Element('nd',{'ref':str(node.id)})
+            nd = etree.Element('nd', { 'ref':str(node.id) })
             xmlobject.append(nd)
         for (key, value) in self.tags.items():
-            tag = etree.Element('tag', {'k':key, 'v':value})
+            tag = etree.Element('tag', { 'k':key, 'v':value })
             xmlobject.append(tag)
 
         return etree.tostring(xmlobject, encoding='unicode')
@@ -140,13 +140,13 @@ class OsmRelation(OsmGeometry):
         xmlobject = etree.Element('relation', xmlattrs)
 
         for (member, role) in self.members:
-            member = etree.Element('member', {'type':'way', 'ref':str(member.id), 'role':role})
+            member = etree.Element('member', { 'type':'way', 'ref':str(member.id), 'role':role })
             xmlobject.append(member)
 
-        tag = etree.Element('tag', {'k':'type', 'v':'multipolygon'})
+        tag = etree.Element('tag', { 'k':'type', 'v':'multipolygon' })
         xmlobject.append(tag)
         for (key, value) in self.tags.items():
-            tag = etree.Element('tag', {'k':key, 'v':value})
+            tag = etree.Element('tag', { 'k':key, 'v':value })
             xmlobject.append(tag)
 
         return etree.tostring(xmlobject, encoding='unicode')
