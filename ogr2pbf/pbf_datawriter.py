@@ -156,6 +156,8 @@ class PbfDataWriter(DataWriterBase):
         self.filename = filename
         self.add_version = add_version
         self.add_timestamp = add_timestamp
+        
+        self.__max_nodes_in_node_block = 8000
     
     
     def open(self):
@@ -209,10 +211,11 @@ class PbfDataWriter(DataWriterBase):
     
     def write_nodes(self, nodes):
         logging.debug("Writing nodes")
-        primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, self.add_timestamp)
-        for node in nodes:
-            primitive_group.add_node(node)
-        self.__write_primitive_block(primitive_group)
+        for i in range(0, len(nodes), self.__max_nodes_in_node_block):
+            primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, self.add_timestamp)
+            for node in nodes[i:i+self.__max_nodes_in_node_block]:
+                primitive_group.add_node(node)
+            self.__write_primitive_block(primitive_group)
     
     
     def write_ways(self, ways):
