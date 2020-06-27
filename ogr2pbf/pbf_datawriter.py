@@ -93,7 +93,7 @@ class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
 class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
     def __init__(self, add_version, add_timestamp):
         super(PbfPrimitiveGroupWays, self).__init__(add_version, add_timestamp)
-        
+    
     
     def add_way(self, osmway):
         way = osmprotobuf.Way()
@@ -120,7 +120,7 @@ class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
 class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
     def __init__(self, add_version, add_timestamp):
         super(PbfPrimitiveGroupRelations, self).__init__(add_version, add_timestamp)
-        
+    
     
     def add_relation(self, osmrelation):
         relation = osmprotobuf.Relation()
@@ -157,7 +157,9 @@ class PbfDataWriter(DataWriterBase):
         self.add_version = add_version
         self.add_timestamp = add_timestamp
         
-        self.__max_nodes_in_node_block = 8000
+        self.__max_nodes_per_node_block = 8000
+        self.__max_node_refs_per_way_block = 32000
+        self.__max_member_refs_per_relation_block = 32000
     
     
     def open(self):
@@ -211,27 +213,45 @@ class PbfDataWriter(DataWriterBase):
     
     def write_nodes(self, nodes):
         logging.debug("Writing nodes")
-        for i in range(0, len(nodes), self.__max_nodes_in_node_block):
+        for i in range(0, len(nodes), self.__max_nodes_per_node_block):
             primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, self.add_timestamp)
-            for node in nodes[i:i+self.__max_nodes_in_node_block]:
+            for node in nodes[i:i+self.__max_nodes_per_node_block]:
                 primitive_group.add_node(node)
             self.__write_primitive_block(primitive_group)
     
     
     def write_ways(self, ways):
         logging.debug("Writing ways")
-        primitive_group = PbfPrimitiveGroupWays(self.add_version, self.add_timestamp)
+        amount_node_refs = 0
+        primitive_group = None
         for way in ways:
+            if amount_node_refs == 0:
+                primitive_group = PbfPrimitiveGroupWays(self.add_version, self.add_timestamp)
             primitive_group.add_way(way)
-        self.__write_primitive_block(primitive_group)
+            amount_node_refs += len(way.points)
+            if amount_node_refs > self.__max_node_refs_per_way_block:
+                self.__write_primitive_block(primitive_group)
+                amount_node_refs = 0
+        else:
+            if amount_node_refs > 0:
+                self.__write_primitive_block(primitive_group)
     
     
     def write_relations(self, relations):
         logging.debug("Writing relations")
-        primitive_group = PbfPrimitiveGroupRelations(self.add_version, self.add_timestamp)
+        amount_member_refs = 0
+        primitive_group = None
         for relation in relations:
+            if amount_member_refs == 0:
+                primitive_group = PbfPrimitiveGroupRelations(self.add_version, self.add_timestamp)
             primitive_group.add_relation(relation)
-        self.__write_primitive_block(primitive_group)
+            amount_member_refs += len(relation.members)
+            if amount_member_refs > self.__max_member_refs_per_relation_block:
+                self.__write_primitive_block(primitive_group)
+                amount_member_refs = 0
+        else:
+            if amount_member_refs > 0:
+                self.__write_primitive_block(primitive_group)
     
     
     def close(self):
