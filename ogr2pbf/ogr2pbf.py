@@ -252,7 +252,7 @@ def main():
                                    params.neverDownload, params.locked, params.addVersion, \
                                    params.addTimestamp)
     else:
-        datawriter = PbfDataWriter(params.outputFile)
+        datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp)
     osmdata.output(datawriter)
 
     if params.saveid:

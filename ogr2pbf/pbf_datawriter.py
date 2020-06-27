@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging, sys, zlib
+import logging, sys, time, zlib
 
 from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
 from .datawriter_base_class import DataWriterBase
@@ -11,9 +11,13 @@ import ogr2pbf.osmformat_pb2 as osmprotobuf
 # https://wiki.openstreetmap.org/wiki/PBF_Format
 
 class PbfPrimitiveGroup:
-    def __init__(self):
+    def __init__(self, add_version, add_timestamp):
         self.stringtable = {}
         self._add_string("")
+        
+        self._add_version = add_version
+        self._add_timestamp = add_timestamp
+        self._timestamp = time.localtime()
         
         self.granularity = 100
         self.lat_offset = 0
@@ -23,6 +27,7 @@ class PbfPrimitiveGroup:
         self.primitive_group = osmprotobuf.PrimitiveGroup()
     
     
+    # add string s to the stringtable if not yet present and returns index
     def _add_string(self, s):
         if not s in self.stringtable:
             index = len(self.stringtable)
@@ -30,35 +35,51 @@ class PbfPrimitiveGroup:
             return index
         else:
             return self.stringtable[s]
+    
+    
+    # convert given latitude to value used in pbf
+    def _lat_to_pbf(self, lat):
+        return int((lat * 1e9 - self.lat_offset) / self.granularity)
+    
+    
+    # convert given longitude to value used in pbf
+    def _lon_to_pbf(self, lon):
+        return int((lon * 1e9 - self.lon_offset) / self.granularity)
+    
+    
+    # convert time.struct_time to value used in pbf
+    def _timestamp_to_pbf(self, timestamp):
+        return int(time.mktime(timestamp) * 1000 / self.date_granularity)
 
 
 
 class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
-    def __init__(self):
-        super(PbfPrimitiveGroupDenseNodes, self).__init__()
+    def __init__(self, add_version, add_timestamp):
+        super(PbfPrimitiveGroupDenseNodes, self).__init__(add_version, add_timestamp)
         
         self.__last_id = 0
+        self.__last_timestamp = 0
         self.__last_lat = 0
         self.__last_lon = 0
     
     
-    def __lat_to_pbf(self, lat):
-        return int((lat * 1e9 - self.lat_offset) / self.granularity)
-    
-    
-    def __lon_to_pbf(self, lon):
-        return int((lon * 1e9 - self.lon_offset) / self.granularity)
-    
-    
     def add_node(self, osmpoint):
-        pbflat = self.__lat_to_pbf(osmpoint.y)
-        pbflon = self.__lon_to_pbf(osmpoint.x)
+        pbftimestamp = self._timestamp_to_pbf(self._timestamp)
+        pbflat = self._lat_to_pbf(osmpoint.y)
+        pbflon = self._lon_to_pbf(osmpoint.x)
 
         self.primitive_group.dense.id.append(osmpoint.id - self.__last_id)
+        
+        if self._add_version:
+            self.primitive_group.dense.denseinfo.version.append(1)
+        if self._add_timestamp:
+            self.primitive_group.dense.denseinfo.timestamp.append(pbftimestamp - self.__last_timestamp)
+        
         self.primitive_group.dense.lat.append(pbflat - self.__last_lat)
         self.primitive_group.dense.lon.append(pbflon - self.__last_lon)
         
         self.__last_id = osmpoint.id
+        self.__last_timestamp = pbftimestamp
         self.__last_lat = pbflat
         self.__last_lon = pbflon
         
@@ -70,8 +91,8 @@ class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
 
 
 class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
-    def __init__(self):
-        super(PbfPrimitiveGroupWays, self).__init__()
+    def __init__(self, add_version, add_timestamp):
+        super(PbfPrimitiveGroupWays, self).__init__(add_version, add_timestamp)
         
     
     def add_way(self, osmway):
@@ -81,6 +102,11 @@ class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
         for (key, value) in osmway.tags.items():
             way.keys.append(self._add_string(key))
             way.vals.append(self._add_string(value))
+        
+        if self._add_version:
+            way.info.version.append(1)
+        if self._add_timestamp:
+            way.info.timestamp.append(self._timestamp_to_pbf(self._timestamp))
         
         prev_node_id = 0
         for node in osmway.points:
@@ -92,8 +118,8 @@ class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
     
 
 class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
-    def __init__(self):
-        super(PbfPrimitiveGroupRelations, self).__init__()
+    def __init__(self, add_version, add_timestamp):
+        super(PbfPrimitiveGroupRelations, self).__init__(add_version, add_timestamp)
         
     
     def add_relation(self, osmrelation):
@@ -103,6 +129,11 @@ class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
         for (key, value) in osmrelation.tags.items():
             relation.keys.append(self._add_string(key))
             relation.vals.append(self._add_string(value))
+        
+        if self._add_version:
+            relation.info.version.append(1)
+        if self._add_timestamp:
+            relation.info.timestamp.append(self._timestamp_to_pbf(self._timestamp))
         
         prev_member_id = 0
         for member in osmrelation.members:
@@ -121,8 +152,10 @@ class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
 
 
 class PbfDataWriter(DataWriterBase):
-    def __init__(self, filename):
-       self.filename = filename
+    def __init__(self, filename, add_version=False, add_timestamp=False):
+        self.filename = filename
+        self.add_version = add_version
+        self.add_timestamp = add_timestamp
     
     
     def open(self):
@@ -176,7 +209,7 @@ class PbfDataWriter(DataWriterBase):
     
     def write_nodes(self, nodes):
         logging.debug("Writing nodes")
-        primitive_group = PbfPrimitiveGroupDenseNodes()
+        primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, self.add_timestamp)
         for node in nodes:
             primitive_group.add_node(node)
         self.__write_primitive_block(primitive_group)
@@ -184,7 +217,7 @@ class PbfDataWriter(DataWriterBase):
     
     def write_ways(self, ways):
         logging.debug("Writing ways")
-        primitive_group = PbfPrimitiveGroupWays()
+        primitive_group = PbfPrimitiveGroupWays(self.add_version, self.add_timestamp)
         for way in ways:
             primitive_group.add_way(way)
         self.__write_primitive_block(primitive_group)
@@ -192,7 +225,7 @@ class PbfDataWriter(DataWriterBase):
     
     def write_relations(self, relations):
         logging.debug("Writing relations")
-        primitive_group = PbfPrimitiveGroupRelations()
+        primitive_group = PbfPrimitiveGroupRelations(self.add_version, self.add_timestamp)
         for relation in relations:
             primitive_group.add_relation(relation)
         self.__write_primitive_block(primitive_group)
