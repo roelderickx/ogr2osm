@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<osm version="0.6" upload="false" generator="uvmogr2osm">
+<osm version="0.6" upload="false" generator="ogr2pbf 0.0.3">
   <node lat="35.547775" visible="true" lon="140.329679" id="-3"/>
   <node lat="35.547716" visible="true" lon="140.329862" id="-4"/>
   <node lat="35.54766" visible="true" lon="140.329946" id="-5"/>

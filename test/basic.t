@@ -1,18 +1,18 @@
   $ [ "$0" != "/bin/bash" ] || shopt -s expand_aliases
   $ [ -n "$PYTHON" ] || PYTHON="`which python`"
-  $ alias ogr2pbf="$PYTHON $TESTDIR/../ogr2pbf/ogr2pbf.py"
+  $ alias ogr2pbf="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2pbf"
 
 usage:
   $ ogr2pbf -h
   running with lxml.etree
-  usage: ogr2pbf.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
-                    [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
-                    [--significant-digits SIGNIFICANTDIGITS]
-                    [--rounding-digits ROUNDINGDIGITS]
-                    [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                    [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
-                    [--never-download] [--never-upload] [--locked]
-                    DATASOURCE
+  usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
+                     [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
+                     [--significant-digits SIGNIFICANTDIGITS]
+                     [--rounding-digits ROUNDINGDIGITS]
+                     [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
+                     [--never-download] [--never-upload] [--locked]
+                     DATASOURCE
   
   positional arguments:
     DATASOURCE            DATASOURCE can be a file path or a org PostgreSQL
@@ -64,8 +64,7 @@ usage:
 						  
 test1:
   $ rm -f test1.osm
-  $ ogr2pbf $TESTDIR/shapefiles/test1.shp
-  running with lxml.etree
+  $ ogr2pbf --osm $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -96,26 +95,28 @@ test1:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.xml
 
 duplicatefile:
-  $ ogr2pbf $TESTDIR/shapefiles/test1.shp
-  running with lxml.etree
-  usage: ogr2pbf.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
-                    [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
-                    [--significant-digits SIGNIFICANTDIGITS]
-                    [--rounding-digits ROUNDINGDIGITS]
-                    [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                    [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
-                    [--never-download] [--never-upload] [--locked]
-                    DATASOURCE
-  ogr2pbf.py: error: ERROR: output file '.*test1.osm' exists (re)
+  $ ogr2pbf --osm $TESTDIR/shapefiles/test1.shp
+  usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
+                     [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
+                     [--significant-digits SIGNIFICANTDIGITS]
+                     [--rounding-digits ROUNDINGDIGITS]
+                     [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
+                     [--never-download] [--never-upload] [--locked]
+                     DATASOURCE
+  __main__.py: error: ERROR: output file '.*test1.osm' exists (re)
   [2]
 
 force:
-  $ ogr2pbf -f $TESTDIR/shapefiles/test1.shp
-  running with lxml.etree
+  $ ogr2pbf --osm -f $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -146,12 +147,15 @@ force:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.xml
 
 nomemorycopy:
-  $ ogr2pbf -f --no-memory-copy $TESTDIR/shapefiles/test1.shp
-  running with lxml.etree
+  $ ogr2pbf --osm -f --no-memory-copy $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -182,12 +186,15 @@ nomemorycopy:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.xml
 
 positiveid:
-  $ ogr2pbf -f --positive-id $TESTDIR/shapefiles/test1.shp
-  running with lxml.etree
+  $ ogr2pbf --osm -f --positive-id $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -218,12 +225,15 @@ positiveid:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/positiveid.xml
 
 version:
-  $ ogr2pbf -f --add-version $TESTDIR/shapefiles/test1.shp
-  running with lxml.etree
+  $ ogr2pbf --osm -f --add-version $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -254,12 +264,15 @@ version:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/version.xml
 
 timestamp:
-  $ ogr2pbf -f --add-timestamp $TESTDIR/shapefiles/test1.shp
-  running with lxml.etree
+  $ ogr2pbf --osm -f --add-timestamp $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -290,11 +303,14 @@ timestamp:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
 
 utf8:
-  $ ogr2pbf -f $TESTDIR/shapefiles/sp_usinas.shp
-  running with lxml.etree
+  $ ogr2pbf --osm -f $TESTDIR/shapefiles/sp_usinas.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -315,12 +331,15 @@ utf8:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format sp_usinas.osm | diff -uNr - $TESTDIR/utf8.xml
 
 japanese:
-  $ ogr2pbf --encoding shift_jis -f $TESTDIR/shapefiles/japanese.shp
-  running with lxml.etree
+  $ ogr2pbf --osm --encoding shift_jis -f $TESTDIR/shapefiles/japanese.shp
   Using default translations
   Preparing to convert .* (re)
   No projection metadata, falling back to EPSG:4326
@@ -329,12 +348,15 @@ japanese:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format japanese.osm | diff -uNr - $TESTDIR/japanese.xml
 
 duplicatewaynodes:
-  $ ogr2pbf -f $TESTDIR/shapefiles/duplicate-way-nodes.gml
-  running with lxml.etree
+  $ ogr2pbf --osm -f $TESTDIR/shapefiles/duplicate-way-nodes.gml
   Using default translations
   Preparing to convert .* (re)
   No projection metadata, falling back to EPSG:4326
@@ -390,40 +412,41 @@ duplicatewaynodes:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
   $ xmllint --format duplicate-way-nodes.osm | diff -uNr - $TESTDIR/duplicate-way-nodes.xml
 
 require_output_file_when_using_db_source:
   $ ogr2pbf "PG:dbname=test"
-  running with lxml.etree
-  usage: ogr2pbf.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
-                    [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
-                    [--significant-digits SIGNIFICANTDIGITS]
-                    [--rounding-digits ROUNDINGDIGITS]
-                    [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                    [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
-                    [--never-download] [--never-upload] [--locked]
-                    DATASOURCE
-  ogr2pbf.py: error: ERROR: An output file must be explicitly specified when using a database source
+  usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
+                     [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
+                     [--significant-digits SIGNIFICANTDIGITS]
+                     [--rounding-digits ROUNDINGDIGITS]
+                     [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
+                     [--never-download] [--never-upload] [--locked]
+                     DATASOURCE
+  __main__.py: error: ERROR: An output file must be explicitly specified when using a database source
   [2]
 
 require_query_when_using_db_source:
   $ ogr2pbf "PG:dbname=test" -o test.osm
-  running with lxml.etree
-  usage: ogr2pbf.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
-                    [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
-                    [--significant-digits SIGNIFICANTDIGITS]
-                    [--rounding-digits ROUNDINGDIGITS]
-                    [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                    [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
-                    [--never-download] [--never-upload] [--locked]
-                    DATASOURCE
-    ogr2pbf.py: error: ERROR: You must specify a query with --sql when using a database source
+  usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
+                     [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
+                     [--significant-digits SIGNIFICANTDIGITS]
+                     [--rounding-digits ROUNDINGDIGITS]
+                     [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
+                     [--never-download] [--never-upload] [--locked]
+                     DATASOURCE
+    __main__.py: error: ERROR: You must specify a query with --sql when using a database source
   [2]
 
 require_db_source_for_sql_query:
   $ ogr2pbf $TESTDIR/shapefiles/test1.shp --sql="SELECT * FROM wombats"
-  running with lxml.etree
   WARNING: You specified a query with --sql but you are not using a database source
   Using default translations
   Preparing to convert .* (re)
@@ -455,5 +478,13 @@ require_db_source_for_sql_query:
   Checking list
   Merging duplicate points in ways
   Splitting long ways
-  Outputting XML
+  Writing file header
+  Writing blob, type = OSMHeader
+  Writing nodes
+  Primitive block generation
+  Writing blob, type = OSMData
+  Writing ways
+  Primitive block generation
+  Writing blob, type = OSMData
+  Writing relations
 
