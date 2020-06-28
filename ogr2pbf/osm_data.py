@@ -240,7 +240,7 @@ class OsmData:
             for new_way in new_ways:
                 if new_way != way:
                     new_way.add_tags(way_tags)
-                    self.__geometries.append(new_way)
+                    self.__ways.append(new_way)
 
         for new_way, points in zip(new_ways, new_points):
             new_way.points = points
