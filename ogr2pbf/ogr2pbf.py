@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 ''' ogr2pbf
@@ -257,9 +256,4 @@ def main():
 
     if params.saveid:
         OsmId.save_id(params.saveid)
-
-
-
-if __name__ == '__main__':
-    main()
 
