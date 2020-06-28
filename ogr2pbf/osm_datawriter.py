@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging
-from datetime import datetime
+import logging, time
 
 from .datawriter_base_class import DataWriterBase
 
@@ -21,7 +20,7 @@ class OsmDataWriter(DataWriterBase):
         if add_version:
             self.attributes.update({'version':'1'})
         if add_timestamp:
-            self.attributes.update({'timestamp':datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')})
+            self.attributes.update({'timestamp':time.strftime('%Y-%m-%dT%H:%M:%SZ')})
     
     
     def open(self):
