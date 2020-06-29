@@ -104,9 +104,9 @@ class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
             way.vals.append(self._add_string(value))
         
         if self._add_version:
-            way.info.version.append(1)
+            way.info.version = 1
         if self._add_timestamp:
-            way.info.timestamp.append(self._timestamp_to_pbf(self._timestamp))
+            way.info.timestamp = self._timestamp_to_pbf(self._timestamp)
         
         prev_node_id = 0
         for node in osmway.points:
