@@ -17,7 +17,9 @@ class PbfPrimitiveGroup:
         
         self._add_version = add_version
         self._add_timestamp = add_timestamp
-        self._timestamp = time.localtime()
+        self._timestamp = time.localtime(-1)
+        if self._add_timestamp:
+            self._timestamp = time.localtime()
         
         self.granularity = 100
         self.lat_offset = 0
@@ -59,27 +61,33 @@ class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
         
         self.__last_id = 0
         self.__last_timestamp = 0
+        self.__last_changeset = 0
         self.__last_lat = 0
         self.__last_lon = 0
     
     
     def add_node(self, osmpoint):
         pbftimestamp = self._timestamp_to_pbf(self._timestamp)
+        pbfchangeset = 1
         pbflat = self._lat_to_pbf(osmpoint.y)
         pbflon = self._lon_to_pbf(osmpoint.x)
 
         self.primitive_group.dense.id.append(osmpoint.id - self.__last_id)
         
-        if self._add_version:
+        # osmosis always requires the whole denseinfo block
+        if self._add_version or self._add_timestamp:
             self.primitive_group.dense.denseinfo.version.append(1)
-        if self._add_timestamp:
             self.primitive_group.dense.denseinfo.timestamp.append(pbftimestamp - self.__last_timestamp)
+            self.primitive_group.dense.denseinfo.changeset.append(pbfchangeset - self.__last_changeset)
+            self.primitive_group.dense.denseinfo.uid.append(0)
+            self.primitive_group.dense.denseinfo.user_sid.append(0)
         
         self.primitive_group.dense.lat.append(pbflat - self.__last_lat)
         self.primitive_group.dense.lon.append(pbflon - self.__last_lon)
         
         self.__last_id = osmpoint.id
         self.__last_timestamp = pbftimestamp
+        self.__last_changeset = pbfchangeset
         self.__last_lat = pbflat
         self.__last_lon = pbflon
         
@@ -103,10 +111,13 @@ class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
             way.keys.append(self._add_string(key))
             way.vals.append(self._add_string(value))
         
-        if self._add_version:
+        # osmosis always requires the whole denseinfo block
+        if self._add_version or self._add_timestamp:
             way.info.version = 1
-        if self._add_timestamp:
             way.info.timestamp = self._timestamp_to_pbf(self._timestamp)
+            way.info.changeset = 1
+            way.info.uid = 0
+            way.info.user_sid = 0
         
         prev_node_id = 0
         for node in osmway.points:
@@ -130,10 +141,13 @@ class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
             relation.keys.append(self._add_string(key))
             relation.vals.append(self._add_string(value))
         
-        if self._add_version:
-            relation.info.version.append(1)
-        if self._add_timestamp:
-            relation.info.timestamp.append(self._timestamp_to_pbf(self._timestamp))
+        # osmosis always requires the whole denseinfo block
+        if self._add_version or self._add_timestamp:
+            relation.info.version = 1
+            relation.info.timestamp = self._timestamp_to_pbf(self._timestamp)
+            relation.info.changeset = 1
+            relation.info.uid = 0
+            relation.info.user_sid = 0
         
         prev_member_id = 0
         for member in osmrelation.members:
