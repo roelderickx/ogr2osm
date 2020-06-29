@@ -176,5 +176,5 @@ class TranslationBase:
 
 ## TODO
 
-This application is still in beta stage. OSM output works and has been proven to match the output of ogr2osm. Profound testing of the PBF output is needed, as well as some tweaks to limit the amount of nodes or ways in one block.
+This application is still in beta stage. OSM output works and has been proven to match the output of ogr2osm, but the encoding parameter needs a review. PBF output should be tested in depth.
 
