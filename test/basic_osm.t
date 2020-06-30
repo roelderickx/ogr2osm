@@ -345,6 +345,7 @@ timestamp:
   Writing ways
   Writing relations
   Writing file footer
+  $ cp test1.osm $TESTDIR/check_manual_timestamp.osm
 
 duplicatewaynodes:
   $ ogr2pbf --osm -f $TESTDIR/shapefiles/duplicate-way-nodes.gml
