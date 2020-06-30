@@ -16,6 +16,9 @@ class PbfPrimitiveGroup:
         self._add_string("")
         
         self._add_version = add_version
+        self._version = -1
+        if self._add_version:
+            self._version = 1
         self._add_timestamp = add_timestamp
         self._timestamp = time.localtime(-1)
         if self._add_timestamp:
@@ -76,7 +79,7 @@ class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
         
         # osmosis always requires the whole denseinfo block
         if self._add_version or self._add_timestamp:
-            self.primitive_group.dense.denseinfo.version.append(1)
+            self.primitive_group.dense.denseinfo.version.append(self._version)
             self.primitive_group.dense.denseinfo.timestamp.append(pbftimestamp - self.__last_timestamp)
             self.primitive_group.dense.denseinfo.changeset.append(pbfchangeset - self.__last_changeset)
             self.primitive_group.dense.denseinfo.uid.append(0)
@@ -111,9 +114,9 @@ class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
             way.keys.append(self._add_string(key))
             way.vals.append(self._add_string(value))
         
-        # osmosis always requires the whole denseinfo block
+        # osmosis always requires the whole info block
         if self._add_version or self._add_timestamp:
-            way.info.version = 1
+            way.info.version = self._version
             way.info.timestamp = self._timestamp_to_pbf(self._timestamp)
             way.info.changeset = 1
             way.info.uid = 0
@@ -141,9 +144,9 @@ class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
             relation.keys.append(self._add_string(key))
             relation.vals.append(self._add_string(value))
         
-        # osmosis always requires the whole denseinfo block
+        # osmosis always requires the whole info block
         if self._add_version or self._add_timestamp:
-            relation.info.version = 1
+            relation.info.version = self._version
             relation.info.timestamp = self._timestamp_to_pbf(self._timestamp)
             relation.info.changeset = 1
             relation.info.uid = 0
