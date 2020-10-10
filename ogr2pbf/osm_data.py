@@ -7,12 +7,14 @@ from osgeo import osr
 from .osm_geometries import OsmPoint, OsmWay, OsmRelation
 
 class OsmData:
-    def __init__(self, translation, significant_digits=9, rounding_digits=7, max_points_in_way=1800):
+    def __init__(self, translation, significant_digits=9, rounding_digits=7, max_points_in_way=1800, \
+                 encoding='utf-8'):
         # options
         self.translation = translation
         self.significant_digits = significant_digits
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
+        self.encoding = encoding
         
         self.__nodes = []
         self.__ways = []
@@ -24,16 +26,20 @@ class OsmData:
     # This function builds up a dictionary with the source data attributes
     # and passes them to the filter_tags function, returning the result.
     def __get_feature_tags(self, ogrfeature):
-        feature_def = ogrfeature.GetDefnRef()
-        field_names = []
-        for i in range(feature_def.GetFieldCount()):
-            field_names.append(feature_def.GetFieldDefn(i).GetNameRef())
-
         tags = {}
-        for j in range(len(field_names)):
-            # The field needs to be put into the appropriate encoding and
-            # leading or trailing spaces stripped
-            tags[field_names[j]] = ogrfeature.GetFieldAsString(j).strip()
+        feature_def = ogrfeature.GetDefnRef()
+        for i in range(feature_def.GetFieldCount()):
+            field_name = feature_def.GetFieldDefn(i).GetNameRef()
+            field_type = feature_def.GetFieldDefn(i).GetType()
+            field_value = ''
+            
+            if field_type == ogr.OFTString:
+                field_value = ogrfeature.GetFieldAsBinary(i).decode(self.encoding)
+            else:
+                field_value = ogrfeature.GetFieldAsString(i)
+
+            tags[field_name] = field_value.strip()
+        
         return self.translation.filter_tags(tags)
 
 

@@ -35,7 +35,7 @@ japanese:
   $ ogr2pbf --osm --encoding shift_jis -f $TESTDIR/shapefiles/japanese.shp
   Using default translations
   Preparing to convert .* (re)
-  No projection metadata, falling back to EPSG:4326
+  Layer has no projection metadata, falling back to EPSG:4326
   Merging points
   Making list
   Checking list

@@ -177,5 +177,4 @@ class TranslationBase:
 ## TODO
 
 This application is still in beta stage. OSM output works and has been proven to match the output of ogr2osm, PBF output works as well but there is no guarantee that it will always work for any use-case. Please report bugs when you encounter them.
-The encoding parameter needs a review, it doesn't work in ogr2osm and it has not yet been improved in ogr2pbf.
 
