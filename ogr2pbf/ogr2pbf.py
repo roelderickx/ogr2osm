@@ -237,10 +237,10 @@ def main():
     logging.info("Preparing to convert '%s' to '%s'." % (params.source, params.outputFile))
 
     osmdata = OsmData(translation_object, params.significantDigits, params.roundingDigits, \
-                      params.maxNodesPerWay, params.encoding)
+                      params.maxNodesPerWay)
     # create datasource and process data
     datasource = OgrDatasource(translation_object, \
-                               params.sourcePROJ4, params.sourceEPSG, params.gisorder)
+                               params.sourcePROJ4, params.sourceEPSG, params.gisorder, params.encoding)
     datasource.open_datasource(params.source, not params.noMemoryCopy)
     datasource.set_query(params.sqlQuery)
     osmdata.process(datasource)

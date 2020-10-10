@@ -7,14 +7,12 @@ from osgeo import osr
 from .osm_geometries import OsmPoint, OsmWay, OsmRelation
 
 class OsmData:
-    def __init__(self, translation, significant_digits=9, rounding_digits=7, max_points_in_way=1800, \
-                 encoding='utf-8'):
+    def __init__(self, translation, significant_digits=9, rounding_digits=7, max_points_in_way=1800):
         # options
         self.translation = translation
         self.significant_digits = significant_digits
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
-        self.encoding = encoding
         
         self.__nodes = []
         self.__ways = []
@@ -25,7 +23,7 @@ class OsmData:
 
     # This function builds up a dictionary with the source data attributes
     # and passes them to the filter_tags function, returning the result.
-    def __get_feature_tags(self, ogrfeature):
+    def __get_feature_tags(self, ogrfeature, source_encoding):
         tags = {}
         feature_def = ogrfeature.GetDefnRef()
         for i in range(feature_def.GetFieldCount()):
@@ -34,7 +32,7 @@ class OsmData:
             field_value = ''
             
             if field_type == ogr.OFTString:
-                field_value = ogrfeature.GetFieldAsBinary(i).decode(self.encoding)
+                field_value = ogrfeature.GetFieldAsBinary(i).decode(source_encoding)
             else:
                 field_value = ogrfeature.GetFieldAsString(i)
 
@@ -165,11 +163,9 @@ class OsmData:
         return osmgeometries
 
 
-    def add_feature(self, ogrfeature, reproject = lambda geometry: None):
+    def add_feature(self, ogrfeature, source_encoding, reproject = lambda geometry: None):
         if ogrfeature is None:
             return
-        
-        #reproject = self.__get_reprojection_func(spatial_ref)
         
         ogrfilteredfeature = self.translation.filter_feature(ogrfeature, reproject)
         if ogrfilteredfeature is None:
@@ -179,7 +175,7 @@ class OsmData:
         if ogrgeometry is None:
             return
         
-        feature_tags = self.__get_feature_tags(ogrfilteredfeature)
+        feature_tags = self.__get_feature_tags(ogrfilteredfeature, source_encoding)
         reproject(ogrgeometry)
         osmgeometries = self.__parse_geometry(ogrgeometry)
 
@@ -301,7 +297,7 @@ class OsmData:
                     ogrfeature = layer.GetNextFeature()
                     
                     if ogrfeature:
-                        self.add_feature(ogrfeature, reproject)
+                        self.add_feature(ogrfeature, datasource.source_encoding, reproject)
 
         self.merge_points()
         self.merge_way_points()

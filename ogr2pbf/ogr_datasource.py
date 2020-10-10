@@ -6,7 +6,8 @@ from osgeo import ogr
 from osgeo import osr
 
 class OgrDatasource:
-    def __init__(self, translation, source_proj4=None, source_epsg=None, gisorder=False):
+    def __init__(self, translation, source_proj4=None, source_epsg=None, gisorder=False, \
+                       source_encoding='utf-8'):
         self.datasource = None
         self.is_database_source = False
         self.query = None
@@ -14,6 +15,7 @@ class OgrDatasource:
         self.source_proj4 = source_proj4
         self.source_epsg = source_epsg
         self.gisorder = gisorder
+        self.source_encoding = source_encoding
     
     
     def open_datasource(self, ogrpath, prefer_mem_copy=True):
