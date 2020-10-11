@@ -26,7 +26,7 @@ setuptools.setup(
     classifiers=[
         'Environment :: Console',
         'Topic :: Scientific/Engineering :: GIS',
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',

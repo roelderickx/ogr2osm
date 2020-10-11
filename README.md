@@ -5,6 +5,17 @@ A tool for converting ogr-readable files like shapefiles into .pbf or .osm data
 
 Ogr2pbf requires python 3, gdal with python bindings, lxml and protobuf. Depending on the file formats you want to read you may have to compile gdal yourself but there should be no issues with shapefiles.
 
+### Using pip
+```bash
+pip install --upgrade ogr2pbf
+```
+
+### From source
+Clone this repository and run the following command in the created directory.
+```bash
+python setup.py install
+```
+
 ## About
 
 This program is based on [pnorman's version of ogr2osm](https://github.com/pnorman/ogr2osm), but is rewritten to make it useable as a general purpose library.
@@ -173,8 +184,4 @@ class TranslationBase:
     def process_output(self, osmnodes, osmways, osmrelations):
         pass
 ```
-
-## TODO
-
-This application is still in beta stage. OSM output works and has been proven to match the output of ogr2osm, PBF output works as well but there is no guarantee that it will always work for any use-case. Please report bugs when you encounter them.
 
