@@ -125,9 +125,6 @@ require_db_source_for_sql_query:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
@@ -179,9 +176,6 @@ force:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
@@ -218,9 +212,6 @@ nomemorycopy:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
@@ -257,9 +248,6 @@ positiveid:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
@@ -296,9 +284,6 @@ version:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
@@ -335,9 +320,6 @@ timestamp:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
@@ -399,9 +381,6 @@ duplicatewaynodes:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","28992"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header

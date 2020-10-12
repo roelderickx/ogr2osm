@@ -15,9 +15,9 @@ class OsmData:
         self.max_points_in_way = max_points_in_way
         
         self.__nodes = []
+        self.__unique_node_index = {}
         self.__ways = []
         self.__relations = []
-        self.__linestring_points = {}
         self.__long_ways_from_polygons = set()
 
 
@@ -49,12 +49,22 @@ class OsmData:
         return int(round(n * 10**self.rounding_digits))
     
     
+    def __add_node(self, x, y, tags = None):
+        rx = self.__round_number(x)
+        ry = self.__round_number(y)
+        if (rx, ry) in self.__unique_node_index:
+            return self.__nodes[self.__unique_node_index[(rx, ry)]]
+        else:
+            node = OsmPoint(x, y)
+            self.__unique_node_index[(rx, ry)] = len(self.__nodes)
+            self.__nodes.append(node)
+            return node
+    
+    
     def __parse_point(self, ogrgeometry):
         x = self.__trunc_significant(ogrgeometry.GetX())
         y = self.__trunc_significant(ogrgeometry.GetY())
-        node = OsmPoint(x, y)
-        self.__nodes.append(node)
-        return node
+        return self.__add_node(x, y)
 
 
     def __parse_linestring(self, ogrgeometry):
@@ -63,16 +73,9 @@ class OsmData:
         # and instead have to create the point ourself
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z_unused) = ogrgeometry.GetPoint(i)
-            rx = self.__round_number(x)
-            ry = self.__round_number(y)
-            if (rx, ry) in self.__linestring_points:
-                mypoint = self.__linestring_points[(rx, ry)]
-            else:
-                mypoint = OsmPoint(self.__trunc_significant(x), self.__trunc_significant(y))
-                self.__nodes.append(mypoint)
-                self.__linestring_points[(rx, ry)] = mypoint
-            way.points.append(mypoint)
-            mypoint.addparent(way)
+            node = self.__add_node(self.__trunc_significant(x), self.__trunc_significant(y))
+            way.points.append(node)
+            node.addparent(way)
         self.__ways.append(way)
         return way
 
@@ -185,31 +188,6 @@ class OsmData:
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
 
-    def merge_points(self):
-        logging.debug("Merging points")
-
-        # Make list of Points at each location
-        logging.debug("Making list")
-        pointcoords = {}
-        for i in self.__nodes:
-            rx = self.__round_number(i.x)
-            ry = self.__round_number(i.y)
-            if (rx, ry) in pointcoords:
-                pointcoords[(rx, ry)].append(i)
-            else:
-                pointcoords[(rx, ry)] = [i]
-
-        # Use list to get rid of extras
-        logging.debug("Checking list")
-        for (location, pointsatloc) in pointcoords.items():
-            if len(pointsatloc) > 1:
-                for point in pointsatloc[1:]:
-                    for parent in set(point.get_parents()):
-                        parent.replacejwithi(pointsatloc[0], point)
-                    if len(point.get_parents()) == 0:
-                        self.__nodes.remove(point)
-
-
     def merge_way_points(self):
         logging.debug("Merging duplicate points in ways")
 
@@ -299,7 +277,6 @@ class OsmData:
                     if ogrfeature:
                         self.add_feature(ogrfeature, datasource.source_encoding, reproject)
 
-        self.merge_points()
         self.merge_way_points()
         self.split_long_ways()
 

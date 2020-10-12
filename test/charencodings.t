@@ -19,9 +19,6 @@ utf8:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4618"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
@@ -36,9 +33,6 @@ japanese:
   Using default translations
   Preparing to convert .* (re)
   Layer has no projection metadata, falling back to EPSG:4326
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header

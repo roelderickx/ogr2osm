@@ -30,19 +30,11 @@ test1pbf:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
-  Writing blob, type = OSMHeader
   Writing nodes
-  Primitive block generation
-  Writing blob, type = OSMData
   Writing ways
-  Primitive block generation
-  Writing blob, type = OSMData
   Writing relations
   $ osmosis --read-pbf file=test1.osm.pbf --write-xml test1.osm 2> /dev/null
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.pbf.xml
@@ -74,19 +66,11 @@ versionpbf:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
-  Writing blob, type = OSMHeader
   Writing nodes
-  Primitive block generation
-  Writing blob, type = OSMData
   Writing ways
-  Primitive block generation
-  Writing blob, type = OSMData
   Writing relations
   $ osmosis --read-pbf file=test1.osm.pbf --write-xml test1.osm 2> /dev/null
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/version.pbf.xml
@@ -118,19 +102,11 @@ timestamp:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging points
-  Making list
-  Checking list
   Merging duplicate points in ways
   Splitting long ways
   Writing file header
-  Writing blob, type = OSMHeader
   Writing nodes
-  Primitive block generation
-  Writing blob, type = OSMData
   Writing ways
-  Primitive block generation
-  Writing blob, type = OSMData
   Writing relations
   $ osmosis --read-pbf file=test1.osm.pbf --write-xml test1.osm 2> /dev/null
   $ cp test1.osm $TESTDIR/check_manual_timestamp_pbf.osm
