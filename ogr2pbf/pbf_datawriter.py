@@ -184,7 +184,7 @@ class PbfDataWriter(DataWriterBase):
     
     
     def __write_blob(self, data, block_type):
-        logging.debug("Writing blob, type = %s" % block_type)
+        #logging.debug("Writing blob, type = %s" % block_type)
         
         blob = fileprotobuf.Blob()
         blob.raw_size = len(data)
@@ -211,7 +211,7 @@ class PbfDataWriter(DataWriterBase):
 
 
     def __write_primitive_block(self, pbf_primitive_group):
-        logging.debug("Primitive block generation")
+        #logging.debug("Primitive block generation")
         
         primitive_block = osmprotobuf.PrimitiveBlock()
         # add stringtable
