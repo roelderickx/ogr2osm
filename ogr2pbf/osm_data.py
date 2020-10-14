@@ -55,16 +55,14 @@ class OsmData:
         if (rx, ry) in self.__unique_node_index:
             return self.__nodes[self.__unique_node_index[(rx, ry)]]
         else:
-            node = OsmPoint(x, y)
+            node = OsmPoint(self.__trunc_significant(x), self.__trunc_significant(y))
             self.__unique_node_index[(rx, ry)] = len(self.__nodes)
             self.__nodes.append(node)
             return node
     
     
     def __parse_point(self, ogrgeometry):
-        x = self.__trunc_significant(ogrgeometry.GetX())
-        y = self.__trunc_significant(ogrgeometry.GetY())
-        return self.__add_node(x, y)
+        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY())
 
 
     def __parse_linestring(self, ogrgeometry):
@@ -73,7 +71,7 @@ class OsmData:
         # and instead have to create the point ourself
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z_unused) = ogrgeometry.GetPoint(i)
-            node = self.__add_node(self.__trunc_significant(x), self.__trunc_significant(y))
+            node = self.__add_node(x, y)
             way.points.append(node)
             node.addparent(way)
         self.__ways.append(way)
