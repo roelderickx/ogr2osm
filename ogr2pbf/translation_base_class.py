@@ -13,18 +13,11 @@ class TranslationBase:
     
     # Override this method if you want to modify the given feature,
     # or return None if you want to suppress the feature
-    # note 1: fieldNames parameter has been removed from the original ogr2osm,
-    # but can be recovered from the ogrfeature parameter:
-    # ---
-    # feature_def = ogrfeature.GetDefnRef()
-    # field_names = []
-    # for i in range(feature_def.GetFieldCount()):
-    #     field_names.append(feature_def.GetFieldDefn(i).GetNameRef())
-    # ---
+    # note 1: layer_fields contains a tuple (index, field_name, field_type)
     # note 2: reproject is a function to convert the feature to 4326 projection
     # with coordinates in traditional gis order. However, do not return the
     # reprojected feature since it will be done again in ogr2pbf.
-    def filter_feature(self, ogrfeature, reproject):
+    def filter_feature(self, ogrfeature, layer_fields, reproject):
         return ogrfeature
     
     

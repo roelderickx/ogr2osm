@@ -21,20 +21,25 @@ class OsmData:
         self.__long_ways_from_polygons = set()
 
 
+    def __get_layer_fields(self, layer):
+        layer_fields = []
+        layer_def = layer.GetLayerDefn()
+        for i in range(layer_def.GetFieldCount()):
+            field_def = layer_def.GetFieldDefn(i)
+            layer_fields.append((i, field_def.GetNameRef(), field_def.GetType()))
+        return layer_fields
+
+
     # This function builds up a dictionary with the source data attributes
     # and passes them to the filter_tags function, returning the result.
-    def __get_feature_tags(self, ogrfeature, source_encoding):
+    def __get_feature_tags(self, ogrfeature, layer_fields, source_encoding):
         tags = {}
-        feature_def = ogrfeature.GetDefnRef()
-        for i in range(feature_def.GetFieldCount()):
-            field_name = feature_def.GetFieldDefn(i).GetNameRef()
-            field_type = feature_def.GetFieldDefn(i).GetType()
+        for (index, field_name, field_type) in layer_fields:
             field_value = ''
-            
             if field_type == ogr.OFTString:
-                field_value = ogrfeature.GetFieldAsBinary(i).decode(source_encoding)
+                field_value = ogrfeature.GetFieldAsBinary(index).decode(source_encoding)
             else:
-                field_value = ogrfeature.GetFieldAsString(i)
+                field_value = ogrfeature.GetFieldAsString(index)
 
             tags[field_name] = field_value.strip()
         
@@ -154,9 +159,9 @@ class OsmData:
         elif geometry_type in [ ogr.wkbPolygon, ogr.wkbPolygon25D ]:
             osmgeometries.append(self.__parse_polygon(ogrgeometry))
         elif geometry_type in [ ogr.wkbMultiPoint, ogr.wkbMultiLineString, ogr.wkbMultiPolygon, \
-                               ogr.wkbGeometryCollection, ogr.wkbMultiPoint25D, \
-                               ogr.wkbMultiLineString25D, ogr.wkbMultiPolygon25D, \
-                               ogr.wkbGeometryCollection25D ]:
+                                ogr.wkbGeometryCollection, ogr.wkbMultiPoint25D, \
+                                ogr.wkbMultiLineString25D, ogr.wkbMultiPolygon25D, \
+                                ogr.wkbGeometryCollection25D ]:
             osmgeometries.extend(self.__parse_collection(ogrgeometry))
         else:
             logging.warning("Unhandled geometry, type %s" % str(geometry_type))
@@ -164,11 +169,8 @@ class OsmData:
         return osmgeometries
 
 
-    def add_feature(self, ogrfeature, source_encoding, reproject = lambda geometry: None):
-        if ogrfeature is None:
-            return
-        
-        ogrfilteredfeature = self.translation.filter_feature(ogrfeature, reproject)
+    def add_feature(self, ogrfeature, layer_fields, source_encoding, reproject = lambda geometry: None):
+        ogrfilteredfeature = self.translation.filter_feature(ogrfeature, layer_fields, reproject)
         if ogrfilteredfeature is None:
             return
         
@@ -176,13 +178,12 @@ class OsmData:
         if ogrgeometry is None:
             return
         
-        feature_tags = self.__get_feature_tags(ogrfilteredfeature, source_encoding)
+        feature_tags = self.__get_feature_tags(ogrfilteredfeature, layer_fields, source_encoding)
         reproject(ogrgeometry)
         osmgeometries = self.__parse_geometry(ogrgeometry)
 
         for osmgeometry in [ geom for geom in osmgeometries if geom ]:
             osmgeometry.add_tags(feature_tags)
-            
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
 
@@ -269,11 +270,10 @@ class OsmData:
             (layer, reproject) = datasource.get_layer(i)
             
             if layer:
-                for i in range(layer.GetFeatureCount()):
+                layer_fields = self.__get_layer_fields(layer)
+                for j in range(layer.GetFeatureCount()):
                     ogrfeature = layer.GetNextFeature()
-                    
-                    if ogrfeature:
-                        self.add_feature(ogrfeature, datasource.source_encoding, reproject)
+                    self.add_feature(ogrfeature, layer_fields, datasource.source_encoding, reproject)
 
         self.merge_way_points()
         self.split_long_ways()
