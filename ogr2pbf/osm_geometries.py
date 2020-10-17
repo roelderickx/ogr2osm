@@ -51,10 +51,6 @@ class OsmGeometry:
         self.tags.update(tags)
     
     
-    def replacejwithi(self, i, j):
-        pass
-    
-    
     def to_xml(self, attributes, significant_digits):
         pass
     
@@ -98,12 +94,6 @@ class OsmWay(OsmGeometry):
         self.points = []
 
 
-    def replacejwithi(self, i, j):
-        self.points = [ i if x == j else x for x in self.points ]
-        j.removeparent(self)
-        i.addparent(self)
-
-
     def to_xml(self, attributes, significant_digits):
         xmlattrs = { 'visible':'true', 'id':('%d' % self.id) }
         xmlattrs.update(attributes)
@@ -125,12 +115,6 @@ class OsmRelation(OsmGeometry):
     def __init__(self):
         super().__init__()
         self.members = []
-
-
-    def replacejwithi(self, i, j):
-        self.members = [ (i, x[1]) if x[0] == j else x for x in self.members ]
-        j.removeparent(self)
-        i.addparent(self)
 
 
     def to_xml(self, attributes, significant_digits):
