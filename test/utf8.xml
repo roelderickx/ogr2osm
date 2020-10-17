@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <osm version="0.6" generator="ogr2pbf 0.1.0" upload="false">
-  <node visible="true" id="-1" lat="-20.386476016" lon="-51.365943722000004">
+  <node visible="true" id="-1" lat="-20.386476016" lon="-51.365943722">
     <tag k="USINA_ID" v="38"/>
     <tag k="NOME" v="ILHA SOLTEIRA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -10,7 +10,7 @@
     <tag k="LATITUDE" v="-20.385900"/>
     <tag k="GEO_ID" v="38"/>
   </node>
-  <node visible="true" id="-2" lat="-21.300341558000003" lon="-49.787128971">
+  <node visible="true" id="-2" lat="-21.300341558" lon="-49.787128971">
     <tag k="USINA_ID" v="39"/>
     <tag k="NOME" v="MARIO LEAO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -20,7 +20,7 @@
     <tag k="LATITUDE" v="-21.299800"/>
     <tag k="GEO_ID" v="39"/>
   </node>
-  <node visible="true" id="-3" lat="-22.786209367" lon="-49.730371070000004">
+  <node visible="true" id="-3" lat="-22.786209367" lon="-49.73037107">
     <tag k="USINA_ID" v="40"/>
     <tag k="NOME" v="SAO JOAO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -40,7 +40,7 @@
     <tag k="LATITUDE" v="-22.778300"/>
     <tag k="GEO_ID" v="41"/>
   </node>
-  <node visible="true" id="-5" lat="-20.172510876" lon="-49.653572022000006">
+  <node visible="true" id="-5" lat="-20.172510876" lon="-49.653572022">
     <tag k="USINA_ID" v="42"/>
     <tag k="NOME" v="FOZ DO PRETO"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -60,7 +60,7 @@
     <tag k="LATITUDE" v="-20.303500"/>
     <tag k="GEO_ID" v="43"/>
   </node>
-  <node visible="true" id="-7" lat="-20.238841144000002" lon="-49.390837098000006">
+  <node visible="true" id="-7" lat="-20.238841144" lon="-49.390837098">
     <tag k="USINA_ID" v="44"/>
     <tag k="NOME" v="TALHADO"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -80,7 +80,7 @@
     <tag k="LATITUDE" v="-24.419800"/>
     <tag k="GEO_ID" v="45"/>
   </node>
-  <node visible="true" id="-9" lat="-24.652552717000003" lon="-48.647784218000005">
+  <node visible="true" id="-9" lat="-24.652552717" lon="-48.647784218">
     <tag k="USINA_ID" v="46"/>
     <tag k="NOME" v="FUNIL"/>
     <tag k="SITUA__O" v="PROJETO B&#xC1;SICO"/>
@@ -90,7 +90,7 @@
     <tag k="LATITUDE" v="-24.652000"/>
     <tag k="GEO_ID" v="46"/>
   </node>
-  <node visible="true" id="-10" lat="-24.628775785000002" lon="-48.571070201000005">
+  <node visible="true" id="-10" lat="-24.628775785" lon="-48.571070201">
     <tag k="USINA_ID" v="47"/>
     <tag k="NOME" v="BATATAL"/>
     <tag k="SITUA__O" v="PROJETO B&#xC1;SICO"/>
@@ -120,7 +120,7 @@
     <tag k="LATITUDE" v="-24.059900"/>
     <tag k="GEO_ID" v="49"/>
   </node>
-  <node visible="true" id="-13" lat="-23.550654311000002" lon="-48.627725209000005">
+  <node visible="true" id="-13" lat="-23.550654311" lon="-48.627725209">
     <tag k="USINA_ID" v="50"/>
     <tag k="NOME" v="CONFLUENCIA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -130,7 +130,7 @@
     <tag k="LATITUDE" v="-23.550100"/>
     <tag k="GEO_ID" v="50"/>
   </node>
-  <node visible="true" id="-14" lat="-22.109955592000002" lon="-48.820055851000006">
+  <node visible="true" id="-14" lat="-22.109955592" lon="-48.820055851">
     <tag k="USINA_ID" v="51"/>
     <tag k="NOME" v="A. S. LIMA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -140,7 +140,7 @@
     <tag k="LATITUDE" v="-22.109400"/>
     <tag k="GEO_ID" v="51"/>
   </node>
-  <node visible="true" id="-15" lat="-22.513340197" lon="-48.638264928000005">
+  <node visible="true" id="-15" lat="-22.513340197" lon="-48.638264928">
     <tag k="USINA_ID" v="52"/>
     <tag k="NOME" v="LENCOIS"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -150,7 +150,7 @@
     <tag k="LATITUDE" v="-22.512800"/>
     <tag k="GEO_ID" v="52"/>
   </node>
-  <node visible="true" id="-16" lat="-22.537725864000002" lon="-48.493475198000006">
+  <node visible="true" id="-16" lat="-22.537725864" lon="-48.493475198">
     <tag k="USINA_ID" v="53"/>
     <tag k="NOME" v="BARRA BONITA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -170,7 +170,7 @@
     <tag k="LATITUDE" v="-21.817100"/>
     <tag k="GEO_ID" v="54"/>
   </node>
-  <node visible="true" id="-18" lat="-21.857103474000002" lon="-48.501500143">
+  <node visible="true" id="-18" lat="-21.857103474" lon="-48.501500143">
     <tag k="USINA_ID" v="55"/>
     <tag k="NOME" v="DIAMANTINA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -190,7 +190,7 @@
     <tag k="LATITUDE" v="-20.131200"/>
     <tag k="GEO_ID" v="56"/>
   </node>
-  <node visible="true" id="-20" lat="-20.054773486000002" lon="-48.250384905000004">
+  <node visible="true" id="-20" lat="-20.054773486" lon="-48.250384905">
     <tag k="USINA_ID" v="57"/>
     <tag k="NOME" v="V. GRANDE"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -210,7 +210,7 @@
     <tag k="LATITUDE" v="-20.203900"/>
     <tag k="GEO_ID" v="58"/>
   </node>
-  <node visible="true" id="-22" lat="-20.306815837000002" lon="-48.137240273">
+  <node visible="true" id="-22" lat="-20.306815837" lon="-48.137240273">
     <tag k="USINA_ID" v="59"/>
     <tag k="NOME" v="MONJOLINHO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -240,7 +240,7 @@
     <tag k="LATITUDE" v="-20.680900"/>
     <tag k="GEO_ID" v="61"/>
   </node>
-  <node visible="true" id="-25" lat="-20.850069876000003" lon="-48.284524534000006">
+  <node visible="true" id="-25" lat="-20.850069876" lon="-48.284524534">
     <tag k="USINA_ID" v="62"/>
     <tag k="NOME" v="VIRADOURO"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -250,7 +250,7 @@
     <tag k="LATITUDE" v="-20.849500"/>
     <tag k="GEO_ID" v="62"/>
   </node>
-  <node visible="true" id="-26" lat="-22.269058431" lon="-48.225168094000004">
+  <node visible="true" id="-26" lat="-22.269058431" lon="-48.225168094">
     <tag k="USINA_ID" v="63"/>
     <tag k="NOME" v="INDEPEDENCIA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -260,7 +260,7 @@
     <tag k="LATITUDE" v="-22.268500"/>
     <tag k="GEO_ID" v="63"/>
   </node>
-  <node visible="true" id="-27" lat="-21.852968808" lon="-48.343700240000004">
+  <node visible="true" id="-27" lat="-21.852968808" lon="-48.34370024">
     <tag k="USINA_ID" v="64"/>
     <tag k="NOME" v="R. GRANDE"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -270,7 +270,7 @@
     <tag k="LATITUDE" v="-21.852400"/>
     <tag k="GEO_ID" v="64"/>
   </node>
-  <node visible="true" id="-28" lat="-21.854030738000002" lon="-48.394403863">
+  <node visible="true" id="-28" lat="-21.854030738" lon="-48.394403863">
     <tag k="USINA_ID" v="65"/>
     <tag k="NOME" v="STA. CANDIDA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -290,7 +290,7 @@
     <tag k="LATITUDE" v="-21.849600"/>
     <tag k="GEO_ID" v="66"/>
   </node>
-  <node visible="true" id="-30" lat="-22.093278534000003" lon="-48.424551944">
+  <node visible="true" id="-30" lat="-22.093278534" lon="-48.424551944">
     <tag k="USINA_ID" v="67"/>
     <tag k="NOME" v="J. PEPIRA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -310,7 +310,7 @@
     <tag k="LATITUDE" v="-22.058500"/>
     <tag k="GEO_ID" v="68"/>
   </node>
-  <node visible="true" id="-32" lat="-22.032688869" lon="-48.111461930000004">
+  <node visible="true" id="-32" lat="-22.032688869" lon="-48.11146193">
     <tag k="USINA_ID" v="69"/>
     <tag k="NOME" v="STO. INACIO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -320,7 +320,7 @@
     <tag k="LATITUDE" v="-22.032100"/>
     <tag k="GEO_ID" v="69"/>
   </node>
-  <node visible="true" id="-33" lat="-22.030088169000003" lon="-48.000854543">
+  <node visible="true" id="-33" lat="-22.030088169" lon="-48.000854543">
     <tag k="USINA_ID" v="70"/>
     <tag k="NOME" v="MONJOLINHO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -340,7 +340,7 @@
     <tag k="LATITUDE" v="-22.096500"/>
     <tag k="GEO_ID" v="176"/>
   </node>
-  <node visible="true" id="-35" lat="-22.102945247" lon="-46.608022590000004">
+  <node visible="true" id="-35" lat="-22.102945247" lon="-46.60802259">
     <tag k="USINA_ID" v="177"/>
     <tag k="NOME" v="SANTO ANTONIO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -350,7 +350,7 @@
     <tag k="LATITUDE" v="-22.102400"/>
     <tag k="GEO_ID" v="177"/>
   </node>
-  <node visible="true" id="-36" lat="-22.023266379000003" lon="-46.740184957000004">
+  <node visible="true" id="-36" lat="-22.023266379" lon="-46.740184957">
     <tag k="USINA_ID" v="178"/>
     <tag k="NOME" v="SAO JOSE"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -360,7 +360,7 @@
     <tag k="LATITUDE" v="-22.022700"/>
     <tag k="GEO_ID" v="178"/>
   </node>
-  <node visible="true" id="-37" lat="-22.057977623000003" lon="-46.711412748">
+  <node visible="true" id="-37" lat="-22.057977623" lon="-46.711412748">
     <tag k="USINA_ID" v="179"/>
     <tag k="NOME" v="SANTA INES"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -380,7 +380,7 @@
     <tag k="LATITUDE" v="-22.754900"/>
     <tag k="GEO_ID" v="180"/>
   </node>
-  <node visible="true" id="-39" lat="-21.582630823000002" lon="-46.688972106">
+  <node visible="true" id="-39" lat="-21.582630823" lon="-46.688972106">
     <tag k="USINA_ID" v="181"/>
     <tag k="NOME" v="CACONDE"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -400,7 +400,7 @@
     <tag k="LATITUDE" v="-22.890500"/>
     <tag k="GEO_ID" v="182"/>
   </node>
-  <node visible="true" id="-41" lat="-23.824343417" lon="-45.341583717000006">
+  <node visible="true" id="-41" lat="-23.824343417" lon="-45.341583717">
     <tag k="USINA_ID" v="183"/>
     <tag k="NOME" v="ILHA BELA"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -440,7 +440,7 @@
     <tag k="LATITUDE" v="-22.732600"/>
     <tag k="GEO_ID" v="186"/>
   </node>
-  <node visible="true" id="-45" lat="-22.73284829" lon="-45.453363839000005">
+  <node visible="true" id="-45" lat="-22.73284829" lon="-45.453363839">
     <tag k="USINA_ID" v="187"/>
     <tag k="NOME" v="ABERNESSIA"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -450,7 +450,7 @@
     <tag k="LATITUDE" v="-22.732300"/>
     <tag k="GEO_ID" v="187"/>
   </node>
-  <node visible="true" id="-46" lat="-22.403108815000003" lon="-48.121269253">
+  <node visible="true" id="-46" lat="-22.403108815" lon="-48.121269253">
     <tag k="USINA_ID" v="71"/>
     <tag k="NOME" v="JACARE"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -470,7 +470,7 @@
     <tag k="LATITUDE" v="-21.871600"/>
     <tag k="GEO_ID" v="72"/>
   </node>
-  <node visible="true" id="-48" lat="-22.460413329" lon="-48.081122926000006">
+  <node visible="true" id="-48" lat="-22.460413329" lon="-48.081122926">
     <tag k="USINA_ID" v="73"/>
     <tag k="NOME" v="3 SALTOS"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -490,7 +490,7 @@
     <tag k="LATITUDE" v="-22.659700"/>
     <tag k="GEO_ID" v="74"/>
   </node>
-  <node visible="true" id="-50" lat="-23.991489444000003" lon="-48.044398405">
+  <node visible="true" id="-50" lat="-23.991489444" lon="-48.044398405">
     <tag k="USINA_ID" v="75"/>
     <tag k="NOME" v="TURVINHO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -500,7 +500,7 @@
     <tag k="LATITUDE" v="-23.990900"/>
     <tag k="GEO_ID" v="75"/>
   </node>
-  <node visible="true" id="-51" lat="-23.943975077" lon="-48.039046113000005">
+  <node visible="true" id="-51" lat="-23.943975077" lon="-48.039046113">
     <tag k="USINA_ID" v="76"/>
     <tag k="NOME" v="LAVRINHA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -510,7 +510,7 @@
     <tag k="LATITUDE" v="-23.943400"/>
     <tag k="GEO_ID" v="76"/>
   </node>
-  <node visible="true" id="-52" lat="-23.928170769" lon="-48.085804720000006">
+  <node visible="true" id="-52" lat="-23.928170769" lon="-48.08580472">
     <tag k="USINA_ID" v="77"/>
     <tag k="NOME" v="SAO JOSE"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -520,7 +520,7 @@
     <tag k="LATITUDE" v="-23.927600"/>
     <tag k="GEO_ID" v="77"/>
   </node>
-  <node visible="true" id="-53" lat="-22.711932829000002" lon="-45.553847116">
+  <node visible="true" id="-53" lat="-22.711932829" lon="-45.553847116">
     <tag k="USINA_ID" v="78"/>
     <tag k="NOME" v="C. JORDAO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -540,7 +540,7 @@
     <tag k="LATITUDE" v="-22.860700"/>
     <tag k="GEO_ID" v="79"/>
   </node>
-  <node visible="true" id="-55" lat="-23.361983948000002" lon="-45.670061530000005">
+  <node visible="true" id="-55" lat="-23.361983948" lon="-45.67006153">
     <tag k="USINA_ID" v="80"/>
     <tag k="NOME" v="PARAIBUNA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -560,7 +560,7 @@
     <tag k="LATITUDE" v="-22.749600"/>
     <tag k="GEO_ID" v="81"/>
   </node>
-  <node visible="true" id="-57" lat="-22.840416241" lon="-47.376493305000004">
+  <node visible="true" id="-57" lat="-22.840416241" lon="-47.376493305">
     <tag k="USINA_ID" v="82"/>
     <tag k="NOME" v="CARIOBINHA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -570,7 +570,7 @@
     <tag k="LATITUDE" v="-22.839900"/>
     <tag k="GEO_ID" v="82"/>
   </node>
-  <node visible="true" id="-58" lat="-22.820701294000003" lon="-46.942587864000004">
+  <node visible="true" id="-58" lat="-22.820701294" lon="-46.942587864">
     <tag k="USINA_ID" v="83"/>
     <tag k="NOME" v="BER. FIGUEIR."/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -580,7 +580,7 @@
     <tag k="LATITUDE" v="-22.820100"/>
     <tag k="GEO_ID" v="83"/>
   </node>
-  <node visible="true" id="-59" lat="-22.851537601" lon="-46.896817447000004">
+  <node visible="true" id="-59" lat="-22.851537601" lon="-46.896817447">
     <tag k="USINA_ID" v="84"/>
     <tag k="NOME" v="M. BRANCO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -590,7 +590,7 @@
     <tag k="LATITUDE" v="-22.851000"/>
     <tag k="GEO_ID" v="84"/>
   </node>
-  <node visible="true" id="-60" lat="-22.856366096000002" lon="-46.751280596">
+  <node visible="true" id="-60" lat="-22.856366096" lon="-46.751280596">
     <tag k="USINA_ID" v="85"/>
     <tag k="NOME" v="Dr. TOSTA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -610,7 +610,7 @@
     <tag k="LATITUDE" v="-22.783300"/>
     <tag k="GEO_ID" v="86"/>
   </node>
-  <node visible="true" id="-62" lat="-22.916796020000003" lon="-46.946773208">
+  <node visible="true" id="-62" lat="-22.91679602" lon="-46.946773208">
     <tag k="USINA_ID" v="87"/>
     <tag k="NOME" v="S. GRANDE/AMPLIACAO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -620,7 +620,7 @@
     <tag k="LATITUDE" v="-22.916200"/>
     <tag k="GEO_ID" v="87"/>
   </node>
-  <node visible="true" id="-63" lat="-24.110746547" lon="-46.904298434000005">
+  <node visible="true" id="-63" lat="-24.110746547" lon="-46.904298434">
     <tag k="USINA_ID" v="88"/>
     <tag k="NOME" v="MONGAGUA"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -630,7 +630,7 @@
     <tag k="LATITUDE" v="-24.110200"/>
     <tag k="GEO_ID" v="88"/>
   </node>
-  <node visible="true" id="-64" lat="-23.407615416000002" lon="-47.490573631000004">
+  <node visible="true" id="-64" lat="-23.407615416" lon="-47.490573631">
     <tag k="USINA_ID" v="89"/>
     <tag k="NOME" v="SANTA HELENA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -650,7 +650,7 @@
     <tag k="LATITUDE" v="-23.578100"/>
     <tag k="GEO_ID" v="90"/>
   </node>
-  <node visible="true" id="-66" lat="-23.613618336000002" lon="-47.399078193">
+  <node visible="true" id="-66" lat="-23.613618336" lon="-47.399078193">
     <tag k="USINA_ID" v="91"/>
     <tag k="NOME" v="ITUPARARANGA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -660,7 +660,7 @@
     <tag k="LATITUDE" v="-23.639600"/>
     <tag k="GEO_ID" v="91"/>
   </node>
-  <node visible="true" id="-67" lat="-23.827866251000003" lon="-47.664818083">
+  <node visible="true" id="-67" lat="-23.827866251" lon="-47.664818083">
     <tag k="USINA_ID" v="92"/>
     <tag k="NOME" v="PILAR"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -670,7 +670,7 @@
     <tag k="LATITUDE" v="-23.827300"/>
     <tag k="GEO_ID" v="92"/>
   </node>
-  <node visible="true" id="-68" lat="-23.060980351" lon="-47.624351141000005">
+  <node visible="true" id="-68" lat="-23.060980351" lon="-47.624351141">
     <tag k="USINA_ID" v="93"/>
     <tag k="NOME" v="RAFARD"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -680,7 +680,7 @@
     <tag k="LATITUDE" v="-23.060400"/>
     <tag k="GEO_ID" v="93"/>
   </node>
-  <node visible="true" id="-69" lat="-23.221678876000002" lon="-47.546939641">
+  <node visible="true" id="-69" lat="-23.221678876" lon="-47.546939641">
     <tag k="USINA_ID" v="94"/>
     <tag k="NOME" v="PORTO FELIZ"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -710,7 +710,7 @@
     <tag k="LATITUDE" v="-24.036800"/>
     <tag k="GEO_ID" v="96"/>
   </node>
-  <node visible="true" id="-72" lat="-24.037816221" lon="-47.546679321000006">
+  <node visible="true" id="-72" lat="-24.037816221" lon="-47.546679321">
     <tag k="USINA_ID" v="97"/>
     <tag k="NOME" v="JURUPARA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -730,7 +730,7 @@
     <tag k="LATITUDE" v="-23.989300"/>
     <tag k="GEO_ID" v="98"/>
   </node>
-  <node visible="true" id="-74" lat="-24.063813532" lon="-47.499728876000006">
+  <node visible="true" id="-74" lat="-24.063813532" lon="-47.499728876">
     <tag k="USINA_ID" v="99"/>
     <tag k="NOME" v="BARRA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -750,7 +750,7 @@
     <tag k="LATITUDE" v="-23.592700"/>
     <tag k="GEO_ID" v="100"/>
   </node>
-  <node visible="true" id="-76" lat="-23.771987467000002" lon="-47.764342148000004">
+  <node visible="true" id="-76" lat="-23.771987467" lon="-47.764342148">
     <tag k="USINA_ID" v="101"/>
     <tag k="NOME" v="JORDAFLOR"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -760,7 +760,7 @@
     <tag k="LATITUDE" v="-23.771400"/>
     <tag k="GEO_ID" v="101"/>
   </node>
-  <node visible="true" id="-77" lat="-24.226043405000002" lon="-47.967435292000005">
+  <node visible="true" id="-77" lat="-24.226043405" lon="-47.967435292">
     <tag k="USINA_ID" v="102"/>
     <tag k="NOME" v="S. IPORANGA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -770,7 +770,7 @@
     <tag k="LATITUDE" v="-24.225500"/>
     <tag k="GEO_ID" v="102"/>
   </node>
-  <node visible="true" id="-78" lat="-24.218287795000002" lon="-47.824215419000005">
+  <node visible="true" id="-78" lat="-24.218287795" lon="-47.824215419">
     <tag k="USINA_ID" v="103"/>
     <tag k="NOME" v="SERRARIA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -780,7 +780,7 @@
     <tag k="LATITUDE" v="-24.217700"/>
     <tag k="GEO_ID" v="103"/>
   </node>
-  <node visible="true" id="-79" lat="-23.807890929000003" lon="-47.722901747">
+  <node visible="true" id="-79" lat="-23.807890929" lon="-47.722901747">
     <tag k="USINA_ID" v="104"/>
     <tag k="NOME" v="BATISTA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -790,7 +790,7 @@
     <tag k="LATITUDE" v="-23.807300"/>
     <tag k="GEO_ID" v="104"/>
   </node>
-  <node visible="true" id="-80" lat="-23.027803513000002" lon="-47.823375434000006">
+  <node visible="true" id="-80" lat="-23.027803513" lon="-47.823375434">
     <tag k="USINA_ID" v="105"/>
     <tag k="NOME" v="L. PAULISTA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -800,7 +800,7 @@
     <tag k="LATITUDE" v="-23.027200"/>
     <tag k="GEO_ID" v="105"/>
   </node>
-  <node visible="true" id="-81" lat="-23.380711433000002" lon="-47.777350036">
+  <node visible="true" id="-81" lat="-23.380711433" lon="-47.777350036">
     <tag k="USINA_ID" v="106"/>
     <tag k="NOME" v="SANTA ADELIA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -820,7 +820,7 @@
     <tag k="LATITUDE" v="-22.928700"/>
     <tag k="GEO_ID" v="107"/>
   </node>
-  <node visible="true" id="-83" lat="-23.101036325000003" lon="-47.7488218">
+  <node visible="true" id="-83" lat="-23.101036325" lon="-47.7488218">
     <tag k="USINA_ID" v="108"/>
     <tag k="NOME" v="TIETE"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -850,7 +850,7 @@
     <tag k="LATITUDE" v="-24.070900"/>
     <tag k="GEO_ID" v="110"/>
   </node>
-  <node visible="true" id="-86" lat="-23.289509210000002" lon="-47.214358746">
+  <node visible="true" id="-86" lat="-23.28950921" lon="-47.214358746">
     <tag k="USINA_ID" v="111"/>
     <tag k="NOME" v="SAO PEDRO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -860,7 +860,7 @@
     <tag k="LATITUDE" v="-23.288900"/>
     <tag k="GEO_ID" v="111"/>
   </node>
-  <node visible="true" id="-87" lat="-23.18857307" lon="-47.365042274000004">
+  <node visible="true" id="-87" lat="-23.18857307" lon="-47.365042274">
     <tag k="USINA_ID" v="112"/>
     <tag k="NOME" v="PORTO GOES"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -870,7 +870,7 @@
     <tag k="LATITUDE" v="-23.188000"/>
     <tag k="GEO_ID" v="112"/>
   </node>
-  <node visible="true" id="-88" lat="-23.398476648000003" lon="-47.034129855">
+  <node visible="true" id="-88" lat="-23.398476648" lon="-47.034129855">
     <tag k="USINA_ID" v="113"/>
     <tag k="NOME" v="RASGAO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -880,7 +880,7 @@
     <tag k="LATITUDE" v="-23.397900"/>
     <tag k="GEO_ID" v="113"/>
   </node>
-  <node visible="true" id="-89" lat="-23.826652297000003" lon="-46.174555327">
+  <node visible="true" id="-89" lat="-23.826652297" lon="-46.174555327">
     <tag k="USINA_ID" v="114"/>
     <tag k="NOME" v="ITATINGA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -900,7 +900,7 @@
     <tag k="LATITUDE" v="-23.638200"/>
     <tag k="GEO_ID" v="115"/>
   </node>
-  <node visible="true" id="-91" lat="-23.903134003" lon="-46.525651049000004">
+  <node visible="true" id="-91" lat="-23.903134003" lon="-46.525651049">
     <tag k="USINA_ID" v="116"/>
     <tag k="NOME" v="H. BORDEN"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -930,7 +930,7 @@
     <tag k="LATITUDE" v="-23.757800"/>
     <tag k="GEO_ID" v="118"/>
   </node>
-  <node visible="true" id="-94" lat="-23.103856393" lon="-46.620298682000005">
+  <node visible="true" id="-94" lat="-23.103856393" lon="-46.620298682">
     <tag k="USINA_ID" v="119"/>
     <tag k="NOME" v="ARPUI"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -950,7 +950,7 @@
     <tag k="LATITUDE" v="-23.649100"/>
     <tag k="GEO_ID" v="120"/>
   </node>
-  <node visible="true" id="-96" lat="-21.561611232" lon="-46.879603452000005">
+  <node visible="true" id="-96" lat="-21.561611232" lon="-46.879603452">
     <tag k="USINA_ID" v="121"/>
     <tag k="NOME" v="BARREIRO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -960,7 +960,7 @@
     <tag k="LATITUDE" v="-21.561100"/>
     <tag k="GEO_ID" v="121"/>
   </node>
-  <node visible="true" id="-97" lat="-21.886134889" lon="-46.836889758000005">
+  <node visible="true" id="-97" lat="-21.886134889" lon="-46.836889758">
     <tag k="USINA_ID" v="122"/>
     <tag k="NOME" v="RETIRAO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -970,7 +970,7 @@
     <tag k="LATITUDE" v="-21.885600"/>
     <tag k="GEO_ID" v="122"/>
   </node>
-  <node visible="true" id="-98" lat="-21.849990618" lon="-46.888682335000006">
+  <node visible="true" id="-98" lat="-21.849990618" lon="-46.888682335">
     <tag k="USINA_ID" v="123"/>
     <tag k="NOME" v="N. SRA. DAS GRACAS"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1010,7 +1010,7 @@
     <tag k="LATITUDE" v="-21.577100"/>
     <tag k="GEO_ID" v="126"/>
   </node>
-  <node visible="true" id="-102" lat="-21.571331415000003" lon="-46.81584069">
+  <node visible="true" id="-102" lat="-21.571331415" lon="-46.81584069">
     <tag k="USINA_ID" v="127"/>
     <tag k="NOME" v="J. FIGUEIREDO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1020,7 +1020,7 @@
     <tag k="LATITUDE" v="-21.570800"/>
     <tag k="GEO_ID" v="127"/>
   </node>
-  <node visible="true" id="-103" lat="-22.208570518000002" lon="-46.866840099">
+  <node visible="true" id="-103" lat="-22.208570518" lon="-46.866840099">
     <tag k="USINA_ID" v="128"/>
     <tag k="NOME" v="ELOY CHAVES/AMPLIACA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1030,7 +1030,7 @@
     <tag k="LATITUDE" v="-22.208000"/>
     <tag k="GEO_ID" v="128"/>
   </node>
-  <node visible="true" id="-104" lat="-22.199830641000002" lon="-46.816915523000006">
+  <node visible="true" id="-104" lat="-22.199830641" lon="-46.816915523">
     <tag k="USINA_ID" v="129"/>
     <tag k="NOME" v="DIVISA"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -1040,7 +1040,7 @@
     <tag k="LATITUDE" v="-22.199300"/>
     <tag k="GEO_ID" v="129"/>
   </node>
-  <node visible="true" id="-105" lat="-22.177326186000002" lon="-46.899290394000005">
+  <node visible="true" id="-105" lat="-22.177326186" lon="-46.899290394">
     <tag k="USINA_ID" v="130"/>
     <tag k="NOME" v="NOVA PINHAL"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -1050,7 +1050,7 @@
     <tag k="LATITUDE" v="-22.176800"/>
     <tag k="GEO_ID" v="130"/>
   </node>
-  <node visible="true" id="-106" lat="-22.236942515000003" lon="-46.958419312000004">
+  <node visible="true" id="-106" lat="-22.236942515" lon="-46.958419312">
     <tag k="USINA_ID" v="131"/>
     <tag k="NOME" v="PINHAL/AMPLIACAO/SAL"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1060,7 +1060,7 @@
     <tag k="LATITUDE" v="-22.236400"/>
     <tag k="GEO_ID" v="131"/>
   </node>
-  <node visible="true" id="-107" lat="-22.401601775000003" lon="-46.96433596">
+  <node visible="true" id="-107" lat="-22.401601775" lon="-46.96433596">
     <tag k="USINA_ID" v="132"/>
     <tag k="NOME" v="SOCORRO"/>
     <tag k="SITUA__O" v="EM CONSTRU&#xC7;&#xC3;O"/>
@@ -1070,7 +1070,7 @@
     <tag k="LATITUDE" v="-22.401000"/>
     <tag k="GEO_ID" v="132"/>
   </node>
-  <node visible="true" id="-108" lat="-22.702017180000002" lon="-47.003828243">
+  <node visible="true" id="-108" lat="-22.70201718" lon="-47.003828243">
     <tag k="USINA_ID" v="133"/>
     <tag k="NOME" v="CAMANDUCAIA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1080,7 +1080,7 @@
     <tag k="LATITUDE" v="-22.701500"/>
     <tag k="GEO_ID" v="133"/>
   </node>
-  <node visible="true" id="-109" lat="-21.811903174" lon="-46.920927643000006">
+  <node visible="true" id="-109" lat="-21.811903174" lon="-46.920927643">
     <tag k="USINA_ID" v="134"/>
     <tag k="NOME" v="JACUBINHA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1100,7 +1100,7 @@
     <tag k="LATITUDE" v="-21.626500"/>
     <tag k="GEO_ID" v="135"/>
   </node>
-  <node visible="true" id="-111" lat="-21.602497238" lon="-46.994793947000005">
+  <node visible="true" id="-111" lat="-21.602497238" lon="-46.994793947">
     <tag k="USINA_ID" v="136"/>
     <tag k="NOME" v="SAO JOSE"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1110,7 +1110,7 @@
     <tag k="LATITUDE" v="-21.601900"/>
     <tag k="GEO_ID" v="136"/>
   </node>
-  <node visible="true" id="-112" lat="-22.766719901000002" lon="-46.897906191000004">
+  <node visible="true" id="-112" lat="-22.766719901" lon="-46.897906191">
     <tag k="USINA_ID" v="137"/>
     <tag k="NOME" v="JAGUARI"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1120,7 +1120,7 @@
     <tag k="LATITUDE" v="-22.766200"/>
     <tag k="GEO_ID" v="137"/>
   </node>
-  <node visible="true" id="-113" lat="-21.226964899000002" lon="-47.097991178">
+  <node visible="true" id="-113" lat="-21.226964899" lon="-47.097991178">
     <tag k="USINA_ID" v="138"/>
     <tag k="NOME" v="S. SEBASTIAO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1130,7 +1130,7 @@
     <tag k="LATITUDE" v="-21.226400"/>
     <tag k="GEO_ID" v="138"/>
   </node>
-  <node visible="true" id="-114" lat="-21.76356931" lon="-47.473235331000005">
+  <node visible="true" id="-114" lat="-21.76356931" lon="-47.473235331">
     <tag k="USINA_ID" v="139"/>
     <tag k="NOME" v="TRES QUEDAS"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -1140,7 +1140,7 @@
     <tag k="LATITUDE" v="-21.763000"/>
     <tag k="GEO_ID" v="139"/>
   </node>
-  <node visible="true" id="-115" lat="-22.480795619000002" lon="-47.640781448000006">
+  <node visible="true" id="-115" lat="-22.480795619" lon="-47.640781448">
     <tag k="USINA_ID" v="140"/>
     <tag k="NOME" v="CORUMBATAI"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1150,7 +1150,7 @@
     <tag k="LATITUDE" v="-22.480200"/>
     <tag k="GEO_ID" v="140"/>
   </node>
-  <node visible="true" id="-116" lat="-22.705034749000003" lon="-47.549985111000005">
+  <node visible="true" id="-116" lat="-22.705034749" lon="-47.549985111">
     <tag k="USINA_ID" v="141"/>
     <tag k="NOME" v="BOYES"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1160,7 +1160,7 @@
     <tag k="LATITUDE" v="-22.704500"/>
     <tag k="GEO_ID" v="141"/>
   </node>
-  <node visible="true" id="-117" lat="-22.719190486000002" lon="-47.667812627">
+  <node visible="true" id="-117" lat="-22.719190486" lon="-47.667812627">
     <tag k="USINA_ID" v="142"/>
     <tag k="NOME" v="LUIS QUEIROZ"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1180,7 +1180,7 @@
     <tag k="LATITUDE" v="-22.245900"/>
     <tag k="GEO_ID" v="143"/>
   </node>
-  <node visible="true" id="-119" lat="-22.307053717000002" lon="-47.840492420000004">
+  <node visible="true" id="-119" lat="-22.307053717" lon="-47.84049242">
     <tag k="USINA_ID" v="144"/>
     <tag k="NOME" v="CORREDEIRA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1190,7 +1190,7 @@
     <tag k="LATITUDE" v="-22.306500"/>
     <tag k="GEO_ID" v="144"/>
   </node>
-  <node visible="true" id="-120" lat="-22.161327509000003" lon="-47.902021769">
+  <node visible="true" id="-120" lat="-22.161327509" lon="-47.902021769">
     <tag k="USINA_ID" v="145"/>
     <tag k="NOME" v="S. SAO CARLOS"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1210,7 +1210,7 @@
     <tag k="LATITUDE" v="-21.802300"/>
     <tag k="GEO_ID" v="146"/>
   </node>
-  <node visible="true" id="-122" lat="-22.651563297000003" lon="-47.193805471000005">
+  <node visible="true" id="-122" lat="-22.651563297" lon="-47.193805471">
     <tag k="USINA_ID" v="147"/>
     <tag k="NOME" v="ESTER"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1220,7 +1220,7 @@
     <tag k="LATITUDE" v="-22.651000"/>
     <tag k="GEO_ID" v="147"/>
   </node>
-  <node visible="true" id="-123" lat="-22.603233575" lon="-47.300333667000004">
+  <node visible="true" id="-123" lat="-22.603233575" lon="-47.300333667">
     <tag k="USINA_ID" v="148"/>
     <tag k="NOME" v="TATU"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -1230,7 +1230,7 @@
     <tag k="LATITUDE" v="-22.602700"/>
     <tag k="GEO_ID" v="148"/>
   </node>
-  <node visible="true" id="-124" lat="-22.705458407000002" lon="-47.269787583">
+  <node visible="true" id="-124" lat="-22.705458407" lon="-47.269787583">
     <tag k="USINA_ID" v="149"/>
     <tag k="NOME" v="JAGUARI"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1250,7 +1250,7 @@
     <tag k="LATITUDE" v="-22.703100"/>
     <tag k="GEO_ID" v="150"/>
   </node>
-  <node visible="true" id="-126" lat="-22.254011518000002" lon="-47.019991157">
+  <node visible="true" id="-126" lat="-22.254011518" lon="-47.019991157">
     <tag k="USINA_ID" v="151"/>
     <tag k="NOME" v="ELEUTERIO"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -1270,7 +1270,7 @@
     <tag k="LATITUDE" v="-22.288300"/>
     <tag k="GEO_ID" v="152"/>
   </node>
-  <node visible="true" id="-128" lat="-22.335045969000003" lon="-47.080873200000006">
+  <node visible="true" id="-128" lat="-22.335045969" lon="-47.0808732">
     <tag k="USINA_ID" v="153"/>
     <tag k="NOME" v="MOGI-GUACU"/>
     <tag k="SITUA__O" v="EM CONSTRU&#xC7;&#xC3;O"/>
@@ -1280,7 +1280,7 @@
     <tag k="LATITUDE" v="-22.334500"/>
     <tag k="GEO_ID" v="153"/>
   </node>
-  <node visible="true" id="-129" lat="-22.38799762" lon="-47.019263507000005">
+  <node visible="true" id="-129" lat="-22.38799762" lon="-47.019263507">
     <tag k="USINA_ID" v="154"/>
     <tag k="NOME" v="PONTE NOVA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1290,7 +1290,7 @@
     <tag k="LATITUDE" v="-22.387400"/>
     <tag k="GEO_ID" v="154"/>
   </node>
-  <node visible="true" id="-130" lat="-21.930646137" lon="-47.324571981000005">
+  <node visible="true" id="-130" lat="-21.930646137" lon="-47.324571981">
     <tag k="USINA_ID" v="155"/>
     <tag k="NOME" v="EMAS/EMAS NOVA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1300,7 +1300,7 @@
     <tag k="LATITUDE" v="-21.930100"/>
     <tag k="GEO_ID" v="155"/>
   </node>
-  <node visible="true" id="-131" lat="-21.581089856000002" lon="-47.091487094">
+  <node visible="true" id="-131" lat="-21.581089856" lon="-47.091487094">
     <tag k="USINA_ID" v="156"/>
     <tag k="NOME" v="A. S. OLIVEIRA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1310,7 +1310,7 @@
     <tag k="LATITUDE" v="-21.580500"/>
     <tag k="GEO_ID" v="156"/>
   </node>
-  <node visible="true" id="-132" lat="-21.798567859000002" lon="-47.383901296000005">
+  <node visible="true" id="-132" lat="-21.798567859" lon="-47.383901296">
     <tag k="USINA_ID" v="157"/>
     <tag k="NOME" v="SAO VALENTIM"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -1340,7 +1340,7 @@
     <tag k="LATITUDE" v="-21.627100"/>
     <tag k="GEO_ID" v="159"/>
   </node>
-  <node visible="true" id="-135" lat="-20.011074963000002" lon="-47.432435955">
+  <node visible="true" id="-135" lat="-20.011074963" lon="-47.432435955">
     <tag k="USINA_ID" v="160"/>
     <tag k="NOME" v="JAGUARA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1350,7 +1350,7 @@
     <tag k="LATITUDE" v="-20.010500"/>
     <tag k="GEO_ID" v="160"/>
   </node>
-  <node visible="true" id="-136" lat="-20.685249349000003" lon="-47.556007289">
+  <node visible="true" id="-136" lat="-20.685249349" lon="-47.556007289">
     <tag k="USINA_ID" v="161"/>
     <tag k="NOME" v="MOSQUITO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1360,7 +1360,7 @@
     <tag k="LATITUDE" v="-20.684700"/>
     <tag k="GEO_ID" v="161"/>
   </node>
-  <node visible="true" id="-137" lat="-21.201459672000002" lon="-47.527576327000006">
+  <node visible="true" id="-137" lat="-21.201459672" lon="-47.527576327">
     <tag k="USINA_ID" v="162"/>
     <tag k="NOME" v="ITIPAVA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1370,7 +1370,7 @@
     <tag k="LATITUDE" v="-21.200900"/>
     <tag k="GEO_ID" v="162"/>
   </node>
-  <node visible="true" id="-138" lat="-20.279576844" lon="-47.605779827000006">
+  <node visible="true" id="-138" lat="-20.279576844" lon="-47.605779827">
     <tag k="USINA_ID" v="163"/>
     <tag k="NOME" v="PONTE NOVA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1390,7 +1390,7 @@
     <tag k="LATITUDE" v="-20.435300"/>
     <tag k="GEO_ID" v="164"/>
   </node>
-  <node visible="true" id="-140" lat="-20.483816926000003" lon="-47.899597819">
+  <node visible="true" id="-140" lat="-20.483816926" lon="-47.899597819">
     <tag k="USINA_ID" v="165"/>
     <tag k="NOME" v="PALMEIRAS"/>
     <tag k="SITUA__O" v="PROJETO B&#xC1;SICO"/>
@@ -1400,7 +1400,7 @@
     <tag k="LATITUDE" v="-20.483300"/>
     <tag k="GEO_ID" v="165"/>
   </node>
-  <node visible="true" id="-141" lat="-20.530519328" lon="-47.866048631000005">
+  <node visible="true" id="-141" lat="-20.530519328" lon="-47.866048631">
     <tag k="USINA_ID" v="166"/>
     <tag k="NOME" v="SAO JOAQUIM"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1410,7 +1410,7 @@
     <tag k="LATITUDE" v="-20.530000"/>
     <tag k="GEO_ID" v="166"/>
   </node>
-  <node visible="true" id="-142" lat="-20.585746949" lon="-47.797778965000006">
+  <node visible="true" id="-142" lat="-20.585746949" lon="-47.797778965">
     <tag k="USINA_ID" v="167"/>
     <tag k="NOME" v="SANTA RITA"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -1420,7 +1420,7 @@
     <tag k="LATITUDE" v="-20.585200"/>
     <tag k="GEO_ID" v="167"/>
   </node>
-  <node visible="true" id="-143" lat="-20.67816794" lon="-47.686305778000005">
+  <node visible="true" id="-143" lat="-20.67816794" lon="-47.686305778">
     <tag k="USINA_ID" v="168"/>
     <tag k="NOME" v="DOURADOS"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1430,7 +1430,7 @@
     <tag k="LATITUDE" v="-20.677600"/>
     <tag k="GEO_ID" v="168"/>
   </node>
-  <node visible="true" id="-144" lat="-20.72916146" lon="-47.636270333000006">
+  <node visible="true" id="-144" lat="-20.72916146" lon="-47.636270333">
     <tag k="USINA_ID" v="169"/>
     <tag k="NOME" v="SAPUCAI"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -1460,7 +1460,7 @@
     <tag k="LATITUDE" v="-20.284200"/>
     <tag k="GEO_ID" v="171"/>
   </node>
-  <node visible="true" id="-147" lat="-19.989806308000002" lon="-47.688093961">
+  <node visible="true" id="-147" lat="-19.989806308" lon="-47.688093961">
     <tag k="USINA_ID" v="172"/>
     <tag k="NOME" v="IGARAPAVA"/>
     <tag k="SITUA__O" v="PROJETO B&#xC1;SICO"/>
@@ -1490,7 +1490,7 @@
     <tag k="LATITUDE" v="-20.144600"/>
     <tag k="GEO_ID" v="174"/>
   </node>
-  <node visible="true" id="-150" lat="-20.280015086000002" lon="-47.092177537000005">
+  <node visible="true" id="-150" lat="-20.280015086" lon="-47.092177537">
     <tag k="USINA_ID" v="175"/>
     <tag k="NOME" v="PEIXOTO"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1500,7 +1500,7 @@
     <tag k="LATITUDE" v="-20.279500"/>
     <tag k="GEO_ID" v="175"/>
   </node>
-  <node visible="true" id="-151" lat="-21.535083655" lon="-48.958620749000005">
+  <node visible="true" id="-151" lat="-21.535083655" lon="-48.958620749">
     <tag k="USINA_ID" v="1"/>
     <tag k="NOME" v="R. GONCALVES"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1510,7 +1510,7 @@
     <tag k="LATITUDE" v="-21.534500"/>
     <tag k="GEO_ID" v="1"/>
   </node>
-  <node visible="true" id="-152" lat="-21.591753035" lon="-48.966759954000004">
+  <node visible="true" id="-152" lat="-21.591753035" lon="-48.966759954">
     <tag k="USINA_ID" v="2"/>
     <tag k="NOME" v="PORCOS"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1530,7 +1530,7 @@
     <tag k="LATITUDE" v="-21.764800"/>
     <tag k="GEO_ID" v="3"/>
   </node>
-  <node visible="true" id="-154" lat="-22.277697777" lon="-48.860614885000004">
+  <node visible="true" id="-154" lat="-22.277697777" lon="-48.860614885">
     <tag k="USINA_ID" v="4"/>
     <tag k="NOME" v="LAJEADO"/>
     <tag k="SITUA__O" v="DESATIVADA"/>
@@ -1560,7 +1560,7 @@
     <tag k="LATITUDE" v="-24.155500"/>
     <tag k="GEO_ID" v="6"/>
   </node>
-  <node visible="true" id="-157" lat="-24.265691148000002" lon="-48.884710755">
+  <node visible="true" id="-157" lat="-24.265691148" lon="-48.884710755">
     <tag k="USINA_ID" v="7"/>
     <tag k="NOME" v="TAQUARU&#xC7;U"/>
     <tag k="SITUA__O" v="EM CONSTRU&#xC7;&#xC3;O"/>
@@ -1570,7 +1570,7 @@
     <tag k="LATITUDE" v="-24.265100"/>
     <tag k="GEO_ID" v="7"/>
   </node>
-  <node visible="true" id="-158" lat="-24.677237911000002" lon="-48.954814131000006">
+  <node visible="true" id="-158" lat="-24.677237911" lon="-48.954814131">
     <tag k="USINA_ID" v="8"/>
     <tag k="NOME" v="ITA&#xD3;CA"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -1590,7 +1590,7 @@
     <tag k="LATITUDE" v="-20.778600"/>
     <tag k="GEO_ID" v="9"/>
   </node>
-  <node visible="true" id="-160" lat="-22.588910243" lon="-52.899140915000004">
+  <node visible="true" id="-160" lat="-22.588910243" lon="-52.899140915">
     <tag k="USINA_ID" v="10"/>
     <tag k="NOME" v="ROSANA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1600,7 +1600,7 @@
     <tag k="LATITUDE" v="-22.588400"/>
     <tag k="GEO_ID" v="10"/>
   </node>
-  <node visible="true" id="-161" lat="-22.517522363" lon="-53.016530059000004">
+  <node visible="true" id="-161" lat="-22.517522363" lon="-53.016530059">
     <tag k="USINA_ID" v="11"/>
     <tag k="NOME" v="PORTO PRIMAVERA"/>
     <tag k="SITUA__O" v="EM CONSTRU&#xC7;&#xC3;O"/>
@@ -1610,7 +1610,7 @@
     <tag k="LATITUDE" v="-22.517000"/>
     <tag k="GEO_ID" v="11"/>
   </node>
-  <node visible="true" id="-162" lat="-22.560888900000002" lon="-52.007855456">
+  <node visible="true" id="-162" lat="-22.5608889" lon="-52.007855456">
     <tag k="USINA_ID" v="12"/>
     <tag k="NOME" v="TAQUARU&#xC7;U"/>
     <tag k="SITUA__O" v="EM CONSTRU&#xC7;&#xC3;O"/>
@@ -1620,7 +1620,7 @@
     <tag k="LATITUDE" v="-22.560300"/>
     <tag k="GEO_ID" v="12"/>
   </node>
-  <node visible="true" id="-163" lat="-22.879403251000003" lon="-50.329532592">
+  <node visible="true" id="-163" lat="-22.879403251" lon="-50.329532592">
     <tag k="USINA_ID" v="13"/>
     <tag k="NOME" v="PARI"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1630,7 +1630,7 @@
     <tag k="LATITUDE" v="-22.878800"/>
     <tag k="GEO_ID" v="13"/>
   </node>
-  <node visible="true" id="-164" lat="-22.911448451000002" lon="-50.025300101000006">
+  <node visible="true" id="-164" lat="-22.911448451" lon="-50.025300101">
     <tag k="USINA_ID" v="14"/>
     <tag k="NOME" v="L. N. GARCEZ/AMPLIAC"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1640,7 +1640,7 @@
     <tag k="LATITUDE" v="-22.910900"/>
     <tag k="GEO_ID" v="14"/>
   </node>
-  <node visible="true" id="-165" lat="-22.893667833000002" lon="-49.848583824">
+  <node visible="true" id="-165" lat="-22.893667833" lon="-49.848583824">
     <tag k="USINA_ID" v="15"/>
     <tag k="NOME" v="ILHA"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1650,7 +1650,7 @@
     <tag k="LATITUDE" v="-22.893100"/>
     <tag k="GEO_ID" v="15"/>
   </node>
-  <node visible="true" id="-166" lat="-22.906825551" lon="-49.632223319000005">
+  <node visible="true" id="-166" lat="-22.906825551" lon="-49.632223319">
     <tag k="USINA_ID" v="16"/>
     <tag k="NOME" v="STA. CRUZ ALTO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1690,7 +1690,7 @@
     <tag k="LATITUDE" v="-22.943500"/>
     <tag k="GEO_ID" v="19"/>
   </node>
-  <node visible="true" id="-170" lat="-22.934034776" lon="-50.290540281000006">
+  <node visible="true" id="-170" lat="-22.934034776" lon="-50.290540281">
     <tag k="USINA_ID" v="20"/>
     <tag k="NOME" v="CANOAS II"/>
     <tag k="SITUA__O" v="EM CONSTRU&#xC7;&#xC3;O"/>
@@ -1700,7 +1700,7 @@
     <tag k="LATITUDE" v="-22.933500"/>
     <tag k="GEO_ID" v="20"/>
   </node>
-  <node visible="true" id="-171" lat="-24.639840095" lon="-49.154414493000004">
+  <node visible="true" id="-171" lat="-24.639840095" lon="-49.154414493">
     <tag k="USINA_ID" v="21"/>
     <tag k="NOME" v="CATAS ALTAS"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1710,7 +1710,7 @@
     <tag k="LATITUDE" v="-24.639300"/>
     <tag k="GEO_ID" v="21"/>
   </node>
-  <node visible="true" id="-172" lat="-24.673498432000002" lon="-49.140673389">
+  <node visible="true" id="-172" lat="-24.673498432" lon="-49.140673389">
     <tag k="USINA_ID" v="22"/>
     <tag k="NOME" v="TIJUCO"/>
     <tag k="SITUA__O" v="PROJETO B&#xC1;SICO"/>
@@ -1720,7 +1720,7 @@
     <tag k="LATITUDE" v="-24.672900"/>
     <tag k="GEO_ID" v="22"/>
   </node>
-  <node visible="true" id="-173" lat="-23.143817700000003" lon="-49.503051463000006">
+  <node visible="true" id="-173" lat="-23.1438177" lon="-49.503051463">
     <tag k="USINA_ID" v="23"/>
     <tag k="NOME" v="PIRAJU"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1730,7 +1730,7 @@
     <tag k="LATITUDE" v="-23.143300"/>
     <tag k="GEO_ID" v="23"/>
   </node>
-  <node visible="true" id="-174" lat="-23.059945868" lon="-49.899081022000004">
+  <node visible="true" id="-174" lat="-23.059945868" lon="-49.899081022">
     <tag k="USINA_ID" v="24"/>
     <tag k="NOME" v="OURINHOS"/>
     <tag k="SITUA__O" v="VIABILIDADE"/>
@@ -1740,7 +1740,7 @@
     <tag k="LATITUDE" v="-23.059400"/>
     <tag k="GEO_ID" v="24"/>
   </node>
-  <node visible="true" id="-175" lat="-22.935656953000002" lon="-49.90653666">
+  <node visible="true" id="-175" lat="-22.935656953" lon="-49.90653666">
     <tag k="USINA_ID" v="25"/>
     <tag k="NOME" v="FOZ DO TURVO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1750,7 +1750,7 @@
     <tag k="LATITUDE" v="-22.935100"/>
     <tag k="GEO_ID" v="25"/>
   </node>
-  <node visible="true" id="-176" lat="-22.970194340000003" lon="-49.866462377000005">
+  <node visible="true" id="-176" lat="-22.97019434" lon="-49.866462377">
     <tag k="USINA_ID" v="26"/>
     <tag k="NOME" v="S. JOSE ALTO"/>
     <tag k="SITUA__O" v="INVENT&#xC1;RIO"/>
@@ -1780,7 +1780,7 @@
     <tag k="LATITUDE" v="-24.132700"/>
     <tag k="GEO_ID" v="28"/>
   </node>
-  <node visible="true" id="-179" lat="-23.214950087000002" lon="-49.228665419">
+  <node visible="true" id="-179" lat="-23.214950087" lon="-49.228665419">
     <tag k="USINA_ID" v="29"/>
     <tag k="NOME" v="A.A. LAYDNER"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1790,7 +1790,7 @@
     <tag k="LATITUDE" v="-23.214400"/>
     <tag k="GEO_ID" v="29"/>
   </node>
-  <node visible="true" id="-180" lat="-23.262207721000003" lon="-49.480958668">
+  <node visible="true" id="-180" lat="-23.262207721" lon="-49.480958668">
     <tag k="USINA_ID" v="30"/>
     <tag k="NOME" v="BOA VISTA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1800,7 +1800,7 @@
     <tag k="LATITUDE" v="-23.261600"/>
     <tag k="GEO_ID" v="30"/>
   </node>
-  <node visible="true" id="-181" lat="-23.138008758" lon="-49.460249958000006">
+  <node visible="true" id="-181" lat="-23.138008758" lon="-49.460249958">
     <tag k="USINA_ID" v="31"/>
     <tag k="NOME" v="PIRAJU"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1820,7 +1820,7 @@
     <tag k="LATITUDE" v="-19.871900"/>
     <tag k="GEO_ID" v="32"/>
   </node>
-  <node visible="true" id="-183" lat="-21.117063934" lon="-50.243628804000004">
+  <node visible="true" id="-183" lat="-21.117063934" lon="-50.243628804">
     <tag k="USINA_ID" v="33"/>
     <tag k="NOME" v="NOVA AVANHANDAVA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1850,7 +1850,7 @@
     <tag k="LATITUDE" v="-22.439100"/>
     <tag k="GEO_ID" v="35"/>
   </node>
-  <node visible="true" id="-186" lat="-22.658342399000002" lon="-51.397875625000005">
+  <node visible="true" id="-186" lat="-22.658342399" lon="-51.397875625">
     <tag k="USINA_ID" v="36"/>
     <tag k="NOME" v="CAPIVARA"/>
     <tag k="SITUA__O" v="EM OPERA&#xC7;&#xC3;O"/>
@@ -1860,7 +1860,7 @@
     <tag k="LATITUDE" v="-22.657800"/>
     <tag k="GEO_ID" v="36"/>
   </node>
-  <node visible="true" id="-187" lat="-20.680911481000003" lon="-51.313322068000005">
+  <node visible="true" id="-187" lat="-20.680911481" lon="-51.313322068">
     <tag k="USINA_ID" v="37"/>
     <tag k="NOME" v="3 IRMAOS"/>
     <tag k="SITUA__O" v="EM CONSTRU&#xC7;&#xC3;O"/>

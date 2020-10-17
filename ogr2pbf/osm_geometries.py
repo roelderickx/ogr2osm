@@ -55,7 +55,7 @@ class OsmGeometry:
         pass
     
     
-    def to_xml(self, attributes = { }):
+    def to_xml(self, attributes, significant_digits):
         pass
     
     
@@ -75,11 +75,11 @@ class OsmPoint(OsmGeometry):
         self.y = y
     
     
-    def to_xml(self, attributes):
+    def to_xml(self, attributes, significant_digits):
         xmlattrs = { 'visible':'true', \
-                     'id':str(self.id), \
-                     'lat':str(self.y),
-                     'lon':str(self.x) }
+                     'id':('%d' % self.id), \
+                     'lat':(('%%.%df' % significant_digits) % self.y).strip('0'), \
+                     'lon':(('%%.%df' % significant_digits) % self.x).strip('0') }
         xmlattrs.update(attributes)
 
         xmlobject = etree.Element('node', xmlattrs)
@@ -104,14 +104,14 @@ class OsmWay(OsmGeometry):
         i.addparent(self)
 
 
-    def to_xml(self, attributes):
-        xmlattrs = { 'visible':'true', 'id':str(self.id) }
+    def to_xml(self, attributes, significant_digits):
+        xmlattrs = { 'visible':'true', 'id':('%d' % self.id) }
         xmlattrs.update(attributes)
 
         xmlobject = etree.Element('way', xmlattrs)
 
         for node in self.points:
-            nd = etree.Element('nd', { 'ref':str(node.id) })
+            nd = etree.Element('nd', { 'ref':('%d' % node.id) })
             xmlobject.append(nd)
         for (key, value) in self.tags.items():
             tag = etree.Element('tag', { 'k':key, 'v':value })
@@ -133,14 +133,14 @@ class OsmRelation(OsmGeometry):
         i.addparent(self)
 
 
-    def to_xml(self, attributes):
-        xmlattrs = { 'visible':'true', 'id':str(self.id) }
+    def to_xml(self, attributes, significant_digits):
+        xmlattrs = { 'visible':'true', 'id':('%d' % self.id) }
         xmlattrs.update(attributes)
 
         xmlobject = etree.Element('relation', xmlattrs)
 
         for (member, role) in self.members:
-            member = etree.Element('member', { 'type':'way', 'ref':str(member.id), 'role':role })
+            member = etree.Element('member', { 'type':'way', 'ref':('%d' % member.id), 'role':role })
             xmlobject.append(member)
 
         tag = etree.Element('tag', { 'k':'type', 'v':'multipolygon' })

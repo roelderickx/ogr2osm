@@ -7,10 +7,9 @@ from osgeo import osr
 from .osm_geometries import OsmPoint, OsmWay, OsmRelation
 
 class OsmData:
-    def __init__(self, translation, significant_digits=9, rounding_digits=7, max_points_in_way=1800):
+    def __init__(self, translation, rounding_digits=7, max_points_in_way=1800):
         # options
         self.translation = translation
-        self.significant_digits = significant_digits
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
         
@@ -46,10 +45,6 @@ class OsmData:
         return self.translation.filter_tags(tags)
 
 
-    def __trunc_significant(self, n):
-        return int(round(n * 10**self.significant_digits)) * 10**-self.significant_digits
-    
-    
     def __round_number(self, n):
         return int(round(n * 10**self.rounding_digits))
     
@@ -60,7 +55,7 @@ class OsmData:
         if (rx, ry) in self.__unique_node_index:
             return self.__nodes[self.__unique_node_index[(rx, ry)]]
         else:
-            node = OsmPoint(self.__trunc_significant(x), self.__trunc_significant(y))
+            node = OsmPoint(x, y)
             self.__unique_node_index[(rx, ry)] = len(self.__nodes)
             self.__nodes.append(node)
             return node

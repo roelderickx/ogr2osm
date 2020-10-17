@@ -15,7 +15,7 @@
   <node id="-19" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.209827" lon="-122.870851"/>
   <node id="-20" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2098017" lon="-122.8707268"/>
   <node id="-21" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2098059" lon="-122.8691379"/>
-  <node id="-23" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2098606" lon="-122.8786038"/>
+  <node id="-23" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2098606" lon="-122.8786037"/>
   <node id="-24" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2117816" lon="-122.878574"/>
   <node id="-26" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.208041" lon="-122.8708624"/>
   <node id="-28" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2062598" lon="-122.8691647"/>
@@ -76,7 +76,7 @@
   <node id="-103" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2069308" lon="-122.8630776"/>
   <node id="-105" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2073738" lon="-122.8812294"/>
   <node id="-107" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2084795" lon="-122.8744502"/>
-  <node id="-108" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2084781" lon="-122.8743089"/>
+  <node id="-108" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.208478" lon="-122.8743089"/>
   <node id="-109" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2084856" lon="-122.8726559"/>
   <node id="-110" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2084946" lon="-122.8709947"/>
   <node id="-111" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2084945" lon="-122.8708575"/>
@@ -345,7 +345,7 @@
   <node id="-380" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2148516" lon="-122.8703861"/>
   <node id="-381" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2149549" lon="-122.8697595"/>
   <node id="-382" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2150616" lon="-122.8690314"/>
-  <node id="-383" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2151767" lon="-122.8681564"/>
+  <node id="-383" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2151766" lon="-122.8681564"/>
   <node id="-384" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2152804" lon="-122.8672901"/>
   <node id="-385" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2153629" lon="-122.866426"/>
   <node id="-386" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2154256" lon="-122.8656547"/>
@@ -365,7 +365,7 @@
   <node id="-400" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2158089" lon="-122.8532479"/>
   <node id="-401" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2158224" lon="-122.8527684"/>
   <node id="-402" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.215857" lon="-122.8521463"/>
-  <node id="-403" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2159213" lon="-122.8515069"/>
+  <node id="-403" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2159213" lon="-122.8515068"/>
   <node id="-404" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2160331" lon="-122.8504698"/>
   <node id="-405" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2160765" lon="-122.8500788"/>
   <node id="-406" version="-1" timestamp="1969-12-31T23:59:59Z" changeset="-1" lat="49.2160974" lon="-122.8498606"/>

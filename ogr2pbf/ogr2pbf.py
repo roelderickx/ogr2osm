@@ -236,8 +236,7 @@ def main():
 
     logging.info("Preparing to convert '%s' to '%s'." % (params.source, params.outputFile))
 
-    osmdata = OsmData(translation_object, params.significantDigits, params.roundingDigits, \
-                      params.maxNodesPerWay)
+    osmdata = OsmData(translation_object, params.roundingDigits, params.maxNodesPerWay)
     # create datasource and process data
     datasource = OgrDatasource(translation_object, \
                                params.sourcePROJ4, params.sourceEPSG, params.gisorder, params.encoding)
@@ -249,7 +248,7 @@ def main():
     if params.osm:
         datawriter = OsmDataWriter(params.outputFile, params.neverUpload, params.noUploadFalse, \
                                    params.neverDownload, params.locked, params.addVersion, \
-                                   params.addTimestamp)
+                                   params.addTimestamp, params.significantDigits)
     else:
         datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp)
     osmdata.output(datawriter)
