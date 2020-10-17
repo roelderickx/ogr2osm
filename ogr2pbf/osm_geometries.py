@@ -31,6 +31,40 @@ class OsmId:
 
 
 
+class OsmBoundary:
+    def __init__(self):
+        self.is_valid = False
+        self.minlon = 0.0
+        self.maxlon = 0.0
+        self.minlat = 0.0
+        self.maxlat = 0.0
+
+
+    def add_envelope(self, minx, maxx, miny, maxy):
+        if self.is_valid:
+            self.minlon = min(self.minlon, minx)
+            self.maxlon = max(self.maxlon, maxx)
+            self.minlat = min(self.minlat, miny)
+            self.maxlat = max(self.maxlat, maxy)
+        else:
+            self.is_valid = True
+            self.minlon = minx
+            self.maxlon = maxx
+            self.minlat = miny
+            self.maxlat = maxy
+
+
+    def to_xml(self, significant_digits):
+        xmlattrs = { 'minlon':(('%%.%df' % significant_digits) % self.minlon).strip('0'), \
+                     'minlat':(('%%.%df' % significant_digits) % self.minlat).strip('0'), \
+                     'maxlon':(('%%.%df' % significant_digits) % self.maxlon).strip('0'), \
+                     'maxlat':(('%%.%df' % significant_digits) % self.maxlat).strip('0') }
+        xmlobject = etree.Element('bounds', xmlattrs)
+        
+        return etree.tostring(xmlobject, encoding='unicode')
+
+
+
 class OsmGeometry:
     def __init__(self):
         self.id = self.__get_new_id()

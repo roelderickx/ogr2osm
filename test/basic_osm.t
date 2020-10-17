@@ -7,12 +7,12 @@ usage:
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
-                     [--significant-digits SIGNIFICANTDIGITS]
                      [--rounding-digits ROUNDINGDIGITS]
+                     [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                      [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
                      [--no-upload-false] [--never-download] [--never-upload]
-                     [--locked]
+                     [--locked] [--add-bounds]
                      DATASOURCE
   
   positional arguments:
@@ -38,12 +38,12 @@ usage:
                           source metadata if it exists.
     --gis-order           Consider the source coordinates to be in traditional
                           GIS order
-    --significant-digits SIGNIFICANTDIGITS
-                          Number of decimal places for coordinates to output
-                          (default: 9)
     --rounding-digits ROUNDINGDIGITS
                           Number of decimal places for rounding when snapping
                           nodes together (default: 7)
+    --significant-digits SIGNIFICANTDIGITS
+                          Number of decimal places for coordinates to output
+                          (default: 9)
     --split-ways MAXNODESPERWAY
                           Split ways with more than the specified number of
                           nodes. Defaults to 1800. Any value below 2 - do not
@@ -65,18 +65,20 @@ usage:
     --locked              Prevent any changes to this file in JOSM, such as
                           editing or downloading, and also prevents uploads.
                           Implies upload="never" and download="never".
+    --add-bounds          Add boundaries to output file
+
 						  
 require_output_file_when_using_db_source:
   $ ogr2pbf "PG:dbname=test"
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
-                     [--significant-digits SIGNIFICANTDIGITS]
                      [--rounding-digits ROUNDINGDIGITS]
+                     [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                      [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
                      [--no-upload-false] [--never-download] [--never-upload]
-                     [--locked]
+                     [--locked] [--add-bounds]
                      DATASOURCE
   __main__.py: error: ERROR: An output file must be explicitly specified when using a database source
   [2]
@@ -86,12 +88,12 @@ require_query_when_using_db_source:
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
-                     [--significant-digits SIGNIFICANTDIGITS]
                      [--rounding-digits ROUNDINGDIGITS]
+                     [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                      [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
                      [--no-upload-false] [--never-download] [--never-upload]
-                     [--locked]
+                     [--locked] [--add-bounds]
                      DATASOURCE
   __main__.py: error: ERROR: You must specify a query with --sql when using a database source
   [2]
@@ -139,12 +141,12 @@ duplicatefile:
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
-                     [--significant-digits SIGNIFICANTDIGITS]
                      [--rounding-digits ROUNDINGDIGITS]
+                     [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                      [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
                      [--no-upload-false] [--never-download] [--never-upload]
-                     [--locked]
+                     [--locked] [--add-bounds]
                      DATASOURCE
   __main__.py: error: ERROR: output file '.*test1.osm' exists (re)
   [2]
@@ -328,6 +330,42 @@ version:
   Writing relations
   Writing file footer
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/version.xml
+
+bounds:
+  $ ogr2pbf --osm -f --add-bounds $TESTDIR/shapefiles/test1.shp
+  Using default translations
+  Preparing to convert .* (re)
+  Detected projection metadata:
+  PROJCS["NAD83 / UTM zone 10N",
+      GEOGCS["NAD83",
+          DATUM["North_American_Datum_1983",
+              SPHEROID["GRS 1980",6378137,298.257222101,
+                  AUTHORITY["EPSG","7019"]],
+              AUTHORITY["EPSG","6269"]],
+          PRIMEM["Greenwich",0,
+              AUTHORITY["EPSG","8901"]],
+          UNIT["degree",0.0174532925199433,
+              AUTHORITY["EPSG","9122"]],
+          AUTHORITY["EPSG","4269"]],
+      PROJECTION["Transverse_Mercator"],
+      PARAMETER["latitude_of_origin",0],
+      PARAMETER["central_meridian",-123],
+      PARAMETER["scale_factor",0.9996],
+      PARAMETER["false_easting",500000],
+      PARAMETER["false_northing",0],
+      UNIT["metre",1,
+          AUTHORITY["EPSG","9001"]],
+      AXIS["Easting",EAST],
+      AXIS["Northing",NORTH],
+      AUTHORITY["EPSG","26910"]]
+  Merging duplicate points in ways
+  Splitting long ways
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
+  $ xmllint --format test1.osm | diff -uNr - $TESTDIR/bounds.xml
 
 timestamp:
   $ ogr2pbf --osm -f --add-timestamp $TESTDIR/shapefiles/test1.shp

@@ -4,15 +4,17 @@ import logging
 from osgeo import ogr
 from osgeo import osr
 
-from .osm_geometries import OsmPoint, OsmWay, OsmRelation
+from .osm_geometries import OsmBoundary, OsmPoint, OsmWay, OsmRelation
 
 class OsmData:
-    def __init__(self, translation, rounding_digits=7, max_points_in_way=1800):
+    def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False):
         # options
         self.translation = translation
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
+        self.add_bounds = add_bounds
         
+        self.__bounds = OsmBoundary()
         self.__nodes = []
         self.__unique_node_index = {}
         self.__ways = []
@@ -45,6 +47,11 @@ class OsmData:
         return self.translation.filter_tags(tags)
 
 
+    def __calc_bounds(self, ogrgeometry):
+        (minx, maxx, miny, maxy) = ogrgeometry.GetEnvelope()
+        self.__bounds.add_envelope(minx, maxx, miny, maxy)
+    
+    
     def __round_number(self, n):
         return int(round(n * 10**self.rounding_digits))
     
@@ -172,9 +179,13 @@ class OsmData:
         ogrgeometry = ogrfilteredfeature.GetGeometryRef()
         if ogrgeometry is None:
             return
-        
+                
         feature_tags = self.__get_feature_tags(ogrfilteredfeature, layer_fields, source_encoding)
         reproject(ogrgeometry)
+
+        if self.add_bounds:
+            self.__calc_bounds(ogrgeometry)
+
         osmgeometries = self.__parse_geometry(ogrgeometry)
 
         for osmgeometry in [ geom for geom in osmgeometries if geom ]:
@@ -290,7 +301,7 @@ class OsmData:
         self.translation.process_output(self.__nodes, self.__ways, self.__relations)
         
         with self.DataWriterContextManager(datawriter) as dw:
-            dw.write_header()
+            dw.write_header(self.__bounds)
             dw.write_nodes(self.__nodes)
             dw.write_ways(self.__ways)
             dw.write_relations(self.__relations)

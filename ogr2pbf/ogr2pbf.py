@@ -81,14 +81,14 @@ def parse_commandline():
     parser.add_argument("--gis-order", dest="gisorder", action="store_true",
                         help="Consider the source coordinates to be in traditional GIS order")
     # precision options
-    parser.add_argument("--significant-digits", dest="significantDigits", type=int,
-                        help="Number of decimal places for coordinates to output " +
-                             "(default: %(default)s)",
-                        default=9)
     parser.add_argument("--rounding-digits", dest="roundingDigits", type=int,
                         help="Number of decimal places for rounding when snapping " +
                              "nodes together (default: %(default)s)",
                         default=7)
+    parser.add_argument("--significant-digits", dest="significantDigits", type=int,
+                        help="Number of decimal places for coordinates to output " +
+                             "(default: %(default)s)",
+                        default=9)
     # transformation options
     parser.add_argument("--split-ways", dest="maxNodesPerWay", type=int, default=1800,
                         help="Split ways with more than the specified number of nodes. " +
@@ -123,6 +123,8 @@ def parse_commandline():
                         help="Prevent any changes to this file in JOSM, " +
                              "such as editing or downloading, and also prevents uploads. " +
                              "Implies upload=\"never\" and download=\"never\".")
+    parser.add_argument("--add-bounds", dest="addBounds", action="store_true",
+                        help="Add boundaries to output file")
     parser.add_argument("--add-version", dest="addVersion", action="store_true",
                         help=argparse.SUPPRESS) # can cause problems when used inappropriately
     parser.add_argument("--add-timestamp", dest="addTimestamp", action="store_true",
@@ -236,7 +238,7 @@ def main():
 
     logging.info("Preparing to convert '%s' to '%s'." % (params.source, params.outputFile))
 
-    osmdata = OsmData(translation_object, params.roundingDigits, params.maxNodesPerWay)
+    osmdata = OsmData(translation_object, params.roundingDigits, params.maxNodesPerWay, params.addBounds)
     # create datasource and process data
     datasource = OgrDatasource(translation_object, \
                                params.sourcePROJ4, params.sourceEPSG, params.gisorder, params.encoding)

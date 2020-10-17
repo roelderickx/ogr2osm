@@ -29,7 +29,7 @@ class DataWriterBase:
         pass
     
     
-    def write_header(self):
+    def write_header(self, bounds):
         pass
     
     

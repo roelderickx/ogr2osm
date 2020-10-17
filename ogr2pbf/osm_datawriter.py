@@ -33,7 +33,7 @@ class OsmDataWriter(DataWriterBase):
         self.f = open(self.filename, 'w', buffering = -1)
 
 
-    def write_header(self):
+    def write_header(self, bounds):
         logging.debug("Writing file header")
         
         self.f.write('<?xml version="1.0"?>\n')
@@ -47,7 +47,11 @@ class OsmDataWriter(DataWriterBase):
         if self.locked:
             self.f.write(' locked="true"')
         self.f.write('>\n')
-    
+        
+        if bounds and bounds.is_valid:
+            self.f.write(bounds.to_xml(self.significant_digits))
+            self.f.write('\n')
+
     
     def __write_geometries(self, geoms):
         for osm_geom in geoms:

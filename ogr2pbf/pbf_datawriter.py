@@ -200,10 +200,15 @@ class PbfDataWriter(DataWriterBase):
         self.f.write(blob.SerializeToString())
 
 
-    def write_header(self):
+    def write_header(self, bounds):
         logging.debug("Writing file header")
         
         header_block = osmprotobuf.HeaderBlock()
+        if bounds and bounds.is_valid:
+            header_block.bbox.left = int(bounds.minlon * 1e9)
+            header_block.bbox.right = int(bounds.maxlon * 1e9)
+            header_block.bbox.top = int(bounds.maxlat * 1e9)
+            header_block.bbox.bottom = int(bounds.minlat * 1e9)
         header_block.required_features.append("OsmSchema-V0.6")
         header_block.required_features.append("DenseNodes")
         header_block.writingprogram = "ogr2pbf %s" % self.get_version()

@@ -33,14 +33,16 @@ Ogr2pbf can be used as a standalone application, but you can also use its classe
 ### Standalone
 
 ```
-usage: ogr2pbf [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
-               [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
-               [--gis-order] [--significant-digits SIGNIFICANTDIGITS]
-               [--rounding-digits ROUNDINGDIGITS]
-               [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-               [--saveid SAVEID] [-o OUTPUT] [-f] [--osm] [--no-upload-false]
-               [--never-download] [--never-upload] [--locked]
-               DATASOURCE
+usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
+                   [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
+                   [-p PROJ4_STRING] [--gis-order]
+                   [--rounding-digits ROUNDINGDIGITS]
+                   [--significant-digits SIGNIFICANTDIGITS]
+                   [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+                   [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
+                   [--no-upload-false] [--never-download] [--never-upload]
+                   [--locked] [--add-bounds]
+                   DATASOURCE
 
 positional arguments:
   DATASOURCE            DATASOURCE can be a file path or a org PostgreSQL
@@ -65,12 +67,12 @@ optional arguments:
                         source metadata if it exists.
   --gis-order           Consider the source coordinates to be in traditional
                         GIS order
-  --significant-digits SIGNIFICANTDIGITS
-                        Number of decimal places for coordinates to output
-                        (default: 9)
   --rounding-digits ROUNDINGDIGITS
                         Number of decimal places for rounding when snapping
                         nodes together (default: 7)
+  --significant-digits SIGNIFICANTDIGITS
+                        Number of decimal places for coordinates to output
+                        (default: 9)
   --split-ways MAXNODESPERWAY
                         Split ways with more than the specified number of
                         nodes. Defaults to 1800. Any value below 2 - do not
@@ -92,6 +94,7 @@ optional arguments:
   --locked              Prevent any changes to this file in JOSM, such as
                         editing or downloading, and also prevents uploads.
                         Implies upload="never" and download="never".
+  --add-bounds          Add boundaries to output file
 ```
 
 ### As a library
