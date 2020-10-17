@@ -1,88 +1,86 @@
-ogr2osm.py
-==========
+# ogr2pbf
+A tool for converting ogr-readable files like shapefiles into .pbf or .osm data
 
-A tool for converting ogr-readable files like shapefiles into .osm data
+## Installation
 
+Ogr2pbf requires python 3, gdal with python bindings, lxml and protobuf. Depending on the file formats you want to read you may have to compile gdal yourself but there should be no issues with shapefiles.
 
-Installation
-------------
+## About
 
-ogr2osm requires gdal with python bindings. Depending on the file formats 
-you want to read you may have to compile it yourself but there should be no 
-issues with shapefiles. On Ubuntu you can run `sudo apt-get install -y python-gdal python-lxml` to get
-the software you need.
+This program is based on [pnorman's version of ogr2osm](https://github.com/pnorman/ogr2osm), but is rewritten to make it useable as a general purpose library.
 
-It also makes use of lxml. Although it should fall back to builtin XML implementations seamlessly these are less likely to be tested and will most likely run much slower.
+Ogr2pbf will read any data source that ogr can read and handle reprojection for you. It takes a python file to translate external data source tags into OSM tags, allowing you to use complicated logic. If no translation is specified it will use an identity translation, carrying all tags from the source to the .pbf or .osm output.
 
-To install ogr2osm and download the default translations the following command 
-can be used:
+## Import Cautions
 
-	git clone --recursive https://github.com/pnorman/ogr2osm
-	
-To update
+Anyone planning an import into OpenStreetMap should read and review the import guidelines located [on the wiki](http://wiki.openstreetmap.org/wiki/Import/Guidelines). When writing your translation file you should look at other examples and carefully consider each external data source tag to see if it should be converted to an OSM tag.
 
-	cd ogr2osm
-	git pull
-	git submodule update
-	
-About
------
+## Usage
 
-This version of ogr2osm is based on 
-[Andrew Guertin's version for UVM](https://github.com/andrewguertin/ogr2osm)
-which is in turn based on Ivan Ortega's version from the OSM SVN server.
+Ogr2pbf can be used as a standalone application, but you can use its classes in your own python project.
 
-ogr2osm will read any data source that ogr can read and handle reprojection for 
-you. It takes a python file to translate external data source tags into OSM 
-tags, allowing you to use complicated logic. If no translation is specified it 
-will use an identity translation, carrying all tags from the source to the .osm 
-output. 
+### Standalone
 
-Import Cautions
----------------
-Anyone planning an import into OpenStreetMap should read and review the import 
-guidelines located [on the wiki](http://wiki.openstreetmap.org/wiki/Import/Guidelines). 
-When writing your translation file you should look at other examples and 
-carefully consider each external data source tag to see if it should be 
-converted to an OSM tag.
+```
+usage: ogr2pbf [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
+               [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
+               [--significant-digits SIGNIFICANTDIGITS]
+               [--rounding-digits ROUNDINGDIGITS]
+               [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+               [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
+               [--never-download] [--never-upload] [--locked]
+               DATASOURCE
 
-Usage
------
+positional arguments:
+  DATASOURCE            DATASOURCE can be a file path or a org PostgreSQL
+                        connection string such as: "PG:dbname=pdx_bldgs
+                        user=emma host=localhost" (including the quotes)
 
-	Usage: ogr2osm.py SRCFILE
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TRANSLATION, --translation TRANSLATION
+                        Select the attribute-tags translation method. See the
+                        translations/ directory for valid values.
+  --encoding ENCODING   Encoding of the source file. If specified, overrides
+                        the default of utf-8
+  --sql SQLQUERY        SQL query to execute on a PostgreSQL source
+  --no-memory-copy      Do not make an in-memory working copy
+  -e EPSG_CODE, --epsg EPSG_CODE
+                        EPSG code of source file. Do not include the 'EPSG:'
+                        prefix. If specified, overrides projection from source
+                        metadata if it exists.
+  -p PROJ4_STRING, --proj4 PROJ4_STRING
+                        PROJ.4 string. If specified, overrides projection from
+                        source metadata if it exists.
+  --significant-digits SIGNIFICANTDIGITS
+                        Number of decimal places for coordinates to output
+                        (default: 9)
+  --rounding-digits ROUNDINGDIGITS
+                        Number of decimal places for rounding when snapping
+                        nodes together (default: 7)
+  --split-ways MAXNODESPERWAY
+                        Split ways with more than the specified number of
+                        nodes. Defaults to 1800. Any value below 2 - do not
+                        split.
+  --id ID               ID to start counting from for the output file.
+                        Defaults to 0.
+  --idfile IDFILE       Read ID to start counting from from a file.
+  --saveid SAVEID       Save last ID after execution to a file.
+  -o OUTPUT, --output OUTPUT
+                        Set destination .osm file name and location.
+  -f, --force           Force overwrite of output file.
+  --no-upload-false     Omit upload=false from the completed file to surpress
+                        JOSM warnings when uploading.
+  --never-download      Prevent JOSM from downloading more data to this file.
+  --never-upload        Completely disables all upload commands for this file
+                        in JOSM, rather than merely showing a warning before
+                        uploading.
+  --locked              Prevent any changes to this file in JOSM, such as
+                        editing or downloading, and also prevents uploads.
+                        Implies upload="never" and download="never".
+```
 
-	Options:
-	  -h, --help            show this help message and exit
-	  -t TRANSLATION, --translation=TRANSLATION
-							Select the attribute-tags translation method. See the
-							translations/ directory for valid values.
-	  -o OUTPUT, --output=OUTPUT
-							Set destination .osm file name and location.
-	  -e EPSG_CODE, --epsg=EPSG_CODE
-							EPSG code of source file. Do not include the 'EPSG:'
-							prefix. If specified, overrides projection from source
-							metadata if it exists.
-	  -p PROJ4_STRING, --proj4=PROJ4_STRING
-							PROJ.4 string. If specified, overrides projection from
-							source metadata if it exists.
-	  -v, --verbose         
-	  -d, --debug-tags      Output the tags for every feature parsed.
-	  -f, --force           Force overwrite of output file.
-	  --encoding=ENCODING   Encoding of the source file. If specified, overrides
-							the default of utf-8
-	  --significant-digits=SIGNIFICANTDIGITS
-							Number of decimal places for coordinates
-	  --rounding-digits=ROUNDINGDIGITS
-							Number of decimal places for rounding
-	  --no-memory-copy      Do not make an in-memory working copy
-	  --no-upload-false     Omit upload=false from the completed file to surpress
-							JOSM warnings when uploading.
-	  --never-download      Prevent JOSM from downloading more data to this file.
-	  --never-upload        Completely disables all upload commands for this file
-							in JOSM, rather than merely showing a warning before
-							uploading.
-	  --locked              Prevent any changes to this file in JOSM, such as
-							editing or downloading, and also prevents uploads.
-							Implies upload="never" and download="never".
-	  --id=ID               ID to start counting from for the output file.
-							Defaults to 0.
+### As a library
+
+...
+
