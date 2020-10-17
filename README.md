@@ -35,10 +35,10 @@ Ogr2pbf can be used as a standalone application, but you can also use its classe
 ```
 usage: ogr2pbf [-h] [-t TRANSLATION] [--encoding ENCODING] [--sql SQLQUERY]
                [--no-memory-copy] [-e EPSG_CODE] [-p PROJ4_STRING]
-               [--significant-digits SIGNIFICANTDIGITS]
+               [--gis-order] [--significant-digits SIGNIFICANTDIGITS]
                [--rounding-digits ROUNDINGDIGITS]
                [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-               [--saveid SAVEID] [-o OUTPUT] [-f] [--no-upload-false]
+               [--saveid SAVEID] [-o OUTPUT] [-f] [--osm] [--no-upload-false]
                [--never-download] [--never-upload] [--locked]
                DATASOURCE
 
@@ -82,7 +82,8 @@ optional arguments:
   -o OUTPUT, --output OUTPUT
                         Set destination .osm file name and location.
   -f, --force           Force overwrite of output file.
-  --no-upload-false     Omit upload=false from the completed file to surpress
+  --osm                 Write the output as an OSM file in stead of a PBF file
+  --no-upload-false     Omit upload=false from the completed file to suppress
                         JOSM warnings when uploading.
   --never-download      Prevent JOSM from downloading more data to this file.
   --never-upload        Completely disables all upload commands for this file
