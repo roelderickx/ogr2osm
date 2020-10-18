@@ -95,11 +95,14 @@ class OsmData:
         way = self.__add_way(tags)
         # LineString.GetPoint() returns a tuple, so we can't call parsePoint on it
         # and instead have to create the point ourself
+        previous_node_id = None
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z_unused) = ogrgeometry.GetPoint(i)
             node = self.__add_node(x, y, {}, True)
-            way.points.append(node)
-            node.addparent(way)
+            if previous_node_id == None or previous_node_id != node.id:
+                way.points.append(node)
+                node.addparent(way)
+                previous_node_id = node.id
         return way
 
 
@@ -208,27 +211,6 @@ class OsmData:
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
 
-    def merge_way_points(self):
-        logging.debug("Merging duplicate points in ways")
-
-        # Remove duplicate points from ways,
-        # a duplicate has the same id as its predecessor
-        for way in self.__ways:
-            previous_id = None
-            merged_points = []
-
-            for node in way.points:
-                if previous_id == None or previous_id != node.id:
-                    merged_points.append(node)
-                    previous_id = node.id
-
-            if len(merged_points) > 0:
-                way.points = merged_points
-            else:
-                # TODO delete way? also delete from parent relation?
-                pass
-
-
     def __split_way(self, way, is_way_in_relation):
         new_points = [ way.points[i:i + self.max_points_in_way] \
                                for i in range(0, len(way.points), self.max_points_in_way - 1) ]
@@ -291,7 +273,6 @@ class OsmData:
                     ogrfeature = layer.GetNextFeature()
                     self.add_feature(ogrfeature, layer_fields, datasource.source_encoding, reproject)
 
-        self.merge_way_points()
         self.split_long_ways()
 
 

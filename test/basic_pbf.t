@@ -30,7 +30,6 @@ test1pbf:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -66,7 +65,6 @@ versionpbf:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -102,7 +100,6 @@ timestamp:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes

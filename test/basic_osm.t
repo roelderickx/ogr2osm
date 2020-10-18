@@ -127,7 +127,6 @@ require_db_source_for_sql_query:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -178,7 +177,6 @@ force:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -214,7 +212,6 @@ nomemorycopy:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -250,7 +247,6 @@ positiveid:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -286,7 +282,6 @@ significantdigits:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -322,7 +317,6 @@ version:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -358,7 +352,6 @@ bounds:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -394,7 +387,6 @@ timestamp:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
@@ -455,7 +447,6 @@ duplicatewaynodes:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","28992"]]
-  Merging duplicate points in ways
   Splitting long ways
   Writing file header
   Writing nodes
