@@ -56,10 +56,16 @@ class OsmData:
         return int(round(n * 10**self.rounding_digits))
     
     
-    def __add_node(self, x, y, tags):
+    def __add_node(self, x, y, tags, is_way_member):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
-        unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
+        
+        unique_node_id = None
+        if is_way_member:
+            unique_node_id = (rx, ry)
+        else:
+            unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
+
         if unique_node_id in self.__unique_node_index:
             return self.__nodes[self.__unique_node_index[unique_node_id]]
         else:
@@ -82,7 +88,7 @@ class OsmData:
     
     
     def __parse_point(self, ogrgeometry, tags):
-        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags)
+        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False)
 
 
     def __parse_linestring(self, ogrgeometry, tags):
@@ -91,7 +97,7 @@ class OsmData:
         # and instead have to create the point ourself
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z_unused) = ogrgeometry.GetPoint(i)
-            node = self.__add_node(x, y, {})
+            node = self.__add_node(x, y, {}, True)
             way.points.append(node)
             node.addparent(way)
         return way

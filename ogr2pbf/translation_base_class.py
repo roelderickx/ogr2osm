@@ -28,10 +28,10 @@ class TranslationBase:
     
     # This method is used to identify identical nodes for merging. By default
     # only the rounded coordinates are taken into account, but you can extend
-    # this with certain tags. If you want no merge at all you can just return
-    # a counter value. The return value should be a hashable type.
-    # note: no tags will be passed for nodes belonging to a way, you should
-    # write custom code if you want to reuse an existing node with tags.
+    # this with some tags as desired. The return value should be a hashable
+    # type, if you don't want to merge you can just return a counter value.
+    # note: this function will not be called for nodes belonging to a way,
+    # they are always identified by the tuple (rounded_x, rounded_y).
     def get_unique_node_identifier(self, rounded_x, rounded_y, tags):
         return (rounded_x, rounded_y)
     
