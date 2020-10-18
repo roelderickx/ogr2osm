@@ -26,6 +26,16 @@ class TranslationBase:
         return tags
     
     
+    # This method is used to identify identical nodes for merging. By default
+    # only the rounded coordinates are taken into account, but you can extend
+    # this with certain tags. If you want no merge at all you can just return
+    # a counter value. The return value should be a hashable type.
+    # note: no tags will be passed for nodes belonging to a way, you should
+    # write custom code if you want to reuse an existing node with tags.
+    def get_unique_node_identifier(self, rounded_x, rounded_y, tags):
+        return (rounded_x, rounded_y)
+    
+    
     # This method is called after the creation of an OsmGeometry object. The
     # ogr feature and ogr geometry used to create the object are passed as
     # well. Note that any return values will be discarded by ogr2pbf.

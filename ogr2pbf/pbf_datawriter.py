@@ -94,7 +94,7 @@ class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
         self.__last_lat = pbflat
         self.__last_lon = pbflon
         
-        for (key, value) in osmpoint.tags.items():
+        for (key, value) in osmpoint.get_tags().items():
             self.primitive_group.dense.keys_vals.append(self._add_string(key))
             self.primitive_group.dense.keys_vals.append(self._add_string(value))
         self.primitive_group.dense.keys_vals.append(0)
@@ -110,7 +110,7 @@ class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
         way = osmprotobuf.Way()
         way.id = osmway.id
         
-        for (key, value) in osmway.tags.items():
+        for (key, value) in osmway.get_tags().items():
             way.keys.append(self._add_string(key))
             way.vals.append(self._add_string(value))
         
@@ -140,7 +140,7 @@ class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
         relation = osmprotobuf.Relation()
         relation.id = osmrelation.id
         
-        for (key, value) in osmrelation.tags.items():
+        for (key, value) in osmrelation.get_tags().items():
             relation.keys.append(self._add_string(key))
             relation.vals.append(self._add_string(value))
         

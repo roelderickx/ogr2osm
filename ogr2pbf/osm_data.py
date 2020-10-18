@@ -56,115 +56,124 @@ class OsmData:
         return int(round(n * 10**self.rounding_digits))
     
     
-    def __add_node(self, x, y, tags = None):
+    def __add_node(self, x, y, tags):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
-        if (rx, ry) in self.__unique_node_index:
-            return self.__nodes[self.__unique_node_index[(rx, ry)]]
+        unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
+        if unique_node_id in self.__unique_node_index:
+            return self.__nodes[self.__unique_node_index[unique_node_id]]
         else:
-            node = OsmPoint(x, y)
-            self.__unique_node_index[(rx, ry)] = len(self.__nodes)
+            node = OsmPoint(x, y, tags)
+            self.__unique_node_index[unique_node_id] = len(self.__nodes)
             self.__nodes.append(node)
             return node
     
     
-    def __parse_point(self, ogrgeometry):
-        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY())
+    def __add_way(self, tags):
+        way = OsmWay(tags)
+        self.__ways.append(way)
+        return way
+    
+    
+    def __add_relation(self, tags):
+        relation = OsmRelation(tags)
+        self.__relations.append(relation)
+        return relation
+    
+    
+    def __parse_point(self, ogrgeometry, tags):
+        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags)
 
 
-    def __parse_linestring(self, ogrgeometry):
-        way = OsmWay()
+    def __parse_linestring(self, ogrgeometry, tags):
+        way = self.__add_way(tags)
         # LineString.GetPoint() returns a tuple, so we can't call parsePoint on it
         # and instead have to create the point ourself
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z_unused) = ogrgeometry.GetPoint(i)
-            node = self.__add_node(x, y)
+            node = self.__add_node(x, y, {})
             way.points.append(node)
             node.addparent(way)
-        self.__ways.append(way)
         return way
 
 
-    def __parse_polygon(self, ogrgeometry):
+    def __parse_polygon(self, ogrgeometry, tags):
         # Special case polygons with only one ring. This does not (or at least
         # should not) change behavior when simplify relations is turned on.
         if ogrgeometry.GetGeometryCount() == 0:
             logging.warning("Polygon with no rings?")
         elif ogrgeometry.GetGeometryCount() == 1:
-            result = self.__parse_linestring(ogrgeometry.GetGeometryRef(0))
+            result = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), tags)
             if len(result.points) > self.max_points_in_way:
                 self.__long_ways_from_polygons.add(result)
             return result
         else:
-            relation = OsmRelation()
+            relation = self.__add_relation(tags)
             try:
-                exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0))
+                exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
                 exterior.addparent(relation)
             except:
                 logging.warning("Polygon with no exterior ring?")
                 return None
             relation.members.append((exterior, "outer"))
             for i in range(1, ogrgeometry.GetGeometryCount()):
-                interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i))
+                interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i), {})
                 interior.addparent(relation)
                 relation.members.append((interior, "inner"))
-            self.__relations.append(relation)
             return relation
 
 
-    def __parse_collection(self, ogrgeometry):
+    def __parse_collection(self, ogrgeometry, tags):
         # OGR MultiPolygon maps easily to osm multipolygon, so special case it
         # TODO: Does anything else need special casing?
         geometry_type = ogrgeometry.GetGeometryType()
         if geometry_type in [ ogr.wkbMultiPolygon, ogr.wkbMultiPolygon25D ]:
             if ogrgeometry.GetGeometryCount() > 1:
-                relation = OsmRelation()
+                relation = self.__add_relation(tags)
                 for polygon in range(ogrgeometry.GetGeometryCount()):
                     ext_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(0)
-                    exterior = self.__parse_linestring(ext_geom)
+                    exterior = self.__parse_linestring(ext_geom, {})
                     exterior.addparent(relation)
                     relation.members.append((exterior, "outer"))
                     for i in range(1, ogrgeometry.GetGeometryRef(polygon).GetGeometryCount()):
                         int_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(i)
-                        interior = self.__parse_linestring(int_geom)
+                        interior = self.__parse_linestring(int_geom, {})
                         interior.addparent(relation)
                         relation.members.append((interior, "inner"))
-                self.__relations.append(relation)
                 return [ relation ]
             else:
-               return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0)) ]
+               return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags) ]
         elif geometry_type in [ ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ]:
             geometries = []
             for linestring in range(ogrgeometry.GetGeometryCount()):
-                geometries.append(self.__parse_linestring(ogrgeometry.GetGeometryRef(linestring)))
+                geometries.append(self.__parse_linestring(ogrgeometry.GetGeometryRef(linestring), tags))
             return geometries
         else:
-            relation = OsmRelation()
+            relation = self.__add_relation(tags)
             for i in range(ogrgeometry.GetGeometryCount()):
-                member = self.__parse_geometry(ogrgeometry.GetGeometryRef(i))
+                member = self.__parse_geometry(ogrgeometry.GetGeometryRef(i), {})
                 member.addparent(relation)
                 relation.members.append((member, "member"))
-            self.__relations.append(relation)
             return [ relation ]
     
     
-    def __parse_geometry(self, ogrgeometry):
+    def __parse_geometry(self, ogrgeometry, tags):
         osmgeometries = []
         
         geometry_type = ogrgeometry.GetGeometryType()
 
         if geometry_type in [ ogr.wkbPoint, ogr.wkbPoint25D ]:
-            osmgeometries.append(self.__parse_point(ogrgeometry))
+            osmgeometries.append(self.__parse_point(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D ]:
             # ogr.wkbLinearRing25D does not exist
-            osmgeometries.append(self.__parse_linestring(ogrgeometry))
+            osmgeometries.append(self.__parse_linestring(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbPolygon, ogr.wkbPolygon25D ]:
-            osmgeometries.append(self.__parse_polygon(ogrgeometry))
+            osmgeometries.append(self.__parse_polygon(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbMultiPoint, ogr.wkbMultiLineString, ogr.wkbMultiPolygon, \
                                 ogr.wkbGeometryCollection, ogr.wkbMultiPoint25D, \
                                 ogr.wkbMultiLineString25D, ogr.wkbMultiPolygon25D, \
                                 ogr.wkbGeometryCollection25D ]:
-            osmgeometries.extend(self.__parse_collection(ogrgeometry))
+            osmgeometries.extend(self.__parse_collection(ogrgeometry, tags))
         else:
             logging.warning("Unhandled geometry, type %s" % str(geometry_type))
 
@@ -186,10 +195,10 @@ class OsmData:
         if self.add_bounds:
             self.__calc_bounds(ogrgeometry)
 
-        osmgeometries = self.__parse_geometry(ogrgeometry)
+        osmgeometries = self.__parse_geometry(ogrgeometry, feature_tags)
 
+        # TODO run in __parse_geometry to avoid second loop
         for osmgeometry in [ geom for geom in osmgeometries if geom ]:
-            osmgeometry.add_tags(feature_tags)
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
 
@@ -217,15 +226,11 @@ class OsmData:
     def __split_way(self, way, is_way_in_relation):
         new_points = [ way.points[i:i + self.max_points_in_way] \
                                for i in range(0, len(way.points), self.max_points_in_way - 1) ]
-        new_ways = [ way ] + [ OsmWay() for i in range(len(new_points) - 1) ]
+        new_ways = [ way ] + [ OsmWay(way.get_tags()) for i in range(len(new_points) - 1) ]
 
         if not is_way_in_relation:
-            way_tags = way.tags
-
-            for new_way in new_ways:
-                if new_way != way:
-                    new_way.add_tags(way_tags)
-                    self.__ways.append(new_way)
+            for new_way in new_ways[1:]:
+                self.__ways.append(new_way)
 
         for new_way, points in zip(new_ways, new_points):
             new_way.points = points
@@ -238,8 +243,7 @@ class OsmData:
 
 
     def __merge_into_new_relation(self, way_parts):
-        new_relation = OsmRelation()
-        self.__relations.append(new_relation)
+        new_relation = self.__add_relation({})
         new_relation.members = [ (way, "outer") for way in way_parts ]
         for way in way_parts:
             way.addparent(new_relation)
