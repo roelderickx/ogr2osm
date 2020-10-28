@@ -199,6 +199,9 @@ class OsmData:
             return
                 
         feature_tags = self.__get_feature_tags(ogrfilteredfeature, layer_fields, source_encoding)
+        if feature_tags is None:
+            return
+        
         reproject(ogrgeometry)
 
         if self.add_bounds:
@@ -206,7 +209,7 @@ class OsmData:
 
         osmgeometries = self.__parse_geometry(ogrgeometry, feature_tags)
 
-        # TODO run in __parse_geometry to avoid second loop
+        # TODO performance: run in __parse_geometry to avoid second loop
         for osmgeometry in [ geom for geom in osmgeometries if geom ]:
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
@@ -241,6 +244,7 @@ class OsmData:
         way_roles = [ m[1] for m in rel.members if m[0] == way_parts[0] ]
         way_role = "" if len(way_roles) == 0 else way_roles[0]
         for way in way_parts[1:]:
+            way.addparent(rel)
             rel.members.append((way, way_role))
 
 
