@@ -101,9 +101,8 @@ class OgrDatasource:
             logging.info("Detected projection metadata:\n" + str(layer_spatial_ref))
         else:
             logging.info("Layer has no projection metadata, falling back to EPSG:4326")
-            if self.gisorder:
+            if not self.gisorder:
                 spatial_ref = osr.SpatialReference()
-                spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
                 spatial_ref.ImportFromEPSG(4326)
 
         # No source proj specified yet? Then default to do no reprojection.
