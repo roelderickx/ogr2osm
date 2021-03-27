@@ -22,13 +22,12 @@ latitude-longitude)
 
 For additional usage information, run ogr2pbf --help
 
-Copyright (c) 2020 Roel Derickx <roel.derickx AT gmail>
+Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
+Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
+<andrew.guertin@uvm.edu>, contributors
 
-Based on ogr2osm:
-Copyright (c) 2012-2013 Paul Norman <penorman@mac.com>, Sebastiaan Couwenberg
-<sebastic@xs4all.nl>, The University of Vermont <andrew.guertin@uvm.edu>
-
-Released under the MIT license: http://opensource.org/licenses/mit-license.php
+Released under the MIT license, as given in the file LICENSE, which must
+accompany any distribution of this code.
 
 ogr2osm is based very heavily on code released under the following terms:
 (c) Iván Sánchez Ortega, 2009

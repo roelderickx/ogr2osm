@@ -1,6 +1,19 @@
+Based very heavily on code released under the BEER-WARE LICENSE
+
+(c) Iván Sánchez Ortega, 2009
+<ivan@sanchezortega.es>
+###############################################################################
+#  "THE BEER-WARE LICENSE":                                                   #
+#  <ivan@sanchezortega.es> wrote this file. As long as you retain this notice #
+#  you can do whatever you want with this stuff. If we meet some day, and you #
+#  think this stuff is worth it, you can buy me a beer in return.             #
+###############################################################################
+
 MIT License
 
-Copyright (c) 2020 Roel Derickx
+Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
+Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
+<andrew.guertin@uvm.edu>, contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +32,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
