@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-''' ogr2pbf
+''' ogr2osm
 
 This program takes any vector data understandable by OGR and outputs an OSM or
 PBF file with that data.
@@ -10,7 +10,7 @@ so that, with a little python programming, you can translate the tags however
 you like. More hooks are provided so you can filter or even modify the features
 themselves.
 
-To use the hooks, create a file called myfile.py and run ogr2pbf.py -t myfile.
+To use the hooks, create a file called myfile.py and run ogr2osm.py -t myfile.
 This file should define a class derived from TranslationBase where the hooks
 you want to use are overridden.
 
@@ -20,7 +20,7 @@ there is no projection information, or if you want to override it, you can use
 projection metadata and you do not specify one, EPSG:4326 will be used (WGS84
 latitude-longitude)
 
-For additional usage information, run ogr2pbf --help
+For additional usage information, run ogr2osm --help
 
 Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
 Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
@@ -107,8 +107,8 @@ def parse_commandline():
                         help="Set destination .osm file name and location.")
     parser.add_argument("-f", "--force", dest="forceOverwrite", action="store_true",
                         help="Force overwrite of output file.")
-    parser.add_argument("--osm", dest="osm", action="store_true",
-                        help="Write the output as an OSM file in stead of a PBF file")
+    parser.add_argument("--pbf", dest="pbf", action="store_true",
+                        help="Write the output as a PBF file in stead of an OSM file")
     parser.add_argument("--no-upload-false", dest="noUploadFalse", action="store_true",
                         help="Omit upload=false from the completed file to suppress " +
                              "JOSM warnings when uploading.")
@@ -148,22 +148,22 @@ def parse_commandline():
     else:
         if not params.outputFile:
             (base, ext) = os.path.splitext(os.path.basename(params.source))
-            output_ext = ".osm.pbf"
-            if params.osm:
-                output_ext = ".osm"
+            output_ext = ".osm"
+            if params.pbf:
+                output_ext = ".osm.pbf"
             params.outputFile = os.path.join(os.getcwd(), base + output_ext)
         else:
             (base, ext) = os.path.splitext(os.path.basename(params.outputFile))
-            if params.osm and ext.lower() == '.pbf':
-                logging.warning("WARNING: You specified OSM output with --osm " +
-                                "but the outputfile has extension .pbf, " +
-                                "ignoring --osm parameter")
-                params.osm = False
-            elif not params.osm and ext.lower() == '.osm':
-                logging.warning("WARNING: You didn't specify OSM output with --osm " +
+            if params.pbf and ext.lower() == '.osm':
+                logging.warning("WARNING: You specified PBF output with --pbf " +
                                 "but the outputfile has extension .osm, " +
-                                "automatically setting --osm parameter")
-                params.osm = True
+                                "ignoring --pbf parameter")
+                params.pbf = False
+            elif not params.pbf and ext.lower() == '.pbf':
+                logging.warning("WARNING: You didn't specify PBF output with --pbf " +
+                                "but the outputfile has extension .pbf, " +
+                                "automatically setting --pbf parameter")
+                params.pbf = True
         if params.sqlQuery:
             logging.warning("WARNING: You specified a query with --sql " +
                             "but you are not using a database source")
@@ -246,12 +246,12 @@ def main():
     osmdata.process(datasource)
     #create datawriter and write OSM data
     datawriter = None
-    if params.osm:
+    if params.pbf:
+        datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp)
+    else:
         datawriter = OsmDataWriter(params.outputFile, params.neverUpload, params.noUploadFalse, \
                                    params.neverDownload, params.locked, params.addVersion, \
                                    params.addTimestamp, params.significantDigits)
-    else:
-        datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp)
     osmdata.output(datawriter)
 
     if params.saveid:

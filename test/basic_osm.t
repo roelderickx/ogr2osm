@@ -1,16 +1,16 @@
   $ [ "$0" != "/bin/bash" ] || shopt -s expand_aliases
   $ [ -n "$PYTHON" ] || PYTHON="`which python`"
-  $ alias ogr2pbf="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2pbf"
+  $ alias ogr2osm="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2osm"
 
 usage:
-  $ ogr2pbf -h
+  $ ogr2osm -h
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
                      [--rounding-digits ROUNDINGDIGITS]
                      [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                     [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf]
                      [--no-upload-false] [--never-download] [--never-upload]
                      [--locked] [--add-bounds]
                      DATASOURCE
@@ -55,7 +55,7 @@ usage:
     -o OUTPUT, --output OUTPUT
                           Set destination .osm file name and location.
     -f, --force           Force overwrite of output file.
-    --osm                 Write the output as an OSM file in stead of a PBF file
+    --pbf                 Write the output as a PBF file in stead of an OSM file
     --no-upload-false     Omit upload=false from the completed file to suppress
                           JOSM warnings when uploading.
     --never-download      Prevent JOSM from downloading more data to this file.
@@ -69,14 +69,14 @@ usage:
 
 						  
 require_output_file_when_using_db_source:
-  $ ogr2pbf "PG:dbname=test"
+  $ ogr2osm "PG:dbname=test"
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
                      [--rounding-digits ROUNDINGDIGITS]
                      [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                     [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf]
                      [--no-upload-false] [--never-download] [--never-upload]
                      [--locked] [--add-bounds]
                      DATASOURCE
@@ -84,14 +84,14 @@ require_output_file_when_using_db_source:
   [2]
 
 require_query_when_using_db_source:
-  $ ogr2pbf "PG:dbname=test" -o test.osm
+  $ ogr2osm "PG:dbname=test" -o test.osm
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
                      [--rounding-digits ROUNDINGDIGITS]
                      [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                     [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf]
                      [--no-upload-false] [--never-download] [--never-upload]
                      [--locked] [--add-bounds]
                      DATASOURCE
@@ -100,7 +100,7 @@ require_query_when_using_db_source:
 
 require_db_source_for_sql_query:
   $ rm -f test1.osm
-  $ ogr2pbf --osm $TESTDIR/shapefiles/test1.shp --sql="SELECT * FROM wombats"
+  $ ogr2osm $TESTDIR/shapefiles/test1.shp --sql="SELECT * FROM wombats"
   WARNING: You specified a query with --sql but you are not using a database source
   Using default translations
   Preparing to convert .* (re)
@@ -136,14 +136,14 @@ require_db_source_for_sql_query:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.xml
 
 duplicatefile:
-  $ ogr2pbf --osm $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm $TESTDIR/shapefiles/test1.shp
   usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
                      [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                      [-p PROJ4_STRING] [--gis-order]
                      [--rounding-digits ROUNDINGDIGITS]
                      [--significant-digits SIGNIFICANTDIGITS]
                      [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                     [--saveid SAVEID] [-o OUTPUT] [-f] [--osm]
+                     [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf]
                      [--no-upload-false] [--never-download] [--never-upload]
                      [--locked] [--add-bounds]
                      DATASOURCE
@@ -151,7 +151,7 @@ duplicatefile:
   [2]
 
 force:
-  $ ogr2pbf --osm -f $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm -f $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -186,7 +186,7 @@ force:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.xml
 
 nomemorycopy:
-  $ ogr2pbf --osm -f --no-memory-copy $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm -f --no-memory-copy $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -221,7 +221,7 @@ nomemorycopy:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.xml
 
 positiveid:
-  $ ogr2pbf --osm -f --positive-id $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm -f --positive-id $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -256,7 +256,7 @@ positiveid:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/positiveid.xml
 
 significantdigits:
-  $ ogr2pbf --osm -f --significant-digits 5 $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm -f --significant-digits 5 $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -291,7 +291,7 @@ significantdigits:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/significantdigits.xml
 
 version:
-  $ ogr2pbf --osm -f --add-version $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm -f --add-version $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -326,7 +326,7 @@ version:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/version.xml
 
 bounds:
-  $ ogr2pbf --osm -f --add-bounds $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm -f --add-bounds $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -361,7 +361,7 @@ bounds:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/bounds.xml
 
 timestamp:
-  $ ogr2pbf --osm -f --add-timestamp $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm -f --add-timestamp $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -396,7 +396,7 @@ timestamp:
   $ cp test1.osm $TESTDIR/check_manual_timestamp.osm
 
 duplicatewaynodes:
-  $ ogr2pbf --osm -f $TESTDIR/shapefiles/duplicate-way-nodes.gml
+  $ ogr2osm -f $TESTDIR/shapefiles/duplicate-way-nodes.gml
   Using default translations
   Preparing to convert .* (re)
   Layer has no projection metadata, falling back to EPSG:4326

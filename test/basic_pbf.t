@@ -1,10 +1,10 @@
   $ [ "$0" != "/bin/bash" ] || shopt -s expand_aliases
   $ [ -n "$PYTHON" ] || PYTHON="`which python`"
-  $ alias ogr2pbf="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2pbf"
+  $ alias ogr2osm="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2osm"
   $ alias osmosis=$TESTDIR/../../osmosis/bin/osmosis
 
 test1pbf:
-  $ ogr2pbf -f $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm --pbf -f $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -39,7 +39,7 @@ test1pbf:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.pbf.xml
 
 versionpbf:
-  $ ogr2pbf -f --add-version $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm --pbf -f --add-version $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -74,7 +74,7 @@ versionpbf:
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/version.pbf.xml
 
 timestamp:
-  $ ogr2pbf -f --add-timestamp $TESTDIR/shapefiles/test1.shp
+  $ ogr2osm --pbf -f --add-timestamp $TESTDIR/shapefiles/test1.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:

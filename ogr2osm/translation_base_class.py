@@ -16,7 +16,7 @@ class TranslationBase:
     # note 1: layer_fields contains a tuple (index, field_name, field_type)
     # note 2: reproject is a function to convert the feature to 4326 projection
     # with coordinates in traditional gis order. However, do not return the
-    # reprojected feature since it will be done again in ogr2pbf.
+    # reprojected feature since it will be done again in ogr2osm.
     def filter_feature(self, ogrfeature, layer_fields, reproject):
         return ogrfeature
     
@@ -38,7 +38,7 @@ class TranslationBase:
     
     # This method is called after the creation of an OsmGeometry object. The
     # ogr feature and ogr geometry used to create the object are passed as
-    # well. Note that any return values will be discarded by ogr2pbf.
+    # well. Note that any return values will be discarded by ogr2osm.
     def process_feature_post(self, osmgeometry, ogrfeature, ogrgeometry):
         pass
     
@@ -46,7 +46,7 @@ class TranslationBase:
     # Override this method if you want to modify the list of nodes, ways or
     # relations, or take any additional actions right before writing the
     # objects to the OSM file. Note that any return values will be discarded
-    # by ogr2pbf.
+    # by ogr2osm.
     def process_output(self, osmnodes, osmways, osmrelations):
         pass
 

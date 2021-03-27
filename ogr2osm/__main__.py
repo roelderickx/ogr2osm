@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .ogr2pbf import main
+from .ogr2osm import main
 
 main()
 

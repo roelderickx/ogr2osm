@@ -1,9 +1,9 @@
   $ [ "$0" != "/bin/bash" ] || shopt -s expand_aliases
   $ [ -n "$PYTHON" ] || PYTHON="`which python`"
-  $ alias ogr2pbf="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2pbf"
+  $ alias ogr2osm="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2osm"
 
 utf8:
-  $ ogr2pbf --osm -f $TESTDIR/shapefiles/sp_usinas.shp
+  $ ogr2osm -f $TESTDIR/shapefiles/sp_usinas.shp
   Using default translations
   Preparing to convert .* (re)
   Detected projection metadata:
@@ -28,7 +28,7 @@ utf8:
   $ xmllint --format sp_usinas.osm | diff -uNr - $TESTDIR/utf8.xml
 
 japanese:
-  $ ogr2pbf --osm --encoding shift_jis --gis-order -f $TESTDIR/shapefiles/japanese.shp
+  $ ogr2osm --encoding shift_jis --gis-order -f $TESTDIR/shapefiles/japanese.shp
   Using default translations
   Preparing to convert .* (re)
   Layer has no projection metadata, falling back to EPSG:4326

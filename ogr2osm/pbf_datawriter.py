@@ -5,8 +5,8 @@ import logging, sys, time, zlib
 from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
 from .datawriter_base_class import DataWriterBase
 
-import ogr2pbf.fileformat_pb2 as fileprotobuf
-import ogr2pbf.osmformat_pb2 as osmprotobuf
+import ogr2osm.fileformat_pb2 as fileprotobuf
+import ogr2osm.osmformat_pb2 as osmprotobuf
 
 # https://wiki.openstreetmap.org/wiki/PBF_Format
 
@@ -211,7 +211,7 @@ class PbfDataWriter(DataWriterBase):
             header_block.bbox.bottom = int(bounds.minlat * 1e9)
         header_block.required_features.append("OsmSchema-V0.6")
         header_block.required_features.append("DenseNodes")
-        header_block.writingprogram = "ogr2pbf %s" % self.get_version()
+        header_block.writingprogram = "ogr2osm %s" % self.get_version()
         self.__write_blob(header_block.SerializeToString(), "OSMHeader")
 
 

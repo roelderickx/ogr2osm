@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<osm version="0.6" generator="ogr2pbf 0.1.2" upload="false">
+<osm version="0.6" generator="ogr2osm 0.1.2" upload="false">
   <node visible="true" id="-1" lat="-20.386476016" lon="-51.365943722">
     <tag k="USINA_ID" v="38"/>
     <tag k="NOME" v="ILHA SOLTEIRA"/>

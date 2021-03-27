@@ -37,7 +37,7 @@ class OsmDataWriter(DataWriterBase):
         logging.debug("Writing file header")
         
         self.f.write('<?xml version="1.0"?>\n')
-        self.f.write('<osm version="0.6" generator="ogr2pbf %s"' % self.get_version())
+        self.f.write('<osm version="0.6" generator="ogr2osm %s"' % self.get_version())
         if self.never_upload:
             self.f.write(' upload="never"')
         elif not self.no_upload_false:

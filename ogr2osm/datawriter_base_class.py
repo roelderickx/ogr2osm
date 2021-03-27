@@ -3,7 +3,7 @@
 from .version import __version__
 
 '''
-ogr2pbf will do the following, given an instance dw of class DataWriterBase:
+ogr2osm will do the following, given an instance dw of class DataWriterBase:
 
     dw.open()
     try:
