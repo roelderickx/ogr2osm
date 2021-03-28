@@ -24,7 +24,7 @@ For additional usage information, run ogr2osm --help
 
 Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
 Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
-<andrew.guertin@uvm.edu>, contributors
+<andrew.guertin@uvm.edu>, github contributors
 
 Released under the MIT license, as given in the file LICENSE, which must
 accompany any distribution of this code.
@@ -47,7 +47,7 @@ from .osm_geometries import OsmId
 from .ogr_datasource import OgrDatasource
 from .osm_data import OsmData
 from .osm_datawriter import OsmDataWriter
-from .pbf_datawriter import PbfDataWriter
+from .pbf_datawriter import is_protobuf_installed, PbfDataWriter
 
 logging.basicConfig(format="%(message)s", level = logging.DEBUG)
 
@@ -135,6 +135,9 @@ def parse_commandline():
                              "(including the quotes)")
     params = parser.parse_args()
     
+    if not is_protobuf_installed:
+        params.pbf = False
+    
     if params.outputFile:
         params.outputFile = os.path.realpath(params.outputFile)
 
@@ -153,17 +156,26 @@ def parse_commandline():
                 output_ext = ".osm.pbf"
             params.outputFile = os.path.join(os.getcwd(), base + output_ext)
         else:
-            (base, ext) = os.path.splitext(os.path.basename(params.outputFile))
+            (base, ext) = os.path.splitext(params.outputFile)
             if params.pbf and ext.lower() == '.osm':
                 logging.warning("WARNING: You specified PBF output with --pbf " +
                                 "but the outputfile has extension .osm, " +
                                 "ignoring --pbf parameter")
                 params.pbf = False
-            elif not params.pbf and ext.lower() == '.pbf':
+            elif is_protobuf_installed and not params.pbf and ext.lower() == '.pbf':
                 logging.warning("WARNING: You didn't specify PBF output with --pbf " +
                                 "but the outputfile has extension .pbf, " +
                                 "automatically setting --pbf parameter")
                 params.pbf = True
+            elif not is_protobuf_installed and not params.pbf and ext.lower() == '.pbf':
+                logging.warning("WARNING: PBF output is not supported on this " +
+                                "system but the outputfile has extension .pbf, " +
+                                "automatically removing .pbf extension")
+                (base_osm, ext_osm) = os.path.splitext(base)
+                if ext_osm == '.osm':
+                    params.outputFile = base
+                else:
+                    params.outputFile = base + '.osm'
         if params.sqlQuery:
             logging.warning("WARNING: You specified a query with --sql " +
                             "but you are not using a database source")
