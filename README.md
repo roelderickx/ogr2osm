@@ -3,7 +3,7 @@ A tool for converting ogr-readable files like shapefiles into .pbf or .osm data
 
 ## Installation
 
-Ogr2osm requires python 3, gdal with python bindings, lxml and protobuf. Depending on the file formats you want to read you may have to compile gdal yourself but there should be no issues with shapefiles.
+Ogr2osm requires python 3, gdal with python bindings, lxml and optionally protobuf if you want to generate pbf files. Depending on the file formats you want to read you may have to compile gdal yourself but there should be no issues with shapefiles.
 
 ### Using pip
 ```bash
