@@ -1,0 +1,35 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install xmllint
+      run: sudo apt-get install libxml2-utils
+    - name: Install python gdal bindings
+      run: sudo apt-get install -y python-gdal
+    - name: Install python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install cram lxml
+    - name: Testing the code with cram, not protobuf installed
+      run: |
+        cram test/basic_osm.t
+        cram test/basic_pbf_no_protobuf.t
+        cram test/charencodings.t
+    - name: Install protobuf
+      run: sudo apt-get install -y python3-protobuf
+    - name: Install osmosis
+      run: sudo apt-get install -y osmosis
+    - name: Testing the code with cram, protobuf installed
+      run: |
+        cram test/basic_pbf.t
