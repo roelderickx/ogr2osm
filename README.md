@@ -1,4 +1,7 @@
 # ogr2osm
+
+[![Test](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml/badge.svg)](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml)
+
 A tool for converting ogr-readable files like shapefiles into .pbf or .osm data
 
 ## Installation
