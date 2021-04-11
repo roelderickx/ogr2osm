@@ -9,13 +9,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: set pythonpath
-      run: |
-        echo "PYTHONPATH=$PYTHONPATH:/usr/lib/python3/dist-packages" >> $GITHUB_ENV
+    # Use the python version installed by Ubuntu 20.04 (version 3.8.5),
+    # so we can use precompiled gdal and protobuf
+    #- name: Set up Python 3.8
+    #  uses: actions/setup-python@v2
+    #  with:
+    #    python-version: 3.8
     - name: Install xmllint and GDAL
       run: sudo apt-get install -y libxml2-utils gdal-bin libgdal-dev python3-gdal
     - name: "Install python dependencies: cram and lxml"
