@@ -26,8 +26,8 @@ jobs:
         cram test/basic_osm.t
         cram test/basic_pbf_no_protobuf.t
         cram test/charencodings.t
-    - name: Install protobuf and osmosis
-      run: sudo apt-get install -y libprotobuf-dev protobuf-compiler osmosis
+    - name: Install protobuf and osmctools
+      run: sudo apt-get install -y libprotobuf-dev protobuf-compiler osmctools
     - name: "Install python dependencies: protobuf"
       run: |
         pip install --upgrade protobuf

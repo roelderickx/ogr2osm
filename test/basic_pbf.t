@@ -35,7 +35,8 @@ test1pbf:
   Writing nodes
   Writing ways
   Writing relations
-  $ osmosis --read-pbf file=test1.osm.pbf --write-xml test1.osm 2> /dev/null
+  $ osmconvert --drop-author test1.osm.pbf > test1.osm 2> /dev/null
+  \[.[0-9]\] (re)
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/test1.pbf.xml
 
 versionpbf:
@@ -70,7 +71,8 @@ versionpbf:
   Writing nodes
   Writing ways
   Writing relations
-  $ osmosis --read-pbf file=test1.osm.pbf --write-xml test1.osm 2> /dev/null
+  $ osmconvert --drop-author test1.osm.pbf > test1.osm 2> /dev/null
+  \[.[0-9]\] (re)
   $ xmllint --format test1.osm | diff -uNr - $TESTDIR/version.pbf.xml
 
 timestamp:
@@ -105,6 +107,7 @@ timestamp:
   Writing nodes
   Writing ways
   Writing relations
-  $ osmosis --read-pbf file=test1.osm.pbf --write-xml test1.osm 2> /dev/null
+  $ osmconvert --drop-author test1.osm.pbf > test1.osm 2> /dev/null
+  \[.[0-9]\] (re)
   $ cp test1.osm $TESTDIR/check_manual_timestamp_pbf.osm
 
