@@ -295,6 +295,6 @@ try:
             if self.f:
                 self.f.close()
                 self.f = None
-except ImportError:
+except:
     pass
 

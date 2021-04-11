@@ -5,31 +5,33 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: 3.8
-    - name: Install xmllint
-      run: sudo apt-get install libxml2-utils
-    - name: Install python gdal bindings
-      run: sudo apt-get install -y python-gdal
-    - name: Install python dependencies
+    - name: set pythonpath
+      run: |
+        echo "PYTHONPATH=$PYTHONPATH:/usr/lib/python3/dist-packages" >> $GITHUB_ENV
+    - name: Install xmllint and GDAL
+      run: sudo apt-get install -y libxml2-utils gdal-bin libgdal-dev python3-gdal
+    - name: "Install python dependencies: cram and lxml"
       run: |
         python -m pip install --upgrade pip
         pip install cram lxml
-    - name: Testing the code with cram, not protobuf installed
+    - name: Testing the code with cram, protobuf not installed
       run: |
         cram test/basic_osm.t
         cram test/basic_pbf_no_protobuf.t
         cram test/charencodings.t
-    - name: Install protobuf
-      run: sudo apt-get install -y python3-protobuf
-    - name: Install osmosis
-      run: sudo apt-get install -y osmosis
+    - name: Install protobuf and osmosis
+      run: sudo apt-get install -y libprotobuf-dev protobuf-compiler osmosis
+    - name: "Install python dependencies: protobuf"
+      run: |
+        pip install --upgrade protobuf
     - name: Testing the code with cram, protobuf installed
       run: |
         cram test/basic_pbf.t
