@@ -36,16 +36,15 @@ Ogr2osm can be used as a standalone application, but you can also use its classe
 ### Standalone
 
 ```
-usage: __main__.py [-h] [-t TRANSLATION] [--encoding ENCODING]
-                   [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
-                   [-p PROJ4_STRING] [--gis-order]
-                   [--rounding-digits ROUNDINGDIGITS]
-                   [--significant-digits SIGNIFICANTDIGITS]
-                   [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                   [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf]
-                   [--no-upload-false] [--never-download] [--never-upload]
-                   [--locked] [--add-bounds]
-                   DATASOURCE
+usage: ogr2osm [-h] [--version] [-t TRANSLATION] [--encoding ENCODING]
+               [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
+               [-p PROJ4_STRING] [--gis-order]
+               [--rounding-digits ROUNDINGDIGITS]
+               [--significant-digits SIGNIFICANTDIGITS]
+               [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+               [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
+               [--never-download] [--never-upload] [--locked] [--add-bounds]
+               DATASOURCE
 
 positional arguments:
   DATASOURCE            DATASOURCE can be a file path or a org PostgreSQL
@@ -54,6 +53,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  --version             show program's version number and exit
   -t TRANSLATION, --translation TRANSLATION
                         Select the attribute-tags translation method. See the
                         translations/ directory for valid values.
