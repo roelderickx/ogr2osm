@@ -9,7 +9,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
     README = fh.read()
 
 setuptools.setup(
-    name=__program__,
+    name="ogr2osm",
     version=__version__,
     license=__license__,
     author=__author__,
