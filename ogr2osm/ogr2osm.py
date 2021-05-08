@@ -42,6 +42,7 @@ ogr2osm is based very heavily on code released under the following terms:
 
 import sys, os, argparse, logging, inspect
 
+from .version import __program__, __version__
 from .translation_base_class import TranslationBase
 from .osm_geometries import OsmId
 from .ogr_datasource import OgrDatasource
@@ -52,11 +53,12 @@ from .pbf_datawriter import is_protobuf_installed, PbfDataWriter
 logging.basicConfig(format="%(message)s", level = logging.DEBUG)
 
 def parse_commandline():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(prog=__program__)
     
     #parser.add_argument("-v", "--verbose", dest="verbose", action="store_true")
     #parser.add_argument("-d", "--debug-tags", dest="debugTags", action="store_true",
     #                    help="Output the tags for every feature parsed.")
+    parser.add_argument('--version', action='version', version="%s %s" % (__program__, __version__))
     parser.add_argument("-t", "--translation", dest="translationmodule",
                         metavar="TRANSLATION",
                         help="Select the attribute-tags translation method. See " +

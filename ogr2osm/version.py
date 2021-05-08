@@ -1,4 +1,5 @@
 __author__ = "Roel Derickx"
-__version__ = "0.1.2"
+__program__ = "ogr2osm"
+__version__ = "1.0.0"
 __license__ = "MIT License"
 

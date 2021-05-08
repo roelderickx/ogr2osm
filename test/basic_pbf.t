@@ -1,7 +1,6 @@
   $ [ "$0" != "/bin/bash" ] || shopt -s expand_aliases
   $ [ -n "$PYTHON" ] || PYTHON="`which python`"
   $ alias ogr2osm="PYTHONPATH=$TESTDIR/.. $PYTHON -m ogr2osm"
-  $ alias osmosis=$TESTDIR/../../osmosis/bin/osmosis
 
 test1pbf:
   $ ogr2osm --pbf -f $TESTDIR/shapefiles/test1.shp
