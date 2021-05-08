@@ -263,8 +263,8 @@ class OsmData:
         logging.debug("Splitting long ways")
 
         for way in self.__ways:
-            is_way_in_relation = len([ p for p in way.get_parents() if type(p) == OsmRelation ]) > 0
             if len(way.points) > self.max_points_in_way:
+                is_way_in_relation = len([ p for p in way.get_parents() if type(p) == OsmRelation ]) > 0
                 way_parts = self.__split_way(way, is_way_in_relation)
                 if not is_way_in_relation:
                     if way in self.__long_ways_from_polygons:
