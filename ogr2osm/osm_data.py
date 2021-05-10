@@ -26,7 +26,6 @@ class OsmData:
         self.__unique_node_index = {}
         self.__ways = []
         self.__relations = []
-        self.__long_ways_from_polygons = set()
 
 
     def __get_layer_fields(self, layer):
@@ -118,19 +117,15 @@ class OsmData:
         # should not) change behavior when simplify relations is turned on.
         if ogrgeometry.GetGeometryCount() == 0:
             logging.warning("Polygon with no rings?")
-        elif ogrgeometry.GetGeometryCount() == 1:
+        elif ogrgeometry.GetGeometryCount() == 1 and \
+             ogrgeometry.GetGeometryRef(0).GetPointCount() <= self.max_points_in_way:
+            # only 1 linestring which is not too long: no relation required
             result = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), tags)
-            if len(result.points) > self.max_points_in_way:
-                self.__long_ways_from_polygons.add(result)
             return result
         else:
             relation = self.__add_relation(tags)
-            try:
-                exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
-                exterior.addparent(relation)
-            except:
-                logging.warning("Polygon with no exterior ring?")
-                return None
+            exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
+            exterior.addparent(relation)
             relation.members.append((exterior, "outer"))
             for i in range(1, ogrgeometry.GetGeometryCount()):
                 interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i), {})
@@ -240,13 +235,6 @@ class OsmData:
         return new_ways
 
 
-    def __merge_into_new_relation(self, way_parts):
-        new_relation = self.__add_relation({})
-        new_relation.members = [ (way, "outer") for way in way_parts ]
-        for way in way_parts:
-            way.addparent(new_relation)
-
-
     def __split_way_in_relation(self, rel, way_parts):
         way_roles = [ m[1] for m in rel.members if m[0] == way_parts[0] ]
         way_role = "" if len(way_roles) == 0 else way_roles[0]
@@ -264,12 +252,9 @@ class OsmData:
 
         for way in self.__ways:
             if len(way.points) > self.max_points_in_way:
-                is_way_in_relation = len([ p for p in way.get_parents() if type(p) == OsmRelation ]) > 0
+                is_way_in_relation = any([ type(p) == OsmRelation for p in way.get_parents() ])
                 way_parts = self.__split_way(way, is_way_in_relation)
-                if not is_way_in_relation:
-                    if way in self.__long_ways_from_polygons:
-                        self.__merge_into_new_relation(way_parts)
-                else:
+                if is_way_in_relation:
                     for rel in way.get_parents():
                         self.__split_way_in_relation(rel, way_parts)
 
