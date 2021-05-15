@@ -106,7 +106,7 @@ class OsmData:
             (x, y, z_unused) = ogrgeometry.GetPoint(i)
             node = self.__add_node(x, y, {}, True)
             if previous_node_id == None or previous_node_id != node.id:
-                way.points.append(node)
+                way.nodes.append(node)
                 node.addparent(way)
                 previous_node_id = node.id
         return way
@@ -217,17 +217,17 @@ class OsmData:
 
 
     def __split_way(self, way):
-        new_points = [ way.points[i:i + self.max_points_in_way] \
-                               for i in range(0, len(way.points), self.max_points_in_way - 1) ]
-        new_ways = [ way ] + [ OsmWay(way.get_tags()) for i in range(len(new_points) - 1) ]
+        new_nodes = [ way.nodes[i:i + self.max_points_in_way] \
+                               for i in range(0, len(way.nodes), self.max_points_in_way - 1) ]
+        new_ways = [ way ] + [ OsmWay(way.get_tags()) for i in range(len(new_nodes) - 1) ]
 
-        for new_way, points in zip(new_ways, new_points):
-            new_way.points = points
+        for new_way, nodes in zip(new_ways, new_nodes):
+            new_way.nodes = nodes
             if new_way.id != way.id:
                 self.__ways.append(new_way)
-                for point in points:
-                    point.removeparent(way)
-                    point.addparent(new_way)
+                for node in nodes:
+                    node.removeparent(way)
+                    node.addparent(new_way)
 
         return new_ways
 
@@ -248,7 +248,7 @@ class OsmData:
         logging.debug("Splitting long ways")
 
         for way in self.__ways:
-            if len(way.points) > self.max_points_in_way:
+            if len(way.nodes) > self.max_points_in_way:
                 way_parts = self.__split_way(way)
                 for rel in way.get_parents():
                     self.__split_way_in_relation(rel, way_parts)

@@ -137,7 +137,7 @@ class OsmPoint(OsmGeometry):
 class OsmWay(OsmGeometry):
     def __init__(self, tags):
         super().__init__()
-        self.points = []
+        self.nodes = []
         self.add_tags(tags)
 
 
@@ -147,7 +147,7 @@ class OsmWay(OsmGeometry):
 
         xmlobject = etree.Element('way', xmlattrs)
 
-        for node in self.points:
+        for node in self.nodes:
             nd = etree.Element('nd', { 'ref':('%d' % node.id) })
             xmlobject.append(nd)
         for (key, value) in self.get_tags().items():

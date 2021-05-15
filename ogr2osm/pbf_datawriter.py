@@ -138,7 +138,7 @@ try:
                 way.info.user_sid = 0
             
             prev_node_id = 0
-            for node in osmway.points:
+            for node in osmway.nodes:
                 way.refs.append(node.id - prev_node_id)
                 prev_node_id = node.id
             
@@ -265,7 +265,7 @@ try:
                 if amount_node_refs == 0:
                     primitive_group = PbfPrimitiveGroupWays(self.add_version, self.add_timestamp)
                 primitive_group.add_way(way)
-                amount_node_refs += len(way.points)
+                amount_node_refs += len(way.nodes)
                 if amount_node_refs > self.__max_node_refs_per_way_block:
                     self.__write_primitive_block(primitive_group)
                     amount_node_refs = 0
