@@ -216,18 +216,15 @@ class OsmData:
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
 
-    def __split_way(self, way, is_way_in_relation):
+    def __split_way(self, way):
         new_points = [ way.points[i:i + self.max_points_in_way] \
                                for i in range(0, len(way.points), self.max_points_in_way - 1) ]
         new_ways = [ way ] + [ OsmWay(way.get_tags()) for i in range(len(new_points) - 1) ]
 
-        if not is_way_in_relation:
-            for new_way in new_ways[1:]:
-                self.__ways.append(new_way)
-
         for new_way, points in zip(new_ways, new_points):
             new_way.points = points
             if new_way.id != way.id:
+                self.__ways.append(new_way)
                 for point in points:
                     point.removeparent(way)
                     point.addparent(new_way)
@@ -252,11 +249,9 @@ class OsmData:
 
         for way in self.__ways:
             if len(way.points) > self.max_points_in_way:
-                is_way_in_relation = any([ type(p) == OsmRelation for p in way.get_parents() ])
-                way_parts = self.__split_way(way, is_way_in_relation)
-                if is_way_in_relation:
-                    for rel in way.get_parents():
-                        self.__split_way_in_relation(rel, way_parts)
+                way_parts = self.__split_way(way)
+                for rel in way.get_parents():
+                    self.__split_way_in_relation(rel, way_parts)
 
 
     def process(self, datasource):
