@@ -234,7 +234,11 @@ def load_translation_object(translation_module):
                 break
 
     if not translation_object:
-        logging.info('Using default translations')
+        if translation_module:
+            logging.warning('WARNING: translation file does not contain a valid translation class')
+            logging.warning('Falling back to DEFAULT translations')
+        else:
+            logging.info('Using default translations')
         translation_object = TranslationBase()
     
     return translation_object
