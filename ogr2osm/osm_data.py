@@ -117,6 +117,7 @@ class OsmData:
         # should not) change behavior when simplify relations is turned on.
         if ogrgeometry.GetGeometryCount() == 0:
             logging.warning("Polygon with no rings?")
+            return None
         elif ogrgeometry.GetGeometryCount() == 1 and \
              ogrgeometry.GetGeometryRef(0).GetPointCount() <= self.max_points_in_way:
             # only 1 linestring which is not too long: no relation required
@@ -153,7 +154,7 @@ class OsmData:
                         relation.members.append((interior, "inner"))
                 return [ relation ]
             else:
-               return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags) ]
+                return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags) ]
         elif geometry_type in [ ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ]:
             geometries = []
             for linestring in range(ogrgeometry.GetGeometryCount()):
