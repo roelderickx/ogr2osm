@@ -19,6 +19,10 @@ Clone this repository and run the following command in the created directory.
 python setup.py install
 ```
 
+## Upgrading
+
+If you are upgrading from pnorman's version and you use a translation file for your data, be sure to read about [the modifications you will need to do](https://github.com/roelderickx/ogr2osm-translations).
+
 ## About
 
 This program is based on [pnorman's version of ogr2osm](https://github.com/pnorman/ogr2osm), but is rewritten to make it useable as a general purpose library.
