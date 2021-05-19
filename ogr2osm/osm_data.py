@@ -97,18 +97,69 @@ class OsmData:
         return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False)
 
 
+    def __get_ordered_nodes(self, nodes):
+        is_closed = len(nodes) > 2 and nodes[0].id == nodes[-1].id
+        if is_closed:
+            lowest_index = 0
+            lowest_node_id = nodes[0].id
+            for i in range(1, len(nodes)):
+                if nodes[i].id < lowest_node_id:
+                    lowest_node_id = nodes[i].id
+                    lowest_index = i
+            
+            return nodes[lowest_index:-1] + nodes[:lowest_index+1]
+        else:
+            return nodes
+
+
+    def __verify_duplicate_ways(self, potential_duplicate_ways, nodes):
+        duplicate_ways = []
+        ordered_nodes = self.__get_ordered_nodes(nodes)
+        for dupway in potential_duplicate_ways:
+            if len(dupway.nodes) == len(nodes):
+                dupnodes = self.__get_ordered_nodes(dupway.nodes)
+                if dupnodes == ordered_nodes:
+                    duplicate_ways.append(dupway)
+                elif True: # TODO both dupway.nodes and ordered_nodes can be reversed
+                    dupnodes.reverse()
+                    if dupnodes == ordered_nodes:
+                        duplicate_ways.append(dupway)
+        return duplicate_ways
+
+
     def __parse_linestring(self, ogrgeometry, tags):
-        way = self.__add_way(tags)
-        # LineString.GetPoint() returns a tuple, so we can't call parsePoint on it
-        # and instead have to create the point ourself
         previous_node_id = None
+        nodes = []
+        potential_duplicate_ways = []
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z_unused) = ogrgeometry.GetPoint(i)
             node = self.__add_node(x, y, {}, True)
-            if previous_node_id == None or previous_node_id != node.id:
-                way.nodes.append(node)
-                node.addparent(way)
+            if previous_node_id is None or previous_node_id != node.id:
+                if previous_node_id is None:
+                    # first node: add all parent ways as potential duplicates
+                    potential_duplicate_ways = [ p for p in node.get_parents() if type(p) == OsmWay ]
+                elif not any(node.get_parents()) and any(potential_duplicate_ways):
+                    # next nodes: if node doesn't belong to another way then this way is unique
+                    potential_duplicate_ways.clear()
+                nodes.append(node)
                 previous_node_id = node.id
+
+        duplicate_ways = self.__verify_duplicate_ways(potential_duplicate_ways, nodes)
+
+        # TODO: verify tags?
+
+        way = None
+        if len(duplicate_ways) == 0:
+            way = self.__add_way(tags)
+            way.nodes = nodes
+            for node in nodes:
+                node.addparent(way)
+        elif len(duplicate_ways) == 1:
+            way = duplicate_ways[0]
+        # debugging purposes
+        #else:
+        #    raise Exception('More than 1 duplicate found: %d' % len(duplicate_ways))
+
         return way
 
 
@@ -217,97 +268,6 @@ class OsmData:
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
 
-    def __get_way_tags(self, way):
-        tags = {}
-
-        for (k, v) in way.get_tags().items():
-            # remove discardable tags as in JOSM
-            if k not in  [ "created_by", "converted_by", "current_id", "geobase:datasetName", \
-                           "geobase:uuid", "KSJ2:ADS", "KSJ2:ARE", "KSJ2:AdminArea", \
-                           "KSJ2:COP_label", "KSJ2:DFD", "KSJ2:INT", "KSJ2:INT_label", \
-                           "KSJ2:LOC", "KSJ2:LPN", "KSJ2:OPC", "KSJ2:PubFacAdmin", \
-                           "KSJ2:RAC", "KSJ2:RAC_label", "KSJ2:RIC", "KSJ2:RIN", "KSJ2:WSC", \
-                           "KSJ2:coordinate", "KSJ2:curve_id", "KSJ2:curve_type", \
-                           "KSJ2:filename", "KSJ2:lake_id", "KSJ2:lat", "KSJ2:long", \
-                           "KSJ2:river_id", "odbl", "odbl:note", "osmarender:nameDirection", \
-                           "osmarender:renderName", "osmarender:renderRef", \
-                           "osmarender:rendernames", "SK53_bulk:load", "sub_sea:type", \
-                           "tiger:source", "tiger:separated", "tiger:tlid", "tiger:upload_uuid", \
-                           "import_uuid", "gnis:import_uuid", "yh:LINE_NAME", "yh:LINE_NUM", \
-                           "yh:STRUCTURE", "yh:TOTYUMONO", "yh:TYPE", "yh:WIDTH", "yh:WIDTH_RANK" ]:
-                tags[k] = v
-
-        return tags
-
-
-    def merge_ways(self):
-        logging.debug("Merging ways")
-
-        #amount_duplicates = 0
-        for (way_index, way) in enumerate(self.__ways[:-1]):
-            way_tags = self.__get_way_tags(way)
-            # loop through possible duplicates
-            # these are ways with an index > way_index and with the same amount of nodes and tags
-            for way2 in [ w for w in self.__ways[way_index+1:] if len(w.nodes) == len(way.nodes) ]:
-                way2_tags = self.__get_way_tags(way2)
-
-                # compare the tags
-                if len(way_tags) != len(way2_tags):
-                    continue
-
-                is_duplicate = True
-                for (k, v) in way.get_tags().items():
-                    if k not in way2.get_tags().keys() or way2.get_tags()[k] != v:
-                        is_duplicate = False
-                        break
-                if not is_duplicate:
-                    continue
-
-                # if way2 is circular then ignore the first node
-                if len(way2.nodes) > 2 and way2.nodes[0].id == way2.nodes[-1].id:
-                    way2_nodes = way2.nodes[1:]
-                else:
-                    way2_nodes = way2.nodes
-
-                # find the first two nodes from way in way2
-                try:
-                    index_first_node = way2_nodes.index(way.nodes[0])
-                    index_second_node = way2_nodes.index(way.nodes[1])
-                except ValueError:
-                    continue
-
-                # if both nodes are found we know where to start in way2 and in which direction
-                index = index_first_node
-                index_direction = index_second_node - index_first_node
-                if index_direction not in (1, -1):
-                    if (index_first_node == len(way2_nodes) and index_second_node == 0):
-                        index_direction = 1
-                    elif (index_first_node == 0 and index_second_node == len(way2_nodes)):
-                        index_direction = -1
-                    else:
-                        # both ways contain 2 nodes in common, but for way2 there are more
-                        # nodes in between. This is legit, but the ways are not duplicates.
-                        continue
-
-                for node in way.nodes:
-                    if node.id != way2_nodes[index].id:
-                        is_duplicate = False
-                        break
-                    index = (index + index_direction) % len(way2_nodes)
-
-                if is_duplicate:
-                    #print('Way %d is a duplicate of way %d' % (way.id, way2.id))
-                    for parent in way.get_parents():
-                        way_roles = [ m[1] for m in parent.members if m[0] == way ]
-                        way_role = "" if len(way_roles) == 0 else way_roles[0]
-                        parent.members.remove((way, way_role))
-                        parent.members.append((way2, way_role))
-                        way2.addparent(parent)
-                    self.__ways.remove(way)
-                    #amount_duplicates = amount_duplicates + 1
-        #print('Amount duplicates = %d' % amount_duplicates)
-
-
     def __split_way(self, way):
         new_nodes = [ way.nodes[i:i + self.max_points_in_way] \
                                for i in range(0, len(way.nodes), self.max_points_in_way - 1) ]
@@ -356,7 +316,6 @@ class OsmData:
                     ogrfeature = layer.GetNextFeature()
                     self.add_feature(ogrfeature, layer_fields, datasource.source_encoding, reproject)
 
-        self.merge_ways()
         self.split_long_ways()
 
 
