@@ -54,7 +54,7 @@ logging.basicConfig(format="%(message)s", level = logging.DEBUG)
 
 def parse_commandline():
     parser = argparse.ArgumentParser(prog=__program__)
-    
+
     #parser.add_argument("-v", "--verbose", dest="verbose", action="store_true")
     #parser.add_argument("-d", "--debug-tags", dest="debugTags", action="store_true",
     #                    help="Output the tags for every feature parsed.")
@@ -136,10 +136,10 @@ def parse_commandline():
                              "string such as: \"PG:dbname=pdx_bldgs user=emma host=localhost\" " +
                              "(including the quotes)")
     params = parser.parse_args()
-    
+
     if not is_protobuf_installed:
         params.pbf = False
-    
+
     if params.outputFile:
         params.outputFile = os.path.realpath(params.outputFile)
 
@@ -184,12 +184,11 @@ def parse_commandline():
 
     if not params.forceOverwrite and os.path.exists(params.outputFile):
         parser.error("ERROR: output file '%s' exists" % (params.outputFile))
-    
+
     return params
 
 
 def load_translation_object(translation_module):
-    import_translation_module = None
     translation_object = None
 
     if translation_module:
@@ -221,7 +220,7 @@ def load_translation_object(translation_module):
         except SyntaxError as e:
             logging.error("Syntax error in '%s'. Translation script is malformed:\n%s"
                           % (translation_module, e))
-    
+
         for class_name in [ d for d in dir(imported_module) \
                                     if d != 'TranslationBase' and not d.startswith('__') ]:
             translation_class = getattr(imported_module, class_name)
@@ -240,7 +239,7 @@ def load_translation_object(translation_module):
         else:
             logging.info('Using default translations')
         translation_object = TranslationBase()
-    
+
     return translation_object
 
 
@@ -274,4 +273,3 @@ def main():
 
     if params.saveid:
         OsmId.save_id(params.saveid)
-

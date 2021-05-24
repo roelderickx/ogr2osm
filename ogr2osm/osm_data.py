@@ -20,7 +20,7 @@ class OsmData:
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
         self.add_bounds = add_bounds
-        
+
         self.__bounds = OsmBoundary()
         self.__nodes = []
         self.__unique_node_index = {}
@@ -49,50 +49,61 @@ class OsmData:
                 field_value = ogrfeature.GetFieldAsString(index)
 
             tags[field_name] = field_value.strip()
-        
+
         return self.translation.filter_tags(tags)
 
 
     def __calc_bounds(self, ogrgeometry):
         (minx, maxx, miny, maxy) = ogrgeometry.GetEnvelope()
         self.__bounds.add_envelope(minx, maxx, miny, maxy)
-    
-    
+
+
     def __round_number(self, n):
         return int(round(n * 10**self.rounding_digits))
-    
-    
+
+
     def __add_node(self, x, y, tags, is_way_member):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
-        
+
         unique_node_id = None
         if is_way_member:
             unique_node_id = (rx, ry)
         else:
+            # TODO deprecated, to be removed
             unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
 
         if unique_node_id in self.__unique_node_index:
-            return self.__nodes[self.__unique_node_index[unique_node_id]]
-        else:
+            for index in self.__unique_node_index[unique_node_id]:
+                duplicate_node = self.__nodes[index]
+                merged_tags = self.translation.merge_tags('node', duplicate_node.tags, tags)
+                if merged_tags is not None:
+                    duplicate_node.tags = merged_tags
+                    return duplicate_node
+
             node = OsmPoint(x, y, tags)
-            self.__unique_node_index[unique_node_id] = len(self.__nodes)
+            self.__unique_node_index[unique_node_id].append(len(self.__nodes))
             self.__nodes.append(node)
             return node
-    
-    
+        else:
+            node = OsmPoint(x, y, tags)
+            self.__unique_node_index[unique_node_id] = [ len(self.__nodes) ]
+            self.__nodes.append(node)
+            return node
+
+
     def __add_way(self, tags):
         way = OsmWay(tags)
         self.__ways.append(way)
         return way
-    
-    
+
+
     def __add_relation(self, tags):
         relation = OsmRelation(tags)
         self.__relations.append(relation)
         return relation
-    
-    
+
+
     def __parse_point(self, ogrgeometry, tags):
         return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False)
 
@@ -106,7 +117,7 @@ class OsmData:
                 if nodes[i].id < lowest_node_id:
                     lowest_node_id = nodes[i].id
                     lowest_index = i
-            
+
             return nodes[lowest_index:-1] + nodes[:lowest_index+1]
         else:
             return nodes
@@ -146,20 +157,16 @@ class OsmData:
 
         duplicate_ways = self.__verify_duplicate_ways(potential_duplicate_ways, nodes)
 
-        # TODO: verify tags?
+        for duplicate_way in duplicate_ways:
+            merged_tags = self.translation.merge_tags('way', duplicate_way.tags, tags)
+            if merged_tags is not None:
+                duplicate_way.tags = merged_tags
+                return duplicate_way
 
-        way = None
-        if len(duplicate_ways) == 0:
-            way = self.__add_way(tags)
-            way.nodes = nodes
-            for node in nodes:
-                node.addparent(way)
-        elif len(duplicate_ways) == 1:
-            way = duplicate_ways[0]
-        # debugging purposes
-        #else:
-        #    raise Exception('More than 1 duplicate found: %d' % len(duplicate_ways))
-
+        way = self.__add_way(tags)
+        way.nodes = nodes
+        for node in nodes:
+            node.addparent(way)
         return way
 
 
@@ -218,11 +225,11 @@ class OsmData:
                 member.addparent(relation)
                 relation.members.append((member, "member"))
             return [ relation ]
-    
-    
+
+
     def __parse_geometry(self, ogrgeometry, tags):
         osmgeometries = []
-        
+
         geometry_type = ogrgeometry.GetGeometryType()
 
         if geometry_type in [ ogr.wkbPoint, ogr.wkbPoint25D ]:
@@ -247,15 +254,15 @@ class OsmData:
         ogrfilteredfeature = self.translation.filter_feature(ogrfeature, layer_fields, reproject)
         if ogrfilteredfeature is None:
             return
-        
+
         ogrgeometry = ogrfilteredfeature.GetGeometryRef()
         if ogrgeometry is None:
             return
-                
+
         feature_tags = self.__get_feature_tags(ogrfilteredfeature, layer_fields, source_encoding)
         if feature_tags is None:
             return
-        
+
         reproject(ogrgeometry)
 
         if self.add_bounds:
@@ -271,7 +278,7 @@ class OsmData:
     def __split_way(self, way):
         new_nodes = [ way.nodes[i:i + self.max_points_in_way] \
                                for i in range(0, len(way.nodes), self.max_points_in_way - 1) ]
-        new_ways = [ way ] + [ OsmWay(way.get_tags()) for i in range(len(new_nodes) - 1) ]
+        new_ways = [ way ] + [ OsmWay(way.tags) for i in range(len(new_nodes) - 1) ]
 
         for new_way, nodes in zip(new_ways, new_nodes):
             new_way.nodes = nodes
@@ -296,7 +303,7 @@ class OsmData:
         if self.max_points_in_way < 2:
             # pointless :-)
             return
-        
+
         logging.debug("Splitting long ways")
 
         for way in self.__ways:
@@ -309,7 +316,7 @@ class OsmData:
     def process(self, datasource):
         for i in range(datasource.get_layer_count()):
             (layer, reproject) = datasource.get_layer(i)
-            
+
             if layer:
                 layer_fields = self.__get_layer_fields(layer)
                 for j in range(layer.GetFeatureCount()):
@@ -322,22 +329,21 @@ class OsmData:
     class DataWriterContextManager:
         def __init__(self, datawriter):
             self.datawriter = datawriter
-        
+
         def __enter__(self):
             self.datawriter.open()
             return self.datawriter
-        
+
         def __exit__(self, exception_type, value, traceback):
             self.datawriter.close()
 
 
     def output(self, datawriter):
         self.translation.process_output(self.__nodes, self.__ways, self.__relations)
-        
+
         with self.DataWriterContextManager(datawriter) as dw:
             dw.write_header(self.__bounds)
             dw.write_nodes(self.__nodes)
             dw.write_ways(self.__ways)
             dw.write_relations(self.__relations)
             dw.write_footer()
-

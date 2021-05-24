@@ -26,36 +26,35 @@ ogr2osm will do the following, given an instance dw of class DataWriterBase:
 class DataWriterBase:
     def __init__(self):
         pass
-    
-    
+
+
     def get_version(self):
         return __version__
-    
-    
+
+
     def open(self):
         pass
-    
-    
+
+
     def write_header(self, bounds):
         pass
-    
-    
+
+
     def write_nodes(self, nodes):
         pass
-    
-    
+
+
     def write_ways(self, ways):
         pass
-    
-    
+
+
     def write_relations(self, relations):
         pass
-    
-    
+
+
     def write_footer(self):
         pass
-    
-    
+
+
     def close(self):
         pass
-

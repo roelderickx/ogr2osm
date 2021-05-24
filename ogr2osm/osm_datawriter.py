@@ -29,8 +29,8 @@ class OsmDataWriter(DataWriterBase):
             self.attributes.update({'version':'1'})
         if add_timestamp:
             self.attributes.update({'timestamp':time.strftime('%Y-%m-%dT%H:%M:%SZ')})
-    
-    
+
+
     def open(self):
         #if 0 < self.gzip_compression_level < 10:
         #    import gzip
@@ -42,7 +42,7 @@ class OsmDataWriter(DataWriterBase):
 
     def write_header(self, bounds):
         logging.debug("Writing file header")
-        
+
         self.f.write('<?xml version="1.0"?>\n')
         self.f.write('<osm version="0.6" generator="ogr2osm %s"' % self.get_version())
         if self.never_upload:
@@ -54,40 +54,39 @@ class OsmDataWriter(DataWriterBase):
         if self.locked:
             self.f.write(' locked="true"')
         self.f.write('>\n')
-        
+
         if bounds and bounds.is_valid:
             self.f.write(bounds.to_xml(self.significant_digits))
             self.f.write('\n')
 
-    
+
     def __write_geometries(self, geoms):
         for osm_geom in geoms:
             self.f.write(osm_geom.to_xml(self.attributes, self.significant_digits))
             self.f.write('\n')
 
-    
+
     def write_nodes(self, nodes):
         logging.debug("Writing nodes")
         self.__write_geometries(nodes)
-    
-    
+
+
     def write_ways(self, ways):
         logging.debug("Writing ways")
         self.__write_geometries(ways)
-    
-    
+
+
     def write_relations(self, relations):
         logging.debug("Writing relations")
         self.__write_geometries(relations)
-    
-    
+
+
     def write_footer(self):
         logging.debug("Writing file footer")
         self.f.write('</osm>')
-    
-    
+
+
     def close(self):
         if self.f:
             self.f.close()
             self.f = None
-

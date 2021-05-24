@@ -10,4 +10,3 @@
 from .ogr2osm import main
 
 main()
-

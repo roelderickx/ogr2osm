@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-exec(open("ogr2osm/version.py").read())
-
 import setuptools
+
+exec(open("ogr2osm/version.py").read())
 
 with open('README.md', 'r', encoding='utf-8') as fh:
     README = fh.read()
@@ -32,4 +32,3 @@ setuptools.setup(
         'Operating System :: OS Independent',
     ],
 )
-

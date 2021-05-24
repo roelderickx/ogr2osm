@@ -157,44 +157,77 @@ ogr2osm supports custom translations for your data. To do this you need to subcl
 
 ```python
 class TranslationBase:
-    # Override this method if you want to modify the given layer,
-    # or return None if you want to suppress the layer
     def filter_layer(self, layer):
+        '''
+        Override this method if you want to modify the given layer,
+        or return None if you want to suppress the layer
+        '''
         return layer
-    
-    # Override this method if you want to modify the given feature,
-    # or return None if you want to suppress the feature
-    # note 1: layer_fields contains a tuple (index, field_name, field_type)
-    # note 2: reproject is a function to convert the feature to 4326 projection
-    # with coordinates in traditional gis order. However, do not return the
-    # reprojected feature since it will be done again in ogr2osm.
+
+
     def filter_feature(self, ogrfeature, layer_fields, reproject):
+        '''
+        Override this method if you want to modify the given feature,
+        or return None if you want to suppress the feature
+        Note 1: layer_fields contains a tuple (index, field_name, field_type)
+        Note 2: reproject is a function to convert the feature to 4326 projection
+        with coordinates in traditional gis order. However, do not return the
+        reprojected feature since it will be done again in ogr2osm.
+        '''
         return ogrfeature
-    
-    # Override this method if you want to modify or add tags to the xml output
+
+
     def filter_tags(self, tags):
+        '''
+        Override this method if you want to modify or add tags to the xml output
+        '''
         return tags
-    
-    # This method is used to identify identical nodes for merging. By default
-    # only the rounded coordinates are taken into account, but you can extend
-    # this with some tags as desired. The return value should be a hashable
-    # type, if you don't want to merge you can just return a counter value.
-    # note: this function will not be called for nodes belonging to a way,
-    # they are always identified by the tuple (rounded_x, rounded_y).
+
+
+    def merge_tags(self, geometry_type, tags_existing_geometry, tags_new_geometry):
+        '''
+        This method is called when two geometries are found to be duplicates.
+        Override this method if you want to customize how the tags of both
+        geometries should be merged. The parameter geometry_type is a string
+        containing either 'node', 'way' or 'relation', depending on which type
+        of geometry the tags belong to.
+        Return None if the tags cannot be merged. As a result both geometries
+        will be included in the output file, each with their respective tags.
+        Warning: not merging geometries will lead to invalid osm files and
+        has an impact on the detection of duplicates among their parents.
+        '''
+        tags = {}
+        # ...
+        # Default behaviour: add all tags from both geometries
+        # If both contain the same key with a different value, then relate
+        # the key to a comma separated list of both values
+        # ...
+        return tags
+
+
     def get_unique_node_identifier(self, rounded_x, rounded_y, tags):
+        '''
+        DEPRECATED -- USE merge_tags IF YOU WANT TO DISABLE MERGING!
+        '''
         return (rounded_x, rounded_y)
-    
-    # This method is called after the creation of an OsmGeometry object. The
-    # ogr feature and ogr geometry used to create the object are passed as
-    # well. Note that any return values will be discarded by ogr2osm.
+
+
     def process_feature_post(self, osmgeometry, ogrfeature, ogrgeometry):
+        '''
+        This method is called after the creation of an OsmGeometry object. The
+        ogr feature and ogr geometry used to create the object are passed as
+        well. Note that any return values will be discarded by ogr2osm.
+        '''
         pass
-    
-    # Override this method if you want to modify the list of nodes, ways or
-    # relations, or take any additional actions right before writing the
-    # objects to the OSM file. Note that any return values will be discarded
-    # by ogr2osm.
+
+
     def process_output(self, osmnodes, osmways, osmrelations):
+        '''
+        Override this method if you want to modify the list of nodes, ways or
+        relations, or take any additional actions right before writing the
+        objects to the OSM file. Note that any return values will be discarded
+        by ogr2osm.
+        '''
         pass
 ```
 

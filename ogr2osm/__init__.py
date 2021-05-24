@@ -13,4 +13,3 @@ from .osm_datawriter import OsmDataWriter
 from .pbf_datawriter import PbfDataWriter
 from .ogr_datasource import OgrDatasource
 from .osm_data import OsmData
-

@@ -23,11 +23,11 @@ class OgrDatasource:
         self.source_epsg = source_epsg
         self.gisorder = gisorder
         self.source_encoding = source_encoding
-    
-    
+
+
     def open_datasource(self, ogrpath, prefer_mem_copy=True):
         full_ogrpath = None
-        
+
         # database source ?
         if ogrpath.startswith('PG:'):
             self.is_database_source = True
@@ -38,21 +38,21 @@ class OgrDatasource:
             has_unsup = [ m for m in ogr_unsupported if m in ogrpath.split('/') ]
             if has_unsup:
                 logging.error("Unsupported OGR access method(s) found: %s." % ', '.join(has_unsup))
-            
+
             # using ogr access methods ?
             ogr_accessmethods = [ "vsicurl", "vsicurl_streaming", "vsisubfile", "vsistdin" ]
             if any([ m in ogrpath.split('/') for m in ogr_accessmethods ]):
                 full_ogrpath = ogrpath
             else:
                 filename = ogrpath
-                
+
                 # filter out file access method if present
                 ogr_filemethods = [ "/vsisparse/", "/vsigzip/", "/vsitar/", "/vsizip/" ]
                 for fm in ogr_filemethods:
                     if ogrpath.find(fm) == 0:
                         filename = ogrpath[len(fm):]
                         break
-                
+
                 if not os.path.exists(filename):
                     logging.error("The file '%s' does not exist." % filename)
                 elif ogrpath == filename:
@@ -68,14 +68,14 @@ class OgrDatasource:
                         full_ogrpath = filename
                 else:
                     full_ogrpath = filename
-        
+
         if full_ogrpath:
             file_datasource = None
             if not self.is_database_source and prefer_mem_copy:
                 file_datasource = ogr.Open(full_ogrpath, gdalconst.GA_ReadOnly)
             else:
                 self.datasource = ogr.Open(full_ogrpath, gdalconst.GA_ReadOnly)
-            
+
             if self.is_database_source and not self.datasource:
                 logging.error("OGR failed to open connection to %s." % full_ogrpath)
             elif not self.is_database_source and not self.datasource and not file_datasource:
@@ -91,7 +91,7 @@ class OgrDatasource:
 
     def __get_source_reprojection_func(self, layer):
         layer_spatial_ref = layer.GetSpatialRef()
-        
+
         spatial_ref = None
         if self.source_proj4:
             spatial_ref = osr.SpatialReference()
@@ -134,8 +134,8 @@ class OgrDatasource:
             return 1
         else:
             return self.datasource.GetLayerCount()
-    
-    
+
+
     def get_layer(self, index):
         layer = None
         if self.is_database_source:
@@ -148,7 +148,6 @@ class OgrDatasource:
         else:
             layer = self.datasource.GetLayer(index)
             layer.ResetReading()
-        
+
         filteredlayer = self.translation.filter_layer(layer)
         return (filteredlayer, self.__get_source_reprojection_func(filteredlayer))
-
