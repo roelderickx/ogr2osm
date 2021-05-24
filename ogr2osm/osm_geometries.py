@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
-# Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
-# <andrew.guertin@uvm.edu>, github contributors
+'''
+Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
+Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
+<andrew.guertin@uvm.edu>, github contributors
 
-# Released under the MIT license, as given in the file LICENSE, which must
-# accompany any distribution of this code.
+Released under the MIT license, as given in the file LICENSE, which must
+accompany any distribution of this code.
+'''
 
 import logging
 from lxml import etree
@@ -25,16 +27,16 @@ class OsmId:
     def load_id(filename):
         with open(filename, 'r') as ff:
             OsmId.element_id_counter = int(ff.readline(20))
-        logging.info("Starting counter value '%d' read from file '%s'." % \
-                     (OsmId.element_id_counter, filename))
+        logging.info("Starting counter value '%d' read from file '%s'.", \
+                     OsmId.element_id_counter, filename)
 
 
     @staticmethod
     def save_id(filename):
         with open(filename, 'w') as ff:
             ff.write(str(OsmId.element_id_counter))
-        logging.info("Wrote elementIdCounter '%d' to file '%s'" % \
-                     (OsmId.element_id_counter, filename))
+        logging.info("Wrote elementIdCounter '%d' to file '%s'", \
+                     OsmId.element_id_counter, filename)
 
 
 

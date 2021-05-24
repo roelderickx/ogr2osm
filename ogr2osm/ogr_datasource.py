@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
-# Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
-# <andrew.guertin@uvm.edu>, github contributors
+'''
+Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
+Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
+<andrew.guertin@uvm.edu>, github contributors
 
-# Released under the MIT license, as given in the file LICENSE, which must
-# accompany any distribution of this code.
+Released under the MIT license, as given in the file LICENSE, which must
+accompany any distribution of this code.
+'''
 
 import os, logging
 from osgeo import gdalconst
@@ -37,7 +39,7 @@ class OgrDatasource:
             ogr_unsupported = [ "vsimem", "vsistdout" ]
             has_unsup = [ m for m in ogr_unsupported if m in ogrpath.split('/') ]
             if has_unsup:
-                logging.error("Unsupported OGR access method(s) found: %s." % ', '.join(has_unsup))
+                logging.error("Unsupported OGR access method(s) found: %s.", ', '.join(has_unsup))
 
             # using ogr access methods ?
             ogr_accessmethods = [ "vsicurl", "vsicurl_streaming", "vsisubfile", "vsistdin" ]
@@ -54,7 +56,7 @@ class OgrDatasource:
                         break
 
                 if not os.path.exists(filename):
-                    logging.error("The file '%s' does not exist." % filename)
+                    logging.error("The file '%s' does not exist.", filename)
                 elif ogrpath == filename:
                     if filename.endswith('.tar') or \
                        filename.endswith('.tgz') or \
@@ -77,9 +79,9 @@ class OgrDatasource:
                 self.datasource = ogr.Open(full_ogrpath, gdalconst.GA_ReadOnly)
 
             if self.is_database_source and not self.datasource:
-                logging.error("OGR failed to open connection to %s." % full_ogrpath)
+                logging.error("OGR failed to open connection to %s.", full_ogrpath)
             elif not self.is_database_source and not self.datasource and not file_datasource:
-                logging.error("OGR failed to open '%s', format may be unsupported." % full_ogrpath)
+                logging.error("OGR failed to open '%s', format may be unsupported.", full_ogrpath)
             elif not self.is_database_source and file_datasource and prefer_mem_copy:
                 mem_driver = ogr.GetDriverByName('Memory')
                 self.datasource = mem_driver.CopyDataSource(file_datasource, 'memoryCopy')
@@ -105,7 +107,7 @@ class OgrDatasource:
             spatial_ref.ImportFromEPSG(self.source_epsg)
         elif layer_spatial_ref:
             spatial_ref = layer_spatial_ref
-            logging.info("Detected projection metadata:\n" + str(layer_spatial_ref))
+            logging.info("Detected projection metadata:\n%s", str(layer_spatial_ref))
         else:
             logging.info("Layer has no projection metadata, falling back to EPSG:4326")
             if not self.gisorder:

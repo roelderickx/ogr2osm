@@ -160,18 +160,18 @@ def parse_commandline():
         else:
             (base, ext) = os.path.splitext(params.outputFile)
             if params.pbf and ext.lower() == '.osm':
-                logging.warning("WARNING: You specified PBF output with --pbf " +
-                                "but the outputfile has extension .osm, " +
+                logging.warning("WARNING: You specified PBF output with --pbf "
+                                "but the outputfile has extension .osm, "
                                 "ignoring --pbf parameter")
                 params.pbf = False
             elif is_protobuf_installed and not params.pbf and ext.lower() == '.pbf':
-                logging.warning("WARNING: You didn't specify PBF output with --pbf " +
-                                "but the outputfile has extension .pbf, " +
+                logging.warning("WARNING: You didn't specify PBF output with --pbf "
+                                "but the outputfile has extension .pbf, "
                                 "automatically setting --pbf parameter")
                 params.pbf = True
             elif not is_protobuf_installed and not params.pbf and ext.lower() == '.pbf':
-                logging.warning("WARNING: PBF output is not supported on this " +
-                                "system but the outputfile has extension .pbf, " +
+                logging.warning("WARNING: PBF output is not supported on this "
+                                "system but the outputfile has extension .pbf, "
                                 "automatically removing .pbf extension")
                 (base_osm, ext_osm) = os.path.splitext(base)
                 if ext_osm == '.osm':
@@ -179,11 +179,11 @@ def parse_commandline():
                 else:
                     params.outputFile = base + '.osm'
         if params.sqlQuery:
-            logging.warning("WARNING: You specified a query with --sql " +
+            logging.warning("WARNING: You specified a query with --sql "
                             "but you are not using a database source")
 
     if not params.forceOverwrite and os.path.exists(params.outputFile):
-        parser.error("ERROR: output file '%s' exists" % (params.outputFile))
+        parser.error("ERROR: output file '%s' exists" % params.outputFile)
 
     return params
 
@@ -215,11 +215,11 @@ def load_translation_object(translation_module):
             logging.error("Could not load translation method '%s'. Translation "
                           "script must be in your current directory, or in the "
                           "translations/ subdirectory of your current or ogr2osm.py "
-                          "directory. The following directories have been considered: %s"
-                          % (translation_module, str(sys.path)))
+                          "directory. The following directories have been considered: %s",
+                          translation_module, str(sys.path))
         except SyntaxError as e:
-            logging.error("Syntax error in '%s'. Translation script is malformed:\n%s"
-                          % (translation_module, e))
+            logging.error("Syntax error in '%s'. Translation script is malformed:\n%s",
+                          translation_module, e)
 
         for class_name in [ d for d in dir(imported_module) \
                                     if d != 'TranslationBase' and not d.startswith('__') ]:
@@ -227,7 +227,7 @@ def load_translation_object(translation_module):
 
             if inspect.isclass(translation_class) and \
                issubclass(translation_class, TranslationBase):
-                logging.info('Found valid translation class %s' % class_name)
+                logging.info('Found valid translation class %s', class_name)
                 setattr(sys.modules[__name__], class_name, translation_class)
                 translation_object = translation_class()
                 break
@@ -252,7 +252,7 @@ def main():
     if params.idfile:
         OsmId.load_id(params.idfile)
 
-    logging.info("Preparing to convert '%s' to '%s'." % (params.source, params.outputFile))
+    logging.info("Preparing to convert '%s' to '%s'.", params.source, params.outputFile)
 
     osmdata = OsmData(translation_object, params.roundingDigits, params.maxNodesPerWay, params.addBounds)
     # create datasource and process data

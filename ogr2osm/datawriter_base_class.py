@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
-# Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
-# <andrew.guertin@uvm.edu>, github contributors
+'''
+Copyright (c) 2012-2021 Roel Derickx, Paul Norman <penorman@mac.com>,
+Sebastiaan Couwenberg <sebastic@xs4all.nl>, The University of Vermont
+<andrew.guertin@uvm.edu>, github contributors
 
-# Released under the MIT license, as given in the file LICENSE, which must
-# accompany any distribution of this code.
+Released under the MIT license, as given in the file LICENSE, which must
+accompany any distribution of this code.
+'''
 
 from .version import __version__
 
-'''
-ogr2osm will do the following, given an instance dw of class DataWriterBase:
+class DataWriterBase:
+    '''
+    Base class for all datawriters. Ogr2osm will do the following,
+    given an instance dw of class DataWriterBase:
 
     dw.open()
     try:
@@ -21,14 +25,17 @@ ogr2osm will do the following, given an instance dw of class DataWriterBase:
         dw.write_footer()
     finally:
         dw.close()
-'''
+    '''
 
-class DataWriterBase:
     def __init__(self):
         pass
 
 
     def get_version(self):
+        '''
+        This method returns the ogr2osm version number which can be used
+        as part of the generator identifier string in the output file
+        '''
         return __version__
 
 
