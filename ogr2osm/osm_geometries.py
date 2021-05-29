@@ -159,6 +159,12 @@ class OsmRelation(OsmGeometry):
         self.tags.update(tags)
 
 
+    def get_member_role(self, member):
+        member_roles = [ m[1] for m in self.members if m[0] == member ]
+        member_role = "" if len(member_roles) == 0 else member_roles[0]
+        return member_role
+
+
     def to_xml(self, attributes, significant_digits):
         xmlattrs = { 'visible':'true', 'id':('%d' % self.id) }
         xmlattrs.update(attributes)
@@ -166,8 +172,8 @@ class OsmRelation(OsmGeometry):
         xmlobject = etree.Element('relation', xmlattrs)
 
         for (member, role) in self.members:
-            member = etree.Element('member', { 'type':'way', 'ref':('%d' % member.id), 'role':role })
-            xmlobject.append(member)
+            xmlmember = etree.Element('member', { 'type':'way', 'ref':('%d' % member.id), 'role':role })
+            xmlobject.append(xmlmember)
 
         tag = etree.Element('tag', { 'k':'type', 'v':'multipolygon' })
         xmlobject.append(tag)

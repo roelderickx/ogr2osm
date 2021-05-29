@@ -299,4 +299,3 @@ try:
                 self.f = None
 except:
     pass
-

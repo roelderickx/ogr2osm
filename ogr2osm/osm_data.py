@@ -134,8 +134,7 @@ class OsmData:
                 if dupnodes == ordered_nodes:
                     duplicate_ways.append(dupway)
                 elif True: # TODO both dupway.nodes and ordered_nodes can be reversed
-                    dupnodes.reverse()
-                    if dupnodes == ordered_nodes:
+                    if dupnodes == reversed(ordered_nodes):
                         duplicate_ways.append(dupway)
         return duplicate_ways
 
@@ -172,6 +171,14 @@ class OsmData:
         return way
 
 
+    def __verify_duplicate_relations(self, potential_duplicate_relations, members):
+        duplicate_relations = []
+        for duprelation in potential_duplicate_relations:
+            if duprelation.members == members:
+                duplicate_relations.append(duprelation)
+        return duplicate_relations
+
+
     def __parse_polygon(self, ogrgeometry, tags):
         # Special case polygons with only one ring. This does not (or at least
         # should not) change behavior when simplify relations is turned on.
@@ -184,14 +191,40 @@ class OsmData:
             result = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), tags)
             return result
         else:
-            relation = self.__add_relation(tags)
-            exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
-            exterior.addparent(relation)
-            relation.members.append((exterior, "outer"))
+            members = []
+            potential_duplicate_relations = []
+            try:
+                exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
+                members.append((exterior, "outer"))
+                # first member: add all parent relations as potential duplicates
+                potential_duplicate_relations = \
+                    [ p for p in exterior.get_parents() \
+                        if type(p) == OsmRelation and p.get_member_role(exterior) == "outer" ]
+            except:
+                logging.warning("Polygon with no exterior ring?")
+                return None
+
             for i in range(1, ogrgeometry.GetGeometryCount()):
                 interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i), {})
-                interior.addparent(relation)
-                relation.members.append((interior, "inner"))
+                members.append((interior, "inner"))
+                if not any(interior.get_parents()) and any(potential_duplicate_relations):
+                    # next members: if interior doesn't belong to another relation then this
+                    #               relation is unique
+                    potential_duplicate_relations.clear()
+
+            duplicate_relations = \
+                self.__verify_duplicate_relations(potential_duplicate_relations, members)
+
+            for duplicate_relation in duplicate_relations:
+                merged_tags = self.translation.merge_tags('relation', duplicate_relation.tags, tags)
+                if merged_tags is not None:
+                    duplicate_relation.tags = merged_tags
+                    return duplicate_relation
+
+            relation = self.__add_relation(tags)
+            for m in members:
+                m[0].addparent(relation)
+            relation.members = members
             return relation
 
 
@@ -294,8 +327,7 @@ class OsmData:
 
 
     def __split_way_in_relation(self, rel, way_parts):
-        way_roles = [ m[1] for m in rel.members if m[0] == way_parts[0] ]
-        way_role = "" if len(way_roles) == 0 else way_roles[0]
+        way_role = rel.get_member_role(way_parts[0])
         for way in way_parts[1:]:
             way.addparent(rel)
             rel.members.append((way, way_role))
