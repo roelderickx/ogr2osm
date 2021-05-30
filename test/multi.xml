@@ -1367,7 +1367,7 @@
     <tag k="drawOrder" v=""/>
     <tag k="icon" v=""/>
   </way>
-  <way visible="true" id="-92">
+  <way visible="true" id="-91">
     <nd ref="-1"/>
     <nd ref="-2"/>
     <nd ref="-3"/>
@@ -1386,7 +1386,7 @@
     <nd ref="-9"/>
     <nd ref="-1"/>
   </way>
-  <way visible="true" id="-93">
+  <way visible="true" id="-92">
     <nd ref="-17"/>
     <nd ref="-18"/>
     <nd ref="-19"/>
@@ -1405,7 +1405,7 @@
     <nd ref="-25"/>
     <nd ref="-17"/>
   </way>
-  <way visible="true" id="-94">
+  <way visible="true" id="-93">
     <nd ref="-33"/>
     <nd ref="-34"/>
     <nd ref="-35"/>
@@ -1424,7 +1424,7 @@
     <nd ref="-41"/>
     <nd ref="-33"/>
   </way>
-  <way visible="true" id="-95">
+  <way visible="true" id="-94">
     <nd ref="-49"/>
     <nd ref="-50"/>
     <nd ref="-51"/>
@@ -1443,7 +1443,7 @@
     <nd ref="-57"/>
     <nd ref="-49"/>
   </way>
-  <way visible="true" id="-96">
+  <way visible="true" id="-95">
     <nd ref="-65"/>
     <nd ref="-66"/>
     <nd ref="-67"/>
@@ -1462,7 +1462,7 @@
     <nd ref="-73"/>
     <nd ref="-65"/>
   </way>
-  <way visible="true" id="-98">
+  <way visible="true" id="-97">
     <nd ref="-9"/>
     <nd ref="-10"/>
     <nd ref="-11"/>
@@ -1481,7 +1481,7 @@
     <nd ref="-17"/>
     <nd ref="-9"/>
   </way>
-  <way visible="true" id="-99">
+  <way visible="true" id="-98">
     <nd ref="-25"/>
     <nd ref="-26"/>
     <nd ref="-27"/>
@@ -1500,7 +1500,7 @@
     <nd ref="-33"/>
     <nd ref="-25"/>
   </way>
-  <way visible="true" id="-100">
+  <way visible="true" id="-99">
     <nd ref="-41"/>
     <nd ref="-42"/>
     <nd ref="-43"/>
@@ -1519,7 +1519,7 @@
     <nd ref="-49"/>
     <nd ref="-41"/>
   </way>
-  <way visible="true" id="-101">
+  <way visible="true" id="-100">
     <nd ref="-57"/>
     <nd ref="-58"/>
     <nd ref="-59"/>
@@ -1538,12 +1538,12 @@
     <nd ref="-65"/>
     <nd ref="-57"/>
   </way>
-  <relation visible="true" id="-91">
+  <relation visible="true" id="-96">
+    <member type="way" ref="-91" role="outer"/>
     <member type="way" ref="-92" role="outer"/>
     <member type="way" ref="-93" role="outer"/>
     <member type="way" ref="-94" role="outer"/>
     <member type="way" ref="-95" role="outer"/>
-    <member type="way" ref="-96" role="outer"/>
     <tag k="type" v="multipolygon"/>
     <tag k="Name" v="MultiPolyOdd"/>
     <tag k="description" v=""/>
@@ -1557,11 +1557,11 @@
     <tag k="drawOrder" v=""/>
     <tag k="icon" v=""/>
   </relation>
-  <relation visible="true" id="-97">
+  <relation visible="true" id="-101">
+    <member type="way" ref="-97" role="outer"/>
     <member type="way" ref="-98" role="outer"/>
     <member type="way" ref="-99" role="outer"/>
     <member type="way" ref="-100" role="outer"/>
-    <member type="way" ref="-101" role="outer"/>
     <tag k="type" v="multipolygon"/>
     <tag k="Name" v="MultiPolyEven"/>
     <tag k="description" v=""/>

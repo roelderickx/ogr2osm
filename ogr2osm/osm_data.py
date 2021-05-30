@@ -132,17 +132,28 @@ class OsmData:
             return nodes
 
 
-    def __verify_duplicate_ways(self, potential_duplicate_ways, nodes):
+    def __verify_duplicate_ways(self, potential_duplicate_ways, nodes, tags):
         duplicate_ways = []
         ordered_nodes = self.__get_ordered_nodes(nodes)
         for dupway in potential_duplicate_ways:
             if len(dupway.nodes) == len(nodes):
                 dupnodes = self.__get_ordered_nodes(dupway.nodes)
+                merged_tags = None
                 if dupnodes == ordered_nodes:
-                    duplicate_ways.append((dupway, 'way'))
+                    #duplicate_ways.append((dupway, 'way'))
+                    merged_tags = self.translation.merge_tags('way', dupway.tags, tags)
                 elif dupnodes == list(reversed(ordered_nodes)):
-                    duplicate_ways.append((dupway, 'reverse_way'))
-        return duplicate_ways
+                    #duplicate_ways.append((dupway, 'reverse_way'))
+                    merged_tags = self.translation.merge_tags('reverse_way', dupway.tags, tags)
+                if merged_tags is not None:
+                    dupway.tags = merged_tags
+                    return dupway
+
+        way = self.__add_way(tags)
+        way.nodes = nodes
+        for node in nodes:
+            node.addparent(way)
+        return way
 
 
     def __parse_linestring(self, ogrgeometry, tags):
@@ -162,19 +173,7 @@ class OsmData:
                 nodes.append(node)
                 previous_node_id = node.id
 
-        duplicate_ways = self.__verify_duplicate_ways(potential_duplicate_ways, nodes)
-
-        for duplicate_way in duplicate_ways:
-            merged_tags = self.translation.merge_tags(duplicate_way[1], duplicate_way[0].tags, tags)
-            if merged_tags is not None:
-                duplicate_way[0].tags = merged_tags
-                return duplicate_way[0]
-
-        way = self.__add_way(tags)
-        way.nodes = nodes
-        for node in nodes:
-            node.addparent(way)
-        return way
+        return self.__verify_duplicate_ways(potential_duplicate_ways, nodes, tags)
 
 
     def __parse_multi_linestring(self, ogrgeometry, tags):
@@ -184,12 +183,56 @@ class OsmData:
         return ways
 
 
-    def __verify_duplicate_relations(self, potential_duplicate_relations, members):
+    def __parse_polygon_members(self, ogrgeometry, potential_duplicate_relations, first = True):
+        members = []
+        
+        # exterior ring
+        exterior_geom_type = ogrgeometry.GetGeometryRef(0).GetGeometryType()
+        if exterior_geom_type in [ ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D ]:
+            exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
+            members.append((exterior, "outer"))
+            if first:
+                # first member: add all parent relations as potential duplicates
+                potential_duplicate_relations.extend(
+                    [ p for p in exterior.get_parents() \
+                        if type(p) == OsmRelation and p.get_member_role(exterior) == "outer" ])
+            elif not any(exterior.get_parents()) and any(potential_duplicate_relations):
+                # next members: if interior doesn't belong to another relation then this
+                #               relation is unique
+                potential_duplicate_relations.clear()
+        else:
+            logging.warning("Polygon with no exterior ring?")
+            return None
+
+        # interior rings
+        for i in range(1, ogrgeometry.GetGeometryCount()):
+            interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i), {})
+            members.append((interior, "inner"))
+            if not any(interior.get_parents()) and any(potential_duplicate_relations):
+                # next members: if interior doesn't belong to another relation then this
+                #               relation is unique
+                potential_duplicate_relations.clear()
+
+        return members
+
+
+    def __verify_duplicate_relations(self, potential_duplicate_relations, members, tags):
+        if members is None:
+            return None
+
         duplicate_relations = []
         for duprelation in potential_duplicate_relations:
             if duprelation.members == members:
-                duplicate_relations.append(duprelation)
-        return duplicate_relations
+                merged_tags = self.translation.merge_tags('relation', duprelation.tags, tags)
+                if merged_tags is not None:
+                    duprelation.tags = merged_tags
+                    return duprelation
+
+        relation = self.__add_relation(tags)
+        for m in members:
+            m[0].addparent(relation)
+        relation.members = members
+        return relation
 
 
     def __parse_polygon(self, ogrgeometry, tags):
@@ -204,63 +247,23 @@ class OsmData:
             result = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), tags)
             return result
         else:
-            members = []
             potential_duplicate_relations = []
-
-            # exterior ring
-            exterior_geom_type = ogrgeometry.GetGeometryRef(0).GetGeometryType()
-            if exterior_geom_type in [ ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D ]:
-                exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
-                members.append((exterior, "outer"))
-                # first member: add all parent relations as potential duplicates
-                potential_duplicate_relations = \
-                    [ p for p in exterior.get_parents() \
-                        if type(p) == OsmRelation and p.get_member_role(exterior) == "outer" ]
-            else:
-                logging.warning("Polygon with no exterior ring?")
-                return None
-
-            # interior rings
-            for i in range(1, ogrgeometry.GetGeometryCount()):
-                interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i), {})
-                members.append((interior, "inner"))
-                if not any(interior.get_parents()) and any(potential_duplicate_relations):
-                    # next members: if interior doesn't belong to another relation then this
-                    #               relation is unique
-                    potential_duplicate_relations.clear()
-
-            duplicate_relations = \
-                self.__verify_duplicate_relations(potential_duplicate_relations, members)
-
-            for duplicate_relation in duplicate_relations:
-                merged_tags = self.translation.merge_tags('relation', duplicate_relation.tags, tags)
-                if merged_tags is not None:
-                    duplicate_relation.tags = merged_tags
-                    return duplicate_relation
-
-            relation = self.__add_relation(tags)
-            for m in members:
-                m[0].addparent(relation)
-            relation.members = members
-            return relation
+            members = self.__parse_polygon_members(ogrgeometry, potential_duplicate_relations)
+            return self.__verify_duplicate_relations(potential_duplicate_relations, members, tags)
 
 
     def __parse_multi_polygon(self, ogrgeometry, tags):
         if ogrgeometry.GetGeometryCount() > 1:
-            relation = self.__add_relation(tags)
+            members = []
+            potential_duplicate_relations = []
             for polygon in range(ogrgeometry.GetGeometryCount()):
-                ext_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(0)
-                exterior = self.__parse_linestring(ext_geom, {})
-                exterior.addparent(relation)
-                relation.members.append((exterior, "outer"))
-                for i in range(1, ogrgeometry.GetGeometryRef(polygon).GetGeometryCount()):
-                    int_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(i)
-                    interior = self.__parse_linestring(int_geom, {})
-                    interior.addparent(relation)
-                    relation.members.append((interior, "inner"))
-            return [ relation ]
+                members.extend(self.__parse_polygon_members(ogrgeometry.GetGeometryRef(polygon), \
+                                                            potential_duplicate_relations, \
+                                                            polygon == 0))
+
+            return self.__verify_duplicate_relations(potential_duplicate_relations, members, tags)
         else:
-            return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags) ]
+            return self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags)
 
 
     def __parse_collection(self, ogrgeometry, tags):
@@ -269,7 +272,7 @@ class OsmData:
             member = self.__parse_geometry(ogrgeometry.GetGeometryRef(i), {})
             member.addparent(relation)
             relation.members.append((member, "member"))
-        return [ relation ]
+        return relation
 
 
     def __parse_geometry(self, ogrgeometry, tags):
@@ -291,9 +294,9 @@ class OsmData:
         elif geometry_type in [ ogr.wkbMultiPolygon, ogr.wkbMultiPolygon25D ]:
             # OGR MultiPolygon maps easily to osm multipolygon, so special case it
             # TODO: Does anything else need special casing?
-            osmgeometries.extend(self.__parse_multi_polygon(ogrgeometry, tags))
+            osmgeometries.append(self.__parse_multi_polygon(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbGeometryCollection, ogr.wkbGeometryCollection25D ]:
-            osmgeometries.extend(self.__parse_collection(ogrgeometry, tags))
+            osmgeometries.append(self.__parse_collection(ogrgeometry, tags))
         else:
             logging.warning("Unhandled geometry, type %d", geometry_type)
 
