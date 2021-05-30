@@ -245,33 +245,31 @@ class OsmData:
             return relation
 
 
-    def __parse_collection(self, ogrgeometry, tags):
-        # OGR MultiPolygon maps easily to osm multipolygon, so special case it
-        # TODO: Does anything else need special casing?
-        geometry_type = ogrgeometry.GetGeometryType()
-        if geometry_type in [ ogr.wkbMultiPolygon, ogr.wkbMultiPolygon25D ]:
-            if ogrgeometry.GetGeometryCount() > 1:
-                relation = self.__add_relation(tags)
-                for polygon in range(ogrgeometry.GetGeometryCount()):
-                    ext_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(0)
-                    exterior = self.__parse_linestring(ext_geom, {})
-                    exterior.addparent(relation)
-                    relation.members.append((exterior, "outer"))
-                    for i in range(1, ogrgeometry.GetGeometryRef(polygon).GetGeometryCount()):
-                        int_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(i)
-                        interior = self.__parse_linestring(int_geom, {})
-                        interior.addparent(relation)
-                        relation.members.append((interior, "inner"))
-                return [ relation ]
-            else:
-                return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags) ]
-        else:
+    def __parse_multi_polygon(self, ogrgeometry, tags):
+        if ogrgeometry.GetGeometryCount() > 1:
             relation = self.__add_relation(tags)
-            for i in range(ogrgeometry.GetGeometryCount()):
-                member = self.__parse_geometry(ogrgeometry.GetGeometryRef(i), {})
-                member.addparent(relation)
-                relation.members.append((member, "member"))
+            for polygon in range(ogrgeometry.GetGeometryCount()):
+                ext_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(0)
+                exterior = self.__parse_linestring(ext_geom, {})
+                exterior.addparent(relation)
+                relation.members.append((exterior, "outer"))
+                for i in range(1, ogrgeometry.GetGeometryRef(polygon).GetGeometryCount()):
+                    int_geom = ogrgeometry.GetGeometryRef(polygon).GetGeometryRef(i)
+                    interior = self.__parse_linestring(int_geom, {})
+                    interior.addparent(relation)
+                    relation.members.append((interior, "inner"))
             return [ relation ]
+        else:
+            return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags) ]
+
+
+    def __parse_collection(self, ogrgeometry, tags):
+        relation = self.__add_relation(tags)
+        for i in range(ogrgeometry.GetGeometryCount()):
+            member = self.__parse_geometry(ogrgeometry.GetGeometryRef(i), {})
+            member.addparent(relation)
+            relation.members.append((member, "member"))
+        return [ relation ]
 
 
     def __parse_geometry(self, ogrgeometry, tags):
@@ -290,13 +288,14 @@ class OsmData:
             osmgeometries.extend(self.__parse_multi_linestring(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbPolygon, ogr.wkbPolygon25D ]:
             osmgeometries.append(self.__parse_polygon(ogrgeometry, tags))
-        elif geometry_type in [ ogr.wkbMultiPolygon, \
-                                ogr.wkbGeometryCollection, \
-                                ogr.wkbMultiPolygon25D, \
-                                ogr.wkbGeometryCollection25D ]:
+        elif geometry_type in [ ogr.wkbMultiPolygon, ogr.wkbMultiPolygon25D ]:
+            # OGR MultiPolygon maps easily to osm multipolygon, so special case it
+            # TODO: Does anything else need special casing?
+            osmgeometries.extend(self.__parse_multi_polygon(ogrgeometry, tags))
+        elif geometry_type in [ ogr.wkbGeometryCollection, ogr.wkbGeometryCollection25D ]:
             osmgeometries.extend(self.__parse_collection(ogrgeometry, tags))
         else:
-            logging.warning("Unhandled geometry, type %s", str(geometry_type))
+            logging.warning("Unhandled geometry, type %d", geometry_type)
 
         return osmgeometries
 
