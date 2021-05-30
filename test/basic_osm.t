@@ -392,6 +392,45 @@ timestamp:
   Writing file footer
   $ cp test1.osm $TESTDIR/check_manual_timestamp.osm
 
+duplicate:
+  $ ogr2osm -f -t $TESTDIR/translations/duplicate-translation.py $TESTDIR/shapefiles/duplicate.kml
+  Found valid translation class DuplicateTranslation
+  Preparing to convert .* (re)
+  Detected projection metadata:
+  GEOGCS["WGS 84",
+      DATUM["WGS_1984",
+          SPHEROID["WGS 84",6378137,298.257223563,
+              AUTHORITY["EPSG","7030"]],
+          AUTHORITY["EPSG","6326"]],
+      PRIMEM["Greenwich",0,
+          AUTHORITY["EPSG","8901"]],
+      UNIT["degree",0.0174532925199433,
+          AUTHORITY["EPSG","9122"]],
+      AXIS["Latitude",NORTH],
+      AXIS["Longitude",EAST],
+      AUTHORITY["EPSG","4326"]]
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate node
+  Merging tags for duplicate way
+  Merging tags for duplicate way
+  Merging tags for duplicate reverse_way
+  Merging tags for duplicate way
+  Merging tags for duplicate relation
+  Splitting long ways
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
+
 duplicatewaynodes:
   $ ogr2osm -f $TESTDIR/shapefiles/duplicate-way-nodes.gml
   Using default translations
