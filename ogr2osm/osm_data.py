@@ -110,6 +110,13 @@ class OsmData:
         return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False)
 
 
+    def __parse_multi_point(self, ogrgeometry, tags):
+        nodes = []
+        for geometry in range(ogrgeometry.GetGeometryCount()):
+            nodes.append(self.__parse_point(ogrgeometry.GetGeometryRef(geometry), tags))
+        return nodes
+
+
     def __get_ordered_nodes(self, nodes):
         is_closed = len(nodes) > 2 and nodes[0].id == nodes[-1].id
         if is_closed:
@@ -272,13 +279,15 @@ class OsmData:
 
         if geometry_type in [ ogr.wkbPoint, ogr.wkbPoint25D ]:
             osmgeometries.append(self.__parse_point(ogrgeometry, tags))
+        elif geometry_type in [ ogr.wkbMultiPoint, ogr.wkbMultiPoint25D ]:
+            osmgeometries.extend(self.__parse_multi_point(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D ]:
             # ogr.wkbLinearRing25D does not exist
             osmgeometries.append(self.__parse_linestring(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbPolygon, ogr.wkbPolygon25D ]:
             osmgeometries.append(self.__parse_polygon(ogrgeometry, tags))
-        elif geometry_type in [ ogr.wkbMultiPoint, ogr.wkbMultiLineString, ogr.wkbMultiPolygon, \
-                                ogr.wkbGeometryCollection, ogr.wkbMultiPoint25D, \
+        elif geometry_type in [ ogr.wkbMultiLineString, ogr.wkbMultiPolygon, \
+                                ogr.wkbGeometryCollection, \
                                 ogr.wkbMultiLineString25D, ogr.wkbMultiPolygon25D, \
                                 ogr.wkbGeometryCollection25D ]:
             osmgeometries.extend(self.__parse_collection(ogrgeometry, tags))
