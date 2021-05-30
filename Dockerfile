@@ -1,32 +1,23 @@
-FROM osgeo/gdal:ubuntu-full-3.2.2
+FROM amd64/ubuntu:20.04
 
 WORKDIR /app
 
-RUN apt-get update \
-  && apt-get install -y \
-    libprotobuf-dev \
+RUN apt-get update
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libxml2-utils \
-    osmctools \
+    gdal-bin \
+    libgdal-dev \
+    python-is-python3 \
+    python3-gdal \
+    libprotobuf-dev \
     protobuf-compiler \
-    python3-pip
+    osmctools \
+    pip
 
-RUN pip3 install \
-  --no-cache-dir \
-  cram \
-  lxml \
-  protobuf
+RUN unlink /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime
 
-# A clumsy hack to avoid errors
-RUN cd /usr/lib/python3/dist-packages/osgeo \
-  && ln -s ./_gdal.cpython*.so ./_gdal.so \
-  && ln -s ./_gdal_array.cpython*.so ./_gdal_array.so \
-  && ln -s ./_gdalconst.cpython*.so ./_gdalconst.so \
-  && ln -s ./_gnm.cpython*.so ./_gnm.so \
-  && ln -s ./_ogr.cpython*.so ./_ogr.so \
-  && ln -s ./_osr.cpython*.so ./_osr.so
+RUN pip install cram lxml
+RUN pip install --upgrade protobuf
 
-ENV PYTHONPATH=/usr/lib/python3/dist-packages/
-
-COPY ./ ./
-
-ENTRYPOINT ["python3", "-m", "ogr2osm"]
