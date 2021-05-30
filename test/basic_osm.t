@@ -430,6 +430,7 @@ duplicate:
   Writing ways
   Writing relations
   Writing file footer
+  $ xmllint --format duplicate.osm | diff -uNr - $TESTDIR/duplicate.xml
 
 duplicatewaynodes:
   $ ogr2osm -f $TESTDIR/shapefiles/duplicate-way-nodes.gml

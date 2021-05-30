@@ -192,17 +192,21 @@ class OsmData:
         else:
             members = []
             potential_duplicate_relations = []
-            try:
+
+            # exterior ring
+            exterior_geom_type = ogrgeometry.GetGeometryRef(0).GetGeometryType()
+            if exterior_geom_type in [ ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D ]:
                 exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
                 members.append((exterior, "outer"))
                 # first member: add all parent relations as potential duplicates
                 potential_duplicate_relations = \
                     [ p for p in exterior.get_parents() \
                         if type(p) == OsmRelation and p.get_member_role(exterior) == "outer" ]
-            except:
+            else:
                 logging.warning("Polygon with no exterior ring?")
                 return None
 
+            # interior rings
             for i in range(1, ogrgeometry.GetGeometryCount()):
                 interior = self.__parse_linestring(ogrgeometry.GetGeometryRef(i), {})
                 members.append((interior, "inner"))
