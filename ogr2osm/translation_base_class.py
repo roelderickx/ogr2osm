@@ -52,8 +52,10 @@ class TranslationBase:
         This method is called when two geometries are found to be duplicates.
         Override this method if you want to customize how the tags of both
         geometries should be merged. The parameter geometry_type is a string
-        containing either 'node', 'way' or 'relation', depending on which type
-        of geometry the tags belong to.
+        containing either 'node', 'way', 'reverse_way' or 'relation', depending
+        on which type of geometry the tags belong to. Type 'reverse_way' is a
+        special case of 'way', it indicates both ways are duplicates when one
+        of them is reversed.
         Return None if the tags cannot be merged. As a result both geometries
         will be included in the output file, each with their respective tags.
         Warning: not merging geometries will lead to invalid osm files and

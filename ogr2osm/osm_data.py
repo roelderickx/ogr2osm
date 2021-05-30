@@ -132,10 +132,9 @@ class OsmData:
             if len(dupway.nodes) == len(nodes):
                 dupnodes = self.__get_ordered_nodes(dupway.nodes)
                 if dupnodes == ordered_nodes:
-                    duplicate_ways.append(dupway)
-                elif True: # TODO both dupway.nodes and ordered_nodes can be reversed
-                    if dupnodes == reversed(ordered_nodes):
-                        duplicate_ways.append(dupway)
+                    duplicate_ways.append((dupway, 'way'))
+                elif dupnodes == list(reversed(ordered_nodes)):
+                    duplicate_ways.append((dupway, 'reverse_way'))
         return duplicate_ways
 
 
@@ -159,10 +158,10 @@ class OsmData:
         duplicate_ways = self.__verify_duplicate_ways(potential_duplicate_ways, nodes)
 
         for duplicate_way in duplicate_ways:
-            merged_tags = self.translation.merge_tags('way', duplicate_way.tags, tags)
+            merged_tags = self.translation.merge_tags(duplicate_way[1], duplicate_way[0].tags, tags)
             if merged_tags is not None:
-                duplicate_way.tags = merged_tags
-                return duplicate_way
+                duplicate_way[0].tags = merged_tags
+                return duplicate_way[0]
 
         way = self.__add_way(tags)
         way.nodes = nodes
