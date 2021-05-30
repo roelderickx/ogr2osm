@@ -112,8 +112,8 @@ class OsmData:
 
     def __parse_multi_point(self, ogrgeometry, tags):
         nodes = []
-        for geometry in range(ogrgeometry.GetGeometryCount()):
-            nodes.append(self.__parse_point(ogrgeometry.GetGeometryRef(geometry), tags))
+        for point in range(ogrgeometry.GetGeometryCount()):
+            nodes.append(self.__parse_point(ogrgeometry.GetGeometryRef(point), tags))
         return nodes
 
 
@@ -175,6 +175,13 @@ class OsmData:
         for node in nodes:
             node.addparent(way)
         return way
+
+
+    def __parse_multi_linestring(self, ogrgeometry, tags):
+        ways = []
+        for linestring in range(ogrgeometry.GetGeometryCount()):
+            ways.append(self.__parse_linestring(ogrgeometry.GetGeometryRef(linestring), tags))
+        return ways
 
 
     def __verify_duplicate_relations(self, potential_duplicate_relations, members):
@@ -258,11 +265,6 @@ class OsmData:
                 return [ relation ]
             else:
                 return [ self.__parse_polygon(ogrgeometry.GetGeometryRef(0), tags) ]
-        elif geometry_type in [ ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ]:
-            geometries = []
-            for linestring in range(ogrgeometry.GetGeometryCount()):
-                geometries.append(self.__parse_linestring(ogrgeometry.GetGeometryRef(linestring), tags))
-            return geometries
         else:
             relation = self.__add_relation(tags)
             for i in range(ogrgeometry.GetGeometryCount()):
@@ -284,11 +286,13 @@ class OsmData:
         elif geometry_type in [ ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D ]:
             # ogr.wkbLinearRing25D does not exist
             osmgeometries.append(self.__parse_linestring(ogrgeometry, tags))
+        elif geometry_type in [ ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ]:
+            osmgeometries.extend(self.__parse_multi_linestring(ogrgeometry, tags))
         elif geometry_type in [ ogr.wkbPolygon, ogr.wkbPolygon25D ]:
             osmgeometries.append(self.__parse_polygon(ogrgeometry, tags))
-        elif geometry_type in [ ogr.wkbMultiLineString, ogr.wkbMultiPolygon, \
+        elif geometry_type in [ ogr.wkbMultiPolygon, \
                                 ogr.wkbGeometryCollection, \
-                                ogr.wkbMultiLineString25D, ogr.wkbMultiPolygon25D, \
+                                ogr.wkbMultiPolygon25D, \
                                 ogr.wkbGeometryCollection25D ]:
             osmgeometries.extend(self.__parse_collection(ogrgeometry, tags))
         else:
