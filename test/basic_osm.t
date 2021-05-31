@@ -530,3 +530,41 @@ multi:
   Writing file footer
   $ xmllint --format multi.osm | diff -uNr - $TESTDIR/multi.xml
 
+multiduplicate:
+  $ ogr2osm -f $TESTDIR/shapefiles/multi-duplicate.kml
+  Using default translations
+  Preparing to convert .* (re)
+  Detected projection metadata:
+  GEOGCS["WGS 84",
+      DATUM["WGS_1984",
+          SPHEROID["WGS 84",6378137,298.257223563,
+              AUTHORITY["EPSG","7030"]],
+          AUTHORITY["EPSG","6326"]],
+      PRIMEM["Greenwich",0,
+          AUTHORITY["EPSG","8901"]],
+      UNIT["degree",0.0174532925199433,
+          AUTHORITY["EPSG","9122"]],
+      AXIS["Latitude",NORTH],
+      AXIS["Longitude",EAST],
+      AUTHORITY["EPSG","4326"]]
+  Detected projection metadata:
+  GEOGCS["WGS 84",
+      DATUM["WGS_1984",
+          SPHEROID["WGS 84",6378137,298.257223563,
+              AUTHORITY["EPSG","7030"]],
+          AUTHORITY["EPSG","6326"]],
+      PRIMEM["Greenwich",0,
+          AUTHORITY["EPSG","8901"]],
+      UNIT["degree",0.0174532925199433,
+          AUTHORITY["EPSG","9122"]],
+      AXIS["Latitude",NORTH],
+      AXIS["Longitude",EAST],
+      AUTHORITY["EPSG","4326"]]
+  Splitting long ways
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
+  $ xmllint --format multi-duplicate.osm | diff -uNr - $TESTDIR/multi.xml
+
