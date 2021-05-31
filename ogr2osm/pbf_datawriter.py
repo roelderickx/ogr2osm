@@ -11,7 +11,7 @@ accompany any distribution of this code.
 
 import logging, sys, time, zlib
 
-from .osm_geometries import OsmId, OsmPoint, OsmWay, OsmRelation
+from .osm_geometries import OsmId, OsmNode, OsmWay, OsmRelation
 from .datawriter_base_class import DataWriterBase
 
 is_protobuf_installed = False
@@ -86,13 +86,13 @@ try:
             self.__last_lon = 0
 
 
-        def add_node(self, osmpoint):
+        def add_node(self, osmnode):
             pbftimestamp = self._timestamp_to_pbf(self._timestamp)
             pbfchangeset = 1
-            pbflat = self._lat_to_pbf(osmpoint.y)
-            pbflon = self._lon_to_pbf(osmpoint.x)
+            pbflat = self._lat_to_pbf(osmnode.y)
+            pbflon = self._lon_to_pbf(osmnode.x)
 
-            self.primitive_group.dense.id.append(osmpoint.id - self.__last_id)
+            self.primitive_group.dense.id.append(osmnode.id - self.__last_id)
 
             # osmosis always requires the whole denseinfo block
             if self._add_version or self._add_timestamp:
@@ -105,13 +105,13 @@ try:
             self.primitive_group.dense.lat.append(pbflat - self.__last_lat)
             self.primitive_group.dense.lon.append(pbflon - self.__last_lon)
 
-            self.__last_id = osmpoint.id
+            self.__last_id = osmnode.id
             self.__last_timestamp = pbftimestamp
             self.__last_changeset = pbfchangeset
             self.__last_lat = pbflat
             self.__last_lon = pbflon
 
-            for (key, value) in osmpoint.tags.items():
+            for (key, value) in osmnode.tags.items():
                 self.primitive_group.dense.keys_vals.append(self._add_string(key))
                 self.primitive_group.dense.keys_vals.append(self._add_string(value))
             self.primitive_group.dense.keys_vals.append(0)

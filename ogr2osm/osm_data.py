@@ -13,7 +13,7 @@ import logging
 from osgeo import ogr
 from osgeo import osr
 
-from .osm_geometries import OsmBoundary, OsmPoint, OsmWay, OsmRelation
+from .osm_geometries import OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
     def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False):
@@ -83,12 +83,12 @@ class OsmData:
                     duplicate_node.tags = merged_tags
                     return duplicate_node
 
-            node = OsmPoint(x, y, tags)
+            node = OsmNode(x, y, tags)
             self.__unique_node_index[unique_node_id].append(len(self.__nodes))
             self.__nodes.append(node)
             return node
         else:
-            node = OsmPoint(x, y, tags)
+            node = OsmNode(x, y, tags)
             self.__unique_node_index[unique_node_id] = [ len(self.__nodes) ]
             self.__nodes.append(node)
             return node

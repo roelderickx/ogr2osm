@@ -103,7 +103,7 @@ class OsmGeometry:
 
 
 
-class OsmPoint(OsmGeometry):
+class OsmNode(OsmGeometry):
     def __init__(self, x, y, tags):
         super().__init__()
         self.x = x
