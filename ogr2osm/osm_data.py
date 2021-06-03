@@ -190,12 +190,12 @@ class OsmData:
         exterior_geom_type = ogrgeometry.GetGeometryRef(0).GetGeometryType()
         if exterior_geom_type in [ ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D ]:
             exterior = self.__parse_linestring(ogrgeometry.GetGeometryRef(0), {})
-            members.append((exterior, "outer"))
+            members.append((exterior, 'outer'))
             if first:
                 # first member: add all parent relations as potential duplicates
                 potential_duplicate_relations.extend(
                     [ p for p in exterior.get_parents() \
-                        if type(p) == OsmRelation and p.get_member_role(exterior) == "outer" ])
+                        if type(p) == OsmRelation and p.get_member_role(exterior) == 'outer' ])
             elif not any(exterior.get_parents()) and any(potential_duplicate_relations):
                 # next members: if interior doesn't belong to another relation then this
                 #               relation is unique
@@ -267,12 +267,31 @@ class OsmData:
 
 
     def __parse_collection(self, ogrgeometry, tags):
-        relation = self.__add_relation(tags)
+        members = []
+        potential_duplicate_relations = []
         for i in range(ogrgeometry.GetGeometryCount()):
-            member = self.__parse_geometry(ogrgeometry.GetGeometryRef(i), {})
-            member.addparent(relation)
-            relation.members.append((member, "member"))
-        return relation
+            parsed_geometries = self.__parse_geometry(ogrgeometry.GetGeometryRef(i), {})
+
+            for (geom_index, geom) in enumerate(parsed_geometries):
+                role = 'member'
+                if type(geom) == OsmWay and geom_index == 0:
+                    role = 'outer'
+                elif type(geom) == OsmWay and geom_index > 0:
+                    role = 'inner'
+
+                members.append((geom, role))
+
+                if i == 0 and geom_index == 0:
+                    # first member: add all parent relations as potential duplicates
+                    potential_duplicate_relations.extend(
+                        [ p for p in geom.get_parents() \
+                            if type(p) == OsmRelation and p.get_member_role(geom) == role ])
+                elif not any(geom.get_parents()) and any(potential_duplicate_relations):
+                    # next members: if member doesn't belong to another relation then this
+                    #               relation is unique
+                    potential_duplicate_relations.clear()
+
+        return self.__verify_duplicate_relations(potential_duplicate_relations, members, tags)
 
 
     def __parse_geometry(self, ogrgeometry, tags):

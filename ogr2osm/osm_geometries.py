@@ -172,7 +172,15 @@ class OsmRelation(OsmGeometry):
         xmlobject = etree.Element('relation', xmlattrs)
 
         for (member, role) in self.members:
-            xmlmember = etree.Element('member', { 'type':'way', 'ref':('%d' % member.id), 'role':role })
+            member_type = None
+            if type(member) == OsmNode:
+                member_type = 'node'
+            elif type(member) == OsmWay:
+                member_type = 'way'
+            elif type(member) == OsmRelation:
+                member_type = 'relation'
+            xmlmember = etree.Element('member', { 'type':member_type, \
+                                                  'ref':('%d' % member.id), 'role':role })
             xmlobject.append(xmlmember)
 
         tag = etree.Element('tag', { 'k':'type', 'v':'multipolygon' })
