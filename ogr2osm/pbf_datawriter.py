@@ -170,15 +170,17 @@ try:
                 relation.info.user_sid = 0
 
             prev_member_id = 0
-            for member in osmrelation.members:
+            for (member, role) in osmrelation.members:
+                relation.roles_sid.append(self._add_string(role))
+
                 relation.memids.append(member.id - prev_member_id)
                 prev_member_id = member.id
 
-                relation_type = osmprotobuf.MemberType.NODE
+                relation_type = osmprotobuf.Relation.MemberType.NODE
                 if type(member) == OsmWay:
-                    relation_type = osmprotobuf.MemberType.WAY
+                    relation_type = osmprotobuf.Relation.MemberType.WAY
                 elif type(member) == OsmRelation:
-                    relation_type = osmprotobuf.MemberType.RELATION
+                    relation_type = osmprotobuf.Relation.MemberType.RELATION
                 relation.types.append(relation_type)
 
             self.primitive_group.relations.append(relation)
