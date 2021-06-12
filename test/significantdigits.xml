@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <osm version="0.6" generator="ogr2osm 1.0.1" upload="false">
   <node visible="true" id="-2" lat="49.21052" lon="-122.86913"/>
   <node visible="true" id="-3" lat="49.21052" lon="-122.86742"/>

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <osm version="0.6" generator="ogr2osm 1.0.1" upload="false">
   <bounds minlon="-122.889139974" minlat="49.191925705" maxlon="-122.734342225" maxlat="49.216612597"/>
   <node visible="true" id="-2" lat="49.210518573" lon="-122.869133894"/>
