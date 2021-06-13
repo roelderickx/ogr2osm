@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <osm version="0.6" generator="ogr2osm 1.0.1" upload="false">
   <node visible="true" id="-1" lat="35.547775" lon="140.329679"/>
   <node visible="true" id="-2" lat="35.547716" lon="140.329862"/>
@@ -9917,20 +9917,20 @@
     <member type="way" ref="-2357" role="inner"/>
     <member type="way" ref="-4592" role="outer"/>
     <tag k="type" v="multipolygon"/>
-    <tag k="N03_001" v="&#x5343;&#x8449;&#x770C;"/>
+    <tag k="N03_001" v="千葉県"/>
     <tag k="N03_002" v=""/>
-    <tag k="N03_003" v="&#x5C71;&#x6B66;&#x90E1;"/>
-    <tag k="N03_004" v="&#x5927;&#x7DB2;&#x767D;&#x91CC;&#x753A;"/>
+    <tag k="N03_003" v="山武郡"/>
+    <tag k="N03_004" v="大網白里町"/>
     <tag k="N03_007" v="12402"/>
   </relation>
   <relation visible="true" id="-4591">
     <member type="way" ref="-4590" role="outer"/>
     <member type="way" ref="-4593" role="outer"/>
     <tag k="type" v="multipolygon"/>
-    <tag k="N03_001" v="&#x5343;&#x8449;&#x770C;"/>
+    <tag k="N03_001" v="千葉県"/>
     <tag k="N03_002" v=""/>
     <tag k="N03_003" v=""/>
-    <tag k="N03_004" v="&#x8302;&#x539F;&#x5E02;"/>
+    <tag k="N03_004" v="茂原市"/>
     <tag k="N03_007" v="12210"/>
   </relation>
 </osm>

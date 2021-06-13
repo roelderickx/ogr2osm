@@ -39,13 +39,13 @@ class OsmDataWriter(DataWriterBase):
         #    self.f = gzip.open(self.filename, "wb", self.gzip_compression_level)
         #else:
         #    self.f = open(self.filename, "w", buffering = -1)
-        self.f = open(self.filename, 'w', buffering = -1)
+        self.f = open(self.filename, 'w', buffering=-1, encoding='utf-8')
 
 
     def write_header(self, bounds):
         logging.debug("Writing file header")
-
-        self.f.write('<?xml version="1.0"?>\n')
+        
+        self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<osm version="0.6" generator="ogr2osm %s"' % self.get_version())
         if self.never_upload:
             self.f.write(' upload="never"')
