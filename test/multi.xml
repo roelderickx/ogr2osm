@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <osm version="0.6" generator="ogr2osm 1.0.1" upload="false">
   <node visible="true" id="-1" lat="42." lon="4.">
     <tag k="Name" v="MultiPoint"/>
