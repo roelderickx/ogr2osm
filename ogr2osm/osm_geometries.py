@@ -161,7 +161,7 @@ class OsmRelation(OsmGeometry):
 
     def get_member_role(self, member):
         member_roles = [ m[1] for m in self.members if m[0] == member ]
-        member_role = "" if len(member_roles) == 0 else member_roles[0]
+        member_role = member_roles[0] if any(member_roles) else ""
         return member_role
 
 
