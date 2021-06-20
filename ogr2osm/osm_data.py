@@ -267,31 +267,36 @@ class OsmData:
 
 
     def __parse_collection(self, ogrgeometry, tags):
+        osmgeometries = []
         members = []
         potential_duplicate_relations = []
-        for i in range(ogrgeometry.GetGeometryCount()):
-            parsed_geometries = self.__parse_geometry(ogrgeometry.GetGeometryRef(i), {})
+        for geom in range(ogrgeometry.GetGeometryCount()):
+            collection_geom = ogrgeometry.GetGeometryRef(geom)
+            collection_geom_type = collection_geom.GetGeometryType()
 
-            for (geom_index, geom) in enumerate(parsed_geometries):
-                role = 'member'
-                if type(geom) == OsmWay and geom_index == 0:
-                    role = 'outer'
-                elif type(geom) == OsmWay and geom_index > 0:
-                    role = 'inner'
+            if collection_geom_type in [ ogr.wkbPoint, ogr.wkbPoint25D, \
+                                         ogr.wkbMultiPoint, ogr.wkbMultiPoint25D, \
+                                         ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D, \
+                                         ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ]:
+                osmgeometries.extend(self.__parse_geometry(collection_geom, tags))
+            elif collection_geom_type in [ ogr.wkbPolygon, ogr.wkbPolygon25D, \
+                                           ogr.wkbMultiPolygon, ogr.wkbMultiPolygon25D ]:
+                members.extend(self.__parse_polygon_members(collection_geom, \
+                                                            potential_duplicate_relations, \
+                                                            not any(members)))
+            else:
+                # no support for nested collections or other unsupported types
+                logging.warning("Unhandled geometry in collection, type %d", geometry_type)
 
-                members.append((geom, role))
+        if len(members) == 1 and len(members[0].nodes) <= self.max_points_in_way:
+            # only 1 polygon with 1 outer ring
+            member[0].tags.update(tags)
+            osmgeometries.append(member[0])
+        elif len(members) > 1:
+            osmgeometries.append(\
+                self.__verify_duplicate_relations(potential_duplicate_relations, members, tags))
 
-                if i == 0 and geom_index == 0:
-                    # first member: add all parent relations as potential duplicates
-                    potential_duplicate_relations.extend(
-                        [ p for p in geom.get_parents() \
-                            if type(p) == OsmRelation and p.get_member_role(geom) == role ])
-                elif not any(geom.get_parents()) and any(potential_duplicate_relations):
-                    # next members: if member doesn't belong to another relation then this
-                    #               relation is unique
-                    potential_duplicate_relations.clear()
-
-        return self.__verify_duplicate_relations(potential_duplicate_relations, members, tags)
+        return osmgeometries
 
 
     def __parse_geometry(self, ogrgeometry, tags):
