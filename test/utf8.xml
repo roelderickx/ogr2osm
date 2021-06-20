@@ -6,8 +6,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="3.230.000 kM"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-51.365500"/>
-    <tag k="LATITUDE" v="-20.385900"/>
+    <tag k="LONGITUDE" v="-51.3655"/>
+    <tag k="LATITUDE" v="-20.3859"/>
     <tag k="GEO_ID" v="38"/>
   </node>
   <node visible="true" id="-2" lat="-21.300341558" lon="-49.787128971">
@@ -16,8 +16,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="264.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.786700"/>
-    <tag k="LATITUDE" v="-21.299800"/>
+    <tag k="LONGITUDE" v="-49.7867"/>
+    <tag k="LATITUDE" v="-21.2998"/>
     <tag k="GEO_ID" v="39"/>
   </node>
   <node visible="true" id="-3" lat="-22.786209367" lon="-49.73037107">
@@ -26,8 +26,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="2.800 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.729900"/>
-    <tag k="LATITUDE" v="-22.785700"/>
+    <tag k="LONGITUDE" v="-49.7299"/>
+    <tag k="LATITUDE" v="-22.7857"/>
     <tag k="GEO_ID" v="40"/>
   </node>
   <node visible="true" id="-4" lat="-22.778857403" lon="-49.687829532">
@@ -36,8 +36,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="5.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.687400"/>
-    <tag k="LATITUDE" v="-22.778300"/>
+    <tag k="LONGITUDE" v="-49.6874"/>
+    <tag k="LATITUDE" v="-22.7783"/>
     <tag k="GEO_ID" v="41"/>
   </node>
   <node visible="true" id="-5" lat="-20.172510876" lon="-49.653572022">
@@ -46,8 +46,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="20.400 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.653100"/>
-    <tag k="LATITUDE" v="-20.172000"/>
+    <tag k="LONGITUDE" v="-49.6531"/>
+    <tag k="LATITUDE" v="-20.172"/>
     <tag k="GEO_ID" v="42"/>
   </node>
   <node visible="true" id="-6" lat="-20.303998048" lon="-49.223936324">
@@ -56,8 +56,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.440.000 kM"/>
     <tag k="PROPRIET_R" v="FURNAS - FURNAS CENTRAIS ELÉTRICAS"/>
-    <tag k="LONGITUDE" v="-49.223500"/>
-    <tag k="LATITUDE" v="-20.303500"/>
+    <tag k="LONGITUDE" v="-49.2235"/>
+    <tag k="LATITUDE" v="-20.3035"/>
     <tag k="GEO_ID" v="43"/>
   </node>
   <node visible="true" id="-7" lat="-20.238841144" lon="-49.390837098">
@@ -66,8 +66,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="15.300 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.390400"/>
-    <tag k="LATITUDE" v="-20.238300"/>
+    <tag k="LONGITUDE" v="-49.3904"/>
+    <tag k="LATITUDE" v="-20.2383"/>
     <tag k="GEO_ID" v="44"/>
   </node>
   <node visible="true" id="-8" lat="-24.420342684" lon="-48.745353666">
@@ -76,8 +76,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.600 kW"/>
     <tag k="PROPRIET_R" v="MARING - COMPANHIA DE CIMENTO PORTLAND MARINGÁ"/>
-    <tag k="LONGITUDE" v="-48.744900"/>
-    <tag k="LATITUDE" v="-24.419800"/>
+    <tag k="LONGITUDE" v="-48.7449"/>
+    <tag k="LATITUDE" v="-24.4198"/>
     <tag k="GEO_ID" v="45"/>
   </node>
   <node visible="true" id="-9" lat="-24.652552717" lon="-48.647784218">
@@ -86,8 +86,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="150.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.647300"/>
-    <tag k="LATITUDE" v="-24.652000"/>
+    <tag k="LONGITUDE" v="-48.6473"/>
+    <tag k="LATITUDE" v="-24.652"/>
     <tag k="GEO_ID" v="46"/>
   </node>
   <node visible="true" id="-10" lat="-24.628775785" lon="-48.571070201">
@@ -96,8 +96,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="75.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.570600"/>
-    <tag k="LATITUDE" v="-24.628200"/>
+    <tag k="LONGITUDE" v="-48.5706"/>
+    <tag k="LATITUDE" v="-24.6282"/>
     <tag k="GEO_ID" v="47"/>
   </node>
   <node visible="true" id="-11" lat="-23.99652154" lon="-48.718969757">
@@ -106,8 +106,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.600 kW"/>
     <tag k="PROPRIET_R" v="MARING - COMPANHIA DE CIMENTO PORTLAND MARINGÁ"/>
-    <tag k="LONGITUDE" v="-48.718500"/>
-    <tag k="LATITUDE" v="-23.996000"/>
+    <tag k="LONGITUDE" v="-48.7185"/>
+    <tag k="LATITUDE" v="-23.996"/>
     <tag k="GEO_ID" v="48"/>
   </node>
   <node visible="true" id="-12" lat="-24.060515967" lon="-48.724068053">
@@ -116,8 +116,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.000 kW"/>
     <tag k="PROPRIET_R" v="MARING - COMPANHIA DE CIMENTO PORTLAND MARINGÁ"/>
-    <tag k="LONGITUDE" v="-48.723600"/>
-    <tag k="LATITUDE" v="-24.059900"/>
+    <tag k="LONGITUDE" v="-48.7236"/>
+    <tag k="LATITUDE" v="-24.0599"/>
     <tag k="GEO_ID" v="49"/>
   </node>
   <node visible="true" id="-13" lat="-23.550654311" lon="-48.627725209">
@@ -126,8 +126,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="25.600 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.627300"/>
-    <tag k="LATITUDE" v="-23.550100"/>
+    <tag k="LONGITUDE" v="-48.6273"/>
+    <tag k="LATITUDE" v="-23.5501"/>
     <tag k="GEO_ID" v="50"/>
   </node>
   <node visible="true" id="-14" lat="-22.109955592" lon="-48.820055851">
@@ -136,8 +136,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="6.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.819600"/>
-    <tag k="LATITUDE" v="-22.109400"/>
+    <tag k="LONGITUDE" v="-48.8196"/>
+    <tag k="LATITUDE" v="-22.1094"/>
     <tag k="GEO_ID" v="51"/>
   </node>
   <node visible="true" id="-15" lat="-22.513340197" lon="-48.638264928">
@@ -146,8 +146,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.680 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.637800"/>
-    <tag k="LATITUDE" v="-22.512800"/>
+    <tag k="LONGITUDE" v="-48.6378"/>
+    <tag k="LATITUDE" v="-22.5128"/>
     <tag k="GEO_ID" v="52"/>
   </node>
   <node visible="true" id="-16" lat="-22.537725864" lon="-48.493475198">
@@ -156,8 +156,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="140.760 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.493000"/>
-    <tag k="LATITUDE" v="-22.537200"/>
+    <tag k="LONGITUDE" v="-48.493"/>
+    <tag k="LATITUDE" v="-22.5372"/>
     <tag k="GEO_ID" v="53"/>
   </node>
   <node visible="true" id="-17" lat="-21.817662714" lon="-48.64321179">
@@ -166,8 +166,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="1.000 kW"/>
     <tag k="PROPRIET_R" v="STA FÉ - USINA STA FÉ LTDA"/>
-    <tag k="LONGITUDE" v="-48.642800"/>
-    <tag k="LATITUDE" v="-21.817100"/>
+    <tag k="LONGITUDE" v="-48.6428"/>
+    <tag k="LATITUDE" v="-21.8171"/>
     <tag k="GEO_ID" v="54"/>
   </node>
   <node visible="true" id="-18" lat="-21.857103474" lon="-48.501500143">
@@ -176,8 +176,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="6.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.501100"/>
-    <tag k="LATITUDE" v="-21.856500"/>
+    <tag k="LONGITUDE" v="-48.5011"/>
+    <tag k="LATITUDE" v="-21.8565"/>
     <tag k="GEO_ID" v="55"/>
   </node>
   <node visible="true" id="-19" lat="-20.131702304" lon="-48.586492241">
@@ -186,8 +186,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="320.000 kW"/>
     <tag k="PROPRIET_R" v="FURNAS - FURNAS CENTRAIS ELÉTRICAS"/>
-    <tag k="LONGITUDE" v="-48.586100"/>
-    <tag k="LATITUDE" v="-20.131200"/>
+    <tag k="LONGITUDE" v="-48.5861"/>
+    <tag k="LATITUDE" v="-20.1312"/>
     <tag k="GEO_ID" v="56"/>
   </node>
   <node visible="true" id="-20" lat="-20.054773486" lon="-48.250384905">
@@ -196,8 +196,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="400.000 kW"/>
     <tag k="PROPRIET_R" v="CEMIG - CENTRAIS ELÉTRICAS DE MINAS GERAIS"/>
-    <tag k="LONGITUDE" v="-48.249900"/>
-    <tag k="LATITUDE" v="-20.054200"/>
+    <tag k="LONGITUDE" v="-48.2499"/>
+    <tag k="LATITUDE" v="-20.0542"/>
     <tag k="GEO_ID" v="57"/>
   </node>
   <node visible="true" id="-21" lat="-20.20442757" lon="-48.289099792">
@@ -206,8 +206,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="14.000 kM"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.288700"/>
-    <tag k="LATITUDE" v="-20.203900"/>
+    <tag k="LONGITUDE" v="-48.2887"/>
+    <tag k="LATITUDE" v="-20.2039"/>
     <tag k="GEO_ID" v="58"/>
   </node>
   <node visible="true" id="-22" lat="-20.306815837" lon="-48.137240273">
@@ -216,8 +216,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="21.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.136800"/>
-    <tag k="LATITUDE" v="-20.306300"/>
+    <tag k="LONGITUDE" v="-48.1368"/>
+    <tag k="LATITUDE" v="-20.3063"/>
     <tag k="GEO_ID" v="59"/>
   </node>
   <node visible="true" id="-23" lat="-20.37557449" lon="-48.484797626">
@@ -226,8 +226,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="51.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.484400"/>
-    <tag k="LATITUDE" v="-20.375000"/>
+    <tag k="LONGITUDE" v="-48.4844"/>
+    <tag k="LATITUDE" v="-20.375"/>
     <tag k="GEO_ID" v="60"/>
   </node>
   <node visible="true" id="-24" lat="-20.681417233" lon="-48.387874363">
@@ -236,8 +236,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="51.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.387400"/>
-    <tag k="LATITUDE" v="-20.680900"/>
+    <tag k="LONGITUDE" v="-48.3874"/>
+    <tag k="LATITUDE" v="-20.6809"/>
     <tag k="GEO_ID" v="61"/>
   </node>
   <node visible="true" id="-25" lat="-20.850069876" lon="-48.284524534">
@@ -246,8 +246,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="45.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.284100"/>
-    <tag k="LATITUDE" v="-20.849500"/>
+    <tag k="LONGITUDE" v="-48.2841"/>
+    <tag k="LATITUDE" v="-20.8495"/>
     <tag k="GEO_ID" v="62"/>
   </node>
   <node visible="true" id="-26" lat="-22.269058431" lon="-48.225168094">
@@ -256,8 +256,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.224700"/>
-    <tag k="LATITUDE" v="-22.268500"/>
+    <tag k="LONGITUDE" v="-48.2247"/>
+    <tag k="LATITUDE" v="-22.2685"/>
     <tag k="GEO_ID" v="63"/>
   </node>
   <node visible="true" id="-27" lat="-21.852968808" lon="-48.34370024">
@@ -266,8 +266,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="6.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.343300"/>
-    <tag k="LATITUDE" v="-21.852400"/>
+    <tag k="LONGITUDE" v="-48.3433"/>
+    <tag k="LATITUDE" v="-21.8524"/>
     <tag k="GEO_ID" v="64"/>
   </node>
   <node visible="true" id="-28" lat="-21.854030738" lon="-48.394403863">
@@ -276,8 +276,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="6.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.394000"/>
-    <tag k="LATITUDE" v="-21.853500"/>
+    <tag k="LONGITUDE" v="-48.394"/>
+    <tag k="LATITUDE" v="-21.8535"/>
     <tag k="GEO_ID" v="65"/>
   </node>
   <node visible="true" id="-29" lat="-21.850202452" lon="-48.457920641">
@@ -286,8 +286,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="4.200 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.457500"/>
-    <tag k="LATITUDE" v="-21.849600"/>
+    <tag k="LONGITUDE" v="-48.4575"/>
+    <tag k="LATITUDE" v="-21.8496"/>
     <tag k="GEO_ID" v="66"/>
   </node>
   <node visible="true" id="-30" lat="-22.093278534" lon="-48.424551944">
@@ -296,8 +296,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="2.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.424100"/>
-    <tag k="LATITUDE" v="-22.092700"/>
+    <tag k="LONGITUDE" v="-48.4241"/>
+    <tag k="LATITUDE" v="-22.0927"/>
     <tag k="GEO_ID" v="67"/>
   </node>
   <node visible="true" id="-31" lat="-22.059026137" lon="-48.086546761">
@@ -306,8 +306,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="4.100 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.086100"/>
-    <tag k="LATITUDE" v="-22.058500"/>
+    <tag k="LONGITUDE" v="-48.0861"/>
+    <tag k="LATITUDE" v="-22.0585"/>
     <tag k="GEO_ID" v="68"/>
   </node>
   <node visible="true" id="-32" lat="-22.032688869" lon="-48.11146193">
@@ -316,8 +316,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="4.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.111000"/>
-    <tag k="LATITUDE" v="-22.032100"/>
+    <tag k="LONGITUDE" v="-48.111"/>
+    <tag k="LATITUDE" v="-22.0321"/>
     <tag k="GEO_ID" v="69"/>
   </node>
   <node visible="true" id="-33" lat="-22.030088169" lon="-48.000854543">
@@ -326,8 +326,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="450 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.000400"/>
-    <tag k="LATITUDE" v="-22.029500"/>
+    <tag k="LONGITUDE" v="-48.0004"/>
+    <tag k="LATITUDE" v="-22.0295"/>
     <tag k="GEO_ID" v="70"/>
   </node>
   <node visible="true" id="-34" lat="-22.097011115" lon="-46.676506363">
@@ -336,8 +336,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="2.200 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.676100"/>
-    <tag k="LATITUDE" v="-22.096500"/>
+    <tag k="LONGITUDE" v="-46.6761"/>
+    <tag k="LATITUDE" v="-22.0965"/>
     <tag k="GEO_ID" v="176"/>
   </node>
   <node visible="true" id="-35" lat="-22.102945247" lon="-46.60802259">
@@ -346,8 +346,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="1.400 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.607600"/>
-    <tag k="LATITUDE" v="-22.102400"/>
+    <tag k="LONGITUDE" v="-46.6076"/>
+    <tag k="LATITUDE" v="-22.1024"/>
     <tag k="GEO_ID" v="177"/>
   </node>
   <node visible="true" id="-36" lat="-22.023266379" lon="-46.740184957">
@@ -356,8 +356,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="3.500 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.739800"/>
-    <tag k="LATITUDE" v="-22.022700"/>
+    <tag k="LONGITUDE" v="-46.7398"/>
+    <tag k="LATITUDE" v="-22.0227"/>
     <tag k="GEO_ID" v="178"/>
   </node>
   <node visible="true" id="-37" lat="-22.057977623" lon="-46.711412748">
@@ -366,8 +366,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="1.600 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.711000"/>
-    <tag k="LATITUDE" v="-22.057400"/>
+    <tag k="LONGITUDE" v="-46.711"/>
+    <tag k="LATITUDE" v="-22.0574"/>
     <tag k="GEO_ID" v="179"/>
   </node>
   <node visible="true" id="-38" lat="-22.755422439" lon="-46.660132185">
@@ -376,8 +376,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="1.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.659700"/>
-    <tag k="LATITUDE" v="-22.754900"/>
+    <tag k="LONGITUDE" v="-46.6597"/>
+    <tag k="LATITUDE" v="-22.7549"/>
     <tag k="GEO_ID" v="180"/>
   </node>
   <node visible="true" id="-39" lat="-21.582630823" lon="-46.688972106">
@@ -386,8 +386,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="80.400 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.688500"/>
-    <tag k="LATITUDE" v="-21.582100"/>
+    <tag k="LONGITUDE" v="-46.6885"/>
+    <tag k="LATITUDE" v="-21.5821"/>
     <tag k="GEO_ID" v="181"/>
   </node>
   <node visible="true" id="-40" lat="-22.891056917" lon="-44.90497337">
@@ -396,8 +396,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="640 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-44.904600"/>
-    <tag k="LATITUDE" v="-22.890500"/>
+    <tag k="LONGITUDE" v="-44.9046"/>
+    <tag k="LATITUDE" v="-22.8905"/>
     <tag k="GEO_ID" v="182"/>
   </node>
   <node visible="true" id="-41" lat="-23.824343417" lon="-45.341583717">
@@ -406,8 +406,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="200 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-45.341200"/>
-    <tag k="LATITUDE" v="-23.823800"/>
+    <tag k="LONGITUDE" v="-45.3412"/>
+    <tag k="LATITUDE" v="-23.8238"/>
     <tag k="GEO_ID" v="183"/>
   </node>
   <node visible="true" id="-42" lat="-23.100940976" lon="-45.205740831">
@@ -416,8 +416,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="S/ EQUIP."/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-45.205300"/>
-    <tag k="LATITUDE" v="-23.100400"/>
+    <tag k="LONGITUDE" v="-45.2053"/>
+    <tag k="LATITUDE" v="-23.1004"/>
     <tag k="GEO_ID" v="184"/>
   </node>
   <node visible="true" id="-43" lat="-23.08253603" lon="-45.111407595">
@@ -426,8 +426,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="200 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-45.111000"/>
-    <tag k="LATITUDE" v="-23.082000"/>
+    <tag k="LONGITUDE" v="-45.111"/>
+    <tag k="LATITUDE" v="-23.082"/>
     <tag k="GEO_ID" v="185"/>
   </node>
   <node visible="true" id="-44" lat="-22.733166517" lon="-45.349181586">
@@ -436,8 +436,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="600 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-45.348800"/>
-    <tag k="LATITUDE" v="-22.732600"/>
+    <tag k="LONGITUDE" v="-45.3488"/>
+    <tag k="LATITUDE" v="-22.7326"/>
     <tag k="GEO_ID" v="186"/>
   </node>
   <node visible="true" id="-45" lat="-22.73284829" lon="-45.453363839">
@@ -446,8 +446,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="S/ EQUIP."/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-45.453000"/>
-    <tag k="LATITUDE" v="-22.732300"/>
+    <tag k="LONGITUDE" v="-45.453"/>
+    <tag k="LATITUDE" v="-22.7323"/>
     <tag k="GEO_ID" v="187"/>
   </node>
   <node visible="true" id="-46" lat="-22.403108815" lon="-48.121269253">
@@ -456,8 +456,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="2.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.120800"/>
-    <tag k="LATITUDE" v="-22.402500"/>
+    <tag k="LONGITUDE" v="-48.1208"/>
+    <tag k="LATITUDE" v="-22.4025"/>
     <tag k="GEO_ID" v="71"/>
   </node>
   <node visible="true" id="-47" lat="-21.872115309" lon="-48.197258548">
@@ -466,8 +466,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.800 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.196800"/>
-    <tag k="LATITUDE" v="-21.871600"/>
+    <tag k="LONGITUDE" v="-48.1968"/>
+    <tag k="LATITUDE" v="-21.8716"/>
     <tag k="GEO_ID" v="72"/>
   </node>
   <node visible="true" id="-48" lat="-22.460413329" lon="-48.081122926">
@@ -476,8 +476,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="800 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.080700"/>
-    <tag k="LATITUDE" v="-22.459900"/>
+    <tag k="LONGITUDE" v="-48.0807"/>
+    <tag k="LATITUDE" v="-22.4599"/>
     <tag k="GEO_ID" v="73"/>
   </node>
   <node visible="true" id="-49" lat="-22.66022504" lon="-48.050982058">
@@ -486,8 +486,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="12.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.050500"/>
-    <tag k="LATITUDE" v="-22.659700"/>
+    <tag k="LONGITUDE" v="-48.0505"/>
+    <tag k="LATITUDE" v="-22.6597"/>
     <tag k="GEO_ID" v="74"/>
   </node>
   <node visible="true" id="-50" lat="-23.991489444" lon="-48.044398405">
@@ -496,8 +496,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="800 kW"/>
     <tag k="PROPRIET_R" v="CSPE - COMPANHIA SUL PAULISTA DE ENERGIA"/>
-    <tag k="LONGITUDE" v="-48.044000"/>
-    <tag k="LATITUDE" v="-23.990900"/>
+    <tag k="LONGITUDE" v="-48.044"/>
+    <tag k="LATITUDE" v="-23.9909"/>
     <tag k="GEO_ID" v="75"/>
   </node>
   <node visible="true" id="-51" lat="-23.943975077" lon="-48.039046113">
@@ -506,8 +506,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="332 kW"/>
     <tag k="PROPRIET_R" v="CSPE - COMPANHIA SUL PAULISTA DE ENERGIA"/>
-    <tag k="LONGITUDE" v="-48.038600"/>
-    <tag k="LATITUDE" v="-23.943400"/>
+    <tag k="LONGITUDE" v="-48.0386"/>
+    <tag k="LATITUDE" v="-23.9434"/>
     <tag k="GEO_ID" v="76"/>
   </node>
   <node visible="true" id="-52" lat="-23.928170769" lon="-48.08580472">
@@ -516,8 +516,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="608 kW"/>
     <tag k="PROPRIET_R" v="CSPE - COMPANHIA SUL PAULISTA DE ENERGIA"/>
-    <tag k="LONGITUDE" v="-48.085400"/>
-    <tag k="LATITUDE" v="-23.927600"/>
+    <tag k="LONGITUDE" v="-48.0854"/>
+    <tag k="LATITUDE" v="-23.9276"/>
     <tag k="GEO_ID" v="77"/>
   </node>
   <node visible="true" id="-53" lat="-22.711932829" lon="-45.553847116">
@@ -526,8 +526,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="4.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-45.553400"/>
-    <tag k="LATITUDE" v="-22.711400"/>
+    <tag k="LONGITUDE" v="-45.5534"/>
+    <tag k="LATITUDE" v="-22.7114"/>
     <tag k="GEO_ID" v="78"/>
   </node>
   <node visible="true" id="-54" lat="-22.861270211" lon="-45.510052969">
@@ -536,8 +536,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.640 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-45.509600"/>
-    <tag k="LATITUDE" v="-22.860700"/>
+    <tag k="LONGITUDE" v="-45.5096"/>
+    <tag k="LATITUDE" v="-22.8607"/>
     <tag k="GEO_ID" v="79"/>
   </node>
   <node visible="true" id="-55" lat="-23.361983948" lon="-45.67006153">
@@ -546,8 +546,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="86.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-45.669600"/>
-    <tag k="LATITUDE" v="-23.361400"/>
+    <tag k="LONGITUDE" v="-45.6696"/>
+    <tag k="LATITUDE" v="-23.3614"/>
     <tag k="GEO_ID" v="80"/>
   </node>
   <node visible="true" id="-56" lat="-22.750175154" lon="-45.60852889">
@@ -556,8 +556,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="220 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-45.608100"/>
-    <tag k="LATITUDE" v="-22.749600"/>
+    <tag k="LONGITUDE" v="-45.6081"/>
+    <tag k="LATITUDE" v="-22.7496"/>
     <tag k="GEO_ID" v="81"/>
   </node>
   <node visible="true" id="-57" lat="-22.840416241" lon="-47.376493305">
@@ -566,8 +566,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.350 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.376100"/>
-    <tag k="LATITUDE" v="-22.839900"/>
+    <tag k="LONGITUDE" v="-47.3761"/>
+    <tag k="LATITUDE" v="-22.8399"/>
     <tag k="GEO_ID" v="82"/>
   </node>
   <node visible="true" id="-58" lat="-22.820701294" lon="-46.942587864">
@@ -576,8 +576,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.100 kW"/>
     <tag k="PROPRIET_R" v="FIGUEI - NADIR FIGUEIREDO - INDÚSTRIA COMÉRCIO S.A."/>
-    <tag k="LONGITUDE" v="-46.942200"/>
-    <tag k="LATITUDE" v="-22.820100"/>
+    <tag k="LONGITUDE" v="-46.9422"/>
+    <tag k="LATITUDE" v="-22.8201"/>
     <tag k="GEO_ID" v="83"/>
   </node>
   <node visible="true" id="-59" lat="-22.851537601" lon="-46.896817447">
@@ -586,8 +586,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.363 kW"/>
     <tag k="PROPRIET_R" v="CJE - COMPANHIA JAGUARI DE ELETRICIDADE"/>
-    <tag k="LONGITUDE" v="-46.896400"/>
-    <tag k="LATITUDE" v="-22.851000"/>
+    <tag k="LONGITUDE" v="-46.8964"/>
+    <tag k="LATITUDE" v="-22.851"/>
     <tag k="GEO_ID" v="84"/>
   </node>
   <node visible="true" id="-60" lat="-22.856366096" lon="-46.751280596">
@@ -596,8 +596,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="848 kW"/>
     <tag k="PROPRIET_R" v="EEB - EMPRESA ELÁTRICA BRAGANTINA"/>
-    <tag k="LONGITUDE" v="-46.750900"/>
-    <tag k="LATITUDE" v="-22.855800"/>
+    <tag k="LONGITUDE" v="-46.7509"/>
+    <tag k="LATITUDE" v="-22.8558"/>
     <tag k="GEO_ID" v="85"/>
   </node>
   <node visible="true" id="-61" lat="-22.783821775" lon="-47.409349612">
@@ -606,8 +606,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="3.400 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.408900"/>
-    <tag k="LATITUDE" v="-22.783300"/>
+    <tag k="LONGITUDE" v="-47.4089"/>
+    <tag k="LATITUDE" v="-22.7833"/>
     <tag k="GEO_ID" v="86"/>
   </node>
   <node visible="true" id="-62" lat="-22.91679602" lon="-46.946773208">
@@ -616,8 +616,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.400 kW/1.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.946300"/>
-    <tag k="LATITUDE" v="-22.916200"/>
+    <tag k="LONGITUDE" v="-46.9463"/>
+    <tag k="LATITUDE" v="-22.9162"/>
     <tag k="GEO_ID" v="87"/>
   </node>
   <node visible="true" id="-63" lat="-24.110746547" lon="-46.904298434">
@@ -626,8 +626,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="520 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.903900"/>
-    <tag k="LATITUDE" v="-24.110200"/>
+    <tag k="LONGITUDE" v="-46.9039"/>
+    <tag k="LATITUDE" v="-24.1102"/>
     <tag k="GEO_ID" v="88"/>
   </node>
   <node visible="true" id="-64" lat="-23.407615416" lon="-47.490573631">
@@ -636,8 +636,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.270 kW"/>
     <tag k="PROPRIET_R" v="VOTOR - S.A. INDÚSTRIAS VOTORANTIM"/>
-    <tag k="LONGITUDE" v="-47.490100"/>
-    <tag k="LATITUDE" v="-23.407000"/>
+    <tag k="LONGITUDE" v="-47.4901"/>
+    <tag k="LATITUDE" v="-23.407"/>
     <tag k="GEO_ID" v="89"/>
   </node>
   <node visible="true" id="-65" lat="-23.578693821" lon="-47.492745192">
@@ -646,8 +646,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="3.000 kW"/>
     <tag k="PROPRIET_R" v="VOTOR - S.A. INDÚSTRIAS VOTORANTIM"/>
-    <tag k="LONGITUDE" v="-47.492300"/>
-    <tag k="LATITUDE" v="-23.578100"/>
+    <tag k="LONGITUDE" v="-47.4923"/>
+    <tag k="LATITUDE" v="-23.5781"/>
     <tag k="GEO_ID" v="90"/>
   </node>
   <node visible="true" id="-66" lat="-23.613618336" lon="-47.399078193">
@@ -656,8 +656,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="55.000 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.473100"/>
-    <tag k="LATITUDE" v="-23.639600"/>
+    <tag k="LONGITUDE" v="-47.4731"/>
+    <tag k="LATITUDE" v="-23.6396"/>
     <tag k="GEO_ID" v="91"/>
   </node>
   <node visible="true" id="-67" lat="-23.827866251" lon="-47.664818083">
@@ -666,8 +666,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.900 kW"/>
     <tag k="PROPRIET_R" v="ESTAMP - COMPANHIA NACIONAL DE ESTAMPARIA"/>
-    <tag k="LONGITUDE" v="-47.664400"/>
-    <tag k="LATITUDE" v="-23.827300"/>
+    <tag k="LONGITUDE" v="-47.6644"/>
+    <tag k="LATITUDE" v="-23.8273"/>
     <tag k="GEO_ID" v="92"/>
   </node>
   <node visible="true" id="-68" lat="-23.060980351" lon="-47.624351141">
@@ -676,8 +676,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="200 kW"/>
     <tag k="PROPRIET_R" v="RAFARD - USINA RAFARD S.A."/>
-    <tag k="LONGITUDE" v="-47.623900"/>
-    <tag k="LATITUDE" v="-23.060400"/>
+    <tag k="LONGITUDE" v="-47.6239"/>
+    <tag k="LATITUDE" v="-23.0604"/>
     <tag k="GEO_ID" v="93"/>
   </node>
   <node visible="true" id="-69" lat="-23.221678876" lon="-47.546939641">
@@ -686,8 +686,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="3.200 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.546500"/>
-    <tag k="LATITUDE" v="-23.221100"/>
+    <tag k="LONGITUDE" v="-47.5465"/>
+    <tag k="LATITUDE" v="-23.2211"/>
     <tag k="GEO_ID" v="94"/>
   </node>
   <node visible="true" id="-70" lat="-24.167745836" lon="-47.661296239">
@@ -696,8 +696,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="72.000 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.660900"/>
-    <tag k="LATITUDE" v="-24.167200"/>
+    <tag k="LONGITUDE" v="-47.6609"/>
+    <tag k="LATITUDE" v="-24.1672"/>
     <tag k="GEO_ID" v="95"/>
   </node>
   <node visible="true" id="-71" lat="-24.037374914" lon="-47.669658923">
@@ -706,8 +706,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="28.400 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.669200"/>
-    <tag k="LATITUDE" v="-24.036800"/>
+    <tag k="LONGITUDE" v="-47.6692"/>
+    <tag k="LATITUDE" v="-24.0368"/>
     <tag k="GEO_ID" v="96"/>
   </node>
   <node visible="true" id="-72" lat="-24.037816221" lon="-47.546679321">
@@ -716,8 +716,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="8.160 kW"/>
     <tag k="PROPRIET_R" v="VOTOR - S.A. INDÚSTRIAS VOTORANTIM"/>
-    <tag k="LONGITUDE" v="-47.546200"/>
-    <tag k="LATITUDE" v="-24.037200"/>
+    <tag k="LONGITUDE" v="-47.5462"/>
+    <tag k="LATITUDE" v="-24.0372"/>
     <tag k="GEO_ID" v="97"/>
   </node>
   <node visible="true" id="-73" lat="-23.989891906" lon="-47.524856825">
@@ -726,8 +726,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="400 kW"/>
     <tag k="PROPRIET_R" v="F.AZUL - FAIXA AZUL INDÚSTRIA DE MÓVEIS LTDA"/>
-    <tag k="LONGITUDE" v="-47.524400"/>
-    <tag k="LATITUDE" v="-23.989300"/>
+    <tag k="LONGITUDE" v="-47.5244"/>
+    <tag k="LATITUDE" v="-23.9893"/>
     <tag k="GEO_ID" v="98"/>
   </node>
   <node visible="true" id="-74" lat="-24.063813532" lon="-47.499728876">
@@ -736,8 +736,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="40.400 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.499300"/>
-    <tag k="LATITUDE" v="-24.063200"/>
+    <tag k="LONGITUDE" v="-47.4993"/>
+    <tag k="LATITUDE" v="-24.0632"/>
     <tag k="GEO_ID" v="99"/>
   </node>
   <node visible="true" id="-75" lat="-23.593221137" lon="-47.761478547">
@@ -746,8 +746,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="600 kW"/>
     <tag k="PROPRIET_R" v="VOTOR - S.A. INDÚSTRIAS VOTORANTIM"/>
-    <tag k="LONGITUDE" v="-47.761000"/>
-    <tag k="LATITUDE" v="-23.592700"/>
+    <tag k="LONGITUDE" v="-47.761"/>
+    <tag k="LATITUDE" v="-23.5927"/>
     <tag k="GEO_ID" v="100"/>
   </node>
   <node visible="true" id="-76" lat="-23.771987467" lon="-47.764342148">
@@ -756,8 +756,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.010 kW"/>
     <tag k="PROPRIET_R" v="ESTAMP - COMPANHIA NACIONAL DE ESTAMPARIA"/>
-    <tag k="LONGITUDE" v="-47.763900"/>
-    <tag k="LATITUDE" v="-23.771400"/>
+    <tag k="LONGITUDE" v="-47.7639"/>
+    <tag k="LATITUDE" v="-23.7714"/>
     <tag k="GEO_ID" v="101"/>
   </node>
   <node visible="true" id="-77" lat="-24.226043405" lon="-47.967435292">
@@ -766,8 +766,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="63.900 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.967000"/>
-    <tag k="LATITUDE" v="-24.225500"/>
+    <tag k="LONGITUDE" v="-47.967"/>
+    <tag k="LATITUDE" v="-24.2255"/>
     <tag k="GEO_ID" v="102"/>
   </node>
   <node visible="true" id="-78" lat="-24.218287795" lon="-47.824215419">
@@ -776,8 +776,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="24.000 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.823800"/>
-    <tag k="LATITUDE" v="-24.217700"/>
+    <tag k="LONGITUDE" v="-47.8238"/>
+    <tag k="LATITUDE" v="-24.2177"/>
     <tag k="GEO_ID" v="103"/>
   </node>
   <node visible="true" id="-79" lat="-23.807890929" lon="-47.722901747">
@@ -786,8 +786,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.500 kW"/>
     <tag k="PROPRIET_R" v="ESTAMP - COMPANHIA NACIONAL DE ESTAMPARIA"/>
-    <tag k="LONGITUDE" v="-47.722500"/>
-    <tag k="LATITUDE" v="-23.807300"/>
+    <tag k="LONGITUDE" v="-47.7225"/>
+    <tag k="LATITUDE" v="-23.8073"/>
     <tag k="GEO_ID" v="104"/>
   </node>
   <node visible="true" id="-80" lat="-23.027803513" lon="-47.823375434">
@@ -796,8 +796,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="6.400 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.822900"/>
-    <tag k="LATITUDE" v="-23.027200"/>
+    <tag k="LONGITUDE" v="-47.8229"/>
+    <tag k="LATITUDE" v="-23.0272"/>
     <tag k="GEO_ID" v="105"/>
   </node>
   <node visible="true" id="-81" lat="-23.380711433" lon="-47.777350036">
@@ -806,8 +806,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="832 kW"/>
     <tag k="PROPRIET_R" v="ADÉLIA - COMPANHIA FIAÇÃO E TECIDO SANTA ADÉLIA"/>
-    <tag k="LONGITUDE" v="-47.776900"/>
-    <tag k="LATITUDE" v="-23.380100"/>
+    <tag k="LONGITUDE" v="-47.7769"/>
+    <tag k="LATITUDE" v="-23.3801"/>
     <tag k="GEO_ID" v="106"/>
   </node>
   <node visible="true" id="-82" lat="-22.929259495" lon="-47.914754293">
@@ -816,8 +816,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="7.500 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.914300"/>
-    <tag k="LATITUDE" v="-22.928700"/>
+    <tag k="LONGITUDE" v="-47.9143"/>
+    <tag k="LATITUDE" v="-22.9287"/>
     <tag k="GEO_ID" v="107"/>
   </node>
   <node visible="true" id="-83" lat="-23.101036325" lon="-47.7488218">
@@ -826,8 +826,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="4.800 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.748400"/>
-    <tag k="LATITUDE" v="-23.100500"/>
+    <tag k="LONGITUDE" v="-47.7484"/>
+    <tag k="LATITUDE" v="-23.1005"/>
     <tag k="GEO_ID" v="108"/>
   </node>
   <node visible="true" id="-84" lat="-24.014142694" lon="-47.281918922">
@@ -836,8 +836,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="29.500 KW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.281500"/>
-    <tag k="LATITUDE" v="-24.013600"/>
+    <tag k="LONGITUDE" v="-47.2815"/>
+    <tag k="LATITUDE" v="-24.0136"/>
     <tag k="GEO_ID" v="109"/>
   </node>
   <node visible="true" id="-85" lat="-24.071490761" lon="-47.434645074">
@@ -846,8 +846,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="36.400 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-47.434200"/>
-    <tag k="LATITUDE" v="-24.070900"/>
+    <tag k="LONGITUDE" v="-47.4342"/>
+    <tag k="LATITUDE" v="-24.0709"/>
     <tag k="GEO_ID" v="110"/>
   </node>
   <node visible="true" id="-86" lat="-23.28950921" lon="-47.214358746">
@@ -856,8 +856,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.700 kW"/>
     <tag k="PROPRIET_R" v="S. PEDRO - COMPANHIA DE FIAÇÃO E TECELAGEM SÃO PEDRO"/>
-    <tag k="LONGITUDE" v="-47.213900"/>
-    <tag k="LATITUDE" v="-23.288900"/>
+    <tag k="LONGITUDE" v="-47.2139"/>
+    <tag k="LATITUDE" v="-23.2889"/>
     <tag k="GEO_ID" v="111"/>
   </node>
   <node visible="true" id="-87" lat="-23.18857307" lon="-47.365042274">
@@ -866,8 +866,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="10.500 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-47.364600"/>
-    <tag k="LATITUDE" v="-23.188000"/>
+    <tag k="LONGITUDE" v="-47.3646"/>
+    <tag k="LATITUDE" v="-23.188"/>
     <tag k="GEO_ID" v="112"/>
   </node>
   <node visible="true" id="-88" lat="-23.398476648" lon="-47.034129855">
@@ -876,8 +876,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="14.400 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-47.033700"/>
-    <tag k="LATITUDE" v="-23.397900"/>
+    <tag k="LONGITUDE" v="-47.0337"/>
+    <tag k="LATITUDE" v="-23.3979"/>
     <tag k="GEO_ID" v="113"/>
   </node>
   <node visible="true" id="-89" lat="-23.826652297" lon="-46.174555327">
@@ -886,8 +886,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="15.000 kW"/>
     <tag k="PROPRIET_R" v="CODEP - COMPANHIA DOCAS DO ESTADO DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.174100"/>
-    <tag k="LATITUDE" v="-23.826100"/>
+    <tag k="LONGITUDE" v="-46.1741"/>
+    <tag k="LATITUDE" v="-23.8261"/>
     <tag k="GEO_ID" v="114"/>
   </node>
   <node visible="true" id="-90" lat="-23.638723355" lon="-46.722775708">
@@ -896,8 +896,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="8.000 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-46.722300"/>
-    <tag k="LATITUDE" v="-23.638200"/>
+    <tag k="LONGITUDE" v="-46.7223"/>
+    <tag k="LATITUDE" v="-23.6382"/>
     <tag k="GEO_ID" v="115"/>
   </node>
   <node visible="true" id="-91" lat="-23.903134003" lon="-46.525651049">
@@ -906,8 +906,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="880.000 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-46.525200"/>
-    <tag k="LATITUDE" v="-23.902600"/>
+    <tag k="LONGITUDE" v="-46.5252"/>
+    <tag k="LATITUDE" v="-23.9026"/>
     <tag k="GEO_ID" v="116"/>
   </node>
   <node visible="true" id="-92" lat="-23.847199217" lon="-46.63439626">
@@ -916,8 +916,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="27.000 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-46.634000"/>
-    <tag k="LATITUDE" v="-23.846600"/>
+    <tag k="LONGITUDE" v="-46.634"/>
+    <tag k="LATITUDE" v="-23.8466"/>
     <tag k="GEO_ID" v="117"/>
   </node>
   <node visible="true" id="-93" lat="-23.75834739" lon="-46.659692299">
@@ -926,8 +926,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="68.000 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-46.659300"/>
-    <tag k="LATITUDE" v="-23.757800"/>
+    <tag k="LONGITUDE" v="-46.6593"/>
+    <tag k="LATITUDE" v="-23.7578"/>
     <tag k="GEO_ID" v="118"/>
   </node>
   <node visible="true" id="-94" lat="-23.103856393" lon="-46.620298682">
@@ -936,8 +936,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="660 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.619900"/>
-    <tag k="LATITUDE" v="-23.103300"/>
+    <tag k="LONGITUDE" v="-46.6199"/>
+    <tag k="LATITUDE" v="-23.1033"/>
     <tag k="GEO_ID" v="119"/>
   </node>
   <node visible="true" id="-95" lat="-23.649720594" lon="-45.888739201">
@@ -946,8 +946,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="2.000 kW"/>
     <tag k="PROPRIET_R" v="ELETPA - ELETRICIDADE DE SÃO PAULO - ELETROPAULO"/>
-    <tag k="LONGITUDE" v="-45.888300"/>
-    <tag k="LATITUDE" v="-23.649100"/>
+    <tag k="LONGITUDE" v="-45.8883"/>
+    <tag k="LATITUDE" v="-23.6491"/>
     <tag k="GEO_ID" v="120"/>
   </node>
   <node visible="true" id="-96" lat="-21.561611232" lon="-46.879603452">
@@ -956,8 +956,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="10.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.879200"/>
-    <tag k="LATITUDE" v="-21.561100"/>
+    <tag k="LONGITUDE" v="-46.8792"/>
+    <tag k="LATITUDE" v="-21.5611"/>
     <tag k="GEO_ID" v="121"/>
   </node>
   <node visible="true" id="-97" lat="-21.886134889" lon="-46.836889758">
@@ -966,8 +966,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="3.700 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.836500"/>
-    <tag k="LATITUDE" v="-21.885600"/>
+    <tag k="LONGITUDE" v="-46.8365"/>
+    <tag k="LATITUDE" v="-21.8856"/>
     <tag k="GEO_ID" v="122"/>
   </node>
   <node visible="true" id="-98" lat="-21.849990618" lon="-46.888682335">
@@ -976,8 +976,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="2.400 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.888300"/>
-    <tag k="LATITUDE" v="-21.849400"/>
+    <tag k="LONGITUDE" v="-46.8883"/>
+    <tag k="LATITUDE" v="-21.8494"/>
     <tag k="GEO_ID" v="123"/>
   </node>
   <node visible="true" id="-99" lat="-21.600872491" lon="-46.899052832">
@@ -986,8 +986,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="3.060 kW"/>
     <tag k="PROPRIET_R" v="CPEE - COMPANHIA PAULISTA DE ENERGIA ELÉTRICA"/>
-    <tag k="LONGITUDE" v="-46.898600"/>
-    <tag k="LATITUDE" v="-21.600300"/>
+    <tag k="LONGITUDE" v="-46.8986"/>
+    <tag k="LATITUDE" v="-21.6003"/>
     <tag k="GEO_ID" v="124"/>
   </node>
   <node visible="true" id="-100" lat="-21.941921478" lon="-46.816171762">
@@ -996,8 +996,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.900"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.815700"/>
-    <tag k="LATITUDE" v="-21.941400"/>
+    <tag k="LONGITUDE" v="-46.8157"/>
+    <tag k="LATITUDE" v="-21.9414"/>
     <tag k="GEO_ID" v="125"/>
   </node>
   <node visible="true" id="-101" lat="-21.577698636" lon="-46.754370856">
@@ -1006,8 +1006,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="17.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.753900"/>
-    <tag k="LATITUDE" v="-21.577100"/>
+    <tag k="LONGITUDE" v="-46.7539"/>
+    <tag k="LATITUDE" v="-21.5771"/>
     <tag k="GEO_ID" v="126"/>
   </node>
   <node visible="true" id="-102" lat="-21.571331415" lon="-46.81584069">
@@ -1016,8 +1016,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="3.500 kW"/>
     <tag k="PROPRIET_R" v="ITAIQ - USINA ITAIQUARA S.A. AÇÚCAR E ALCOOL"/>
-    <tag k="LONGITUDE" v="-46.815400"/>
-    <tag k="LATITUDE" v="-21.570800"/>
+    <tag k="LONGITUDE" v="-46.8154"/>
+    <tag k="LATITUDE" v="-21.5708"/>
     <tag k="GEO_ID" v="127"/>
   </node>
   <node visible="true" id="-103" lat="-22.208570518" lon="-46.866840099">
@@ -1026,8 +1026,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="8.800 kW/10.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.866400"/>
-    <tag k="LATITUDE" v="-22.208000"/>
+    <tag k="LONGITUDE" v="-46.8664"/>
+    <tag k="LATITUDE" v="-22.208"/>
     <tag k="GEO_ID" v="128"/>
   </node>
   <node visible="true" id="-104" lat="-22.199830641" lon="-46.816915523">
@@ -1036,8 +1036,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="5.800 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.816500"/>
-    <tag k="LATITUDE" v="-22.199300"/>
+    <tag k="LONGITUDE" v="-46.8165"/>
+    <tag k="LATITUDE" v="-22.1993"/>
     <tag k="GEO_ID" v="129"/>
   </node>
   <node visible="true" id="-105" lat="-22.177326186" lon="-46.899290394">
@@ -1046,8 +1046,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="5.100 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.898900"/>
-    <tag k="LATITUDE" v="-22.176800"/>
+    <tag k="LONGITUDE" v="-46.8989"/>
+    <tag k="LATITUDE" v="-22.1768"/>
     <tag k="GEO_ID" v="130"/>
   </node>
   <node visible="true" id="-106" lat="-22.236942515" lon="-46.958419312">
@@ -1056,8 +1056,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="800 kW/6.500 kW/700"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.958000"/>
-    <tag k="LATITUDE" v="-22.236400"/>
+    <tag k="LONGITUDE" v="-46.958"/>
+    <tag k="LATITUDE" v="-22.2364"/>
     <tag k="GEO_ID" v="131"/>
   </node>
   <node visible="true" id="-107" lat="-22.401601775" lon="-46.96433596">
@@ -1066,8 +1066,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="1.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.963900"/>
-    <tag k="LATITUDE" v="-22.401000"/>
+    <tag k="LONGITUDE" v="-46.9639"/>
+    <tag k="LATITUDE" v="-22.401"/>
     <tag k="GEO_ID" v="132"/>
   </node>
   <node visible="true" id="-108" lat="-22.70201718" lon="-47.003828243">
@@ -1076,8 +1076,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="5.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.003400"/>
-    <tag k="LATITUDE" v="-22.701500"/>
+    <tag k="LONGITUDE" v="-47.0034"/>
+    <tag k="LATITUDE" v="-22.7015"/>
     <tag k="GEO_ID" v="133"/>
   </node>
   <node visible="true" id="-109" lat="-21.811903174" lon="-46.920927643">
@@ -1086,8 +1086,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="4.500 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.920500"/>
-    <tag k="LATITUDE" v="-21.811300"/>
+    <tag k="LONGITUDE" v="-46.9205"/>
+    <tag k="LATITUDE" v="-21.8113"/>
     <tag k="GEO_ID" v="134"/>
   </node>
   <node visible="true" id="-110" lat="-21.627058406" lon="-47.00649012">
@@ -1096,8 +1096,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="624 kW"/>
     <tag k="PROPRIET_R" v="CPEE - COMPANHIA PAULISTA DE ENERGIA ELÉTRICA"/>
-    <tag k="LONGITUDE" v="-47.006100"/>
-    <tag k="LATITUDE" v="-21.626500"/>
+    <tag k="LONGITUDE" v="-47.0061"/>
+    <tag k="LATITUDE" v="-21.6265"/>
     <tag k="GEO_ID" v="135"/>
   </node>
   <node visible="true" id="-111" lat="-21.602497238" lon="-46.994793947">
@@ -1106,8 +1106,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="19.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-46.994400"/>
-    <tag k="LATITUDE" v="-21.601900"/>
+    <tag k="LONGITUDE" v="-46.9944"/>
+    <tag k="LATITUDE" v="-21.6019"/>
     <tag k="GEO_ID" v="136"/>
   </node>
   <node visible="true" id="-112" lat="-22.766719901" lon="-46.897906191">
@@ -1116,8 +1116,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="14.400"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-46.897500"/>
-    <tag k="LATITUDE" v="-22.766200"/>
+    <tag k="LONGITUDE" v="-46.8975"/>
+    <tag k="LATITUDE" v="-22.7662"/>
     <tag k="GEO_ID" v="137"/>
   </node>
   <node visible="true" id="-113" lat="-21.226964899" lon="-47.097991178">
@@ -1126,8 +1126,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="592 kW"/>
     <tag k="PROPRIET_R" v="CLFM - COMPANHIA LUZ E FORÇA DE MOCOCA"/>
-    <tag k="LONGITUDE" v="-47.097600"/>
-    <tag k="LATITUDE" v="-21.226400"/>
+    <tag k="LONGITUDE" v="-47.0976"/>
+    <tag k="LATITUDE" v="-21.2264"/>
     <tag k="GEO_ID" v="138"/>
   </node>
   <node visible="true" id="-114" lat="-21.76356931" lon="-47.473235331">
@@ -1136,8 +1136,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="S/EQUIP."/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.472800"/>
-    <tag k="LATITUDE" v="-21.763000"/>
+    <tag k="LONGITUDE" v="-47.4728"/>
+    <tag k="LATITUDE" v="-21.763"/>
     <tag k="GEO_ID" v="139"/>
   </node>
   <node visible="true" id="-115" lat="-22.480795619" lon="-47.640781448">
@@ -1146,8 +1146,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.130 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.640300"/>
-    <tag k="LATITUDE" v="-22.480200"/>
+    <tag k="LONGITUDE" v="-47.6403"/>
+    <tag k="LATITUDE" v="-22.4802"/>
     <tag k="GEO_ID" v="140"/>
   </node>
   <node visible="true" id="-116" lat="-22.705034749" lon="-47.549985111">
@@ -1156,8 +1156,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.300 kW"/>
     <tag k="PROPRIET_R" v="BOYES - COMÉRCIO INDÚSTRIA E AGRÍCOLA BOYES"/>
-    <tag k="LONGITUDE" v="-47.549500"/>
-    <tag k="LATITUDE" v="-22.704500"/>
+    <tag k="LONGITUDE" v="-47.5495"/>
+    <tag k="LATITUDE" v="-22.7045"/>
     <tag k="GEO_ID" v="141"/>
   </node>
   <node visible="true" id="-117" lat="-22.719190486" lon="-47.667812627">
@@ -1166,8 +1166,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.500 kW"/>
     <tag k="PROPRIET_R" v="FLP - FERRO LIGAS PIRACICABA"/>
-    <tag k="LONGITUDE" v="-47.667400"/>
-    <tag k="LATITUDE" v="-22.718600"/>
+    <tag k="LONGITUDE" v="-47.6674"/>
+    <tag k="LATITUDE" v="-22.7186"/>
     <tag k="GEO_ID" v="142"/>
   </node>
   <node visible="true" id="-118" lat="-22.246446288" lon="-47.86408354">
@@ -1176,8 +1176,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.500 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.863600"/>
-    <tag k="LATITUDE" v="-22.245900"/>
+    <tag k="LONGITUDE" v="-47.8636"/>
+    <tag k="LATITUDE" v="-22.2459"/>
     <tag k="GEO_ID" v="143"/>
   </node>
   <node visible="true" id="-119" lat="-22.307053717" lon="-47.84049242">
@@ -1186,8 +1186,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="4.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.840100"/>
-    <tag k="LATITUDE" v="-22.306500"/>
+    <tag k="LONGITUDE" v="-47.8401"/>
+    <tag k="LATITUDE" v="-22.3065"/>
     <tag k="GEO_ID" v="144"/>
   </node>
   <node visible="true" id="-120" lat="-22.161327509" lon="-47.902021769">
@@ -1196,8 +1196,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="4.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.901600"/>
-    <tag k="LATITUDE" v="-22.160800"/>
+    <tag k="LONGITUDE" v="-47.9016"/>
+    <tag k="LATITUDE" v="-22.1608"/>
     <tag k="GEO_ID" v="145"/>
   </node>
   <node visible="true" id="-121" lat="-21.802834779" lon="-47.806380492">
@@ -1206,8 +1206,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="5.520 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.805900"/>
-    <tag k="LATITUDE" v="-21.802300"/>
+    <tag k="LONGITUDE" v="-47.8059"/>
+    <tag k="LATITUDE" v="-21.8023"/>
     <tag k="GEO_ID" v="146"/>
   </node>
   <node visible="true" id="-122" lat="-22.651563297" lon="-47.193805471">
@@ -1216,8 +1216,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="600 kW"/>
     <tag k="PROPRIET_R" v="ESTER - USINA AÇUCAREIRA ESTER S.A."/>
-    <tag k="LONGITUDE" v="-47.193400"/>
-    <tag k="LATITUDE" v="-22.651000"/>
+    <tag k="LONGITUDE" v="-47.1934"/>
+    <tag k="LATITUDE" v="-22.651"/>
     <tag k="GEO_ID" v="147"/>
   </node>
   <node visible="true" id="-123" lat="-22.603233575" lon="-47.300333667">
@@ -1226,8 +1226,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="780 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.299900"/>
-    <tag k="LATITUDE" v="-22.602700"/>
+    <tag k="LONGITUDE" v="-47.2999"/>
+    <tag k="LATITUDE" v="-22.6027"/>
     <tag k="GEO_ID" v="148"/>
   </node>
   <node visible="true" id="-124" lat="-22.705458407" lon="-47.269787583">
@@ -1236,8 +1236,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="2.100 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.269400"/>
-    <tag k="LATITUDE" v="-22.704900"/>
+    <tag k="LONGITUDE" v="-47.2694"/>
+    <tag k="LATITUDE" v="-22.7049"/>
     <tag k="GEO_ID" v="149"/>
   </node>
   <node visible="true" id="-125" lat="-22.703634258" lon="-47.346868575">
@@ -1246,8 +1246,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="33.600 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.346400"/>
-    <tag k="LATITUDE" v="-22.703100"/>
+    <tag k="LONGITUDE" v="-47.3464"/>
+    <tag k="LATITUDE" v="-22.7031"/>
     <tag k="GEO_ID" v="150"/>
   </node>
   <node visible="true" id="-126" lat="-22.254011518" lon="-47.019991157">
@@ -1256,8 +1256,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="7.200 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.019600"/>
-    <tag k="LATITUDE" v="-22.253500"/>
+    <tag k="LONGITUDE" v="-47.0196"/>
+    <tag k="LATITUDE" v="-22.2535"/>
     <tag k="GEO_ID" v="151"/>
   </node>
   <node visible="true" id="-127" lat="-22.28888368" lon="-47.049269614">
@@ -1266,8 +1266,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="7.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.048800"/>
-    <tag k="LATITUDE" v="-22.288300"/>
+    <tag k="LONGITUDE" v="-47.0488"/>
+    <tag k="LATITUDE" v="-22.2883"/>
     <tag k="GEO_ID" v="152"/>
   </node>
   <node visible="true" id="-128" lat="-22.335045969" lon="-47.0808732">
@@ -1276,8 +1276,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="7.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.080400"/>
-    <tag k="LATITUDE" v="-22.334500"/>
+    <tag k="LONGITUDE" v="-47.0804"/>
+    <tag k="LATITUDE" v="-22.3345"/>
     <tag k="GEO_ID" v="153"/>
   </node>
   <node visible="true" id="-129" lat="-22.38799762" lon="-47.019263507">
@@ -1286,8 +1286,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="600 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.018800"/>
-    <tag k="LATITUDE" v="-22.387400"/>
+    <tag k="LONGITUDE" v="-47.0188"/>
+    <tag k="LATITUDE" v="-22.3874"/>
     <tag k="GEO_ID" v="154"/>
   </node>
   <node visible="true" id="-130" lat="-21.930646137" lon="-47.324571981">
@@ -1296,8 +1296,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="3.360 kW/11.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.324100"/>
-    <tag k="LATITUDE" v="-21.930100"/>
+    <tag k="LONGITUDE" v="-47.3241"/>
+    <tag k="LATITUDE" v="-21.9301"/>
     <tag k="GEO_ID" v="155"/>
   </node>
   <node visible="true" id="-131" lat="-21.581089856" lon="-47.091487094">
@@ -1306,8 +1306,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="32.200 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.091100"/>
-    <tag k="LATITUDE" v="-21.580500"/>
+    <tag k="LONGITUDE" v="-47.0911"/>
+    <tag k="LATITUDE" v="-21.5805"/>
     <tag k="GEO_ID" v="156"/>
   </node>
   <node visible="true" id="-132" lat="-21.798567859" lon="-47.383901296">
@@ -1316,8 +1316,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="1.445 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.383500"/>
-    <tag k="LATITUDE" v="-21.798000"/>
+    <tag k="LONGITUDE" v="-47.3835"/>
+    <tag k="LATITUDE" v="-21.798"/>
     <tag k="GEO_ID" v="157"/>
   </node>
   <node visible="true" id="-133" lat="-21.616617158" lon="-47.063355801">
@@ -1326,8 +1326,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="1.600 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.062900"/>
-    <tag k="LATITUDE" v="-21.616100"/>
+    <tag k="LONGITUDE" v="-47.0629"/>
+    <tag k="LATITUDE" v="-21.6161"/>
     <tag k="GEO_ID" v="158"/>
   </node>
   <node visible="true" id="-134" lat="-21.627612406" lon="-47.023687336">
@@ -1336,8 +1336,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="108.800 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-47.023300"/>
-    <tag k="LATITUDE" v="-21.627100"/>
+    <tag k="LONGITUDE" v="-47.0233"/>
+    <tag k="LATITUDE" v="-21.6271"/>
     <tag k="GEO_ID" v="159"/>
   </node>
   <node visible="true" id="-135" lat="-20.011074963" lon="-47.432435955">
@@ -1346,8 +1346,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="456.000 kW"/>
     <tag k="PROPRIET_R" v="CEMIG - CENTRAIS ELÉTRICAS DE MINAS GERAIS"/>
-    <tag k="LONGITUDE" v="-47.432000"/>
-    <tag k="LATITUDE" v="-20.010500"/>
+    <tag k="LONGITUDE" v="-47.432"/>
+    <tag k="LATITUDE" v="-20.0105"/>
     <tag k="GEO_ID" v="160"/>
   </node>
   <node visible="true" id="-136" lat="-20.685249349" lon="-47.556007289">
@@ -1356,8 +1356,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="1.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.555600"/>
-    <tag k="LATITUDE" v="-20.684700"/>
+    <tag k="LONGITUDE" v="-47.5556"/>
+    <tag k="LATITUDE" v="-20.6847"/>
     <tag k="GEO_ID" v="161"/>
   </node>
   <node visible="true" id="-137" lat="-21.201459672" lon="-47.527576327">
@@ -1366,8 +1366,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.760 kW"/>
     <tag k="PROPRIET_R" v="AMÁLIA - AGRO INDUSTRIAL AMÁLIA S.A. (I.R.F.M.)"/>
-    <tag k="LONGITUDE" v="-47.527100"/>
-    <tag k="LATITUDE" v="-21.200900"/>
+    <tag k="LONGITUDE" v="-47.5271"/>
+    <tag k="LATITUDE" v="-21.2009"/>
     <tag k="GEO_ID" v="162"/>
   </node>
   <node visible="true" id="-138" lat="-20.279576844" lon="-47.605779827">
@@ -1376,8 +1376,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="1.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.605300"/>
-    <tag k="LATITUDE" v="-20.279000"/>
+    <tag k="LONGITUDE" v="-47.6053"/>
+    <tag k="LATITUDE" v="-20.279"/>
     <tag k="GEO_ID" v="163"/>
   </node>
   <node visible="true" id="-139" lat="-20.43582627" lon="-47.963546544">
@@ -1386,8 +1386,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="20.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.963100"/>
-    <tag k="LATITUDE" v="-20.435300"/>
+    <tag k="LONGITUDE" v="-47.9631"/>
+    <tag k="LATITUDE" v="-20.4353"/>
     <tag k="GEO_ID" v="164"/>
   </node>
   <node visible="true" id="-140" lat="-20.483816926" lon="-47.899597819">
@@ -1396,8 +1396,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="15.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.899200"/>
-    <tag k="LATITUDE" v="-20.483300"/>
+    <tag k="LONGITUDE" v="-47.8992"/>
+    <tag k="LATITUDE" v="-20.4833"/>
     <tag k="GEO_ID" v="165"/>
   </node>
   <node visible="true" id="-141" lat="-20.530519328" lon="-47.866048631">
@@ -1406,8 +1406,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="5.200 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.865600"/>
-    <tag k="LATITUDE" v="-20.530000"/>
+    <tag k="LONGITUDE" v="-47.8656"/>
+    <tag k="LATITUDE" v="-20.53"/>
     <tag k="GEO_ID" v="166"/>
   </node>
   <node visible="true" id="-142" lat="-20.585746949" lon="-47.797778965">
@@ -1416,8 +1416,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="14.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.797300"/>
-    <tag k="LATITUDE" v="-20.585200"/>
+    <tag k="LONGITUDE" v="-47.7973"/>
+    <tag k="LATITUDE" v="-20.5852"/>
     <tag k="GEO_ID" v="167"/>
   </node>
   <node visible="true" id="-143" lat="-20.67816794" lon="-47.686305778">
@@ -1426,8 +1426,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="7.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.685900"/>
-    <tag k="LATITUDE" v="-20.677600"/>
+    <tag k="LONGITUDE" v="-47.6859"/>
+    <tag k="LATITUDE" v="-20.6776"/>
     <tag k="GEO_ID" v="168"/>
   </node>
   <node visible="true" id="-144" lat="-20.72916146" lon="-47.636270333">
@@ -1436,8 +1436,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="16.500 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.635800"/>
-    <tag k="LATITUDE" v="-20.728600"/>
+    <tag k="LONGITUDE" v="-47.6358"/>
+    <tag k="LATITUDE" v="-20.7286"/>
     <tag k="GEO_ID" v="169"/>
   </node>
   <node visible="true" id="-145" lat="-20.378239815" lon="-47.957340322">
@@ -1446,8 +1446,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="15.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.956900"/>
-    <tag k="LATITUDE" v="-20.377700"/>
+    <tag k="LONGITUDE" v="-47.9569"/>
+    <tag k="LATITUDE" v="-20.3777"/>
     <tag k="GEO_ID" v="170"/>
   </node>
   <node visible="true" id="-146" lat="-20.284741703" lon="-47.66942452">
@@ -1456,8 +1456,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.000 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.669000"/>
-    <tag k="LATITUDE" v="-20.284200"/>
+    <tag k="LONGITUDE" v="-47.669"/>
+    <tag k="LATITUDE" v="-20.2842"/>
     <tag k="GEO_ID" v="171"/>
   </node>
   <node visible="true" id="-147" lat="-19.989806308" lon="-47.688093961">
@@ -1466,8 +1466,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="200.000 kM"/>
     <tag k="PROPRIET_R" v="CEMIG - CENTRAIS ELÉTRICAS DE MINAS GERAIS"/>
-    <tag k="LONGITUDE" v="-47.687700"/>
-    <tag k="LATITUDE" v="-19.989300"/>
+    <tag k="LONGITUDE" v="-47.6877"/>
+    <tag k="LATITUDE" v="-19.9893"/>
     <tag k="GEO_ID" v="172"/>
   </node>
   <node visible="true" id="-148" lat="-20.854824244" lon="-47.326796891">
@@ -1476,8 +1476,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.100 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-47.326400"/>
-    <tag k="LATITUDE" v="-20.854300"/>
+    <tag k="LONGITUDE" v="-47.3264"/>
+    <tag k="LATITUDE" v="-20.8543"/>
     <tag k="GEO_ID" v="173"/>
   </node>
   <node visible="true" id="-149" lat="-20.145149519" lon="-47.296781729">
@@ -1486,8 +1486,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.050.000 kW"/>
     <tag k="PROPRIET_R" v="FURNAS - FURNAS CENTRAIS ELÉTRICAS"/>
-    <tag k="LONGITUDE" v="-47.296400"/>
-    <tag k="LATITUDE" v="-20.144600"/>
+    <tag k="LONGITUDE" v="-47.2964"/>
+    <tag k="LATITUDE" v="-20.1446"/>
     <tag k="GEO_ID" v="174"/>
   </node>
   <node visible="true" id="-150" lat="-20.280015086" lon="-47.092177537">
@@ -1496,8 +1496,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="475.000 kW"/>
     <tag k="PROPRIET_R" v="FURNAS - FURNAS CENTRAIS ELÉTRICAS"/>
-    <tag k="LONGITUDE" v="-47.091800"/>
-    <tag k="LATITUDE" v="-20.279500"/>
+    <tag k="LONGITUDE" v="-47.0918"/>
+    <tag k="LATITUDE" v="-20.2795"/>
     <tag k="GEO_ID" v="175"/>
   </node>
   <node visible="true" id="-151" lat="-21.535083655" lon="-48.958620749">
@@ -1506,8 +1506,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.250 kW"/>
     <tag k="PROPRIET_R" v="CNEE - COMPANHIA NACIONAL DE ENERGIA ELÉTRICA"/>
-    <tag k="LONGITUDE" v="-48.958200"/>
-    <tag k="LATITUDE" v="-21.534500"/>
+    <tag k="LONGITUDE" v="-48.9582"/>
+    <tag k="LATITUDE" v="-21.5345"/>
     <tag k="GEO_ID" v="1"/>
   </node>
   <node visible="true" id="-152" lat="-21.591753035" lon="-48.966759954">
@@ -1516,8 +1516,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="2.200 kW"/>
     <tag k="PROPRIET_R" v="CPFL - COMPANHIA PAULISTA DE FORÇA E LUZ"/>
-    <tag k="LONGITUDE" v="-48.966300"/>
-    <tag k="LATITUDE" v="-21.591200"/>
+    <tag k="LONGITUDE" v="-48.9663"/>
+    <tag k="LATITUDE" v="-21.5912"/>
     <tag k="GEO_ID" v="2"/>
   </node>
   <node visible="true" id="-153" lat="-21.76531826" lon="-49.065419732">
@@ -1526,8 +1526,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="131.490 KW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.065000"/>
-    <tag k="LATITUDE" v="-21.764800"/>
+    <tag k="LONGITUDE" v="-49.065"/>
+    <tag k="LATITUDE" v="-21.7648"/>
     <tag k="GEO_ID" v="3"/>
   </node>
   <node visible="true" id="-154" lat="-22.277697777" lon="-48.860614885">
@@ -1536,8 +1536,8 @@
     <tag k="SITUA__O" v="DESATIVADA"/>
     <tag k="POT_NCIA" v="S/ EQUIP."/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.860200"/>
-    <tag k="LATITUDE" v="-22.277100"/>
+    <tag k="LONGITUDE" v="-48.8602"/>
+    <tag k="LATITUDE" v="-22.2771"/>
     <tag k="GEO_ID" v="4"/>
   </node>
   <node visible="true" id="-155" lat="-22.959292981" lon="-48.933208905">
@@ -1546,8 +1546,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.280 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-48.932800"/>
-    <tag k="LATITUDE" v="-22.958700"/>
+    <tag k="LONGITUDE" v="-48.9328"/>
+    <tag k="LATITUDE" v="-22.9587"/>
     <tag k="GEO_ID" v="5"/>
   </node>
   <node visible="true" id="-156" lat="-24.156035971" lon="-48.965687371">
@@ -1556,8 +1556,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="600 kW"/>
     <tag k="PROPRIET_R" v="MARING - COMPANHIA DE CIMENTO PORTLAND MARINGÁ"/>
-    <tag k="LONGITUDE" v="-48.965200"/>
-    <tag k="LATITUDE" v="-24.155500"/>
+    <tag k="LONGITUDE" v="-48.9652"/>
+    <tag k="LATITUDE" v="-24.1555"/>
     <tag k="GEO_ID" v="6"/>
   </node>
   <node visible="true" id="-157" lat="-24.265691148" lon="-48.884710755">
@@ -1566,8 +1566,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="600 kW"/>
     <tag k="PROPRIET_R" v="SGUARI - INDÚSTRIA COMÉRCIO E CULTURA DE MADEIRAS SGUARIOS S.A."/>
-    <tag k="LONGITUDE" v="-48.884300"/>
-    <tag k="LATITUDE" v="-24.265100"/>
+    <tag k="LONGITUDE" v="-48.8843"/>
+    <tag k="LATITUDE" v="-24.2651"/>
     <tag k="GEO_ID" v="7"/>
   </node>
   <node visible="true" id="-158" lat="-24.677237911" lon="-48.954814131">
@@ -1576,8 +1576,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="30.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-48.954400"/>
-    <tag k="LATITUDE" v="-24.676700"/>
+    <tag k="LONGITUDE" v="-48.9544"/>
+    <tag k="LATITUDE" v="-24.6767"/>
     <tag k="GEO_ID" v="8"/>
   </node>
   <node visible="true" id="-159" lat="-20.779176438" lon="-51.623600926">
@@ -1586,8 +1586,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.411.200 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-51.623100"/>
-    <tag k="LATITUDE" v="-20.778600"/>
+    <tag k="LONGITUDE" v="-51.6231"/>
+    <tag k="LATITUDE" v="-20.7786"/>
     <tag k="GEO_ID" v="9"/>
   </node>
   <node visible="true" id="-160" lat="-22.588910243" lon="-52.899140915">
@@ -1596,8 +1596,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="320.000 kM"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-52.898600"/>
-    <tag k="LATITUDE" v="-22.588400"/>
+    <tag k="LONGITUDE" v="-52.8986"/>
+    <tag k="LATITUDE" v="-22.5884"/>
     <tag k="GEO_ID" v="10"/>
   </node>
   <node visible="true" id="-161" lat="-22.517522363" lon="-53.016530059">
@@ -1606,8 +1606,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="1.814.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-53.016000"/>
-    <tag k="LATITUDE" v="-22.517000"/>
+    <tag k="LONGITUDE" v="-53.016"/>
+    <tag k="LATITUDE" v="-22.517"/>
     <tag k="GEO_ID" v="11"/>
   </node>
   <node visible="true" id="-162" lat="-22.5608889" lon="-52.007855456">
@@ -1616,8 +1616,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="504.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-52.007400"/>
-    <tag k="LATITUDE" v="-22.560300"/>
+    <tag k="LONGITUDE" v="-52.0074"/>
+    <tag k="LATITUDE" v="-22.5603"/>
     <tag k="GEO_ID" v="12"/>
   </node>
   <node visible="true" id="-163" lat="-22.879403251" lon="-50.329532592">
@@ -1626,8 +1626,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.340 kW"/>
     <tag k="PROPRIET_R" v="EEVP - EMPRESA DE ELETRICIDADE VALE DO PARAÍBA"/>
-    <tag k="LONGITUDE" v="-50.329100"/>
-    <tag k="LATITUDE" v="-22.878800"/>
+    <tag k="LONGITUDE" v="-50.3291"/>
+    <tag k="LATITUDE" v="-22.8788"/>
     <tag k="GEO_ID" v="13"/>
   </node>
   <node visible="true" id="-164" lat="-22.911448451" lon="-50.025300101">
@@ -1636,8 +1636,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="70.380 kW/30.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-50.024800"/>
-    <tag k="LATITUDE" v="-22.910900"/>
+    <tag k="LONGITUDE" v="-50.0248"/>
+    <tag k="LATITUDE" v="-22.9109"/>
     <tag k="GEO_ID" v="14"/>
   </node>
   <node visible="true" id="-165" lat="-22.893667833" lon="-49.848583824">
@@ -1646,8 +1646,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="4.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.848100"/>
-    <tag k="LATITUDE" v="-22.893100"/>
+    <tag k="LONGITUDE" v="-49.8481"/>
+    <tag k="LATITUDE" v="-22.8931"/>
     <tag k="GEO_ID" v="15"/>
   </node>
   <node visible="true" id="-166" lat="-22.906825551" lon="-49.632223319">
@@ -1656,8 +1656,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="14.920 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-49.631800"/>
-    <tag k="LATITUDE" v="-22.906300"/>
+    <tag k="LONGITUDE" v="-49.6318"/>
+    <tag k="LATITUDE" v="-22.9063"/>
     <tag k="GEO_ID" v="16"/>
   </node>
   <node visible="true" id="-167" lat="-22.892933067" lon="-49.406910435">
@@ -1666,8 +1666,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="12.740 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-49.406500"/>
-    <tag k="LATITUDE" v="-22.892400"/>
+    <tag k="LONGITUDE" v="-49.4065"/>
+    <tag k="LATITUDE" v="-22.8924"/>
     <tag k="GEO_ID" v="17"/>
   </node>
   <node visible="true" id="-168" lat="-22.836311408" lon="-49.140505075">
@@ -1676,8 +1676,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="25.460 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-49.140000"/>
-    <tag k="LATITUDE" v="-22.835800"/>
+    <tag k="LONGITUDE" v="-49.14"/>
+    <tag k="LATITUDE" v="-22.8358"/>
     <tag k="GEO_ID" v="18"/>
   </node>
   <node visible="true" id="-169" lat="-22.944044237" lon="-50.504461956">
@@ -1686,8 +1686,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="82.500 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-50.504000"/>
-    <tag k="LATITUDE" v="-22.943500"/>
+    <tag k="LONGITUDE" v="-50.504"/>
+    <tag k="LATITUDE" v="-22.9435"/>
     <tag k="GEO_ID" v="19"/>
   </node>
   <node visible="true" id="-170" lat="-22.934034776" lon="-50.290540281">
@@ -1696,8 +1696,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="72.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-50.290100"/>
-    <tag k="LATITUDE" v="-22.933500"/>
+    <tag k="LONGITUDE" v="-50.2901"/>
+    <tag k="LATITUDE" v="-22.9335"/>
     <tag k="GEO_ID" v="20"/>
   </node>
   <node visible="true" id="-171" lat="-24.639840095" lon="-49.154414493">
@@ -1706,8 +1706,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.700 kW"/>
     <tag k="PROPRIET_R" v="SGUARI - INDÚSTRIA COMÉRCIO E CULTURA DE MADEIRAS SGUARIOS S.A."/>
-    <tag k="LONGITUDE" v="-49.154000"/>
-    <tag k="LATITUDE" v="-24.639300"/>
+    <tag k="LONGITUDE" v="-49.154"/>
+    <tag k="LATITUDE" v="-24.6393"/>
     <tag k="GEO_ID" v="21"/>
   </node>
   <node visible="true" id="-172" lat="-24.673498432" lon="-49.140673389">
@@ -1716,8 +1716,8 @@
     <tag k="SITUA__O" v="PROJETO BÁSICO"/>
     <tag k="POT_NCIA" v="150.000 kW"/>
     <tag k="PROPRIET_R" v="CBA - COMPANHIA BRASILEIRA DE ALUMÍNIO"/>
-    <tag k="LONGITUDE" v="-49.140200"/>
-    <tag k="LATITUDE" v="-24.672900"/>
+    <tag k="LONGITUDE" v="-49.1402"/>
+    <tag k="LATITUDE" v="-24.6729"/>
     <tag k="GEO_ID" v="22"/>
   </node>
   <node visible="true" id="-173" lat="-23.1438177" lon="-49.503051463">
@@ -1726,8 +1726,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="150.000 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-49.502600"/>
-    <tag k="LATITUDE" v="-23.143300"/>
+    <tag k="LONGITUDE" v="-49.5026"/>
+    <tag k="LATITUDE" v="-23.1433"/>
     <tag k="GEO_ID" v="23"/>
   </node>
   <node visible="true" id="-174" lat="-23.059945868" lon="-49.899081022">
@@ -1736,8 +1736,8 @@
     <tag k="SITUA__O" v="VIABILIDADE"/>
     <tag k="POT_NCIA" v="45.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.898600"/>
-    <tag k="LATITUDE" v="-23.059400"/>
+    <tag k="LONGITUDE" v="-49.8986"/>
+    <tag k="LATITUDE" v="-23.0594"/>
     <tag k="GEO_ID" v="24"/>
   </node>
   <node visible="true" id="-175" lat="-22.935656953" lon="-49.90653666">
@@ -1746,8 +1746,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="8.600 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.906100"/>
-    <tag k="LATITUDE" v="-22.935100"/>
+    <tag k="LONGITUDE" v="-49.9061"/>
+    <tag k="LATITUDE" v="-22.9351"/>
     <tag k="GEO_ID" v="25"/>
   </node>
   <node visible="true" id="-176" lat="-22.97019434" lon="-49.866462377">
@@ -1756,8 +1756,8 @@
     <tag k="SITUA__O" v="INVENTÁRIO"/>
     <tag k="POT_NCIA" v="20.710 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-49.866000"/>
-    <tag k="LATITUDE" v="-22.969600"/>
+    <tag k="LONGITUDE" v="-49.866"/>
+    <tag k="LATITUDE" v="-22.9696"/>
     <tag k="GEO_ID" v="26"/>
   </node>
   <node visible="true" id="-177" lat="-23.117599849" lon="-49.731101205">
@@ -1766,8 +1766,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="414.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.730600"/>
-    <tag k="LATITUDE" v="-23.117000"/>
+    <tag k="LONGITUDE" v="-49.7306"/>
+    <tag k="LATITUDE" v="-23.117"/>
     <tag k="GEO_ID" v="27"/>
   </node>
   <node visible="true" id="-178" lat="-24.133244764" lon="-49.346736004">
@@ -1776,8 +1776,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="3.200 kW"/>
     <tag k="PROPRIET_R" v="MARING - COMPANHIA DE CIMENTO PORTLAND MARINGÁ"/>
-    <tag k="LONGITUDE" v="-49.346300"/>
-    <tag k="LATITUDE" v="-24.132700"/>
+    <tag k="LONGITUDE" v="-49.3463"/>
+    <tag k="LATITUDE" v="-24.1327"/>
     <tag k="GEO_ID" v="28"/>
   </node>
   <node visible="true" id="-179" lat="-23.214950087" lon="-49.228665419">
@@ -1786,8 +1786,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="97.950 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-49.228200"/>
-    <tag k="LATITUDE" v="-23.214400"/>
+    <tag k="LONGITUDE" v="-49.2282"/>
+    <tag k="LATITUDE" v="-23.2144"/>
     <tag k="GEO_ID" v="29"/>
   </node>
   <node visible="true" id="-180" lat="-23.262207721" lon="-49.480958668">
@@ -1796,8 +1796,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="800 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-49.480500"/>
-    <tag k="LATITUDE" v="-23.261600"/>
+    <tag k="LONGITUDE" v="-49.4805"/>
+    <tag k="LATITUDE" v="-23.2616"/>
     <tag k="GEO_ID" v="30"/>
   </node>
   <node visible="true" id="-181" lat="-23.138008758" lon="-49.460249958">
@@ -1806,8 +1806,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="18.000 kW"/>
     <tag k="PROPRIET_R" v="CLFSC - COMPANHIA LUZ E FORÇA SANTA CRUZ"/>
-    <tag k="LONGITUDE" v="-49.459800"/>
-    <tag k="LATITUDE" v="-23.137400"/>
+    <tag k="LONGITUDE" v="-49.4598"/>
+    <tag k="LATITUDE" v="-23.1374"/>
     <tag k="GEO_ID" v="31"/>
   </node>
   <node visible="true" id="-182" lat="-19.872409686" lon="-50.351586371">
@@ -1816,8 +1816,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="1.380.000 kM"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-50.351100"/>
-    <tag k="LATITUDE" v="-19.871900"/>
+    <tag k="LONGITUDE" v="-50.3511"/>
+    <tag k="LATITUDE" v="-19.8719"/>
     <tag k="GEO_ID" v="32"/>
   </node>
   <node visible="true" id="-183" lat="-21.117063934" lon="-50.243628804">
@@ -1826,8 +1826,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="302.400 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-50.243200"/>
-    <tag k="LATITUDE" v="-21.116500"/>
+    <tag k="LONGITUDE" v="-50.2432"/>
+    <tag k="LATITUDE" v="-21.1165"/>
     <tag k="GEO_ID" v="33"/>
   </node>
   <node visible="true" id="-184" lat="-21.966166737" lon="-50.882095182">
@@ -1836,8 +1836,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="2.540 kW"/>
     <tag k="PROPRIET_R" v="CSE - CAIUÁ - SERVIÇOS DE ELETRICIDADE S.A."/>
-    <tag k="LONGITUDE" v="-50.881600"/>
-    <tag k="LATITUDE" v="-21.965600"/>
+    <tag k="LONGITUDE" v="-50.8816"/>
+    <tag k="LATITUDE" v="-21.9656"/>
     <tag k="GEO_ID" v="34"/>
   </node>
   <node visible="true" id="-185" lat="-22.439608189" lon="-51.273991344">
@@ -1846,8 +1846,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="720 kW"/>
     <tag k="PROPRIET_R" v="CSE - CAIUÁ - SERVIÇOS DE ELETRICIDADE S.A."/>
-    <tag k="LONGITUDE" v="-51.273500"/>
-    <tag k="LATITUDE" v="-22.439100"/>
+    <tag k="LONGITUDE" v="-51.2735"/>
+    <tag k="LATITUDE" v="-22.4391"/>
     <tag k="GEO_ID" v="35"/>
   </node>
   <node visible="true" id="-186" lat="-22.658342399" lon="-51.397875625">
@@ -1856,8 +1856,8 @@
     <tag k="SITUA__O" v="EM OPERAÇÃO"/>
     <tag k="POT_NCIA" v="640.000 kW"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-51.397400"/>
-    <tag k="LATITUDE" v="-22.657800"/>
+    <tag k="LONGITUDE" v="-51.3974"/>
+    <tag k="LATITUDE" v="-22.6578"/>
     <tag k="GEO_ID" v="36"/>
   </node>
   <node visible="true" id="-187" lat="-20.680911481" lon="-51.313322068">
@@ -1866,8 +1866,8 @@
     <tag k="SITUA__O" v="EM CONSTRUÇÃO"/>
     <tag k="POT_NCIA" v="1.292.000 kM"/>
     <tag k="PROPRIET_R" v="CESP - COMPANHIA ENERGÉTICA DE SÃO PAULO"/>
-    <tag k="LONGITUDE" v="-51.312800"/>
-    <tag k="LATITUDE" v="-20.680400"/>
+    <tag k="LONGITUDE" v="-51.3128"/>
+    <tag k="LATITUDE" v="-20.6804"/>
     <tag k="GEO_ID" v="37"/>
   </node>
 </osm>
