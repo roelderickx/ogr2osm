@@ -329,6 +329,7 @@
   <relation id="146">
     <member type="way" ref="137" role="outer"/>
     <member type="way" ref="145" role="inner"/>
+    <tag k="type" v="multipolygon"/>
     <tag k="Name" v="TestPolygonWithInner"/>
     <tag k="description" v=""/>
     <tag k="timestamp" v=""/>

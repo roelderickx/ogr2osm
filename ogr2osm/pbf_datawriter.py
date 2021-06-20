@@ -157,6 +157,8 @@ try:
             relation = osmprotobuf.Relation()
             relation.id = osmrelation.id
 
+            relation.keys.append(self._add_string('type'))
+            relation.vals.append(self._add_string('multipolygon'))
             for (key, value) in osmrelation.tags.items():
                 relation.keys.append(self._add_string(key))
                 relation.vals.append(self._add_string(value))

@@ -429,6 +429,7 @@
     <member type="way" ref="-127" role="outer"/>
     <member type="way" ref="-170" role="outer"/>
     <member type="way" ref="-178" role="inner"/>
+    <tag k="type" v="multipolygon"/>
     <tag k="Name" v="TestCollection"/>
     <tag k="description" v=""/>
     <tag k="timestamp" v=""/>
