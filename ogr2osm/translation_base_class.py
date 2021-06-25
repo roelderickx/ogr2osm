@@ -62,15 +62,17 @@ class TranslationBase:
         has an impact on the detection of duplicates among their parents.
         '''
         tags = {}
-        for (key, value) in tags_existing_geometry.items():
-            if key in tags_new_geometry.keys() and value != tags_new_geometry[key]:
-                new_value = value + ',' + tags_new_geometry[key]
-                tags.update({ key: new_value })
+        for (key, value_list) in tags_existing_geometry.items():
+            if key in tags_new_geometry.keys() and \
+               tags_new_geometry[key] and \
+               tags_new_geometry[key] not in value_list:
+                value_list.append(tags_new_geometry[key])
+                tags.update({ key: value_list })
             else:
-                tags.update({ key: value })
+                tags.update({ key: value_list })
         for (key, value) in tags_new_geometry.items():
-            if key not in tags.keys():
-                tags.update({ key: value })
+            if key not in tags.keys() and value:
+                tags.update({ key: [ value ] })
         return tags
 
 

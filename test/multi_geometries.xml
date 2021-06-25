@@ -2,42 +2,21 @@
 <osm version="0.6" generator="ogr2osm 1.0.1" upload="false">
   <node visible="true" id="-1" lat="33.4843" lon="-23.0967">
     <tag k="Name" v="TestMultiPoint"/>
-    <tag k="description" v=""/>
-    <tag k="timestamp" v=""/>
-    <tag k="begin" v=""/>
-    <tag k="end" v=""/>
-    <tag k="altitudeMode" v=""/>
     <tag k="tessellate" v="-1"/>
     <tag k="extrude" v="0"/>
     <tag k="visibility" v="-1"/>
-    <tag k="drawOrder" v=""/>
-    <tag k="icon" v=""/>
   </node>
   <node visible="true" id="-2" lat="33.4821" lon="-23.1061">
     <tag k="Name" v="TestMultiPoint"/>
-    <tag k="description" v=""/>
-    <tag k="timestamp" v=""/>
-    <tag k="begin" v=""/>
-    <tag k="end" v=""/>
-    <tag k="altitudeMode" v=""/>
     <tag k="tessellate" v="-1"/>
     <tag k="extrude" v="0"/>
     <tag k="visibility" v="-1"/>
-    <tag k="drawOrder" v=""/>
-    <tag k="icon" v=""/>
   </node>
   <node visible="true" id="-3" lat="33.4817" lon="-23.0975">
     <tag k="Name" v="TestMultiPoint"/>
-    <tag k="description" v=""/>
-    <tag k="timestamp" v=""/>
-    <tag k="begin" v=""/>
-    <tag k="end" v=""/>
-    <tag k="altitudeMode" v=""/>
     <tag k="tessellate" v="-1"/>
     <tag k="extrude" v="0"/>
     <tag k="visibility" v="-1"/>
-    <tag k="drawOrder" v=""/>
-    <tag k="icon" v=""/>
   </node>
   <node visible="true" id="-4" lat="33.4886545" lon="-23.1393528"/>
   <node visible="true" id="-5" lat="33.4908736" lon="-23.1372929"/>
@@ -220,16 +199,9 @@
     <nd ref="-12"/>
     <nd ref="-13"/>
     <tag k="Name" v="TestMultiLinestring"/>
-    <tag k="description" v=""/>
-    <tag k="timestamp" v=""/>
-    <tag k="begin" v=""/>
-    <tag k="end" v=""/>
-    <tag k="altitudeMode" v=""/>
     <tag k="tessellate" v="-1"/>
     <tag k="extrude" v="0"/>
     <tag k="visibility" v="-1"/>
-    <tag k="drawOrder" v=""/>
-    <tag k="icon" v=""/>
   </way>
   <way visible="true" id="-32">
     <nd ref="-15"/>
@@ -250,16 +222,9 @@
     <nd ref="-30"/>
     <nd ref="-31"/>
     <tag k="Name" v="TestMultiLinestring"/>
-    <tag k="description" v=""/>
-    <tag k="timestamp" v=""/>
-    <tag k="begin" v=""/>
-    <tag k="end" v=""/>
-    <tag k="altitudeMode" v=""/>
     <tag k="tessellate" v="-1"/>
     <tag k="extrude" v="0"/>
     <tag k="visibility" v="-1"/>
-    <tag k="drawOrder" v=""/>
-    <tag k="icon" v=""/>
   </way>
   <way visible="true" id="-55">
     <nd ref="-33"/>
@@ -285,16 +250,9 @@
     <nd ref="-53"/>
     <nd ref="-54"/>
     <tag k="Name" v="TestMultiLinestring"/>
-    <tag k="description" v=""/>
-    <tag k="timestamp" v=""/>
-    <tag k="begin" v=""/>
-    <tag k="end" v=""/>
-    <tag k="altitudeMode" v=""/>
     <tag k="tessellate" v="-1"/>
     <tag k="extrude" v="0"/>
     <tag k="visibility" v="-1"/>
-    <tag k="drawOrder" v=""/>
-    <tag k="icon" v=""/>
   </way>
   <way visible="true" id="-127">
     <nd ref="-56"/>
@@ -431,15 +389,8 @@
     <member type="way" ref="-178" role="inner"/>
     <tag k="type" v="multipolygon"/>
     <tag k="Name" v="TestMultiPolygon"/>
-    <tag k="description" v=""/>
-    <tag k="timestamp" v=""/>
-    <tag k="begin" v=""/>
-    <tag k="end" v=""/>
-    <tag k="altitudeMode" v=""/>
     <tag k="tessellate" v="-1"/>
     <tag k="extrude" v="0"/>
     <tag k="visibility" v="-1"/>
-    <tag k="drawOrder" v=""/>
-    <tag k="icon" v=""/>
   </relation>
 </osm>

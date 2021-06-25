@@ -111,9 +111,9 @@ try:
             self.__last_lat = pbflat
             self.__last_lon = pbflon
 
-            for (key, value) in osmnode.tags.items():
+            for (key, value_list) in osmnode.tags.items():
                 self.primitive_group.dense.keys_vals.append(self._add_string(key))
-                self.primitive_group.dense.keys_vals.append(self._add_string(value))
+                self.primitive_group.dense.keys_vals.append(self._add_string(','.join(value_list)))
             self.primitive_group.dense.keys_vals.append(0)
 
 
@@ -127,9 +127,9 @@ try:
             way = osmprotobuf.Way()
             way.id = osmway.id
 
-            for (key, value) in osmway.tags.items():
+            for (key, value_list) in osmway.tags.items():
                 way.keys.append(self._add_string(key))
-                way.vals.append(self._add_string(value))
+                way.vals.append(self._add_string(','.join(value_list)))
 
             # osmosis always requires the whole info block
             if self._add_version or self._add_timestamp:
@@ -159,9 +159,9 @@ try:
 
             relation.keys.append(self._add_string('type'))
             relation.vals.append(self._add_string('multipolygon'))
-            for (key, value) in osmrelation.tags.items():
+            for (key, value_list) in osmrelation.tags.items():
                 relation.keys.append(self._add_string(key))
-                relation.vals.append(self._add_string(value))
+                relation.vals.append(self._add_string(','.join(value_list)))
 
             # osmosis always requires the whole info block
             if self._add_version or self._add_timestamp:

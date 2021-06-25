@@ -86,6 +86,12 @@ class OsmGeometry:
         return OsmId.element_id_counter
 
 
+    def _append_non_empty_tags(self, tags):
+        for (key, value) in tags.items():
+            if value:
+                self.tags.update({ key: [ value ] })
+
+
     def addparent(self, parent):
         self.__parents.add(parent)
 
@@ -108,7 +114,7 @@ class OsmNode(OsmGeometry):
         super().__init__()
         self.x = x
         self.y = y
-        self.tags.update(tags)
+        self._append_non_empty_tags(tags)
 
 
     def to_xml(self, attributes, significant_digits):
@@ -120,8 +126,8 @@ class OsmNode(OsmGeometry):
 
         xmlobject = etree.Element('node', xmlattrs)
 
-        for (key, value) in self.tags.items():
-            tag = etree.Element('tag', { 'k':key, 'v':value })
+        for (key, value_list) in self.tags.items():
+            tag = etree.Element('tag', { 'k':key, 'v':','.join(value_list) })
             xmlobject.append(tag)
 
         return etree.tostring(xmlobject, encoding='unicode')
@@ -132,7 +138,7 @@ class OsmWay(OsmGeometry):
     def __init__(self, tags):
         super().__init__()
         self.nodes = []
-        self.tags.update(tags)
+        self._append_non_empty_tags(tags)
 
 
     def to_xml(self, attributes, significant_digits):
@@ -144,8 +150,8 @@ class OsmWay(OsmGeometry):
         for node in self.nodes:
             nd = etree.Element('nd', { 'ref':('%d' % node.id) })
             xmlobject.append(nd)
-        for (key, value) in self.tags.items():
-            tag = etree.Element('tag', { 'k':key, 'v':value })
+        for (key, value_list) in self.tags.items():
+            tag = etree.Element('tag', { 'k':key, 'v':','.join(value_list) })
             xmlobject.append(tag)
 
         return etree.tostring(xmlobject, encoding='unicode')
@@ -156,7 +162,7 @@ class OsmRelation(OsmGeometry):
     def __init__(self, tags):
         super().__init__()
         self.members = []
-        self.tags.update(tags)
+        self._append_non_empty_tags(tags)
 
 
     def get_member_role(self, member):
@@ -185,8 +191,8 @@ class OsmRelation(OsmGeometry):
 
         tag = etree.Element('tag', { 'k':'type', 'v':'multipolygon' })
         xmlobject.append(tag)
-        for (key, value) in self.tags.items():
-            tag = etree.Element('tag', { 'k':key, 'v':value })
+        for (key, value_list) in self.tags.items():
+            tag = etree.Element('tag', { 'k':key, 'v':','.join(value_list) })
             xmlobject.append(tag)
 
         return etree.tostring(xmlobject, encoding='unicode')

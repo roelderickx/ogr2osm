@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "sp_usinas",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4618" } },
+"features": [
+{ "type": "Feature", "geometry": { "type": "Point", "coordinates": [ -23.094721, 33.4838 ] } },
+{ "type": "Feature", "properties": { "name": "the_point", "description": "Description of the_point", "longitude": -23.094721, "latitude": 33.4838 }, "geometry": { "type": "Point", "coordinates": [ -23.094721, 33.4838 ] } },
+{ "type": "Feature", "properties": { "name": "the_point", "description": "Description of the_point", "longitude": -23.094721, "latitude": 33.4838 }, "geometry": { "type": "Point", "coordinates": [ -23.094721, 33.4838 ] } },
+{ "type": "Feature", "properties": { "name": "the_point", "description": "Alternative description of the_point", "longitude": -23.094721, "latitude": 33.4838 }, "geometry": { "type": "Point", "coordinates": [ -23.094721, 33.4838 ] } }
+]
+}
