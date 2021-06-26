@@ -206,9 +206,7 @@ def load_translation_object(translation_module):
         else:
             # first check translations in the subdir translations of cwd
             sys.path.insert(0, os.path.join(os.getcwd(), "translations"))
-            # then check subdir of script dir
-            sys.path.insert(1, os.path.join(os.path.dirname(__file__), "translations"))
-            # (the cwd will also be checked implicityly)
+            # (the cwd will also be checked implicitly)
 
         # strip .py if present, as import wants just the module name
         if ext == '.py':
