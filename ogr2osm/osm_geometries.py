@@ -116,7 +116,7 @@ class OsmNode(OsmGeometry):
         super().__init__()
         self.x = x
         self.y = y
-        self.tags.update({ k: [ v ] for (k, v) in tags.items() })
+        self.tags.update({ k: (v if type(v) == list else [ v ]) for (k, v) in tags.items() })
 
 
     def to_xml(self, attributes, significant_digits, suppress_empty_tags):
@@ -138,7 +138,7 @@ class OsmWay(OsmGeometry):
     def __init__(self, tags):
         super().__init__()
         self.nodes = []
-        self.tags.update({ k: [ v ] for (k, v) in tags.items() })
+        self.tags.update({ k: (v if type(v) == list else [ v ]) for (k, v) in tags.items() })
 
 
     def to_xml(self, attributes, significant_digits, suppress_empty_tags):
@@ -162,7 +162,7 @@ class OsmRelation(OsmGeometry):
         super().__init__()
         self.members = []
         self.tags['type'] = [ 'multipolygon' ]
-        self.tags.update({ k: [ v ] for (k, v) in tags.items() })
+        self.tags.update({ k: (v if type(v) == list else [ v ]) for (k, v) in tags.items() })
 
 
     def get_member_role(self, member):
