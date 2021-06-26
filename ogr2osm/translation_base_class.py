@@ -55,7 +55,11 @@ class TranslationBase:
         containing either 'node', 'way', 'reverse_way' or 'relation', depending
         on which type of geometry the tags belong to. Type 'reverse_way' is a
         special case of 'way', it indicates both ways are duplicates when one
-        of them is reversed.
+        of them is reversed. The parameter tags_existing_geometry is a
+        dictionary containing a list of values for each key, the list will be
+        concatenated to a comma-separated string when writing the output file.
+        The parameter tags_new_geometry is a dictionary containing a string
+        value for each key.
         Return None if the tags cannot be merged. As a result both geometries
         will be included in the output file, each with their respective tags.
         Warning: not merging geometries will lead to invalid osm files and
