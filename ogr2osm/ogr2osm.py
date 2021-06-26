@@ -40,7 +40,11 @@ ogr2osm is based very heavily on code released under the following terms:
 ###############################################################################
 '''
 
-import sys, os, argparse, logging, inspect
+import sys
+import os
+import argparse
+import logging
+import inspect
 
 from .version import __program__, __version__
 from .translation_base_class import TranslationBase
@@ -126,6 +130,8 @@ def parse_commandline():
                              "Implies upload=\"never\" and download=\"never\".")
     parser.add_argument("--add-bounds", dest="addBounds", action="store_true",
                         help="Add boundaries to output file")
+    parser.add_argument("--suppress-empty-tags", dest="suppressEmptyTags", action="store_true",
+                        help="Suppress empty tags")
     parser.add_argument("--add-version", dest="addVersion", action="store_true",
                         help=argparse.SUPPRESS) # can cause problems when used inappropriately
     parser.add_argument("--add-timestamp", dest="addTimestamp", action="store_true",
@@ -254,21 +260,25 @@ def main():
 
     logging.info("Preparing to convert '%s' to '%s'.", params.source, params.outputFile)
 
-    osmdata = OsmData(translation_object, params.roundingDigits, params.maxNodesPerWay, params.addBounds)
+    osmdata = OsmData(translation_object, \
+                      params.roundingDigits, params.maxNodesPerWay, params.addBounds)
     # create datasource and process data
     datasource = OgrDatasource(translation_object, \
-                               params.sourcePROJ4, params.sourceEPSG, params.gisorder, params.encoding)
+                               params.sourcePROJ4, params.sourceEPSG, params.gisorder, \
+                               params.encoding)
     datasource.open_datasource(params.source, not params.noMemoryCopy)
     datasource.set_query(params.sqlQuery)
     osmdata.process(datasource)
     #create datawriter and write OSM data
     datawriter = None
     if params.pbf:
-        datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp)
+        datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp, \
+                                   params.suppressEmptyTags)
     else:
         datawriter = OsmDataWriter(params.outputFile, params.neverUpload, params.noUploadFalse, \
                                    params.neverDownload, params.locked, params.addVersion, \
-                                   params.addTimestamp, params.significantDigits)
+                                   params.addTimestamp, params.significantDigits, \
+                                   params.suppressEmptyTags)
     osmdata.output(datawriter)
 
     if params.saveid:

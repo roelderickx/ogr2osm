@@ -63,15 +63,13 @@ class TranslationBase:
         '''
         tags = {}
         for (key, value_list) in tags_existing_geometry.items():
-            if key in tags_new_geometry.keys() and \
-               tags_new_geometry[key] and \
-               tags_new_geometry[key] not in value_list:
+            if key in tags_new_geometry.keys() and tags_new_geometry[key] not in value_list:
                 value_list.append(tags_new_geometry[key])
                 tags.update({ key: value_list })
             else:
                 tags.update({ key: value_list })
         for (key, value) in tags_new_geometry.items():
-            if key not in tags.keys() and value:
+            if key not in tags.keys():
                 tags.update({ key: [ value ] })
         return tags
 

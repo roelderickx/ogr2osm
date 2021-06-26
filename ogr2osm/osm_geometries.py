@@ -86,12 +86,6 @@ class OsmGeometry:
         return OsmId.element_id_counter
 
 
-    def _append_non_empty_tags(self, tags):
-        for (key, value) in tags.items():
-            if value:
-                self.tags.update({ key: [ value ] })
-
-
     def addparent(self, parent):
         self.__parents.add(parent)
 
@@ -104,6 +98,14 @@ class OsmGeometry:
         return self.__parents
 
 
+    def _add_tags_to_xml(self, xmlobject, suppress_empty_tags):
+        for (key, value_list) in self.tags.items():
+            value = ','.join([ v for v in value_list if v ])
+            if value or not suppress_empty_tags:
+                tag = etree.Element('tag', { 'k':key, 'v':value })
+                xmlobject.append(tag)
+
+
     def to_xml(self, attributes, significant_digits):
         pass
 
@@ -114,10 +116,10 @@ class OsmNode(OsmGeometry):
         super().__init__()
         self.x = x
         self.y = y
-        self._append_non_empty_tags(tags)
+        self.tags.update({ k: [ v ] for (k, v) in tags.items() })
 
 
-    def to_xml(self, attributes, significant_digits):
+    def to_xml(self, attributes, significant_digits, suppress_empty_tags):
         xmlattrs = { 'visible':'true', \
                      'id':('%d' % self.id), \
                      'lat':(('%%.%df' % significant_digits) % self.y).strip('0'), \
@@ -126,9 +128,7 @@ class OsmNode(OsmGeometry):
 
         xmlobject = etree.Element('node', xmlattrs)
 
-        for (key, value_list) in self.tags.items():
-            tag = etree.Element('tag', { 'k':key, 'v':','.join(value_list) })
-            xmlobject.append(tag)
+        self._add_tags_to_xml(xmlobject, suppress_empty_tags)
 
         return etree.tostring(xmlobject, encoding='unicode')
 
@@ -138,10 +138,10 @@ class OsmWay(OsmGeometry):
     def __init__(self, tags):
         super().__init__()
         self.nodes = []
-        self._append_non_empty_tags(tags)
+        self.tags.update({ k: [ v ] for (k, v) in tags.items() })
 
 
-    def to_xml(self, attributes, significant_digits):
+    def to_xml(self, attributes, significant_digits, suppress_empty_tags):
         xmlattrs = { 'visible':'true', 'id':('%d' % self.id) }
         xmlattrs.update(attributes)
 
@@ -150,9 +150,8 @@ class OsmWay(OsmGeometry):
         for node in self.nodes:
             nd = etree.Element('nd', { 'ref':('%d' % node.id) })
             xmlobject.append(nd)
-        for (key, value_list) in self.tags.items():
-            tag = etree.Element('tag', { 'k':key, 'v':','.join(value_list) })
-            xmlobject.append(tag)
+
+        self._add_tags_to_xml(xmlobject, suppress_empty_tags)
 
         return etree.tostring(xmlobject, encoding='unicode')
 
@@ -162,7 +161,8 @@ class OsmRelation(OsmGeometry):
     def __init__(self, tags):
         super().__init__()
         self.members = []
-        self._append_non_empty_tags(tags)
+        self.tags['type'] = [ 'multipolygon' ]
+        self.tags.update({ k: [ v ] for (k, v) in tags.items() })
 
 
     def get_member_role(self, member):
@@ -171,7 +171,7 @@ class OsmRelation(OsmGeometry):
         return member_role
 
 
-    def to_xml(self, attributes, significant_digits):
+    def to_xml(self, attributes, significant_digits, suppress_empty_tags):
         xmlattrs = { 'visible':'true', 'id':('%d' % self.id) }
         xmlattrs.update(attributes)
 
@@ -189,10 +189,6 @@ class OsmRelation(OsmGeometry):
                                                   'ref':('%d' % member.id), 'role':role })
             xmlobject.append(xmlmember)
 
-        tag = etree.Element('tag', { 'k':'type', 'v':'multipolygon' })
-        xmlobject.append(tag)
-        for (key, value_list) in self.tags.items():
-            tag = etree.Element('tag', { 'k':key, 'v':','.join(value_list) })
-            xmlobject.append(tag)
+        self._add_tags_to_xml(xmlobject, suppress_empty_tags)
 
         return etree.tostring(xmlobject, encoding='unicode')

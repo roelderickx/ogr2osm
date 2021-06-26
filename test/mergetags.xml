@@ -5,5 +5,6 @@
     <tag k="description" v="Description of the_point,Alternative description of the_point"/>
     <tag k="longitude" v="-23.094721"/>
     <tag k="latitude" v="33.4838"/>
+    <tag k="extra_empty" v=""/>
   </node>
 </osm>

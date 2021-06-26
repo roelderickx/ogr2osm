@@ -17,7 +17,9 @@ from .datawriter_base_class import DataWriterBase
 is_protobuf_installed = False
 
 class PbfDataWriter(DataWriterBase):
-    pass
+    def __init__(self, filename, add_version=False, add_timestamp=False, \
+                 suppress_empty_tags=False):
+        pass
 
 try:
     import ogr2osm.fileformat_pb2 as fileprotobuf
@@ -28,7 +30,7 @@ try:
     # https://wiki.openstreetmap.org/wiki/PBF_Format
 
     class PbfPrimitiveGroup:
-        def __init__(self, add_version, add_timestamp):
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
             self.stringtable = {}
             self._add_string("")
 
@@ -40,6 +42,7 @@ try:
             self._timestamp = time.localtime(-1)
             if self._add_timestamp:
                 self._timestamp = time.localtime()
+            self.suppress_empty_tags = suppress_empty_tags
 
             self.granularity = 100
             self.lat_offset = 0
@@ -49,8 +52,10 @@ try:
             self.primitive_group = osmprotobuf.PrimitiveGroup()
 
 
-        # add string s to the stringtable if not yet present and returns index
         def _add_string(self, s):
+            '''
+            Add string s to the stringtable if not yet present and returns index
+            '''
             if not s in self.stringtable:
                 index = len(self.stringtable)
                 self.stringtable[s] = index
@@ -59,25 +64,42 @@ try:
                 return self.stringtable[s]
 
 
-        # convert given latitude to value used in pbf
+        def _get_tag_iterator(self, tags):
+            '''
+            Returns an iterator over all (key, value) pairs of tags which should be included
+            based on suppress_empty_tags.
+            '''
+            for (key, value_list) in tags.items():
+                value = ','.join([ v for v in value_list if v ])
+                if value or not self.suppress_empty_tags:
+                    yield (self._add_string(key), self._add_string(value))
+
+
         def _lat_to_pbf(self, lat):
+            '''
+            Convert given latitude to value used in pbf
+            '''
             return int((lat * 1e9 - self.lat_offset) / self.granularity)
 
 
-        # convert given longitude to value used in pbf
         def _lon_to_pbf(self, lon):
+            '''
+            Convert given longitude to value used in pbf
+            '''
             return int((lon * 1e9 - self.lon_offset) / self.granularity)
 
 
-        # convert time.struct_time to value used in pbf
         def _timestamp_to_pbf(self, timestamp):
+            '''
+            Convert time.struct_time to value used in pbf
+            '''
             return int(time.mktime(timestamp) * 1000 / self.date_granularity)
 
 
 
     class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp):
-            super().__init__(add_version, add_timestamp)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags)
 
             self.__last_id = 0
             self.__last_timestamp = 0
@@ -97,8 +119,10 @@ try:
             # osmosis always requires the whole denseinfo block
             if self._add_version or self._add_timestamp:
                 self.primitive_group.dense.denseinfo.version.append(self._version)
-                self.primitive_group.dense.denseinfo.timestamp.append(pbftimestamp - self.__last_timestamp)
-                self.primitive_group.dense.denseinfo.changeset.append(pbfchangeset - self.__last_changeset)
+                self.primitive_group.dense.denseinfo.timestamp.append( \
+                                                            pbftimestamp - self.__last_timestamp)
+                self.primitive_group.dense.denseinfo.changeset.append( \
+                                                            pbfchangeset - self.__last_changeset)
                 self.primitive_group.dense.denseinfo.uid.append(0)
                 self.primitive_group.dense.denseinfo.user_sid.append(0)
 
@@ -111,25 +135,25 @@ try:
             self.__last_lat = pbflat
             self.__last_lon = pbflon
 
-            for (key, value_list) in osmnode.tags.items():
-                self.primitive_group.dense.keys_vals.append(self._add_string(key))
-                self.primitive_group.dense.keys_vals.append(self._add_string(','.join(value_list)))
+            for (key, value) in self._get_tag_iterator(osmnode.tags):
+                self.primitive_group.dense.keys_vals.append(key)
+                self.primitive_group.dense.keys_vals.append(value)
             self.primitive_group.dense.keys_vals.append(0)
 
 
 
     class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp):
-            super().__init__(add_version, add_timestamp)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags)
 
 
         def add_way(self, osmway):
             way = osmprotobuf.Way()
             way.id = osmway.id
 
-            for (key, value_list) in osmway.tags.items():
-                way.keys.append(self._add_string(key))
-                way.vals.append(self._add_string(','.join(value_list)))
+            for (key, value) in self._get_tag_iterator(osmway.tags):
+                way.keys.append(key)
+                way.vals.append(value)
 
             # osmosis always requires the whole info block
             if self._add_version or self._add_timestamp:
@@ -149,19 +173,17 @@ try:
 
 
     class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp):
-            super().__init__(add_version, add_timestamp)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags)
 
 
         def add_relation(self, osmrelation):
             relation = osmprotobuf.Relation()
             relation.id = osmrelation.id
 
-            relation.keys.append(self._add_string('type'))
-            relation.vals.append(self._add_string('multipolygon'))
-            for (key, value_list) in osmrelation.tags.items():
-                relation.keys.append(self._add_string(key))
-                relation.vals.append(self._add_string(','.join(value_list)))
+            for (key, value) in self._get_tag_iterator(osmrelation.tags):
+                relation.keys.append(key)
+                relation.vals.append(value)
 
             # osmosis always requires the whole info block
             if self._add_version or self._add_timestamp:
@@ -190,10 +212,12 @@ try:
 
 
     class PbfDataWriter(DataWriterBase):
-        def __init__(self, filename, add_version=False, add_timestamp=False):
+        def __init__(self, filename, add_version=False, add_timestamp=False, \
+                     suppress_empty_tags=False):
             self.filename = filename
             self.add_version = add_version
             self.add_timestamp = add_timestamp
+            self.suppress_empty_tags = suppress_empty_tags
 
             self.__max_nodes_per_node_block = 8000
             self.__max_node_refs_per_way_block = 32000
@@ -241,7 +265,8 @@ try:
 
             primitive_block = osmprotobuf.PrimitiveBlock()
             # add stringtable
-            for (string, index) in sorted(pbf_primitive_group.stringtable.items(), key=lambda kv: kv[1]):
+            for (string, index) in sorted(pbf_primitive_group.stringtable.items(), \
+                                          key=lambda kv: kv[1]):
                 primitive_block.stringtable.s.append(string.encode('utf-8'))
             # add geometries
             primitive_block.primitivegroup.append(pbf_primitive_group.primitive_group)
@@ -257,7 +282,9 @@ try:
         def write_nodes(self, nodes):
             logging.debug("Writing nodes")
             for i in range(0, len(nodes), self.__max_nodes_per_node_block):
-                primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, self.add_timestamp)
+                primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, \
+                                                              self.add_timestamp, \
+                                                              self.suppress_empty_tags)
                 for node in nodes[i:i+self.__max_nodes_per_node_block]:
                     primitive_group.add_node(node)
                 self.__write_primitive_block(primitive_group)
@@ -269,7 +296,9 @@ try:
             primitive_group = None
             for way in ways:
                 if amount_node_refs == 0:
-                    primitive_group = PbfPrimitiveGroupWays(self.add_version, self.add_timestamp)
+                    primitive_group = PbfPrimitiveGroupWays(self.add_version, \
+                                                            self.add_timestamp, \
+                                                            self.suppress_empty_tags)
                 primitive_group.add_way(way)
                 amount_node_refs += len(way.nodes)
                 if amount_node_refs > self.__max_node_refs_per_way_block:
@@ -286,7 +315,9 @@ try:
             primitive_group = None
             for relation in relations:
                 if amount_member_refs == 0:
-                    primitive_group = PbfPrimitiveGroupRelations(self.add_version, self.add_timestamp)
+                    primitive_group = PbfPrimitiveGroupRelations(self.add_version, \
+                                                                 self.add_timestamp, \
+                                                                 self.suppress_empty_tags)
                 primitive_group.add_relation(relation)
                 amount_member_refs += len(relation.members)
                 if amount_member_refs > self.__max_member_refs_per_relation_block:

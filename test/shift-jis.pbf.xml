@@ -9918,6 +9918,7 @@
     <member type="way" ref="-4592" role="outer"/>
     <tag k="type" v="multipolygon"/>
     <tag k="N03_001" v="千葉県"/>
+    <tag k="N03_002" v=""/>
     <tag k="N03_003" v="山武郡"/>
     <tag k="N03_004" v="大網白里町"/>
     <tag k="N03_007" v="12402"/>
@@ -9927,6 +9928,8 @@
     <member type="way" ref="-4593" role="outer"/>
     <tag k="type" v="multipolygon"/>
     <tag k="N03_001" v="千葉県"/>
+    <tag k="N03_002" v=""/>
+    <tag k="N03_003" v=""/>
     <tag k="N03_004" v="茂原市"/>
     <tag k="N03_007" v="12210"/>
   </relation>

@@ -12,6 +12,7 @@ usage:
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                  [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
                  [--never-download] [--never-upload] [--locked] [--add-bounds]
+                 [--suppress-empty-tags]
                  DATASOURCE
   
   positional arguments:
@@ -66,6 +67,8 @@ usage:
                           editing or downloading, and also prevents uploads.
                           Implies upload="never" and download="never".
     --add-bounds          Add boundaries to output file
+    --suppress-empty-tags
+                          Suppress empty tags
 
 						  
 require_output_file_when_using_db_source:
@@ -78,6 +81,7 @@ require_output_file_when_using_db_source:
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                  [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
                  [--never-download] [--never-upload] [--locked] [--add-bounds]
+                 [--suppress-empty-tags]
                  DATASOURCE
   ogr2osm: error: ERROR: An output file must be explicitly specified when using a database source
   [2]
@@ -92,6 +96,7 @@ require_query_when_using_db_source:
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                  [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
                  [--never-download] [--never-upload] [--locked] [--add-bounds]
+                 [--suppress-empty-tags]
                  DATASOURCE
   ogr2osm: error: ERROR: You must specify a query with --sql when using a database source
   [2]
@@ -133,6 +138,7 @@ duplicatefile:
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                  [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
                  [--never-download] [--never-upload] [--locked] [--add-bounds]
+                 [--suppress-empty-tags]
                  DATASOURCE
   ogr2osm: error: ERROR: output file '.*basic_geometries.osm' exists (re)
   [2]
