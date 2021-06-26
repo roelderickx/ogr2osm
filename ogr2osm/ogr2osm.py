@@ -218,8 +218,8 @@ def load_translation_object(translation_module):
         except ImportError as e:
             logging.error("Could not load translation method '%s'. Translation "
                           "script must be in your current directory, or in the "
-                          "translations/ subdirectory of your current or ogr2osm.py "
-                          "directory. The following directories have been considered: %s",
+                          "translations/ subdirectory of your current directory. "
+                          "The following directories have been considered: %s",
                           translation_module, str(sys.path))
         except SyntaxError as e:
             logging.error("Syntax error in '%s'. Translation script is malformed:\n%s",
