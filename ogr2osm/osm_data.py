@@ -68,12 +68,15 @@ class OsmData:
         rx = self.__round_number(x)
         ry = self.__round_number(y)
 
+        # TODO deprecated
         unique_node_id = None
         if is_way_member:
             unique_node_id = (rx, ry)
         else:
-            # TODO deprecated, to be removed
             unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
+        # to be replaced by
+        #unique_node_id = (rx, ry)
+        # end deprecation
 
         if unique_node_id in self.__unique_node_index:
             for index in self.__unique_node_index[unique_node_id]:
