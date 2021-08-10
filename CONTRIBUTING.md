@@ -5,7 +5,7 @@ Changes in speed-critical parts of the code may require profiling.
 
 ## Licensing
 
-ogr2pbf is under the MIT license. If you are committing to ogr2pbf, 
+ogr2osm is under the MIT license. If you are committing to ogr2osm, 
 you are committing under this license. If you do not wish to do so, 
 do not submit pull requests.
 
