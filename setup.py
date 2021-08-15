@@ -20,6 +20,7 @@ setuptools.setup(
     url="https://github.com/roelderickx/ogr2osm",
     packages=setuptools.find_packages(),
     python_requires='>=3.7',
+    install_requires=['lxml>=4.3.0', 'GDAL>=3.0.0'],
     entry_points={
         'console_scripts': ['ogr2osm = ogr2osm.ogr2osm:main']
     },
