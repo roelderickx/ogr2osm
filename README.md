@@ -157,6 +157,15 @@ ogr2osm supports custom translations for your data. To do this you need to subcl
 
 ```python
 class TranslationBase:
+    def __init__(self):
+        '''
+        Calling the constructor from your subclass will initialize the ogr2osm
+        logger. You can omit this call if you use a different logger or if no
+        logger at all is required.
+        '''
+        self.logger = logging.getLogger(__program__)
+
+
     def filter_layer(self, layer):
         '''
         Override this method if you want to modify the given layer,
