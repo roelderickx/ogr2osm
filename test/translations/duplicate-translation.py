@@ -9,11 +9,11 @@ Released under the MIT license, as given in the file LICENSE, which must
 accompany any distribution of this code.
 '''
 
-import ogr2osm
-import logging
+import ogr2osm, logging
 
 class DuplicateTranslation(ogr2osm.TranslationBase):
     def __init__(self):
+        super().__init__()
         self.node_counter = 0
 
 
@@ -21,5 +21,5 @@ class DuplicateTranslation(ogr2osm.TranslationBase):
         if geometry_type == 'node':
             self.node_counter += 1
         if geometry_type != 'node' or self.node_counter <= 10:
-            logging.debug('Merging tags for duplicate %s' % geometry_type)
+            self.logger.debug('Merging tags for duplicate %s' % geometry_type)
         return super().merge_tags(geometry_type, tags_existing_geometry, tags_new_geometry)

@@ -9,6 +9,10 @@ Released under the MIT license, as given in the file LICENSE, which must
 accompany any distribution of this code.
 '''
 
+import logging
+
+from .version import __program__
+
 class TranslationBase:
     '''
     Base class for translations. Override the methods in this class to remove
@@ -17,7 +21,12 @@ class TranslationBase:
     '''
 
     def __init__(self):
-        pass
+        '''
+        Calling the constructor from your subclass will initialize the ogr2osm
+        logger. You can omit this call if you use a different logger or if no
+        logger at all is required.
+        '''
+        self.logger = logging.getLogger(__program__)
 
 
     def filter_layer(self, layer):
