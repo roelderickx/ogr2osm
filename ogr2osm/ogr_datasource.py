@@ -9,14 +9,18 @@ Released under the MIT license, as given in the file LICENSE, which must
 accompany any distribution of this code.
 '''
 
-import os, logging
+import os
+import logging
 from osgeo import gdalconst
 from osgeo import ogr
 from osgeo import osr
 
+from .version import __program__
+
 class OgrDatasource:
     def __init__(self, translation, source_proj4=None, source_epsg=None, gisorder=False, \
                        source_encoding='utf-8'):
+        self.logger = logging.getLogger(__program__)
         self.datasource = None
         self.is_database_source = False
         self.query = None
@@ -39,7 +43,8 @@ class OgrDatasource:
             ogr_unsupported = [ "vsimem", "vsistdout" ]
             has_unsup = [ m for m in ogr_unsupported if m in ogrpath.split('/') ]
             if has_unsup:
-                logging.error("Unsupported OGR access method(s) found: %s.", ', '.join(has_unsup))
+                self.logger.error("Unsupported OGR access method(s) found: %s.", \
+                                  ', '.join(has_unsup))
 
             # using ogr access methods ?
             ogr_accessmethods = [ "vsicurl", "vsicurl_streaming", "vsisubfile", "vsistdin" ]
@@ -56,7 +61,7 @@ class OgrDatasource:
                         break
 
                 if not os.path.exists(filename):
-                    logging.error("The file '%s' does not exist.", filename)
+                    self.logger.error("The file '%s' does not exist.", filename)
                 elif ogrpath == filename:
                     if filename.endswith('.tar') or \
                        filename.endswith('.tgz') or \
@@ -79,9 +84,10 @@ class OgrDatasource:
                 self.datasource = ogr.Open(full_ogrpath, gdalconst.GA_ReadOnly)
 
             if self.is_database_source and not self.datasource:
-                logging.error("OGR failed to open connection to %s.", full_ogrpath)
+                self.logger.error("OGR failed to open connection to %s.", full_ogrpath)
             elif not self.is_database_source and not self.datasource and not file_datasource:
-                logging.error("OGR failed to open '%s', format may be unsupported.", full_ogrpath)
+                self.logger.error("OGR failed to open '%s', format may be unsupported.", \
+                                  full_ogrpath)
             elif not self.is_database_source and file_datasource and prefer_mem_copy:
                 mem_driver = ogr.GetDriverByName('Memory')
                 self.datasource = mem_driver.CopyDataSource(file_datasource, 'memoryCopy')
@@ -107,9 +113,9 @@ class OgrDatasource:
             spatial_ref.ImportFromEPSG(self.source_epsg)
         elif layer_spatial_ref:
             spatial_ref = layer_spatial_ref
-            logging.info("Detected projection metadata:\n%s", str(layer_spatial_ref))
+            self.logger.info("Detected projection metadata:\n%s", str(layer_spatial_ref))
         else:
-            logging.info("Layer has no projection metadata, falling back to EPSG:4326")
+            self.logger.info("Layer has no projection metadata, falling back to EPSG:4326")
             if not self.gisorder:
                 spatial_ref = osr.SpatialReference()
                 spatial_ref.ImportFromEPSG(4326)
@@ -146,7 +152,7 @@ class OgrDatasource:
                 layer = self.datasource.ExecuteSQL(self.query)
                 layer.ResetReading()
             else:
-                logging.error("Query must be set first when the datasource is a database.")
+                self.logger.error("Query must be set first when the datasource is a database.")
         else:
             layer = self.datasource.GetLayer(index)
             layer.ResetReading()

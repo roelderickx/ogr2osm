@@ -9,8 +9,12 @@ Released under the MIT license, as given in the file LICENSE, which must
 accompany any distribution of this code.
 '''
 
-import logging, sys, time, zlib
+import logging
+import sys
+import time
+import zlib
 
+from .version import __program__
 from .osm_geometries import OsmId, OsmNode, OsmWay, OsmRelation
 from .datawriter_base_class import DataWriterBase
 
@@ -214,6 +218,8 @@ try:
     class PbfDataWriter(DataWriterBase):
         def __init__(self, filename, add_version=False, add_timestamp=False, \
                      suppress_empty_tags=False):
+            self.logger = logging.getLogger(__program__)
+
             self.filename = filename
             self.add_version = add_version
             self.add_timestamp = add_timestamp
@@ -229,7 +235,7 @@ try:
 
 
         def __write_blob(self, data, block_type):
-            #logging.debug("Writing blob, type = %s" % block_type)
+            #self.logger.debug("Writing blob, type = %s" % block_type)
 
             blob = fileprotobuf.Blob()
             blob.raw_size = len(data)
@@ -246,7 +252,7 @@ try:
 
 
         def write_header(self, bounds):
-            logging.debug("Writing file header")
+            self.logger.debug("Writing file header")
 
             header_block = osmprotobuf.HeaderBlock()
             if bounds and bounds.is_valid:
@@ -261,7 +267,7 @@ try:
 
 
         def __write_primitive_block(self, pbf_primitive_group):
-            #logging.debug("Primitive block generation")
+            #self.logger.debug("Primitive block generation")
 
             primitive_block = osmprotobuf.PrimitiveBlock()
             # add stringtable
@@ -280,7 +286,7 @@ try:
 
 
         def write_nodes(self, nodes):
-            logging.debug("Writing nodes")
+            self.logger.debug("Writing nodes")
             for i in range(0, len(nodes), self.__max_nodes_per_node_block):
                 primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, \
                                                               self.add_timestamp, \
@@ -291,7 +297,7 @@ try:
 
 
         def write_ways(self, ways):
-            logging.debug("Writing ways")
+            self.logger.debug("Writing ways")
             amount_node_refs = 0
             primitive_group = None
             for way in ways:
@@ -310,7 +316,7 @@ try:
 
 
         def write_relations(self, relations):
-            logging.debug("Writing relations")
+            self.logger.debug("Writing relations")
             amount_member_refs = 0
             primitive_group = None
             for relation in relations:

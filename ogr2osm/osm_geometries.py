@@ -12,6 +12,8 @@ accompany any distribution of this code.
 import logging
 from lxml import etree
 
+from .version import __program__
+
 class OsmId:
     element_id_counter = 0
     element_id_counter_incr = -1
@@ -25,18 +27,20 @@ class OsmId:
 
     @staticmethod
     def load_id(filename):
+        logger = logging.getLogger(__program__)
         with open(filename, 'r') as ff:
             OsmId.element_id_counter = int(ff.readline(20))
-        logging.info("Starting counter value '%d' read from file '%s'.", \
-                     OsmId.element_id_counter, filename)
+        logger.info("Starting counter value '%d' read from file '%s'.", \
+                    OsmId.element_id_counter, filename)
 
 
     @staticmethod
     def save_id(filename):
+        logger = logging.getLogger(__program__)
         with open(filename, 'w') as ff:
             ff.write(str(OsmId.element_id_counter))
-        logging.info("Wrote elementIdCounter '%d' to file '%s'", \
-                     OsmId.element_id_counter, filename)
+        logger.info("Wrote elementIdCounter '%d' to file '%s'", \
+                    OsmId.element_id_counter, filename)
 
 
 

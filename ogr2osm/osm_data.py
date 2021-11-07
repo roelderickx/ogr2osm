@@ -13,10 +13,13 @@ import logging
 from osgeo import ogr
 from osgeo import osr
 
+from .version import __program__
 from .osm_geometries import OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
     def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False):
+        self.logger = logging.getLogger(__program__)
+
         # options
         self.translation = translation
         self.rounding_digits = rounding_digits
@@ -204,7 +207,7 @@ class OsmData:
                 #               relation is unique
                 potential_duplicate_relations.clear()
         else:
-            logging.warning("Polygon with no exterior ring?")
+            self.logger.warning("Polygon with no exterior ring?")
             return None
 
         # interior rings
@@ -242,7 +245,7 @@ class OsmData:
         # Special case polygons with only one ring. This does not (or at least
         # should not) change behavior when simplify relations is turned on.
         if ogrgeometry.GetGeometryCount() == 0:
-            logging.warning("Polygon with no rings?")
+            self.logger.warning("Polygon with no rings?")
             return None
         elif ogrgeometry.GetGeometryCount() == 1 and \
              ogrgeometry.GetGeometryRef(0).GetPointCount() <= self.max_points_in_way:
@@ -289,7 +292,7 @@ class OsmData:
                                                             not any(members)))
             else:
                 # no support for nested collections or other unsupported types
-                logging.warning("Unhandled geometry in collection, type %d", geometry_type)
+                self.logger.warning("Unhandled geometry in collection, type %d", geometry_type)
 
         if len(members) == 1 and len(members[0].nodes) <= self.max_points_in_way:
             # only 1 polygon with 1 outer ring
@@ -325,7 +328,7 @@ class OsmData:
         elif geometry_type in [ ogr.wkbGeometryCollection, ogr.wkbGeometryCollection25D ]:
             osmgeometries.append(self.__parse_collection(ogrgeometry, tags))
         else:
-            logging.warning("Unhandled geometry, type %d", geometry_type)
+            self.logger.warning("Unhandled geometry, type %d", geometry_type)
 
         return osmgeometries
 
@@ -383,7 +386,7 @@ class OsmData:
             # pointless :-)
             return
 
-        logging.debug("Splitting long ways")
+        self.logger.debug("Splitting long ways")
 
         for way in self.__ways:
             if len(way.nodes) > self.max_points_in_way:

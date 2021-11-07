@@ -54,9 +54,7 @@ from .osm_data import OsmData
 from .osm_datawriter import OsmDataWriter
 from .pbf_datawriter import is_protobuf_installed, PbfDataWriter
 
-logging.basicConfig(format="%(message)s", level = logging.DEBUG)
-
-def parse_commandline():
+def parse_commandline(logger):
     parser = argparse.ArgumentParser(prog=__program__)
 
     #parser.add_argument("-v", "--verbose", dest="verbose", action="store_true")
@@ -166,27 +164,27 @@ def parse_commandline():
         else:
             (base, ext) = os.path.splitext(params.outputFile)
             if params.pbf and ext.lower() == '.osm':
-                logging.warning("WARNING: You specified PBF output with --pbf "
-                                "but the outputfile has extension .osm, "
-                                "ignoring --pbf parameter")
+                logger.warning("WARNING: You specified PBF output with --pbf "
+                               "but the outputfile has extension .osm, "
+                               "ignoring --pbf parameter")
                 params.pbf = False
             elif is_protobuf_installed and not params.pbf and ext.lower() == '.pbf':
-                logging.warning("WARNING: You didn't specify PBF output with --pbf "
-                                "but the outputfile has extension .pbf, "
-                                "automatically setting --pbf parameter")
+                logger.warning("WARNING: You didn't specify PBF output with --pbf "
+                               "but the outputfile has extension .pbf, "
+                               "automatically setting --pbf parameter")
                 params.pbf = True
             elif not is_protobuf_installed and not params.pbf and ext.lower() == '.pbf':
-                logging.warning("WARNING: PBF output is not supported on this "
-                                "system but the outputfile has extension .pbf, "
-                                "automatically removing .pbf extension")
+                logger.warning("WARNING: PBF output is not supported on this "
+                               "system but the outputfile has extension .pbf, "
+                               "automatically removing .pbf extension")
                 (base_osm, ext_osm) = os.path.splitext(base)
                 if ext_osm == '.osm':
                     params.outputFile = base
                 else:
                     params.outputFile = base + '.osm'
         if params.sqlQuery:
-            logging.warning("WARNING: You specified a query with --sql "
-                            "but you are not using a database source")
+            logger.warning("WARNING: You specified a query with --sql "
+                           "but you are not using a database source")
 
     if not params.forceOverwrite and os.path.exists(params.outputFile):
         parser.error("ERROR: output file '%s' exists" % params.outputFile)
@@ -194,7 +192,7 @@ def parse_commandline():
     return params
 
 
-def load_translation_object(translation_module):
+def load_translation_object(logger, translation_module):
     translation_object = None
 
     if translation_module:
@@ -216,14 +214,14 @@ def load_translation_object(translation_module):
         try:
             imported_module = __import__(translation_module)
         except ImportError as e:
-            logging.error("Could not load translation method '%s'. Translation "
-                          "script must be in your current directory, or in the "
-                          "translations/ subdirectory of your current directory. "
-                          "The following directories have been considered: %s",
-                          translation_module, str(sys.path))
+            logger.error("Could not load translation method '%s'. Translation "
+                         "script must be in your current directory, or in the "
+                         "translations/ subdirectory of your current directory. "
+                         "The following directories have been considered: %s",
+                         translation_module, str(sys.path))
         except SyntaxError as e:
-            logging.error("Syntax error in '%s'. Translation script is malformed:\n%s",
-                          translation_module, e)
+            logger.error("Syntax error in '%s'. Translation script is malformed:\n%s",
+                         translation_module, e)
 
         for class_name in [ d for d in dir(imported_module) \
                                     if d != 'TranslationBase' and not d.startswith('__') ]:
@@ -231,32 +229,36 @@ def load_translation_object(translation_module):
 
             if inspect.isclass(translation_class) and \
                issubclass(translation_class, TranslationBase):
-                logging.info('Found valid translation class %s', class_name)
+                logger.info('Found valid translation class %s', class_name)
                 setattr(sys.modules[__name__], class_name, translation_class)
                 translation_object = translation_class()
                 break
 
     if not translation_object:
         if translation_module:
-            logging.warning('WARNING: translation file does not contain a valid translation class')
-            logging.warning('Falling back to DEFAULT translations')
+            logger.warning('WARNING: translation file does not contain a valid translation class')
+            logger.warning('Falling back to DEFAULT translations')
         else:
-            logging.info('Using default translations')
+            logger.info('Using default translations')
         translation_object = TranslationBase()
 
     return translation_object
 
 
 def main():
-    params = parse_commandline()
+    logger = logging.getLogger(__program__)
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(logging.StreamHandler())
 
-    translation_object = load_translation_object(params.translationmodule)
+    params = parse_commandline(logger)
+
+    translation_object = load_translation_object(logger, params.translationmodule)
 
     OsmId.set_id(params.id, params.positiveId)
     if params.idfile:
         OsmId.load_id(params.idfile)
 
-    logging.info("Preparing to convert '%s' to '%s'.", params.source, params.outputFile)
+    logger.info("Preparing to convert '%s' to '%s'.", params.source, params.outputFile)
 
     osmdata = OsmData(translation_object, \
                       params.roundingDigits, params.maxNodesPerWay, params.addBounds)

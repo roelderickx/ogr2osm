@@ -9,14 +9,18 @@ Released under the MIT license, as given in the file LICENSE, which must
 accompany any distribution of this code.
 '''
 
-import logging, time
+import logging
+import time
 
+from .version import __program__
 from .datawriter_base_class import DataWriterBase
 
 class OsmDataWriter(DataWriterBase):
     def __init__(self, filename, never_upload=False, no_upload_false=False, never_download=False, \
                  locked=False, add_version=False, add_timestamp=False, significant_digits=9, \
                  suppress_empty_tags=False):
+        self.logger = logging.getLogger(__program__)
+
         self.filename = filename
         self.never_upload = never_upload
         self.no_upload_false = no_upload_false
@@ -45,7 +49,7 @@ class OsmDataWriter(DataWriterBase):
 
 
     def write_header(self, bounds):
-        logging.debug("Writing file header")
+        self.logger.debug("Writing file header")
         
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<osm version="0.6" generator="ogr2osm %s"' % self.get_version())
@@ -73,22 +77,22 @@ class OsmDataWriter(DataWriterBase):
 
 
     def write_nodes(self, nodes):
-        logging.debug("Writing nodes")
+        self.logger.debug("Writing nodes")
         self.__write_geometries(nodes)
 
 
     def write_ways(self, ways):
-        logging.debug("Writing ways")
+        self.logger.debug("Writing ways")
         self.__write_geometries(ways)
 
 
     def write_relations(self, relations):
-        logging.debug("Writing relations")
+        self.logger.debug("Writing relations")
         self.__write_geometries(relations)
 
 
     def write_footer(self):
-        logging.debug("Writing file footer")
+        self.logger.debug("Writing file footer")
         self.f.write('</osm>')
 
 
