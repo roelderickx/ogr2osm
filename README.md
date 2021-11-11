@@ -108,9 +108,16 @@ optional arguments:
 
 Example code:
 ```python
+import logging
 import ogr2osm
 
-# 1. Required parameters for this example:
+# 1. Set the logging level of the logger object named 'ogr2osm' to the desired output level
+
+ogr2osmlogger = logging.getLogger('ogr2osm')
+ogr2osmlogger.setLevel(logging.ERROR)
+ogr2osmlogger.addHandler(logging.StreamHandler())
+
+# 2. Required parameters for this example:
 
 # - datasource_parameter is a variable holding the input filename, or a
 #   database connection such as "PG:dbname=pdx_bldgs user=emma host=localhost"
@@ -122,27 +129,27 @@ query = ...
 # - the output file to write
 output_file = ...
 
-# 2. Create the translation object. If no translation is required you
+# 3. Create the translation object. If no translation is required you
 #    can use the base class from ogr2osm, otherwise you need to instantiate
 #    a subclass of ogr2osm.TranslationBase
 translation_object = ogr2osm.TranslationBase()
 
-# 3. Create the ogr datasource. You can specify a source projection but
+# 4. Create the ogr datasource. You can specify a source projection but
 #    EPSG:4326 will be assumed if none is given and if the projection of the
 #    datasource is unknown.
 datasource = ogr2osm.OgrDatasource(translation_object)
 datasource.open_datasource(datasource_parameter)
 
-# 4. If the datasource is a database then you must set the query to use.
+# 5. If the datasource is a database then you must set the query to use.
 #    Setting the query for any other datasource is useless but not an error.
 datasource.set_query(query)
 
-# 5. Instantiate the ogr to osm converter class ogr2osm.OsmData and start the
+# 6. Instantiate the ogr to osm converter class ogr2osm.OsmData and start the
 #    conversion process
 osmdata = ogr2osm.OsmData(translation_object)
 osmdata.process(datasource)
 
-# 6. Instantiate either ogr2osm.OsmDataWriter or ogr2osm.PbfDataWriter and
+# 7. Instantiate either ogr2osm.OsmDataWriter or ogr2osm.PbfDataWriter and
 #    invoke output() to write the output file. If required you can write a
 #    custom datawriter class by subclassing ogr2osm.DataWriterBase.
 datawriter = ogr2osm.OsmDataWriter(output_file)
@@ -157,15 +164,6 @@ ogr2osm supports custom translations for your data. To do this you need to subcl
 
 ```python
 class TranslationBase:
-    def __init__(self):
-        '''
-        Calling the constructor from your subclass will initialize the ogr2osm
-        logger. You can omit this call if you use a different logger or if no
-        logger at all is required.
-        '''
-        self.logger = logging.getLogger(__program__)
-
-
     def filter_layer(self, layer):
         '''
         Override this method if you want to modify the given layer,

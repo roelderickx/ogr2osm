@@ -13,7 +13,7 @@ import ogr2osm, logging
 
 class DuplicateTranslation(ogr2osm.TranslationBase):
     def __init__(self):
-        super().__init__()
+        self.logger = logging.getLogger('ogr2osm')
         self.node_counter = 0
 
 
