@@ -11,8 +11,6 @@ accompany any distribution of this code.
 
 import logging
 
-from .version import __program__
-
 class TranslationBase:
     '''
     Base class for translations. Override the methods in this class to remove
