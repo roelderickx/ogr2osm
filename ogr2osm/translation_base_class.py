@@ -9,8 +9,6 @@ Released under the MIT license, as given in the file LICENSE, which must
 accompany any distribution of this code.
 '''
 
-import logging
-
 class TranslationBase:
     '''
     Base class for translations. Override the methods in this class to remove
