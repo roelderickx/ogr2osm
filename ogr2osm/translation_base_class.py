@@ -20,6 +20,10 @@ class TranslationBase:
     to suit your needs.
     '''
 
+    def __init__(self):
+        pass
+
+
     def filter_layer(self, layer):
         '''
         Override this method if you want to modify the given layer,
