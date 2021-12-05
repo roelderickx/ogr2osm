@@ -348,7 +348,7 @@ timestamp:
   Writing nodes
   Writing ways
   Writing relations
-  $ osmconvert --drop-author basic_geometries.osm.pbf > $TESTDIR/check_manual_timestamp_from_pbf.osm 2> /dev/null
+  $ osmconvert basic_geometries.osm.pbf > $TESTDIR/check_manual_timestamp_from_pbf.osm 2> /dev/null
   \[.[0-9]\] (re)
 
 duplicatewaynodes:

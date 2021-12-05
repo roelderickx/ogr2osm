@@ -43,9 +43,9 @@ try:
             if self._add_version:
                 self._version = 1
             self._add_timestamp = add_timestamp
-            self._timestamp = -1 #time.localtime(-1)
+            self._timestamp = -1
             if self._add_timestamp:
-                self._timestamp = int(time.time()) #time.localtime()
+                self._timestamp = time.time()
             self.suppress_empty_tags = suppress_empty_tags
 
             self.granularity = 100
@@ -97,7 +97,6 @@ try:
             '''
             Convert time.struct_time to value used in pbf
             '''
-            #return int(time.mktime(timestamp) * 1000 / self.date_granularity)
             return int(timestamp * 1000 / self.date_granularity)
 
 
