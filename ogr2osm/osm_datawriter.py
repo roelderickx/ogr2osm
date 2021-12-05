@@ -36,7 +36,7 @@ class OsmDataWriter(DataWriterBase):
         if add_version:
             self.attributes.update({'version':'1'})
         if add_timestamp:
-            self.attributes.update({'timestamp':time.strftime('%Y-%m-%dT%H:%M:%SZ')})
+            self.attributes.update({'timestamp':time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())})
 
 
     def open(self):
