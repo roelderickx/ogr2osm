@@ -95,7 +95,7 @@ try:
 
         def _timestamp_to_pbf(self, timestamp):
             '''
-            Convert time.struct_time to value used in pbf
+            Convert seconds since the unix epoch to value used in pbf
             '''
             return int(timestamp * 1000 / self.date_granularity)
 
