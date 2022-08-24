@@ -20,13 +20,13 @@ paru -Syu ogr2osm-git
 
 ### Using pip
 
-```bash
+```console
 pip install --upgrade ogr2osm
 ```
 
 ### From source
 
-```bash
+```console
 git clone https://github.com/roelderickx/ogr2osm.git
 cd ogr2osm
 python setup.py install
@@ -35,7 +35,7 @@ python setup.py install
 ### Running from source without installation
 
 If you do not have the required permissions to install ogr2osm, you can run the package as a module directly from the cloned source.
-```bash
+```console
 git clone https://github.com/roelderickx/ogr2osm.git
 cd ogr2osm
 python -m ogr2osm
@@ -61,7 +61,7 @@ Ogr2osm can be used as a standalone application, but you can also use its classe
 
 ### Standalone
 
-```
+```console
 usage: ogr2osm [-h] [--version] [-t TRANSLATION] [--encoding ENCODING]
                [--sql SQLQUERY] [--no-memory-copy] [-e EPSG_CODE]
                [-p PROJ4_STRING] [--gis-order]
