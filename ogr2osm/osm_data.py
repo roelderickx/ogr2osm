@@ -18,7 +18,7 @@ from .osm_geometries import OsmId, OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
     def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False, \
-                 start_id = 0, is_positive = False):
+                 start_id=0, is_positive=False):
         self.logger = logging.getLogger(__program__)
 
         # options
