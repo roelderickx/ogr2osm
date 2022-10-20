@@ -17,13 +17,15 @@ from .version import __program__
 from .osm_geometries import OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
-    def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False):
+    def __init__(self, translation, rounding_digits=7, \
+                       max_points_in_way=1800, max_members_in_relation = 30000, add_bounds=False):
         self.logger = logging.getLogger(__program__)
 
         # options
         self.translation = translation
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
+        self.max_members_in_relation = max_members_in_relation
         self.add_bounds = add_bounds
 
         self.__bounds = OsmBoundary()

@@ -96,6 +96,9 @@ def parse_commandline(logger):
     parser.add_argument("--split-ways", dest="maxNodesPerWay", type=int, default=1800,
                         help="Split ways with more than the specified number of nodes. " +
                              "Defaults to %(default)s. Any value below 2 - do not split.")
+    parser.add_argument("--split-relations", dest="maxMembersPerRelation", type=int, default=30000,
+                        help="Split relations with more than the specified number of members. " +
+                             "Defaults to %(default)s. Any value below 2 - do not split.")
     # ID generation options
     parser.add_argument("--id", dest="id", type=int, default=0,
                         help="ID to start counting from for the output file. " +
@@ -260,8 +263,8 @@ def main():
 
     logger.info("Preparing to convert '%s' to '%s'.", params.source, params.outputFile)
 
-    osmdata = OsmData(translation_object, \
-                      params.roundingDigits, params.maxNodesPerWay, params.addBounds)
+    osmdata = OsmData(translation_object, params.roundingDigits, \
+                      params.maxNodesPerWay, params.maxMembersPerRelation, params.addBounds)
     # create datasource and process data
     datasource = OgrDatasource(translation_object, \
                                params.sourcePROJ4, params.sourceEPSG, params.gisorder, \
