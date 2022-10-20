@@ -14,10 +14,11 @@ from osgeo import ogr
 from osgeo import osr
 
 from .version import __program__
-from .osm_geometries import OsmBoundary, OsmNode, OsmWay, OsmRelation
+from .osm_geometries import OsmId, OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
-    def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False):
+    def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False, \
+                 start_id = 0, is_positive = False):
         self.logger = logging.getLogger(__program__)
 
         # options
@@ -31,6 +32,8 @@ class OsmData:
         self.__unique_node_index = {}
         self.__ways = []
         self.__relations = []
+
+        OsmId.set_id(start_id, is_positive)
 
 
     def __get_layer_fields(self, layer):
