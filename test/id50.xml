@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="ogr2osm 1.1.1" upload="false">
+  <node visible="true" id="49" lat="33.4838" lon="-23.094721">
+    <tag k="Name" v="TestPoint"/>
+    <tag k="description" v=""/>
+    <tag k="timestamp" v=""/>
+    <tag k="begin" v=""/>
+    <tag k="end" v=""/>
+    <tag k="altitudeMode" v=""/>
+    <tag k="tessellate" v="-1"/>
+    <tag k="extrude" v="0"/>
+    <tag k="visibility" v="-1"/>
+    <tag k="drawOrder" v=""/>
+    <tag k="icon" v=""/>
+  </node>
+  <node visible="true" id="48" lat="33.4754108" lon="-23.1659603"/>
+  <node visible="true" id="47" lat="33.476771" lon="-23.1631279"/>
+  <node visible="true" id="46" lat="33.4769858" lon="-23.1604671"/>
+  <node visible="true" id="45" lat="33.4758403" lon="-23.155489"/>
+  <node visible="true" id="44" lat="33.4731198" lon="-23.1545448"/>
+  <node visible="true" id="43" lat="33.4686807" lon="-23.1518841"/>
+  <node visible="true" id="42" lat="33.4667476" lon="-23.1486225"/>
+  <node visible="true" id="41" lat="33.4662464" lon="-23.143301"/>
+  <node visible="true" id="40" lat="33.4666044" lon="-23.1391811"/>
+  <node visible="true" id="39" lat="33.4686807" lon="-23.1354904"/>
+  <node visible="true" id="38" lat="33.4715447" lon="-23.1324005"/>
+  <node visible="true" id="37" lat="33.4754824" lon="-23.1305981"/>
+  <node visible="true" id="36" lat="33.4795631" lon="-23.1307697"/>
+  <node visible="true" id="35" lat="33.4822835" lon="-23.1289673"/>
+  <node visible="true" id="34" lat="33.4828562" lon="-23.1247616"/>
+  <node visible="true" id="33" lat="33.4819255" lon="-23.1208992"/>
+  <node visible="true" id="32" lat="33.4796347" lon="-23.1177235"/>
+  <node visible="true" id="31" lat="33.4762699" lon="-23.115921"/>
+  <node visible="true" id="30" lat="33.4736925" lon="-23.1117153"/>
+  <node visible="true" id="29" lat="33.4726186" lon="-23.1081963"/>
+  <node visible="true" id="27" lat="33.4706855" lon="-23.089571"/>
+  <node visible="true" id="26" lat="33.472905" lon="-23.0868244"/>
+  <node visible="true" id="25" lat="33.4744085" lon="-23.0818462"/>
+  <node visible="true" id="24" lat="33.4738357" lon="-23.0760098"/>
+  <node visible="true" id="23" lat="33.4737641" lon="-23.0727482"/>
+  <node visible="true" id="22" lat="33.4745517" lon="-23.0702591"/>
+  <node visible="true" id="21" lat="33.475554" lon="-23.0689716"/>
+  <node visible="true" id="20" lat="33.4769142" lon="-23.0683708"/>
+  <node visible="true" id="19" lat="33.4778449" lon="-23.0689716"/>
+  <node visible="true" id="18" lat="33.4772722" lon="-23.0709457"/>
+  <node visible="true" id="17" lat="33.4761267" lon="-23.0737782"/>
+  <node visible="true" id="16" lat="33.4772006" lon="-23.0778122"/>
+  <node visible="true" id="15" lat="33.4786324" lon="-23.0790138"/>
+  <node visible="true" id="14" lat="33.4804938" lon="-23.0786705"/>
+  <node visible="true" id="13" lat="33.4819255" lon="-23.0774689"/>
+  <node visible="true" id="12" lat="33.4823551" lon="-23.0756664"/>
+  <node visible="true" id="11" lat="33.4837868" lon="-23.0742931"/>
+  <node visible="true" id="10" lat="33.485648" lon="-23.0740356"/>
+  <node visible="true" id="9" lat="33.4870797" lon="-23.0724049"/>
+  <node visible="true" id="8" lat="33.4884398" lon="-23.0697441"/>
+  <node visible="true" id="7" lat="33.4880103" lon="-23.0687141"/>
+  <node visible="true" id="6" lat="33.4871513" lon="-23.0688"/>
+  <node visible="true" id="5" lat="33.4854333" lon="-23.0714607"/>
+  <node visible="true" id="4" lat="33.4832857" lon="-23.0706882"/>
+  <node visible="true" id="3" lat="33.4851469" lon="-23.0691433"/>
+  <node visible="true" id="2" lat="33.4849322" lon="-23.0657101"/>
+  <node visible="true" id="1" lat="33.4828562" lon="-23.0639076"/>
+  <node visible="true" id="0" lat="33.4807085" lon="-23.063221"/>
+  <node visible="true" id="-1" lat="33.4784892" lon="-23.0631351"/>
+  <node visible="true" id="-2" lat="33.4761983" lon="-23.0640793"/>
+  <node visible="true" id="-3" lat="33.4744085" lon="-23.0651093"/>
+  <node visible="true" id="-4" lat="33.4720458" lon="-23.0671692"/>
+  <node visible="true" id="-5" lat="33.4707571" lon="-23.0712032"/>
+  <node visible="true" id="-6" lat="33.4701843" lon="-23.0739498"/>
+  <node visible="true" id="-7" lat="33.4683228" lon="-23.0764389"/>
+  <node visible="true" id="-8" lat="33.466318" lon="-23.0767822"/>
+  <node visible="true" id="-9" lat="33.4645995" lon="-23.0761814"/>
+  <node visible="true" id="-10" lat="33.4629526" lon="-23.0739498"/>
+  <node visible="true" id="-11" lat="33.4612341" lon="-23.0709457"/>
+  <node visible="true" id="-12" lat="33.4593008" lon="-23.0704308"/>
+  <node visible="true" id="-13" lat="33.4572958" lon="-23.0710316"/>
+  <node visible="true" id="-14" lat="33.4566513" lon="-23.072834"/>
+  <node visible="true" id="-15" lat="33.4560068" lon="-23.0755806"/>
+  <node visible="true" id="-16" lat="33.455792" lon="-23.0778122"/>
+  <node visible="true" id="-17" lat="33.455792" lon="-23.0811596"/>
+  <node visible="true" id="-18" lat="33.455792" lon="-23.0843353"/>
+  <node visible="true" id="-19" lat="33.4538585" lon="-23.0881119"/>
+  <node visible="true" id="-20" lat="33.4522831" lon="-23.0901718"/>
+  <node visible="true" id="-21" lat="33.4504211" lon="-23.0922318"/>
+  <node visible="true" id="-22" lat="33.4503495" lon="-23.0954933"/>
+  <node visible="true" id="-23" lat="33.4521398" lon="-23.0985832"/>
+  <node visible="true" id="-24" lat="33.4550043" lon="-23.100729"/>
+  <node visible="true" id="-25" lat="33.4558636" lon="-23.1036472"/>
+  <node visible="true" id="-26" lat="33.457081" lon="-23.1075096"/>
+  <node visible="true" id="-27" lat="33.4576538" lon="-23.110857"/>
+  <node visible="true" id="-28" lat="33.4590144" lon="-23.1130028"/>
+  <node visible="true" id="-29" lat="33.4615922" lon="-23.1141186"/>
+  <node visible="true" id="-30" lat="33.4643131" lon="-23.1143761"/>
+  <node visible="true" id="-31" lat="33.4653871" lon="-23.1085396"/>
+  <node visible="true" id="-32" lat="33.4678216" lon="-23.1037331"/>
+  <node visible="true" id="-33" lat="33.4711151" lon="-23.1018448"/>
+  <node visible="true" id="-34" lat="33.4731198" lon="-23.1021881"/>
+  <node visible="true" id="-35" lat="33.4762699" lon="-23.1040764"/>
+  <node visible="true" id="-36" lat="33.4773975" lon="-23.1037545"/>
+  <node visible="true" id="-37" lat="33.4777196" lon="-23.1026173"/>
+  <node visible="true" id="-38" lat="33.4775765" lon="-23.10148"/>
+  <node visible="true" id="-39" lat="33.4771111" lon="-23.1007719"/>
+  <node visible="true" id="-40" lat="33.4760014" lon="-23.0985403"/>
+  <node visible="true" id="-41" lat="33.4756614" lon="-23.097167"/>
+  <node visible="true" id="-42" lat="33.4753392" lon="-23.09618"/>
+  <node visible="true" id="-43" lat="33.4720458" lon="-23.0914593"/>
+  <node visible="true" id="-45" lat="33.4720458" lon="-23.1465626"/>
+  <node visible="true" id="-46" lat="33.4739073" lon="-23.1454468"/>
+  <node visible="true" id="-47" lat="33.4752676" lon="-23.1457901"/>
+  <node visible="true" id="-48" lat="33.4779881" lon="-23.1480217"/>
+  <node visible="true" id="-49" lat="33.4812096" lon="-23.1473351"/>
+  <node visible="true" id="-50" lat="33.4823551" lon="-23.1423569"/>
+  <node visible="true" id="-51" lat="33.4820687" lon="-23.1374645"/>
+  <node visible="true" id="-52" lat="33.4826414" lon="-23.1346321"/>
+  <node visible="true" id="-53" lat="33.4851469" lon="-23.131628"/>
+  <node visible="true" id="-54" lat="33.487366" lon="-23.1281948"/>
+  <node visible="true" id="-55" lat="33.4866502" lon="-23.1245041"/>
+  <node visible="true" id="-56" lat="33.4845742" lon="-23.1205559"/>
+  <node visible="true" id="-57" lat="33.4812812" lon="-23.1206417"/>
+  <node visible="true" id="-58" lat="33.4776301" lon="-23.1218433"/>
+  <node visible="true" id="-59" lat="33.477129" lon="-23.1249332"/>
+  <node visible="true" id="-60" lat="33.4756972" lon="-23.1258774"/>
+  <node visible="true" id="-61" lat="33.4739073" lon="-23.1254482"/>
+  <node visible="true" id="-62" lat="33.4731198" lon="-23.1239033"/>
+  <node visible="true" id="-63" lat="33.4714015" lon="-23.120985"/>
+  <node visible="true" id="-64" lat="33.4716163" lon="-23.1181526"/>
+  <node visible="true" id="-65" lat="33.4726902" lon="-23.1160069"/>
+  <node visible="true" id="-66" lat="33.4758403" lon="-23.1136036"/>
+  <node visible="true" id="-67" lat="33.4777017" lon="-23.1112862"/>
+  <node visible="true" id="-68" lat="33.4777733" lon="-23.1087971"/>
+  <node visible="true" id="-69" lat="33.4766995" lon="-23.1060505"/>
+  <node visible="true" id="-70" lat="33.4750528" lon="-23.1045914"/>
+  <node visible="true" id="-71" lat="33.4726186" lon="-23.1034756"/>
+  <node visible="true" id="-72" lat="33.4710435" lon="-23.1031322"/>
+  <node visible="true" id="-73" lat="33.4693967" lon="-23.1037331"/>
+  <node visible="true" id="-74" lat="33.4675352" lon="-23.1070805"/>
+  <node visible="true" id="-75" lat="33.4663896" lon="-23.1100845"/>
+  <node visible="true" id="-76" lat="33.4657451" lon="-23.1137753"/>
+  <node visible="true" id="-77" lat="33.4653871" lon="-23.1207275"/>
+  <node visible="true" id="-78" lat="33.4640983" lon="-23.1247616"/>
+  <node visible="true" id="-79" lat="33.4624514" lon="-23.1266499"/>
+  <node visible="true" id="-80" lat="33.4604465" lon="-23.1287098"/>
+  <node visible="true" id="-81" lat="33.459802" lon="-23.1337738"/>
+  <node visible="true" id="-82" lat="33.4599452" lon="-23.137207"/>
+  <node visible="true" id="-83" lat="33.4611625" lon="-23.1396961"/>
+  <node visible="true" id="-84" lat="33.4640983" lon="-23.1433868"/>
+  <node visible="true" id="-85" lat="33.4664612" lon="-23.1451893"/>
+  <node visible="true" id="-86" lat="33.4683228" lon="-23.1485367"/>
+  <node visible="true" id="-88" lat="33.4741937" lon="-23.1359196"/>
+  <node visible="true" id="-89" lat="33.472905" lon="-23.138237"/>
+  <node visible="true" id="-90" lat="33.4711151" lon="-23.1374645"/>
+  <node visible="true" id="-91" lat="33.4698263" lon="-23.1354904"/>
+  <node visible="true" id="-92" lat="33.4704707" lon="-23.1334305"/>
+  <node visible="true" id="-93" lat="33.4723322" lon="-23.1333447"/>
+  <node visible="true" id="-94" lat="33.4739789" lon="-23.1342888"/>
+  <way visible="true" id="28">
+    <nd ref="48"/>
+    <nd ref="47"/>
+    <nd ref="46"/>
+    <nd ref="45"/>
+    <nd ref="44"/>
+    <nd ref="43"/>
+    <nd ref="42"/>
+    <nd ref="41"/>
+    <nd ref="40"/>
+    <nd ref="39"/>
+    <nd ref="38"/>
+    <nd ref="37"/>
+    <nd ref="36"/>
+    <nd ref="35"/>
+    <nd ref="34"/>
+    <nd ref="33"/>
+    <nd ref="32"/>
+    <nd ref="31"/>
+    <nd ref="30"/>
+    <nd ref="29"/>
+    <tag k="Name" v="TestLinestring"/>
+    <tag k="description" v=""/>
+    <tag k="timestamp" v=""/>
+    <tag k="begin" v=""/>
+    <tag k="end" v=""/>
+    <tag k="altitudeMode" v=""/>
+    <tag k="tessellate" v="-1"/>
+    <tag k="extrude" v="0"/>
+    <tag k="visibility" v="-1"/>
+    <tag k="drawOrder" v=""/>
+    <tag k="icon" v=""/>
+  </way>
+  <way visible="true" id="-44">
+    <nd ref="27"/>
+    <nd ref="26"/>
+    <nd ref="25"/>
+    <nd ref="24"/>
+    <nd ref="23"/>
+    <nd ref="22"/>
+    <nd ref="21"/>
+    <nd ref="20"/>
+    <nd ref="19"/>
+    <nd ref="18"/>
+    <nd ref="17"/>
+    <nd ref="16"/>
+    <nd ref="15"/>
+    <nd ref="14"/>
+    <nd ref="13"/>
+    <nd ref="12"/>
+    <nd ref="11"/>
+    <nd ref="10"/>
+    <nd ref="9"/>
+    <nd ref="8"/>
+    <nd ref="7"/>
+    <nd ref="6"/>
+    <nd ref="5"/>
+    <nd ref="4"/>
+    <nd ref="3"/>
+    <nd ref="2"/>
+    <nd ref="1"/>
+    <nd ref="0"/>
+    <nd ref="-1"/>
+    <nd ref="-2"/>
+    <nd ref="-3"/>
+    <nd ref="-4"/>
+    <nd ref="-5"/>
+    <nd ref="-6"/>
+    <nd ref="-7"/>
+    <nd ref="-8"/>
+    <nd ref="-9"/>
+    <nd ref="-10"/>
+    <nd ref="-11"/>
+    <nd ref="-12"/>
+    <nd ref="-13"/>
+    <nd ref="-14"/>
+    <nd ref="-15"/>
+    <nd ref="-16"/>
+    <nd ref="-17"/>
+    <nd ref="-18"/>
+    <nd ref="-19"/>
+    <nd ref="-20"/>
+    <nd ref="-21"/>
+    <nd ref="-22"/>
+    <nd ref="-23"/>
+    <nd ref="-24"/>
+    <nd ref="-25"/>
+    <nd ref="-26"/>
+    <nd ref="-27"/>
+    <nd ref="-28"/>
+    <nd ref="-29"/>
+    <nd ref="-30"/>
+    <nd ref="-31"/>
+    <nd ref="-32"/>
+    <nd ref="-33"/>
+    <nd ref="-34"/>
+    <nd ref="-35"/>
+    <nd ref="-36"/>
+    <nd ref="-37"/>
+    <nd ref="-38"/>
+    <nd ref="-39"/>
+    <nd ref="-40"/>
+    <nd ref="-41"/>
+    <nd ref="-42"/>
+    <nd ref="-43"/>
+    <nd ref="27"/>
+    <tag k="Name" v="TestPolygonOnlyOuter"/>
+    <tag k="description" v=""/>
+    <tag k="timestamp" v=""/>
+    <tag k="begin" v=""/>
+    <tag k="end" v=""/>
+    <tag k="altitudeMode" v=""/>
+    <tag k="tessellate" v="-1"/>
+    <tag k="extrude" v="0"/>
+    <tag k="visibility" v="-1"/>
+    <tag k="drawOrder" v=""/>
+    <tag k="icon" v=""/>
+  </way>
+  <way visible="true" id="-87">
+    <nd ref="-45"/>
+    <nd ref="-46"/>
+    <nd ref="-47"/>
+    <nd ref="-48"/>
+    <nd ref="-49"/>
+    <nd ref="-50"/>
+    <nd ref="-51"/>
+    <nd ref="-52"/>
+    <nd ref="-53"/>
+    <nd ref="-54"/>
+    <nd ref="-55"/>
+    <nd ref="-56"/>
+    <nd ref="-57"/>
+    <nd ref="-58"/>
+    <nd ref="-59"/>
+    <nd ref="-60"/>
+    <nd ref="-61"/>
+    <nd ref="-62"/>
+    <nd ref="-63"/>
+    <nd ref="-64"/>
+    <nd ref="-65"/>
+    <nd ref="-66"/>
+    <nd ref="-67"/>
+    <nd ref="-68"/>
+    <nd ref="-69"/>
+    <nd ref="-70"/>
+    <nd ref="-71"/>
+    <nd ref="-72"/>
+    <nd ref="-73"/>
+    <nd ref="-74"/>
+    <nd ref="-75"/>
+    <nd ref="-76"/>
+    <nd ref="-77"/>
+    <nd ref="-78"/>
+    <nd ref="-79"/>
+    <nd ref="-80"/>
+    <nd ref="-81"/>
+    <nd ref="-82"/>
+    <nd ref="-83"/>
+    <nd ref="-84"/>
+    <nd ref="-85"/>
+    <nd ref="-86"/>
+    <nd ref="-45"/>
+  </way>
+  <way visible="true" id="-95">
+    <nd ref="-88"/>
+    <nd ref="-89"/>
+    <nd ref="-90"/>
+    <nd ref="-91"/>
+    <nd ref="-92"/>
+    <nd ref="-93"/>
+    <nd ref="-94"/>
+    <nd ref="-88"/>
+  </way>
+  <relation visible="true" id="-96">
+    <member type="way" ref="-87" role="outer"/>
+    <member type="way" ref="-95" role="inner"/>
+    <tag k="type" v="multipolygon"/>
+    <tag k="Name" v="TestPolygonWithInner"/>
+    <tag k="description" v=""/>
+    <tag k="timestamp" v=""/>
+    <tag k="begin" v=""/>
+    <tag k="end" v=""/>
+    <tag k="altitudeMode" v=""/>
+    <tag k="tessellate" v="-1"/>
+    <tag k="extrude" v="0"/>
+    <tag k="visibility" v="-1"/>
+    <tag k="drawOrder" v=""/>
+    <tag k="icon" v=""/>
+  </relation>
+</osm>
