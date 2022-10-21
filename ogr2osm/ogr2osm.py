@@ -254,14 +254,15 @@ def main():
 
     translation_object = load_translation_object(logger, params.translationmodule)
 
-    OsmId.set_id(params.id, params.positiveId)
-    if params.idfile:
-        OsmId.load_id(params.idfile)
-
     logger.info("Preparing to convert '%s' to '%s'.", params.source, params.outputFile)
 
     osmdata = OsmData(translation_object, \
-                      params.roundingDigits, params.maxNodesPerWay, params.addBounds)
+                      params.roundingDigits, params.maxNodesPerWay, params.addBounds, \
+                      params.id, params.positiveId)
+
+    if params.idfile:
+        OsmId.load_id(params.idfile)
+
     # create datasource and process data
     datasource = OgrDatasource(translation_object, \
                                params.sourcePROJ4, params.sourceEPSG, params.gisorder, \
