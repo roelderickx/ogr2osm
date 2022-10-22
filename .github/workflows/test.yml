@@ -27,9 +27,9 @@ jobs:
         cram test/pbf_output_no_protobuf.t
     - name: Install protobuf and osmctools
       run: sudo apt-get install -y libprotobuf-dev protobuf-compiler osmctools
-    #- name: "Install python dependencies: protobuf"
-    #  run: |
-    #    pip install --upgrade protobuf
+    - name: "Install python dependencies: protobuf"
+      run: |
+        pip install --upgrade protobuf
     - name: Testing the code with cram, protobuf installed
       run: |
         cram test/pbf_output.t
