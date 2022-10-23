@@ -260,8 +260,7 @@ def main():
                       params.roundingDigits, params.maxNodesPerWay, params.addBounds, \
                       params.id, params.positiveId)
 
-    if params.idfile:
-        OsmId.load_id(params.idfile)
+    osmdata.load_start_id_from_file(params.idfile)
 
     # create datasource and process data
     datasource = OgrDatasource(translation_object, \
@@ -282,5 +281,4 @@ def main():
                                    params.suppressEmptyTags)
     osmdata.output(datawriter)
 
-    if params.saveid:
-        OsmId.save_id(params.saveid)
+    osmdata.save_current_id_to_file(params.saveid)

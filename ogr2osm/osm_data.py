@@ -36,6 +36,19 @@ class OsmData:
         OsmId.set_id(start_id, is_positive)
 
 
+    def load_start_id_from_file(self, filename):
+        if filename:
+            if len(self.__nodes) == 0 and len(self.__ways) == 0 and len(self.__relations) == 0:
+                OsmId.load_id(filename)
+            else:
+                self.logger.error("Id can only be set before processing, no file has been loaded")
+
+
+    def save_current_id_to_file(self, filename):
+        if filename:
+            OsmId.save_id(filename)
+
+
     def __get_layer_fields(self, layer):
         layer_fields = []
         layer_def = layer.GetLayerDefn()
