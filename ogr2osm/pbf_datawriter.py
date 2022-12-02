@@ -228,6 +228,7 @@ try:
             self.add_version = add_version
             self.add_timestamp = add_timestamp
             self.suppress_empty_tags = suppress_empty_tags
+            self.max_tag_length = max_tag_length
 
             self.__max_nodes_per_node_block = 8000
             self.__max_node_refs_per_way_block = 32000
@@ -294,7 +295,8 @@ try:
             for i in range(0, len(nodes), self.__max_nodes_per_node_block):
                 primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, \
                                                               self.add_timestamp, \
-                                                              self.suppress_empty_tags)
+                                                              self.suppress_empty_tags,
+                                                              self.max_tag_length)
                 for node in nodes[i:i+self.__max_nodes_per_node_block]:
                     primitive_group.add_node(node)
                 self.__write_primitive_block(primitive_group)
@@ -308,7 +310,8 @@ try:
                 if amount_node_refs == 0:
                     primitive_group = PbfPrimitiveGroupWays(self.add_version, \
                                                             self.add_timestamp, \
-                                                            self.suppress_empty_tags)
+                                                            self.suppress_empty_tags,
+                                                            self.max_tag_length)
                 primitive_group.add_way(way)
                 amount_node_refs += len(way.nodes)
                 if amount_node_refs > self.__max_node_refs_per_way_block:
@@ -327,7 +330,8 @@ try:
                 if amount_member_refs == 0:
                     primitive_group = PbfPrimitiveGroupRelations(self.add_version, \
                                                                  self.add_timestamp, \
-                                                                 self.suppress_empty_tags)
+                                                                 self.suppress_empty_tags,
+                                                                 self.max_tag_length)
                 primitive_group.add_relation(relation)
                 amount_member_refs += len(relation.members)
                 if amount_member_refs > self.__max_member_refs_per_relation_block:
