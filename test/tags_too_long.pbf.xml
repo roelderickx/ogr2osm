@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="osmconvert 0.8.10">
+  <node id="-1" lat="34.0" lon="-22.0">
+    <tag k="name" v="a point"/>
+    <tag k="description" v="Description of a point that is by itself too long: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores e..."/>
+    <tag k="longitude" v="-22"/>
+    <tag k="latitude" v="34"/>
+  </node>
+  <node id="-2" lat="33.4838" lon="-23.094721">
+    <tag k="name" v="the_point"/>
+    <tag k="description" v="Description of the_point;Alternative description of the_point that makes the joint tag too long by adding a lot of symbols like so: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magn..."/>
+    <tag k="longitude" v="-23.094721"/>
+    <tag k="latitude" v="33.4838"/>
+  </node>
+</osm>
