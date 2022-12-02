@@ -130,6 +130,9 @@ def parse_commandline(logger):
                         help="Add boundaries to output file")
     parser.add_argument("--suppress-empty-tags", dest="suppressEmptyTags", action="store_true",
                         help="Suppress empty tags")
+    parser.add_argument("--max-tag-value-length", dest="maxTagValueLength", type=int, default=255,
+                        help="Set max length of tag values. Defaults to %(default)s, " +
+                             "0 disables the limit")
     parser.add_argument("--add-version", dest="addVersion", action="store_true",
                         help=argparse.SUPPRESS) # can cause problems when used inappropriately
     parser.add_argument("--add-timestamp", dest="addTimestamp", action="store_true",
@@ -273,12 +276,12 @@ def main():
     datawriter = None
     if params.pbf:
         datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp, \
-                                   params.suppressEmptyTags)
+                                   params.suppressEmptyTags, params.maxTagValueLength)
     else:
         datawriter = OsmDataWriter(params.outputFile, params.neverUpload, params.noUploadFalse, \
                                    params.neverDownload, params.locked, params.addVersion, \
                                    params.addTimestamp, params.significantDigits, \
-                                   params.suppressEmptyTags)
+                                   params.suppressEmptyTags, params.maxTagValueLength)
     osmdata.output(datawriter)
 
     osmdata.save_current_id_to_file(params.saveid)

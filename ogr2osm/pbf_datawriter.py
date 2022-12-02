@@ -34,7 +34,7 @@ try:
     # https://wiki.openstreetmap.org/wiki/PBF_Format
 
     class PbfPrimitiveGroup:
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
             self.stringtable = {}
             self._add_string("")
 
@@ -47,6 +47,7 @@ try:
             if self._add_timestamp:
                 self._timestamp = time.time()
             self.suppress_empty_tags = suppress_empty_tags
+            self.max_tag_length = max_tag_length
 
             self.granularity = 100
             self.lat_offset = 0
@@ -75,8 +76,8 @@ try:
             '''
             for (key, value_list) in tags.items():
                 value = ';'.join([ v for v in value_list if v ])
-                if len(value) > DataWriterBase.MAX_TAG_LENGTH:
-                    value = value[:(DataWriterBase.MAX_TAG_LENGTH - len(DataWriterBase.PLACEHOLDER))] \
+                if len(value) > self.max_tag_length:
+                    value = value[:(self.max_tag_length - len(DataWriterBase.PLACEHOLDER))] \
                             + DataWriterBase.PLACEHOLDER
                 if value or not self.suppress_empty_tags:
                     yield (self._add_string(key), self._add_string(value))
@@ -105,8 +106,8 @@ try:
 
 
     class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
-            super().__init__(add_version, add_timestamp, suppress_empty_tags)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags, max_tag_length)
 
             self.__last_id = 0
             self.__last_timestamp = 0
@@ -150,8 +151,8 @@ try:
 
 
     class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
-            super().__init__(add_version, add_timestamp, suppress_empty_tags)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags, max_tag_length)
 
 
         def add_way(self, osmway):
@@ -180,8 +181,8 @@ try:
 
 
     class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
-            super().__init__(add_version, add_timestamp, suppress_empty_tags)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags, max_tag_length)
 
 
         def add_relation(self, osmrelation):
@@ -220,7 +221,7 @@ try:
 
     class PbfDataWriter(DataWriterBase):
         def __init__(self, filename, add_version=False, add_timestamp=False, \
-                     suppress_empty_tags=False):
+                     suppress_empty_tags=False, max_tag_length=255):
             self.logger = logging.getLogger(__program__)
 
             self.filename = filename
