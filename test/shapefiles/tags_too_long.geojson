@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "sp_usinas",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4618" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "a point", "description": "Description of a point that is by itself too long: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata", "longitude": -22, "latitude": 34 }, "geometry": { "type": "Point", "coordinates": [ -22, 34 ] } },
+{ "type": "Feature", "properties": { "name": "the_point", "description": "Description of the_point", "longitude": -23.094721, "latitude": 33.4838 }, "geometry": { "type": "Point", "coordinates": [ -23.094721, 33.4838 ] } },
+{ "type": "Feature", "properties": { "name": "the_point", "description": "Alternative description of the_point that makes the joint tag too long by adding a lot of symbols like so: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna al", "longitude": -23.094721, "latitude": 33.4838 }, "geometry": { "type": "Point", "coordinates": [ -23.094721, 33.4838 ] } }
+]
+}
