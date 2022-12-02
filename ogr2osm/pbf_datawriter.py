@@ -74,7 +74,7 @@ try:
             based on suppress_empty_tags.
             '''
             for (key, value_list) in tags.items():
-                value = ','.join([ v for v in value_list if v ])
+                value = ';'.join([ v for v in value_list if v ])
                 if value or not self.suppress_empty_tags:
                     yield (self._add_string(key), self._add_string(value))
 
