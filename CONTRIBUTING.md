@@ -1,9 +1,5 @@
 ## Tests
-Test your code and make sure it passes. cram is used for tests:
-
- 1. Make sure you have `libxml2-utils`, `osmctools` and  `protobuf-compiler` installed on your system and the [optional-requirements.txt](optional-requirements.txt) installd in your python env.
- 2. Install `cram`: `pip install cram`
- 3. Run `cram`: `cram test/`
+Test your code and make sure it passes. cram is used for tests. See [test.yml](.github/workflows/test.yml) for instructions on how to install and run them.
 
 Changes in speed-critical parts of the code may require profiling.
 
