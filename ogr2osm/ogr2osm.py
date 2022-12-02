@@ -131,8 +131,9 @@ def parse_commandline(logger):
     parser.add_argument("--suppress-empty-tags", dest="suppressEmptyTags", action="store_true",
                         help="Suppress empty tags")
     parser.add_argument("--max-tag-value-length", dest="maxTagValueLength", type=int, default=255,
-                        help="Set max length of tag values. Defaults to %(default)s, " +
-                             "0 disables the limit")
+                        help="Set max character length of tag values. Exceeding values will be truncated and end with "
+                             f"'{OsmDataWriter.PLACEHOLDER}'. Defaults to the OSM API limit of %(default)s. Values "
+                             f"smaller {len(OsmDataWriter.PLACEHOLDER)} disable the limit.")
     parser.add_argument("--add-version", dest="addVersion", action="store_true",
                         help=argparse.SUPPRESS) # can cause problems when used inappropriately
     parser.add_argument("--add-timestamp", dest="addTimestamp", action="store_true",
@@ -191,6 +192,9 @@ def parse_commandline(logger):
 
     if not params.forceOverwrite and os.path.exists(params.outputFile):
         parser.error("ERROR: output file '%s' exists" % params.outputFile)
+
+    if params.maxTagValueLength < len(OsmDataWriter.PLACEHOLDER):
+        params.maxTagValueLength = sys.maxsize
 
     return params
 
