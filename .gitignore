@@ -54,7 +54,6 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-basic_geometries.osm
 test/*.err
 test/id_outfile
 
