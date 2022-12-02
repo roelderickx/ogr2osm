@@ -28,7 +28,7 @@ class DataWriterBase:
     '''
 
     MAX_TAG_LENGTH = 255
-    PLACEHOLDER = ' ... '
+    PLACEHOLDER = '...'
 
     def __init__(self):
         pass
