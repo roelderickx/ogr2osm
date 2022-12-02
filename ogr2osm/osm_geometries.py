@@ -12,6 +12,7 @@ accompany any distribution of this code.
 import logging
 from lxml import etree
 
+from . import DataWriterBase
 from .version import __program__
 
 class OsmId:
@@ -105,6 +106,9 @@ class OsmGeometry:
     def _add_tags_to_xml(self, xmlobject, suppress_empty_tags):
         for (key, value_list) in self.tags.items():
             value = ','.join([ v for v in value_list if v ])
+            if len(value) > DataWriterBase.MAX_TAG_LENGTH:
+                value = value[:(DataWriterBase.MAX_TAG_LENGTH - len(DataWriterBase.PLACEHOLDER))] \
+                        + DataWriterBase.PLACEHOLDER
             if value or not suppress_empty_tags:
                 tag = etree.Element('tag', { 'k':key, 'v':value })
                 xmlobject.append(tag)
