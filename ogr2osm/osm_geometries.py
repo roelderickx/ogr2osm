@@ -105,7 +105,7 @@ class OsmGeometry:
 
     def _add_tags_to_xml(self, xmlobject, suppress_empty_tags):
         for (key, value_list) in self.tags.items():
-            value = ','.join([ v for v in value_list if v ])
+            value = ';'.join([ v for v in value_list if v ])
             if len(value) > DataWriterBase.MAX_TAG_LENGTH:
                 value = value[:(DataWriterBase.MAX_TAG_LENGTH - len(DataWriterBase.PLACEHOLDER))] \
                         + DataWriterBase.PLACEHOLDER

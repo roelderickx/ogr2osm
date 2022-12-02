@@ -2,7 +2,7 @@
 <osm version="0.6" generator="ogr2osm 1.1.2" upload="false">
   <node visible="true" id="-1" lat="33.4838" lon="-23.094721">
     <tag k="name" v="the_point"/>
-    <tag k="description" v="Description of the_point,Alternative description of the_point"/>
+    <tag k="description" v="Description of the_point;Alternative description of the_point"/>
     <tag k="longitude" v="-23.094721"/>
     <tag k="latitude" v="33.4838"/>
     <tag k="extra_empty" v=""/>
