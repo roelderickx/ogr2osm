@@ -74,7 +74,8 @@ class OsmDataWriter(DataWriterBase):
             self.f.write(osm_geom.to_xml(self.attributes, \
                                          self.significant_digits, \
                                          self.suppress_empty_tags, \
-                                         self.max_tag_length))
+                                         self.max_tag_length, \
+                                         DataWriterBase.TAG_OVERFLOW))
             self.f.write('\n')
 
 

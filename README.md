@@ -70,7 +70,7 @@ usage: ogr2osm [-h] [--version] [-t TRANSLATION] [--encoding ENCODING]
                [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
                [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
                [--never-download] [--never-upload] [--locked] [--add-bounds]
-               [--suppress-empty-tags] [--max-tag-value-length MAXTAGVALUELENGTH]
+               [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
                DATASOURCE
 
 positional arguments:
@@ -127,10 +127,10 @@ options:
   --add-bounds          Add boundaries to output file
   --suppress-empty-tags
                         Suppress empty tags
-  --max-tag-value-length MAXTAGVALUELENGTH
-                        Set max character length of tag values. Exceeding values
-                        will be truncated and end with '...'. Defaults to the OSM API
-                        limit of 255. Values smaller 3 disable the limit.
+  --max-tag-length MAXTAGLENGTH
+                        Set max character length of tag values. Exceeding
+                        values will be truncated and end with '...'. Defaults
+                        to 255. Values smaller than 3 disable the limit.
 ```
 
 ### As a library
@@ -201,7 +201,7 @@ datawriter = ogr2osm.OsmDataWriter(output_file)
 # - locked: --locked parameter
 # - significant_digits: --significant-digits parameter
 # - suppress_empty_tags: --suppress-empty-tags parameter
-# - max_tag_length: --max-tag-value-length parameter
+# - max_tag_length: --max-tag-length parameter
 osmdata.output(datawriter)
 ```
 

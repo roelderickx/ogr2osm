@@ -77,8 +77,8 @@ try:
             for (key, value_list) in tags.items():
                 value = ';'.join([ v for v in value_list if v ])
                 if len(value) > self.max_tag_length:
-                    value = value[:(self.max_tag_length - len(DataWriterBase.PLACEHOLDER))] \
-                            + DataWriterBase.PLACEHOLDER
+                    value = value[:(self.max_tag_length - len(DataWriterBase.TAG_OVERFLOW))] \
+                            + DataWriterBase.TAG_OVERFLOW
                 if value or not self.suppress_empty_tags:
                     yield (self._add_string(key), self._add_string(value))
 
@@ -295,7 +295,7 @@ try:
             for i in range(0, len(nodes), self.__max_nodes_per_node_block):
                 primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, \
                                                               self.add_timestamp, \
-                                                              self.suppress_empty_tags,
+                                                              self.suppress_empty_tags, \
                                                               self.max_tag_length)
                 for node in nodes[i:i+self.__max_nodes_per_node_block]:
                     primitive_group.add_node(node)
@@ -310,7 +310,7 @@ try:
                 if amount_node_refs == 0:
                     primitive_group = PbfPrimitiveGroupWays(self.add_version, \
                                                             self.add_timestamp, \
-                                                            self.suppress_empty_tags,
+                                                            self.suppress_empty_tags, \
                                                             self.max_tag_length)
                 primitive_group.add_way(way)
                 amount_node_refs += len(way.nodes)
@@ -330,7 +330,7 @@ try:
                 if amount_member_refs == 0:
                     primitive_group = PbfPrimitiveGroupRelations(self.add_version, \
                                                                  self.add_timestamp, \
-                                                                 self.suppress_empty_tags,
+                                                                 self.suppress_empty_tags, \
                                                                  self.max_tag_length)
                 primitive_group.add_relation(relation)
                 amount_member_refs += len(relation.members)
