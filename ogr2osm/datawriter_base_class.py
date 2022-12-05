@@ -27,6 +27,8 @@ class DataWriterBase:
         dw.close()
     '''
 
+    TAG_OVERFLOW = '...'
+
     def __init__(self):
         pass
 

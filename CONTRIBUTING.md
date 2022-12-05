@@ -1,5 +1,5 @@
 ## Tests
-Test your code and make sure it passes. cram is used for tests.
+Test your code and make sure it passes. cram is used for tests. See [test.yml](.github/workflows/test.yml) for instructions on how to install and run them.
 
 Changes in speed-critical parts of the code may require profiling.
 

@@ -18,7 +18,7 @@ from .datawriter_base_class import DataWriterBase
 class OsmDataWriter(DataWriterBase):
     def __init__(self, filename, never_upload=False, no_upload_false=False, never_download=False, \
                  locked=False, add_version=False, add_timestamp=False, significant_digits=9, \
-                 suppress_empty_tags=False):
+                 suppress_empty_tags=False, max_tag_length=255):
         self.logger = logging.getLogger(__program__)
 
         self.filename = filename
@@ -28,6 +28,7 @@ class OsmDataWriter(DataWriterBase):
         self.locked = locked
         self.significant_digits = significant_digits
         self.suppress_empty_tags = suppress_empty_tags
+        self.max_tag_length = max_tag_length
         #self.gzip_compression_level = gzip_compression_level
         self.f = None
 
@@ -72,7 +73,9 @@ class OsmDataWriter(DataWriterBase):
         for osm_geom in geoms:
             self.f.write(osm_geom.to_xml(self.attributes, \
                                          self.significant_digits, \
-                                         self.suppress_empty_tags))
+                                         self.suppress_empty_tags, \
+                                         self.max_tag_length, \
+                                         DataWriterBase.TAG_OVERFLOW))
             self.f.write('\n')
 
 

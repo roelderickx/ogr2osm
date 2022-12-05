@@ -217,6 +217,31 @@ mergetagsnonempty:
   Writing file footer
   $ xmllint --format mergetags.osm | diff -uNr - $TESTDIR/mergetagsnonempty.xml
 
+tagstoolong:
+  $ ogr2osm -f $TESTDIR/shapefiles/tags_too_long.geojson
+  Using default translations
+  Preparing to convert .* (re)
+  Detected projection metadata:
+  GEOGCS["SAD69",
+      DATUM["South_American_Datum_1969",
+          SPHEROID["GRS 1967 Modified",6378160,298.25,
+              AUTHORITY["EPSG","7050"]],
+          AUTHORITY["EPSG","6618"]],
+      PRIMEM["Greenwich",0,
+          AUTHORITY["EPSG","8901"]],
+      UNIT["degree",0.0174532925199433,
+          AUTHORITY["EPSG","9122"]],
+      AXIS["Latitude",NORTH],
+      AXIS["Longitude",EAST],
+      AUTHORITY["EPSG","4618"]]
+  Splitting long ways
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
+  $ xmllint --format tags_too_long.osm | diff -uNr - $TESTDIR/tags_too_long.xml
+
 id:
   $ ogr2osm -f --id 50 $TESTDIR/shapefiles/basic_geometries.kml
   Using default translations

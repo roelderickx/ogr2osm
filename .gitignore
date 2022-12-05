@@ -54,6 +54,8 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+test/*.err
+test/id_outfile
 
 # Translations
 *.mo
@@ -117,6 +119,9 @@ venv.bak/
 # Spyder project settings
 .spyderproject
 .spyproject
+
+#PyCharm
+.idea/
 
 # Rope project settings
 .ropeproject

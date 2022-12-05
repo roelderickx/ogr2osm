@@ -223,6 +223,32 @@ mergetagsnonempty:
   $ osmconvert --drop-author mergetags.osm.pbf > mergetags.osm 2> /dev/null
   $ xmllint --format mergetags.osm | diff -uNr - $TESTDIR/mergetagsnonempty.pbf.xml
 
+tagstoolong:
+  $ ogr2osm --pbf -f $TESTDIR/shapefiles/tags_too_long.geojson
+  Using default translations
+  Preparing to convert .* (re)
+  Detected projection metadata:
+  GEOGCS["SAD69",
+      DATUM["South_American_Datum_1969",
+          SPHEROID["GRS 1967 Modified",6378160,298.25,
+              AUTHORITY["EPSG","7050"]],
+          AUTHORITY["EPSG","6618"]],
+      PRIMEM["Greenwich",0,
+          AUTHORITY["EPSG","8901"]],
+      UNIT["degree",0.0174532925199433,
+          AUTHORITY["EPSG","9122"]],
+      AXIS["Latitude",NORTH],
+      AXIS["Longitude",EAST],
+      AUTHORITY["EPSG","4618"]]
+  Splitting long ways
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  $ osmconvert --drop-author tags_too_long.osm.pbf > tags_too_long.osm 2> /dev/null
+  \[.[0-9]\] (re)
+  $ xmllint --format tags_too_long.osm | diff -uNr - $TESTDIR/tags_too_long.pbf.xml
+
 positiveid:
   $ ogr2osm --pbf -f --positive-id $TESTDIR/shapefiles/basic_geometries.kml
   Using default translations

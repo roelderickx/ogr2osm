@@ -34,7 +34,7 @@ try:
     # https://wiki.openstreetmap.org/wiki/PBF_Format
 
     class PbfPrimitiveGroup:
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
             self.stringtable = {}
             self._add_string("")
 
@@ -47,6 +47,7 @@ try:
             if self._add_timestamp:
                 self._timestamp = time.time()
             self.suppress_empty_tags = suppress_empty_tags
+            self.max_tag_length = max_tag_length
 
             self.granularity = 100
             self.lat_offset = 0
@@ -75,6 +76,9 @@ try:
             '''
             for (key, value_list) in tags.items():
                 value = ';'.join([ v for v in value_list if v ])
+                if len(value) > self.max_tag_length:
+                    value = value[:(self.max_tag_length - len(DataWriterBase.TAG_OVERFLOW))] \
+                            + DataWriterBase.TAG_OVERFLOW
                 if value or not self.suppress_empty_tags:
                     yield (self._add_string(key), self._add_string(value))
 
@@ -102,8 +106,8 @@ try:
 
 
     class PbfPrimitiveGroupDenseNodes(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
-            super().__init__(add_version, add_timestamp, suppress_empty_tags)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags, max_tag_length)
 
             self.__last_id = 0
             self.__last_timestamp = 0
@@ -147,8 +151,8 @@ try:
 
 
     class PbfPrimitiveGroupWays(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
-            super().__init__(add_version, add_timestamp, suppress_empty_tags)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags, max_tag_length)
 
 
         def add_way(self, osmway):
@@ -177,8 +181,8 @@ try:
 
 
     class PbfPrimitiveGroupRelations(PbfPrimitiveGroup):
-        def __init__(self, add_version, add_timestamp, suppress_empty_tags):
-            super().__init__(add_version, add_timestamp, suppress_empty_tags)
+        def __init__(self, add_version, add_timestamp, suppress_empty_tags, max_tag_length):
+            super().__init__(add_version, add_timestamp, suppress_empty_tags, max_tag_length)
 
 
         def add_relation(self, osmrelation):
@@ -217,13 +221,14 @@ try:
 
     class PbfDataWriter(DataWriterBase):
         def __init__(self, filename, add_version=False, add_timestamp=False, \
-                     suppress_empty_tags=False):
+                     suppress_empty_tags=False, max_tag_length=255):
             self.logger = logging.getLogger(__program__)
 
             self.filename = filename
             self.add_version = add_version
             self.add_timestamp = add_timestamp
             self.suppress_empty_tags = suppress_empty_tags
+            self.max_tag_length = max_tag_length
 
             self.__max_nodes_per_node_block = 8000
             self.__max_node_refs_per_way_block = 32000
@@ -290,7 +295,8 @@ try:
             for i in range(0, len(nodes), self.__max_nodes_per_node_block):
                 primitive_group = PbfPrimitiveGroupDenseNodes(self.add_version, \
                                                               self.add_timestamp, \
-                                                              self.suppress_empty_tags)
+                                                              self.suppress_empty_tags, \
+                                                              self.max_tag_length)
                 for node in nodes[i:i+self.__max_nodes_per_node_block]:
                     primitive_group.add_node(node)
                 self.__write_primitive_block(primitive_group)
@@ -304,7 +310,8 @@ try:
                 if amount_node_refs == 0:
                     primitive_group = PbfPrimitiveGroupWays(self.add_version, \
                                                             self.add_timestamp, \
-                                                            self.suppress_empty_tags)
+                                                            self.suppress_empty_tags, \
+                                                            self.max_tag_length)
                 primitive_group.add_way(way)
                 amount_node_refs += len(way.nodes)
                 if amount_node_refs > self.__max_node_refs_per_way_block:
@@ -323,7 +330,8 @@ try:
                 if amount_member_refs == 0:
                     primitive_group = PbfPrimitiveGroupRelations(self.add_version, \
                                                                  self.add_timestamp, \
-                                                                 self.suppress_empty_tags)
+                                                                 self.suppress_empty_tags, \
+                                                                 self.max_tag_length)
                 primitive_group.add_relation(relation)
                 amount_member_refs += len(relation.members)
                 if amount_member_refs > self.__max_member_refs_per_relation_block:
