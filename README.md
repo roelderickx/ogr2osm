@@ -1,12 +1,12 @@
 # ogr2osm
 
-![license](https://img.shields.io/github/license/roelderickx/ogr2osm) [![test](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml/badge.svg)](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml)
+![license](https://img.shields.io/github/license/roelderickx/ogr2osm) [![test](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml/badge.svg)](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml) [![docker](https://github.com/zfb132/ogr2osm/actions/workflows/deploy.yml/badge.svg)](https://github.com/zfb132/ogr2osm/actions/workflows/deploy.yml)
 
 A tool for converting ogr-readable files like shapefiles into .pbf or .osm data
 
 ## Installation
 
-Ogr2osm requires python 3, gdal with python bindings, lxml and optionally protobuf if you want to generate pbf files. Depending on the file formats you want to read you may have to compile gdal yourself but there should be no issues with shapefiles.
+Ogr2osm requires python 3, gdal with python bindings, lxml and optionally protobuf if you want to generate pbf files. Depending on the file formats you want to read you may have to compile gdal yourself but there should be no issues with shapefiles. You can also use docker to run ogr2osm.
 
 ### Via Linux package manager
 
@@ -39,6 +39,17 @@ If you do not have the required permissions to install ogr2osm, you can run the 
 git clone https://github.com/roelderickx/ogr2osm.git
 cd ogr2osm
 python -m ogr2osm
+```
+
+## Running with Docker
+If you do not want to install ogr2osm on your system, you can run it with Docker. This is especially useful if you are on Windows or Mac and do not want to install Python and GDAL yourself.
+
+The usage of ogr2osm with Docker is the same as the usage as a standalone application. You can run ogr2osm with the following command:
+```bash
+# If you have test.json in the current directory
+# you can run the following command to convert it to an OSM file
+# and save it in the current directory
+docker run -ti --rm -v $(pwd):/app whuzfb/ogr2osm /app/test.json -o /app/test.osm
 ```
 
 ## Upgrading

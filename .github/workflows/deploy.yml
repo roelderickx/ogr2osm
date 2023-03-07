@@ -1,0 +1,45 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  docker_hub:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v3
+      with:
+        submodules: true
+        fetch-depth: 2
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ secrets.DOCKERHUB_USERNAME }}/ogr2osm
+        tags: |
+          type=raw,value=latest,enable={{is_default_branch}}
+          type=ref,event=branch
+          type=ref,event=tag
+          type=ref,event=pr
+    - name: Build and push Docker image
+      id: docker_build
+      uses: docker/build-push-action@v3
+      with:
+        platforms: linux/amd64
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
