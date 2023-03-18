@@ -1,6 +1,6 @@
 # ogr2osm
 
-![license](https://img.shields.io/github/license/roelderickx/ogr2osm) [![test](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml/badge.svg)](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml) [![docker](https://github.com/zfb132/ogr2osm/actions/workflows/deploy.yml/badge.svg)](https://github.com/zfb132/ogr2osm/actions/workflows/deploy.yml)
+![license](https://img.shields.io/github/license/roelderickx/ogr2osm) [![test](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml/badge.svg)](https://github.com/roelderickx/ogr2osm/actions/workflows/test.yml) [![docker](https://github.com/roelderickx/ogr2osm/actions/workflows/deploy.yml/badge.svg)](https://github.com/roelderickx/ogr2osm/actions/workflows/deploy.yml)
 
 A tool for converting ogr-readable files like shapefiles into .pbf or .osm data
 
@@ -41,7 +41,7 @@ cd ogr2osm
 python -m ogr2osm
 ```
 
-## Running with Docker
+### Running with Docker
 If you do not want to install ogr2osm on your system, you can run it with Docker. This is especially useful if you are on Windows or Mac and do not want to install Python and GDAL yourself.
 
 The usage of ogr2osm with Docker is the same as the usage as a standalone application. You can run ogr2osm with the following command:
@@ -49,7 +49,7 @@ The usage of ogr2osm with Docker is the same as the usage as a standalone applic
 # If you have test.json in the current directory
 # you can run the following command to convert it to an OSM file
 # and save it in the current directory
-docker run -ti --rm -v $(pwd):/app whuzfb/ogr2osm /app/test.json -o /app/test.osm
+docker run -ti --rm -v $(pwd):/app roelderickx/ogr2osm /app/test.json -o /app/test.osm
 ```
 
 ## Upgrading
