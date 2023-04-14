@@ -98,6 +98,9 @@ class OgrDatasource:
 
 
     def __get_source_reprojection_func(self, layer):
+        if layer is None:
+            return None
+        
         layer_spatial_ref = layer.GetSpatialRef()
 
         spatial_ref = None
