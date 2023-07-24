@@ -118,6 +118,9 @@ options:
                         Split ways with more than the specified number of
                         nodes. Defaults to 1800. Any value below 2 - do not
                         split.
+  --consider-elevation  If nodes have the same (X,Y) coordinates but different
+                        Z-levels (e.g, different elevation), then they will be
+                        given different node IDs (default: False)
   --id ID               ID to start counting from for the output file.
                         Defaults to 0.
   --idfile IDFILE       Read ID to start counting from from a file.
