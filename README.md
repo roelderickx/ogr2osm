@@ -199,6 +199,7 @@ osmdata = ogr2osm.OsmData(translation_object)
 # - max_points_in_way: --split-ways parameter
 # - add_bounds: --add-bounds parameter
 # - start_id: --id parameter
+# - consider_elevation: --consider-elevation parameter
 osmdata.process(datasource)
 
 # 7. Instantiate either ogr2osm.OsmDataWriter or ogr2osm.PbfDataWriter and
