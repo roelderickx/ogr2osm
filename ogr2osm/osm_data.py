@@ -83,14 +83,18 @@ class OsmData:
         return int(round(n * 10**self.rounding_digits))
 
 
-    def __add_node(self, x, y, tags, is_way_member):
+    def __add_node(self, x, y, tags, is_way_member, z=None):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
+        # TODO also read from cmd args to decide whether need flattening
+        rz = self.__round_number(z) if z else None
 
         # TODO deprecated
         unique_node_id = None
         if is_way_member:
             unique_node_id = (rx, ry)
+            if rz is not None:
+                unique_node_id = (rx, ry, rz)
         else:
             unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
         # to be replaced by
@@ -129,7 +133,7 @@ class OsmData:
 
 
     def __parse_point(self, ogrgeometry, tags):
-        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False)
+        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False, z=ogrgeometry.GetZ())
 
 
     def __parse_multi_point(self, ogrgeometry, tags):
@@ -183,8 +187,8 @@ class OsmData:
         nodes = []
         potential_duplicate_ways = []
         for i in range(ogrgeometry.GetPointCount()):
-            (x, y, z_unused) = ogrgeometry.GetPoint(i)
-            node = self.__add_node(x, y, {}, True)
+            (x, y, z) = ogrgeometry.GetPoint(i)
+            node = self.__add_node(x, y, {}, True, z=z)
             if previous_node_id is None or previous_node_id != node.id:
                 if previous_node_id is None:
                     # first node: add all parent ways as potential duplicates
