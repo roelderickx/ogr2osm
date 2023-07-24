@@ -96,6 +96,11 @@ def parse_commandline(logger):
     parser.add_argument("--split-ways", dest="maxNodesPerWay", type=int, default=1800,
                         help="Split ways with more than the specified number of nodes. " +
                              "Defaults to %(default)s. Any value below 2 - do not split.")
+    parser.add_argument("--consider-elevation", dest="considerElevation", action="store_true",
+                        help="If nodes have the same (X,Y) coordinates but different Z-levels " + 
+                             "(e.g, different elevation), " + 
+                             "then they will be given different node IDs " +
+                             "(default: %(default)s)")
     # ID generation options
     parser.add_argument("--id", dest="id", type=int, default=0,
                         help="ID to start counting from for the output file. " +
@@ -266,7 +271,7 @@ def main():
 
     osmdata = OsmData(translation_object, \
                       params.roundingDigits, params.maxNodesPerWay, params.addBounds, \
-                      params.id, params.positiveId)
+                      params.id, params.positiveId, params.considerElevation)
 
     osmdata.load_start_id_from_file(params.idfile)
 

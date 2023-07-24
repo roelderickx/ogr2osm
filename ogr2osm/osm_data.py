@@ -18,7 +18,7 @@ from .osm_geometries import OsmId, OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
     def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False, \
-                 start_id=0, is_positive=False):
+                 start_id=0, is_positive=False, consider_elevation=False):
         self.logger = logging.getLogger(__program__)
 
         # options
@@ -26,6 +26,7 @@ class OsmData:
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
         self.add_bounds = add_bounds
+        self.consider_elevation = consider_elevation
 
         self.__bounds = OsmBoundary()
         self.__nodes = []
@@ -86,8 +87,7 @@ class OsmData:
     def __add_node(self, x, y, tags, is_way_member, z=None):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
-        # TODO also read from cmd args to decide whether need flattening
-        rz = self.__round_number(z) if z else None
+        rz = self.__round_number(z) if self.consider_elevation and z else None
 
         # TODO deprecated
         unique_node_id = None
