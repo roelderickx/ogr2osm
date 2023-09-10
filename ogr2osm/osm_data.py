@@ -194,7 +194,7 @@ class OsmData:
         potential_duplicate_ways = []
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z) = ogrgeometry.GetPoint(i)
-            node = self.__add_node(x, y, z, { }, True)
+            node = self.__add_node(x, y, z, {}, True)
             if previous_node_id is None or previous_node_id != node.id:
                 if previous_node_id is None:
                     # first node: add all parent ways as potential duplicates

@@ -100,42 +100,43 @@ class OgrDatasource:
 
 
     def __get_source_reprojection_func(self, layer):
+        layer_spatial_ref = layer.GetSpatialRef() if layer else None
+
+        spatial_ref = None
+        if self.source_proj4:
+            spatial_ref = osr.SpatialReference()
+            if self.gisorder:
+                spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
+            spatial_ref.ImportFromProj4(self.source_proj4)
+        elif self.source_epsg:
+            spatial_ref = osr.SpatialReference()
+            if self.gisorder:
+                spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
+            spatial_ref.ImportFromEPSG(self.source_epsg)
+        elif not layer:
+            self.logger.info("Skipping filtered out layer")
+        elif layer_spatial_ref:
+            spatial_ref = layer_spatial_ref
+            self.logger.info("Detected projection metadata:\n%s", str(layer_spatial_ref))
+        else:
+            self.logger.info("Layer has no projection metadata, falling back to EPSG:4326")
+            if not self.gisorder:
+                spatial_ref = osr.SpatialReference()
+                spatial_ref.ImportFromEPSG(4326)
+
         # No source proj specified yet? Then default to do no reprojection.
         # Some python magic: skip reprojection altogether by using a dummy
         # lamdba funcion. Otherwise, the lambda will be a call to the OGR
         # reprojection stuff.
         reproject = lambda geometry: None
 
-        if layer:
-            layer_spatial_ref = layer.GetSpatialRef()
-
-            spatial_ref = None
-            if self.source_proj4:
-                spatial_ref = osr.SpatialReference()
-                if self.gisorder:
-                    spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
-                spatial_ref.ImportFromProj4(self.source_proj4)
-            elif self.source_epsg:
-                spatial_ref = osr.SpatialReference()
-                if self.gisorder:
-                    spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
-                spatial_ref.ImportFromEPSG(self.source_epsg)
-            elif layer_spatial_ref:
-                spatial_ref = layer_spatial_ref
-                self.logger.info("Detected projection metadata:\n%s", str(layer_spatial_ref))
-            else:
-                self.logger.info("Layer has no projection metadata, falling back to EPSG:4326")
-                if not self.gisorder:
-                    spatial_ref = osr.SpatialReference()
-                    spatial_ref.ImportFromEPSG(4326)
-
-            if spatial_ref:
-                # Destionation projection will *always* be EPSG:4326, WGS84 lat-lon
-                dest_spatial_ref = osr.SpatialReference()
-                dest_spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
-                dest_spatial_ref.ImportFromEPSG(4326)
-                coord_trans = osr.CoordinateTransformation(spatial_ref, dest_spatial_ref)
-                reproject = lambda geometry: geometry.Transform(coord_trans)
+        if spatial_ref:
+            # Destionation projection will *always* be EPSG:4326, WGS84 lat-lon
+            dest_spatial_ref = osr.SpatialReference()
+            dest_spatial_ref.SetAxisMappingStrategy(osr.OAMS_TRADITIONAL_GIS_ORDER)
+            dest_spatial_ref.ImportFromEPSG(4326)
+            coord_trans = osr.CoordinateTransformation(spatial_ref, dest_spatial_ref)
+            reproject = lambda geometry: geometry.Transform(coord_trans)
 
         return reproject
 

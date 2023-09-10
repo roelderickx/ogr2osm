@@ -570,6 +570,7 @@ basicgeometriesfilterlayer:
   $ ogr2osm -t $TESTDIR/translations/filterlayer-translation.py -f $TESTDIR/shapefiles/basic_geometries.kml
   Found valid translation class FilterLayerTranslation
   Preparing to convert .* (re)
+  Skipping filtered out layer
   Splitting long ways
   Writing file header
   Writing nodes
