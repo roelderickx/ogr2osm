@@ -105,7 +105,7 @@ class OsmData:
                 duplicate_node = self.__nodes[index]
                 merged_tags = self.translation.merge_tags('node', duplicate_node.tags, tags)
                 if self.z_value_tagname:
-                    strz = (('%%.%df' % self.significant_digits) % z).strip('0')
+                    strz = (('%%.%df' % self.significant_digits) % z).rstrip('0').rstrip('.')
                     new_tags = { self.z_value_tagname: strz }
                     merged_tags = self.translation.merge_tags('node', merged_tags, new_tags)
                 if merged_tags is not None:
@@ -119,7 +119,7 @@ class OsmData:
         else:
             merged_tags = tags
             if self.z_value_tagname:
-                strz = (('%%.%df' % self.significant_digits) % z).strip('0')
+                strz = (('%%.%df' % self.significant_digits) % z).rstrip('0').rstrip('.')
                 new_tags = { self.z_value_tagname: [ strz ] }
                 merged_tags = self.translation.merge_tags('node', new_tags, tags)
             node = OsmNode(x, y, merged_tags)

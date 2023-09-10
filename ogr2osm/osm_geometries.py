@@ -68,10 +68,11 @@ class OsmBoundary:
 
 
     def to_xml(self, significant_digits):
-        xmlattrs = { 'minlon':(('%%.%df' % significant_digits) % self.minlon).strip('0'), \
-                     'minlat':(('%%.%df' % significant_digits) % self.minlat).strip('0'), \
-                     'maxlon':(('%%.%df' % significant_digits) % self.maxlon).strip('0'), \
-                     'maxlat':(('%%.%df' % significant_digits) % self.maxlat).strip('0') }
+        formatting = ('%%.%df' % significant_digits)
+        xmlattrs = { 'minlon':(formatting % self.minlon).rstrip('0').rstrip('.'), \
+                     'minlat':(formatting % self.minlat).rstrip('0').rstrip('.'), \
+                     'maxlon':(formatting % self.maxlon).rstrip('0').rstrip('.'), \
+                     'maxlat':(formatting % self.maxlat).rstrip('0').rstrip('.') }
         xmlobject = etree.Element('bounds', xmlattrs)
 
         return etree.tostring(xmlobject, encoding='unicode')
@@ -128,10 +129,11 @@ class OsmNode(OsmGeometry):
 
     def to_xml(self, attributes, significant_digits, \
                      suppress_empty_tags, max_tag_length, tag_overflow):
+        formatting = ('%%.%df' % significant_digits)
         xmlattrs = { 'visible':'true', \
                      'id':('%d' % self.id), \
-                     'lat':(('%%.%df' % significant_digits) % self.y).strip('0'), \
-                     'lon':(('%%.%df' % significant_digits) % self.x).strip('0') }
+                     'lat':(formatting % self.y).rstrip('0').rstrip('.'), \
+                     'lon':(formatting % self.x).rstrip('0').rstrip('.') }
         xmlattrs.update(attributes)
 
         xmlobject = etree.Element('node', xmlattrs)
