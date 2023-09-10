@@ -266,9 +266,9 @@ def main():
 
     logger.info("Preparing to convert '%s' to '%s'.", params.source, params.outputFile)
 
-    osmdata = OsmData(translation_object, \
-                      params.roundingDigits, params.maxNodesPerWay, params.addBounds, \
-                      params.id, params.positiveId, params.zValueTagName)
+    osmdata = OsmData(translation_object, params.roundingDigits, params.significantDigits, \
+                      params.maxNodesPerWay, params.addBounds, params.id, params.positiveId, \
+                      params.zValueTagName)
 
     osmdata.load_start_id_from_file(params.idfile)
 
