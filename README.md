@@ -199,6 +199,7 @@ datasource.set_query(query)
 osmdata = ogr2osm.OsmData(translation_object)
 # Optional constructor parameters:
 # - rounding_digits: --rounding-digits parameter
+# - significant_digits: --significant-digits parameter
 # - max_points_in_way: --split-ways parameter
 # - add_bounds: --add-bounds parameter
 # - start_id: --id parameter

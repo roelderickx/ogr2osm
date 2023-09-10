@@ -17,13 +17,15 @@ from .version import __program__
 from .osm_geometries import OsmId, OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
-    def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False, \
-                 start_id=0, is_positive=False, z_value_tagname=None):
+    def __init__(self, translation, rounding_digits=7, significant_digits=9, \
+                 max_points_in_way=1800, add_bounds=False, start_id=0, is_positive=False, \
+                 z_value_tagname=None):
         self.logger = logging.getLogger(__program__)
 
         # options
         self.translation = translation
         self.rounding_digits = rounding_digits
+        self.significant_digits = significant_digits
         self.max_points_in_way = max_points_in_way
         self.add_bounds = add_bounds
         self.z_value_tagname = z_value_tagname
@@ -87,7 +89,6 @@ class OsmData:
     def __add_node(self, x, y, z, tags, is_way_member):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
-        rz = self.__round_number(z)
 
         # TODO deprecated
         unique_node_id = None
@@ -104,7 +105,8 @@ class OsmData:
                 duplicate_node = self.__nodes[index]
                 merged_tags = self.translation.merge_tags('node', duplicate_node.tags, tags)
                 if self.z_value_tagname:
-                    new_tags = { self.z_value_tagname: str(rz) }
+                    strz = (('%%.%df' % self.significant_digits) % z).strip('0')
+                    new_tags = { self.z_value_tagname: strz }
                     merged_tags = self.translation.merge_tags('node', merged_tags, new_tags)
                 if merged_tags is not None:
                     duplicate_node.tags = merged_tags
@@ -117,7 +119,8 @@ class OsmData:
         else:
             merged_tags = tags
             if self.z_value_tagname:
-                new_tags = { self.z_value_tagname: [ str(rz) ] }
+                strz = (('%%.%df' % self.significant_digits) % z).strip('0')
+                new_tags = { self.z_value_tagname: [ strz ] }
                 merged_tags = self.translation.merge_tags('node', new_tags, tags)
             node = OsmNode(x, y, merged_tags)
             self.__unique_node_index[unique_node_id] = [ len(self.__nodes) ]
