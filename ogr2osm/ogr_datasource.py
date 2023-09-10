@@ -17,6 +17,8 @@ from osgeo import osr
 
 from .version import __program__
 
+ogr.UseExceptions()
+
 class OgrDatasource:
     def __init__(self, translation, source_proj4=None, source_epsg=None, gisorder=False, \
                        source_encoding='utf-8'):
