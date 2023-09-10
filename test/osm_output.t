@@ -566,3 +566,15 @@ shiftjis:
   Writing file footer
   $ xmllint --format shift-jis.osm | diff -uNr - $TESTDIR/shift-jis.xml
 
+basicgeometriesfilterlayer:
+  $ ogr2osm -t $TESTDIR/translations/filterlayer-translation.py -f $TESTDIR/shapefiles/basic_geometries.kml
+  Found valid translation class FilterLayerTranslation
+  Preparing to convert .* (re)
+  Splitting long ways
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  Writing file footer
+  $ xmllint --format basic_geometries.osm | diff -uNr - $TESTDIR/basic_geometries_filterlayer.xml
+

@@ -526,3 +526,15 @@ shiftjis:
   \[.[0-9]\] (re)
   $ xmllint --format shift-jis.osm | diff -uNr - $TESTDIR/shift-jis.pbf.xml
 
+basicgeometriesfilterlayer:
+  $ ogr2osm --pbf -t $TESTDIR/translations/filterlayer-translation.py -f $TESTDIR/shapefiles/basic_geometries.kml
+  Found valid translation class FilterLayerTranslation
+  Preparing to convert .* (re)
+  Splitting long ways
+  Writing file header
+  Writing nodes
+  Writing ways
+  Writing relations
+  $ osmconvert --drop-author basic_geometries.osm.pbf > basic_geometries.osm 2> /dev/null
+  $ xmllint --format basic_geometries.osm | diff -uNr - $TESTDIR/basic_geometries_filterlayer.pbf.xml
+
