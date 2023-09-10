@@ -18,7 +18,7 @@ from .osm_geometries import OsmId, OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
     def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False, \
-                 start_id=0, is_positive=False):
+                 start_id=0, is_positive=False, consider_elevation=False):
         self.logger = logging.getLogger(__program__)
 
         # options
@@ -26,6 +26,7 @@ class OsmData:
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
         self.add_bounds = add_bounds
+        self.consider_elevation = consider_elevation
 
         self.__bounds = OsmBoundary()
         self.__nodes = []
@@ -83,14 +84,17 @@ class OsmData:
         return int(round(n * 10**self.rounding_digits))
 
 
-    def __add_node(self, x, y, tags, is_way_member):
+    def __add_node(self, x, y, tags, is_way_member, z=None):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
+        rz = self.__round_number(z) if self.consider_elevation and z else None
 
         # TODO deprecated
         unique_node_id = None
         if is_way_member:
             unique_node_id = (rx, ry)
+            if rz is not None:
+                unique_node_id = (rx, ry, rz)
         else:
             unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
         # to be replaced by
@@ -129,7 +133,7 @@ class OsmData:
 
 
     def __parse_point(self, ogrgeometry, tags):
-        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False)
+        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False, z=ogrgeometry.GetZ())
 
 
     def __parse_multi_point(self, ogrgeometry, tags):
@@ -183,8 +187,8 @@ class OsmData:
         nodes = []
         potential_duplicate_ways = []
         for i in range(ogrgeometry.GetPointCount()):
-            (x, y, z_unused) = ogrgeometry.GetPoint(i)
-            node = self.__add_node(x, y, {}, True)
+            (x, y, z) = ogrgeometry.GetPoint(i)
+            node = self.__add_node(x, y, {}, True, z=z)
             if previous_node_id is None or previous_node_id != node.id:
                 if previous_node_id is None:
                     # first node: add all parent ways as potential duplicates
