@@ -82,6 +82,7 @@ usage: ogr2osm [-h] [--version] [-t TRANSLATION] [--encoding ENCODING]
                [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
                [--never-download] [--never-upload] [--locked] [--add-bounds]
                [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
+               [--add-z-value-tag TAGNAME]
                DATASOURCE
 
 positional arguments:
@@ -118,9 +119,6 @@ options:
                         Split ways with more than the specified number of
                         nodes. Defaults to 1800. Any value below 2 - do not
                         split.
-  --consider-elevation  If nodes have the same (X,Y) coordinates but different
-                        Z-levels (e.g, different elevation), then they will be
-                        given different node IDs (default: False)
   --id ID               ID to start counting from for the output file.
                         Defaults to 0.
   --idfile IDFILE       Read ID to start counting from from a file.
@@ -145,6 +143,8 @@ options:
                         Set max character length of tag values. Exceeding
                         values will be truncated and end with '...'. Defaults
                         to 255. Values smaller than 3 disable the limit.
+  --add-z-value-tag TAGNAME
+                        The tagname in which the z-value will be saved.
 ```
 
 ### As a library
@@ -202,7 +202,7 @@ osmdata = ogr2osm.OsmData(translation_object)
 # - max_points_in_way: --split-ways parameter
 # - add_bounds: --add-bounds parameter
 # - start_id: --id parameter
-# - consider_elevation: --consider-elevation parameter
+# - z_value_tagname: --add-z-value-tag
 osmdata.process(datasource)
 
 # 7. Instantiate either ogr2osm.OsmDataWriter or ogr2osm.PbfDataWriter and

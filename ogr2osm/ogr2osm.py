@@ -96,11 +96,6 @@ def parse_commandline(logger):
     parser.add_argument("--split-ways", dest="maxNodesPerWay", type=int, default=1800,
                         help="Split ways with more than the specified number of nodes. " +
                              "Defaults to %(default)s. Any value below 2 - do not split.")
-    parser.add_argument("--consider-elevation", dest="considerElevation", action="store_true",
-                        help="If nodes have the same (X,Y) coordinates but different Z-levels " + 
-                             "(e.g, different elevation), " + 
-                             "then they will be given different node IDs " +
-                             "(default: %(default)s)")
     # ID generation options
     parser.add_argument("--id", dest="id", type=int, default=0,
                         help="ID to start counting from for the output file. " +
@@ -140,6 +135,8 @@ def parse_commandline(logger):
                              f"truncated and end with '{OsmDataWriter.TAG_OVERFLOW}'. Defaults " +
                              "to %(default)s. Values smaller than " +
                              f"{len(OsmDataWriter.TAG_OVERFLOW)} disable the limit.")
+    parser.add_argument("--add-z-value-tag", dest="zValueTagName", type=str, metavar="TAGNAME",
+                        help="The tagname in which the z-value will be saved.")
     parser.add_argument("--add-version", dest="addVersion", action="store_true",
                         help=argparse.SUPPRESS) # can cause problems when used inappropriately
     parser.add_argument("--add-timestamp", dest="addTimestamp", action="store_true",
@@ -271,7 +268,7 @@ def main():
 
     osmdata = OsmData(translation_object, \
                       params.roundingDigits, params.maxNodesPerWay, params.addBounds, \
-                      params.id, params.positiveId, params.considerElevation)
+                      params.id, params.positiveId, params.zValueTagName)
 
     osmdata.load_start_id_from_file(params.idfile)
 

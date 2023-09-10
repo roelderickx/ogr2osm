@@ -18,7 +18,7 @@ from .osm_geometries import OsmId, OsmBoundary, OsmNode, OsmWay, OsmRelation
 
 class OsmData:
     def __init__(self, translation, rounding_digits=7, max_points_in_way=1800, add_bounds=False, \
-                 start_id=0, is_positive=False, consider_elevation=False):
+                 start_id=0, is_positive=False, z_value_tagname=None):
         self.logger = logging.getLogger(__program__)
 
         # options
@@ -26,7 +26,7 @@ class OsmData:
         self.rounding_digits = rounding_digits
         self.max_points_in_way = max_points_in_way
         self.add_bounds = add_bounds
-        self.consider_elevation = consider_elevation
+        self.z_value_tagname = z_value_tagname
 
         self.__bounds = OsmBoundary()
         self.__nodes = []
@@ -84,17 +84,15 @@ class OsmData:
         return int(round(n * 10**self.rounding_digits))
 
 
-    def __add_node(self, x, y, tags, is_way_member, z=None):
+    def __add_node(self, x, y, z, tags, is_way_member):
         rx = self.__round_number(x)
         ry = self.__round_number(y)
-        rz = self.__round_number(z) if self.consider_elevation and z else None
+        rz = self.__round_number(z)
 
         # TODO deprecated
         unique_node_id = None
         if is_way_member:
             unique_node_id = (rx, ry)
-            if rz is not None:
-                unique_node_id = (rx, ry, rz)
         else:
             unique_node_id = self.translation.get_unique_node_identifier(rx, ry, tags)
         # to be replaced by
@@ -105,6 +103,9 @@ class OsmData:
             for index in self.__unique_node_index[unique_node_id]:
                 duplicate_node = self.__nodes[index]
                 merged_tags = self.translation.merge_tags('node', duplicate_node.tags, tags)
+                if self.z_value_tagname:
+                    new_tags = { self.z_value_tagname: str(rz) }
+                    merged_tags = self.translation.merge_tags('node', merged_tags, new_tags)
                 if merged_tags is not None:
                     duplicate_node.tags = merged_tags
                     return duplicate_node
@@ -114,7 +115,11 @@ class OsmData:
             self.__nodes.append(node)
             return node
         else:
-            node = OsmNode(x, y, tags)
+            merged_tags = tags
+            if self.z_value_tagname:
+                new_tags = { self.z_value_tagname: [ str(rz) ] }
+                merged_tags = self.translation.merge_tags('node', new_tags, tags)
+            node = OsmNode(x, y, merged_tags)
             self.__unique_node_index[unique_node_id] = [ len(self.__nodes) ]
             self.__nodes.append(node)
             return node
@@ -133,7 +138,8 @@ class OsmData:
 
 
     def __parse_point(self, ogrgeometry, tags):
-        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), tags, False, z=ogrgeometry.GetZ())
+        return self.__add_node(ogrgeometry.GetX(), ogrgeometry.GetY(), ogrgeometry.GetZ(), \
+                               tags, False)
 
 
     def __parse_multi_point(self, ogrgeometry, tags):
@@ -188,7 +194,7 @@ class OsmData:
         potential_duplicate_ways = []
         for i in range(ogrgeometry.GetPointCount()):
             (x, y, z) = ogrgeometry.GetPoint(i)
-            node = self.__add_node(x, y, {}, True, z=z)
+            node = self.__add_node(x, y, z, { }, True)
             if previous_node_id is None or previous_node_id != node.id:
                 if previous_node_id is None:
                     # first node: add all parent ways as potential duplicates
