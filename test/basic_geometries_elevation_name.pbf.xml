@@ -74,7 +74,7 @@
     <tag k="Name" v="21"/>
   </node>
   <node id="-23" lat="33.4706855" lon="-23.089571">
-    <tag k="Name" v="1;25"/>
+    <tag k="Name" v="1"/>
   </node>
   <node id="-24" lat="33.4729049" lon="-23.0868244">
     <tag k="Name" v="2"/>
@@ -287,7 +287,7 @@
     <tag k="Name" v="72"/>
   </node>
   <node id="-95" lat="33.4720457" lon="-23.1465626">
-    <tag k="Name" v="15;14"/>
+    <tag k="Name" v="15"/>
   </node>
   <node id="-96" lat="33.4739073" lon="-23.1454468">
     <tag k="Name" v="30"/>
