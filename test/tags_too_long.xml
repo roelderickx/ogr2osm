@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="ogr2osm 1.1.2" upload="false">
+<osm version="0.6" generator="ogr2osm 1.2.0" upload="false">
   <node visible="true" id="-1" lat="34" lon="-22">
     <tag k="name" v="a point"/>
     <tag k="description" v="Description of a point that is by itself too long: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores e..."/>
