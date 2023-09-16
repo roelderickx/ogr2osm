@@ -283,13 +283,6 @@ class TranslationBase:
         return tags
 
 
-    def get_unique_node_identifier(self, rounded_x, rounded_y, tags):
-        '''
-        DEPRECATED -- USE merge_tags IF YOU WANT TO DISABLE MERGING!
-        '''
-        return (rounded_x, rounded_y)
-
-
     def process_feature_post(self, osmgeometry, ogrfeature, ogrgeometry):
         '''
         This method is called after the creation of an OsmGeometry object. The
