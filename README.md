@@ -78,7 +78,7 @@ usage: ogr2osm [-h] [--version] [-t TRANSLATION] [--encoding ENCODING]
                [-p PROJ4_STRING] [--gis-order]
                [--rounding-digits ROUNDINGDIGITS]
                [--significant-digits SIGNIFICANTDIGITS]
-               [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
+               [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE] [--positive-id]
                [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
                [--never-download] [--never-upload] [--locked] [--add-bounds]
                [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
@@ -123,6 +123,7 @@ options:
                         Defaults to 0.
   --idfile IDFILE       Read ID to start counting from from a file.
   --saveid SAVEID       Save last ID after execution to a file.
+  --positive-id         Causes ID to increment, otherwise ID decrements by default
   -o OUTPUT, --output OUTPUT
                         Set destination .osm file name and location.
   -f, --force           Force overwrite of output file.
