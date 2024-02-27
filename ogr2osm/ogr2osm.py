@@ -105,7 +105,8 @@ def parse_commandline(logger):
     parser.add_argument("--saveid", dest="saveid", type=str, default=None,
                         help="Save last ID after execution to a file.")
     parser.add_argument("--positive-id", dest="positiveId", action="store_true",
-                        help=argparse.SUPPRESS) # can cause problems when used inappropriately
+                        help="Cause ID to increment. Use with care, this option can " +
+                             "cause problems when used inappropriately")
     # output file options
     parser.add_argument("-o", "--output", dest="outputFile", metavar="OUTPUT",
                         help="Set destination .osm file name and location.")
@@ -138,9 +139,11 @@ def parse_commandline(logger):
     parser.add_argument("--add-z-value-tag", dest="zValueTagName", type=str, metavar="TAGNAME",
                         help="The tagname in which the z-value will be saved.")
     parser.add_argument("--add-version", dest="addVersion", action="store_true",
-                        help=argparse.SUPPRESS) # can cause problems when used inappropriately
+                        help="Add version to nodes, ways and relations. Use with care, " +
+                             "this option can cause problems when used inappropriately")
     parser.add_argument("--add-timestamp", dest="addTimestamp", action="store_true",
-                        help=argparse.SUPPRESS) # can cause problems when used inappropriately
+                        help="Add timestamp to nodes, ways and relations. Use with care, " +
+                             "this option can cause problems when used inappropriately")
     # required source file
     parser.add_argument("source", metavar="DATASOURCE",
                         help="DATASOURCE can be a file path or a org PostgreSQL connection " +
