@@ -79,10 +79,11 @@ usage: ogr2osm [-h] [--version] [-t TRANSLATION] [--encoding ENCODING]
                [--rounding-digits ROUNDINGDIGITS]
                [--significant-digits SIGNIFICANTDIGITS]
                [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-               [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
-               [--never-download] [--never-upload] [--locked] [--add-bounds]
-               [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
-               [--add-z-value-tag TAGNAME]
+               [--saveid SAVEID] [--positive-id] [-o OUTPUT] [-f] [--pbf]
+               [--no-upload-false] [--never-download] [--never-upload]
+               [--locked] [--add-bounds] [--suppress-empty-tags]
+               [--max-tag-length MAXTAGLENGTH] [--add-z-value-tag TAGNAME]
+               [--add-version] [--add-timestamp]
                DATASOURCE
 
 positional arguments:
@@ -123,6 +124,8 @@ options:
                         Defaults to 0.
   --idfile IDFILE       Read ID to start counting from from a file.
   --saveid SAVEID       Save last ID after execution to a file.
+  --positive-id         Cause ID to increment. Use with care, this option can
+                        cause problems when used inappropriately
   -o OUTPUT, --output OUTPUT
                         Set destination .osm file name and location.
   -f, --force           Force overwrite of output file.
@@ -145,6 +148,12 @@ options:
                         to 255. Values smaller than 3 disable the limit.
   --add-z-value-tag TAGNAME
                         The tagname in which the z-value will be saved.
+  --add-version         Add version to nodes, ways and relations. Use with
+                        care, this option can cause problems when used
+                        inappropriately
+  --add-timestamp       Add timestamp to nodes, ways and relations. Use with
+                        care, this option can cause problems when used
+                        inappropriately
 ```
 
 ### As a library
@@ -203,6 +212,7 @@ osmdata = ogr2osm.OsmData(translation_object)
 # - max_points_in_way: --split-ways parameter
 # - add_bounds: --add-bounds parameter
 # - start_id: --id parameter
+# - is_positive: --positive-id parameter
 # - z_value_tagname: --add-z-value-tag
 osmdata.process(datasource)
 
@@ -215,6 +225,8 @@ datawriter = ogr2osm.OsmDataWriter(output_file)
 # - no_upload_false: --no-upload-false parameter
 # - never_download: --never-download parameter
 # - locked: --locked parameter
+# - add_version: --add-version parameter
+# - add_timestamp: --add-timestamp parameter
 # - significant_digits: --significant-digits parameter
 # - suppress_empty_tags: --suppress-empty-tags parameter
 # - max_tag_length: --max-tag-length parameter

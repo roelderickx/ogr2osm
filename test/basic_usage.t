@@ -10,10 +10,11 @@ usage:
                  [--rounding-digits ROUNDINGDIGITS]
                  [--significant-digits SIGNIFICANTDIGITS]
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                 [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
-                 [--never-download] [--never-upload] [--locked] [--add-bounds]
-                 [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
-                 [--add-z-value-tag TAGNAME]
+                 [--saveid SAVEID] [--positive-id] [-o OUTPUT] [-f] [--pbf]
+                 [--no-upload-false] [--never-download] [--never-upload]
+                 [--locked] [--add-bounds] [--suppress-empty-tags]
+                 [--max-tag-length MAXTAGLENGTH] [--add-z-value-tag TAGNAME]
+                 [--add-version] [--add-timestamp]
                  DATASOURCE
   
   positional arguments:
@@ -54,6 +55,8 @@ usage:
                           Defaults to 0.
     --idfile IDFILE       Read ID to start counting from from a file.
     --saveid SAVEID       Save last ID after execution to a file.
+    --positive-id         Cause ID to increment. Use with care, this option can
+                          cause problems when used inappropriately
     -o OUTPUT, --output OUTPUT
                           Set destination .osm file name and location.
     -f, --force           Force overwrite of output file.
@@ -76,6 +79,12 @@ usage:
                           to 255. Values smaller than 3 disable the limit.
     --add-z-value-tag TAGNAME
                           The tagname in which the z-value will be saved.
+    --add-version         Add version to nodes, ways and relations. Use with
+                          care, this option can cause problems when used
+                          inappropriately
+    --add-timestamp       Add timestamp to nodes, ways and relations. Use with
+                          care, this option can cause problems when used
+                          inappropriately
 
 require_output_file_when_using_db_source:
   $ ogr2osm "PG:dbname=test"
@@ -85,10 +94,11 @@ require_output_file_when_using_db_source:
                  [--rounding-digits ROUNDINGDIGITS]
                  [--significant-digits SIGNIFICANTDIGITS]
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                 [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
-                 [--never-download] [--never-upload] [--locked] [--add-bounds]
-                 [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
-                 [--add-z-value-tag TAGNAME]
+                 [--saveid SAVEID] [--positive-id] [-o OUTPUT] [-f] [--pbf]
+                 [--no-upload-false] [--never-download] [--never-upload]
+                 [--locked] [--add-bounds] [--suppress-empty-tags]
+                 [--max-tag-length MAXTAGLENGTH] [--add-z-value-tag TAGNAME]
+                 [--add-version] [--add-timestamp]
                  DATASOURCE
   ogr2osm: error: ERROR: An output file must be explicitly specified when using a database source
   [2]
@@ -101,10 +111,11 @@ require_query_when_using_db_source:
                  [--rounding-digits ROUNDINGDIGITS]
                  [--significant-digits SIGNIFICANTDIGITS]
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                 [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
-                 [--never-download] [--never-upload] [--locked] [--add-bounds]
-                 [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
-                 [--add-z-value-tag TAGNAME]
+                 [--saveid SAVEID] [--positive-id] [-o OUTPUT] [-f] [--pbf]
+                 [--no-upload-false] [--never-download] [--never-upload]
+                 [--locked] [--add-bounds] [--suppress-empty-tags]
+                 [--max-tag-length MAXTAGLENGTH] [--add-z-value-tag TAGNAME]
+                 [--add-version] [--add-timestamp]
                  DATASOURCE
   ogr2osm: error: ERROR: You must specify a query with --sql when using a database source
   [2]
@@ -144,10 +155,11 @@ duplicatefile:
                  [--rounding-digits ROUNDINGDIGITS]
                  [--significant-digits SIGNIFICANTDIGITS]
                  [--split-ways MAXNODESPERWAY] [--id ID] [--idfile IDFILE]
-                 [--saveid SAVEID] [-o OUTPUT] [-f] [--pbf] [--no-upload-false]
-                 [--never-download] [--never-upload] [--locked] [--add-bounds]
-                 [--suppress-empty-tags] [--max-tag-length MAXTAGLENGTH]
-                 [--add-z-value-tag TAGNAME]
+                 [--saveid SAVEID] [--positive-id] [-o OUTPUT] [-f] [--pbf]
+                 [--no-upload-false] [--never-download] [--never-upload]
+                 [--locked] [--add-bounds] [--suppress-empty-tags]
+                 [--max-tag-length MAXTAGLENGTH] [--add-z-value-tag TAGNAME]
+                 [--add-version] [--add-timestamp]
                  DATASOURCE
   ogr2osm: error: ERROR: output file '.*basic_geometries.osm' exists (re)
   [2]
