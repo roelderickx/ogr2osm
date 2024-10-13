@@ -313,7 +313,7 @@ class OsmData:
                                                             not any(members)))
             else:
                 # no support for nested collections or other unsupported types
-                self.logger.warning("Unhandled geometry in collection, type %d", geometry_type)
+                self.logger.warning("Unhandled geometry in collection, type %d", collection_geom_type)
 
         if len(members) == 1 and len(members[0].nodes) <= self.max_points_in_way:
             # only 1 polygon with 1 outer ring
