@@ -21,3 +21,4 @@ RUN apt-get install -y \
 RUN pip install cram lxml
 RUN pip install --upgrade protobuf
 
+ENTRYPOINT ["cram"]
