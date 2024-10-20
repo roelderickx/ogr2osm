@@ -304,7 +304,8 @@ class OsmData:
             if collection_geom_type in [ ogr.wkbPoint, ogr.wkbPoint25D, \
                                          ogr.wkbMultiPoint, ogr.wkbMultiPoint25D, \
                                          ogr.wkbLineString, ogr.wkbLinearRing, ogr.wkbLineString25D, \
-                                         ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ]:
+                                         ogr.wkbMultiLineString, ogr.wkbMultiLineString25D ] \
+                    or ogrgeometry.GetGeometryCount() == 1:
                 osmgeometries.extend(self.__parse_geometry(collection_geom, tags))
             elif collection_geom_type in [ ogr.wkbPolygon, ogr.wkbPolygon25D, \
                                            ogr.wkbMultiPolygon, ogr.wkbMultiPolygon25D ]:
@@ -313,14 +314,10 @@ class OsmData:
                                                             not any(members)))
             else:
                 # no support for nested collections or other unsupported types
-                self.logger.warning("Unhandled geometry in collection, type %d", geometry_type)
+                self.logger.warning("Unhandled geometry in collection, type %d", collection_geom_type)
 
-        if len(members) == 1 and len(members[0].nodes) <= self.max_points_in_way:
-            # only 1 polygon with 1 outer ring
-            member[0].tags.update(tags)
-            osmgeometries.append(member[0])
-        elif len(members) > 1:
-            osmgeometries.append(\
+        if len(members) > 1:
+            osmgeometries.append( \
                 self.__verify_duplicate_relations(potential_duplicate_relations, members, tags))
 
         return osmgeometries

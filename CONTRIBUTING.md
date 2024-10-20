@@ -1,5 +1,18 @@
 ## Tests
-Test your code and make sure it passes. cram is used for tests. See [test.yml](.github/workflows/test.yml) for instructions on how to install and run them.
+Test your code and make sure it passes.
+cram is used for tests.
+To install the test suite and run the tests, we recommend using Docker via the provided [Dockerfile](test/Dockerfile).
+```shell
+# Build image
+docker build  -f test/Dockerfile --tag ogr2osm-test
+```
+```shell
+# Run tests
+docker run -it --rm -v ./:/app ogr2osm-test test/basic_usage.t \
+  test/osm_output.t \
+  test/pbf_output.t
+```
+See the GitHub actions file [test.yml](.github/workflows/test.yml) for more details.
 
 Changes in speed-critical parts of the code may require profiling.
 
