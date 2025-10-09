@@ -5,6 +5,9 @@ on:
     tags:
       - '*'
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
   docker_hub:
     runs-on: ubuntu-latest
