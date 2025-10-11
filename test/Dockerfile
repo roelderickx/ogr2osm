@@ -1,4 +1,4 @@
-FROM amd64/ubuntu:20.04
+FROM amd64/ubuntu:latest
 
 WORKDIR /app
 
@@ -18,7 +18,7 @@ RUN apt-get install -y \
         protobuf-compiler \
         osmctools
 
-RUN pip install cram lxml
-RUN pip install --upgrade protobuf
+RUN pip install --break-system-packages cram lxml
+RUN pip install --break-system-packages --upgrade protobuf
 
 ENTRYPOINT ["cram"]

@@ -22,7 +22,7 @@ usage:
                           connection string such as: "PG:dbname=pdx_bldgs
                           user=emma host=localhost" (including the quotes)
   
-  optional arguments:
+  options:
     -h, --help            show this help message and exit
     --version             show program's version number and exit
     -t TRANSLATION, --translation TRANSLATION
