@@ -12,6 +12,7 @@ accompany any distribution of this code.
 from .translation_base_class import TranslationBase
 from .datawriter_base_class import DataWriterBase
 from .osm_datawriter import OsmDataWriter
+from .osm_threaded_datawriter import OsmThreadedDataWriter
 from .pbf_datawriter import PbfDataWriter
 from .ogr_datasource import OgrDatasource
 from .osm_data import OsmData

@@ -51,7 +51,7 @@ from .translation_base_class import TranslationBase
 from .osm_geometries import OsmId
 from .ogr_datasource import OgrDatasource
 from .osm_data import OsmData
-from .osm_datawriter import OsmDataWriter
+from .osm_threaded_datawriter import OsmThreadedDataWriter
 from .pbf_datawriter import is_protobuf_installed, PbfDataWriter
 
 def parse_commandline(logger):
@@ -133,9 +133,9 @@ def parse_commandline(logger):
                         help="Suppress empty tags")
     parser.add_argument("--max-tag-length", dest="maxTagLength", type=int, default=255,
                         help="Set max character length of tag values. Exceeding values will be " +
-                             f"truncated and end with '{OsmDataWriter.TAG_OVERFLOW}'. Defaults " +
-                             "to %(default)s. Values smaller than " +
-                             f"{len(OsmDataWriter.TAG_OVERFLOW)} disable the limit.")
+                             f"truncated and end with '{OsmThreadedDataWriter.TAG_OVERFLOW}'. " +
+                             f"Defaults to %(default)s. Values smaller than " +
+                             f"{len(OsmThreadedDataWriter.TAG_OVERFLOW)} disable the limit.")
     parser.add_argument("--add-z-value-tag", dest="zValueTagName", type=str, metavar="TAGNAME",
                         help="The tagname in which the z-value will be saved.")
     parser.add_argument("--add-version", dest="addVersion", action="store_true",
@@ -199,7 +199,7 @@ def parse_commandline(logger):
     if not params.forceOverwrite and os.path.exists(params.outputFile):
         parser.error("ERROR: output file '%s' exists" % params.outputFile)
 
-    if params.maxTagLength < len(OsmDataWriter.TAG_OVERFLOW):
+    if params.maxTagLength < len(OsmThreadedDataWriter.TAG_OVERFLOW):
         params.maxTagValueLength = sys.maxsize
 
     return params
@@ -288,7 +288,8 @@ def main():
         datawriter = PbfDataWriter(params.outputFile, params.addVersion, params.addTimestamp, \
                                    params.suppressEmptyTags, params.maxTagLength)
     else:
-        datawriter = OsmDataWriter(params.outputFile, params.neverUpload, params.noUploadFalse, \
+        datawriter = OsmThreadedDataWriter(\
+                                   params.outputFile, params.neverUpload, params.noUploadFalse, \
                                    params.neverDownload, params.locked, params.addVersion, \
                                    params.addTimestamp, params.significantDigits, \
                                    params.suppressEmptyTags, params.maxTagLength)
