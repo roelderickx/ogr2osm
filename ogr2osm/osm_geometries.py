@@ -105,9 +105,21 @@ class OsmGeometry:
 
     def _add_tags_to_xml(self, xmlobject, suppress_empty_tags, max_tag_length, tag_overflow):
         for (key, value_list) in self.tags.items():
+            '''
             value = ';'.join([ v for v in value_list if v ])
-            if len(value) > max_tag_length:
-                value = value[:(max_tag_length - len(tag_overflow))] + tag_overflow
+            '''
+            value = ''
+            for v in value_list:
+                if v:
+                    if value:
+                        value += ';' + v
+                    else:
+                        value = v
+
+                    if len(value) > max_tag_length:
+                        value = value[:(max_tag_length - len(tag_overflow))] + tag_overflow
+                        break
+
             if value or not suppress_empty_tags:
                 tag = etree.Element('tag', { 'k':key, 'v':value })
                 xmlobject.append(tag)
@@ -124,7 +136,14 @@ class OsmNode(OsmGeometry):
         super().__init__()
         self.x = x
         self.y = y
+        '''
         self.tags.update({ k: (v if type(v) == list else [ v ]) for (k, v) in tags.items() })
+        '''
+        for (k, v) in tags.items():
+            if type(v) == list:
+                self.tags[k] = v
+            else:
+                self.tags[k] = [ v ]
 
 
     def to_xml(self, attributes, significant_digits, \
@@ -148,7 +167,14 @@ class OsmWay(OsmGeometry):
     def __init__(self, tags):
         super().__init__()
         self.nodes = []
+        '''
         self.tags.update({ k: (v if type(v) == list else [ v ]) for (k, v) in tags.items() })
+        '''
+        for (k, v) in tags.items():
+            if type(v) == list:
+                self.tags[k] = v
+            else:
+                self.tags[k] = [ v ]
 
 
     def to_xml(self, attributes, significant_digits, \
@@ -173,7 +199,14 @@ class OsmRelation(OsmGeometry):
         super().__init__()
         self.members = []
         self.tags['type'] = [ 'multipolygon' ]
+        '''
         self.tags.update({ k: (v if type(v) == list else [ v ]) for (k, v) in tags.items() })
+        '''
+        for (k, v) in tags.items():
+            if type(v) == list:
+                self.tags[k] = v
+            else:
+                self.tags[k] = [ v ]
 
 
     def get_member_role(self, member):

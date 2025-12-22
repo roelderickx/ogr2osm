@@ -10,11 +10,15 @@ accompany any distribution of this code.
 '''
 
 import logging
+import threading
+import queue
 from osgeo import ogr
 from osgeo import osr
 
 from .version import __program__
 from .osm_geometries import OsmId, OsmBoundary, OsmNode, OsmWay, OsmRelation
+
+AMOUNT_THREADS = 16
 
 class OsmData:
     def __init__(self, translation, rounding_digits=7, significant_digits=9, \
@@ -35,6 +39,8 @@ class OsmData:
         self.__unique_node_index = {}
         self.__ways = []
         self.__relations = []
+
+        self.__q = queue.Queue(AMOUNT_THREADS)
 
         OsmId.set_id(start_id, is_positive)
 
@@ -220,9 +226,14 @@ class OsmData:
             members.append((exterior, 'outer'))
             if first:
                 # first member: add all parent relations as potential duplicates
+                '''
                 potential_duplicate_relations.extend(
                     [ p for p in exterior.get_parents() \
                         if type(p) == OsmRelation and p.get_member_role(exterior) == 'outer' ])
+                '''
+                for p in exterior.get_parents():
+                    if type(p) == OsmRelation and p.get_member_role(exterior) == 'outer':
+                        potential_duplicate_relations.append(p)
             elif not any(exterior.get_parents()) and any(potential_duplicate_relations):
                 # next members: if interior doesn't belong to another relation then this
                 #               relation is unique
@@ -372,14 +383,29 @@ class OsmData:
         osmgeometries = self.__parse_geometry(ogrgeometry, feature_tags)
 
         # TODO performance: run in __parse_geometry to avoid second loop
+        '''
         for osmgeometry in [ geom for geom in osmgeometries if geom ]:
             self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
+        '''
+        for osmgeometry in osmgeometries:
+            if osmgeometry:
+                self.translation.process_feature_post(osmgeometry, ogrfilteredfeature, ogrgeometry)
 
 
     def __split_way(self, way):
+        '''
         new_nodes = [ way.nodes[i:i + self.max_points_in_way] \
                                for i in range(0, len(way.nodes), self.max_points_in_way - 1) ]
+        '''
+        new_nodes = []
+        for i in range(0, len(way.nodes), self.max_points_in_way - 1):
+            new_nodes.append(way.nodes[i:i + self.max_points_in_way])
+        '''
         new_ways = [ way ] + [ OsmWay(way.tags) for i in range(len(new_nodes) - 1) ]
+        '''
+        new_ways = [ way ]
+        for i in range(len(new_nodes) - 1):
+            new_ways.append(OsmWay(way.tags))
 
         for new_way, nodes in zip(new_ways, new_nodes):
             new_way.nodes = nodes
@@ -413,7 +439,22 @@ class OsmData:
                     self.__split_way_in_relation(rel, way_parts)
 
 
+    def __processing_thread(self, thread_number):
+        while True:
+            feature = self.__q.get()
+            self.add_feature(feature[0], feature[1], feature[2], feature[3])
+            self.__q.task_done()
+
+
     def process(self, datasource):
+        '''
+        # start processing threads
+        threads = [ threading.Thread(target=self.__processing_thread, args=(i, ), daemon=True) \
+                            for i in range(AMOUNT_THREADS) ]
+        for thread in threads:
+            thread.start()
+        '''
+
         for i in range(datasource.get_layer_count()):
             (layer, reproject) = datasource.get_layer(i)
 
@@ -421,7 +462,17 @@ class OsmData:
                 layer_fields = self.__get_layer_fields(layer)
                 for j in range(layer.GetFeatureCount()):
                     ogrfeature = layer.GetNextFeature()
+                    #self.__q.put((ogrfeature, layer_fields, datasource.source_encoding, reproject))
                     self.add_feature(ogrfeature, layer_fields, datasource.source_encoding, reproject)
+
+        '''
+        # wait for queue to be processed
+        self.__q.join()
+        # TODO
+        #self.__q.shutdown()
+        #for thread in threads:
+        #    thread.join()
+        '''
 
         self.split_long_ways()
 
