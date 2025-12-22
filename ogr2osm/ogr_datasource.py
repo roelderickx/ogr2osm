@@ -12,6 +12,7 @@ accompany any distribution of this code.
 import os
 import logging
 from osgeo import gdalconst
+from osgeo import gdal
 from osgeo import ogr
 from osgeo import osr
 from packaging.version import Version
@@ -92,7 +93,7 @@ class OgrDatasource:
                 self.logger.error("OGR failed to open '%s', format may be unsupported.", \
                                   full_ogrpath)
             elif not self.is_database_source and file_datasource and prefer_mem_copy:
-                if Version(ogr.__version__) >= Version('3.11'):
+                if Version(gdal.__version__) >= Version('3.11'):
                     # Memory driver deprecated as of GDAL 3.11
                     mem_driver = ogr.GetDriverByName('MEM')
                 else:
