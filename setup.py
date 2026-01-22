@@ -20,7 +20,7 @@ setuptools.setup(
     url="https://github.com/roelderickx/ogr2osm",
     packages=setuptools.find_packages(),
     python_requires='>=3.7',
-    install_requires=['lxml>=4.3.0', 'GDAL>=3.0.0'],
+    install_requires=['lxml>=4.3.0', 'GDAL>=3.0.0', 'packaging>=21.3'],
     entry_points={
         'console_scripts': ['ogr2osm = ogr2osm.ogr2osm:main']
     },
@@ -29,7 +29,6 @@ setuptools.setup(
         'Topic :: Scientific/Engineering :: GIS',
         'Development Status :: 5 - Production/Stable',
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
 )
