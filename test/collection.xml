@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<osm version="0.6" generator="ogr2osm 1.2.0" upload="false">
+<osm version="0.6" generator="ogr2osm 1.2.1" upload="false">
   <node visible="true" id="-1" lat="33.4843" lon="-23.0967">
     <tag k="Name" v="TestCollection"/>
     <tag k="description" v=""/>

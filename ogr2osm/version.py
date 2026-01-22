@@ -9,6 +9,6 @@ accompany any distribution of this code.
 
 __author__ = "Roel Derickx"
 __program__ = "ogr2osm"
-__version__ = "1.2.0"
+__version__ = "1.2.1"
 __license__ = "MIT License"
 
