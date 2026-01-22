@@ -18,7 +18,7 @@ RUN apt-get install -y \
         protobuf-compiler \
         osmctools
 
-RUN pip install --break-system-packages cram lxml
+RUN pip install --break-system-packages cram lxml packaging
 RUN pip install --break-system-packages --upgrade protobuf
 
 ENTRYPOINT ["cram"]
