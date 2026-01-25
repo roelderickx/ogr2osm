@@ -1,11 +1,15 @@
-FROM ubuntu:22.04
+FROM amd64/ubuntu:latest
+
+WORKDIR /app
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-        libxml2-utils python3-pip libprotobuf-dev protobuf-compiler \
-        gdal-bin libgdal-dev python3-gdal osmctools && \
-    rm -rf /var/lib/apt/lists/* && \
-    python3 -m pip install -U pip setuptools wheel && \
-    pip install --upgrade protobuf ogr2osm
+        python3 libxml2-utils libprotobuf-dev protobuf-compiler \
+        gdal-bin libgdal-dev python3-gdal osmctools git && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/roelderickx/ogr2osm.git && \
+    cd ogr2osm && \
+    python3 setup.py install
 
 ENTRYPOINT ["ogr2osm"]
