@@ -42,6 +42,7 @@ python -m ogr2osm
 ```
 
 ### Running with Docker
+
 If you do not want to install ogr2osm on your system, you can run it with Docker. This is especially useful if you are on Windows or Mac and do not want to install Python and GDAL yourself.
 
 The usage of ogr2osm with Docker is the same as the usage as a standalone application. You can run ogr2osm with the following command:
@@ -51,6 +52,10 @@ The usage of ogr2osm with Docker is the same as the usage as a standalone applic
 # and save it in the current directory
 docker run -ti --rm -v $(pwd):/app roelderickx/ogr2osm /app/test.json -o /app/test.osm
 ```
+
+### Running on Windows
+
+Installing the requirements on Windows will likely fail since pip will try to build GDAL from sources. The [Geospatial Wheels repository](https://github.com/cgohlke/geospatial-wheels) provides unofficial binary wheels which can be used in stead.
 
 ## Upgrading
 
