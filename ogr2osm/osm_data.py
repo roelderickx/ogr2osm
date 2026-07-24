@@ -404,13 +404,20 @@ class OsmData:
             # pointless :-)
             return
 
-        self.logger.debug("Splitting long ways")
+        total_ways = len(self.__ways)
+        self.logger.debug(f"Splitting long ways, total {total_ways} ways")
 
+        split_count = 0
         for way in self.__ways:
             if len(way.nodes) > self.max_points_in_way:
                 way_parts = self.__split_way(way)
                 for rel in way.get_parents():
                     self.__split_way_in_relation(rel, way_parts)
+                split_count += 1
+                if split_count % 100 == 0:
+                    self.logger.debug(f"Split {split_count} ways so far...")
+
+        self.logger.debug(f"Split {split_count} long ways. Done.")
 
 
     def process(self, datasource):
@@ -419,9 +426,16 @@ class OsmData:
 
             if layer:
                 layer_fields = self.__get_layer_fields(layer)
-                for j in range(layer.GetFeatureCount()):
+                total_features = layer.GetFeatureCount()
+                self.logger.debug("Processing layer %d with %d features", i, total_features)
+
+                for j in range(total_features):
                     ogrfeature = layer.GetNextFeature()
                     self.add_feature(ogrfeature, layer_fields, datasource.source_encoding, reproject)
+
+                    # Log progress every 1000 features or at completion
+                    if (j + 1) % 1000 == 0 or (j + 1) == total_features:
+                        self.logger.debug("Processed %d/%d features", j + 1, total_features)
 
         self.split_long_ways()
 
