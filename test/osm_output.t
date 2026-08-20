@@ -47,6 +47,7 @@ basicgeometriesduplicate:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
+  Processing layer 0 with 8 features
   Merging tags for duplicate node
   Merging tags for duplicate node
   Merging tags for duplicate node
@@ -501,6 +502,8 @@ duplicatewaynodes:
   Using default translations
   Preparing to convert .* (re)
   Layer has no projection metadata, falling back to EPSG:4326
+  Processing layer 0 with 1 features
+  Processed 1/1 features
   Detected projection metadata:
   PROJCS["Amersfoort / RD New",
       GEOGCS["Amersfoort",
