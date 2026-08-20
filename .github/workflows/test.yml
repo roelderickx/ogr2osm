@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     # Use the python version installed by Ubuntu 20.04 (version 3.8.5),
     # so we can use precompiled gdal and protobuf
     #- name: Set up Python 3.8
