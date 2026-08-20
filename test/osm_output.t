@@ -19,7 +19,10 @@ basicgeometries:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -59,7 +62,9 @@ basicgeometriesduplicate:
   Merging tags for duplicate way
   Merging tags for duplicate way
   Merging tags for duplicate relation
-  Splitting long ways
+  Processed 8/8 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -84,7 +89,10 @@ multigeometries:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 3 features
+  Processed 3/3 features
+  Splitting long ways, total 6 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -109,7 +117,10 @@ multigeometriesduplicate:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 6 features
+  Processed 6/6 features
+  Splitting long ways, total 6 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -134,7 +145,10 @@ collection:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 1 features
+  Processed 1/1 features
+  Splitting long ways, total 6 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -159,7 +173,10 @@ collectionduplicate:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 2 features
+  Processed 2/2 features
+  Splitting long ways, total 6 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -184,7 +201,10 @@ unnecessary_collection:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 1 features
+  Processed 1/1 features
+  Splitting long ways, total 1 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -209,7 +229,10 @@ mergetags:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4618"]]
-  Splitting long ways
+  Processing layer 0 with 5 features
+  Processed 5/5 features
+  Splitting long ways, total 0 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -234,7 +257,10 @@ mergetagsnonempty:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4618"]]
-  Splitting long ways
+  Processing layer 0 with 5 features
+  Processed 5/5 features
+  Splitting long ways, total 0 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -259,7 +285,10 @@ tagstoolong:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4618"]]
-  Splitting long ways
+  Processing layer 0 with 3 features
+  Processed 3/3 features
+  Splitting long ways, total 0 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -284,7 +313,10 @@ id:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -310,7 +342,10 @@ loadsaveid:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -338,7 +373,10 @@ positiveid:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -363,7 +401,10 @@ significantdigits:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -388,7 +429,10 @@ version:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -413,7 +457,10 @@ bounds:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -438,7 +485,10 @@ timestamp:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -474,7 +524,9 @@ duplicatewaynodes:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","28992"]]
+  Processing layer 1 with 1 features
   Unhandled geometry, type 10
+  Processed 1/1 features
   Detected projection metadata:
   PROJCS["Amersfoort / RD New",
       GEOGCS["Amersfoort",
@@ -498,7 +550,10 @@ duplicatewaynodes:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","28992"]]
-  Splitting long ways
+  Processing layer 2 with 1 features
+  Processed 1/1 features
+  Splitting long ways, total 1 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -533,7 +588,10 @@ shapefile:
       AXIS["Easting",EAST],
       AXIS["Northing",NORTH],
       AUTHORITY["EPSG","26910"]]
-  Splitting long ways
+  Processing layer 0 with 114 features
+  Processed 114/114 features
+  Splitting long ways, total 114 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -558,7 +616,10 @@ utf8:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4618"]]
-  Splitting long ways
+  Processing layer 0 with 187 features
+  Processed 187/187 features
+  Splitting long ways, total 0 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -583,7 +644,10 @@ shiftjis:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 2 features
+  Processed 2/2 features
+  Splitting long ways, total 5 ways
+  Split 2 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -596,7 +660,8 @@ basicgeometriesfilterlayer:
   Found valid translation class FilterLayerTranslation
   Preparing to convert .* (re)
   Skipping filtered out layer
-  Splitting long ways
+  Splitting long ways, total 0 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -621,7 +686,10 @@ elevation:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -646,7 +714,10 @@ elevationclashingtags:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways

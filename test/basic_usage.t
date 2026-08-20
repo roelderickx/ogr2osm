@@ -139,7 +139,10 @@ require_db_source_for_sql_query:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -181,7 +184,10 @@ force:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
@@ -206,7 +212,10 @@ nomemorycopy:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
