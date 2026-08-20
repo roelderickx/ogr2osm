@@ -19,7 +19,10 @@ basicgeometries:
       AXIS["Latitude",NORTH],
       AXIS["Longitude",EAST],
       AUTHORITY["EPSG","4326"]]
-  Splitting long ways
+  Processing layer 0 with 4 features
+  Processed 4/4 features
+  Splitting long ways, total 4 ways
+  Split 0 long ways. Done.
   Writing file header
   Writing nodes
   Writing ways
